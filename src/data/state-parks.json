@@ -807,5 +807,124 @@
       "passesSoldHere": null,
       "note": null
     }
+  },
+  {
+    "slug": "rock-maze-trail",
+    "name": "Rock Maze",
+    "kind": "Trail, Potomac-Garrett State Forest",
+    "town": "Oakland",
+    "acres": null,
+    "blurb": "A natural labyrinth of house-sized sandstone boulders, moss over every surface, with passages between them narrow enough to turn sideways for. It is not a signed DNR trail and it is not on the state forest's trail map — locals know it, and that is mostly how you find it.",
+    "features": {
+      "waterfall": false,
+      "beach": null,
+      "swimming": null,
+      "restrooms": false,
+      "camping": true,
+      "cabins": null,
+      "trails": true,
+      "boatLaunch": null,
+      "boatRentals": null,
+      "fishing": null,
+      "winterUse": null,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": false,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "Not on Maryland DNR's list of parks requiring day-use reservations as of 25 June 2026.",
+      "slots": null
+    },
+    "fee": {
+      "note": "No day-use service charge listed for Potomac-Garrett State Forest on DNR's fee schedule. Not confirmed.",
+      "amount": null,
+      "schedule": null,
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
+    },
+    "services": {
+      "parkOffice": "Potomac-Garrett State Forest headquarters",
+      "officePhone": null,
+      "officeAddress": "1431 Potomac Camp Road, Oakland, MD 21550",
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": "The forest is administered from the Potomac Camp Road headquarters. There is nothing at the trailhead."
+    },
+    "warnings": [
+      "Snaggy Mountain Road is one of the forest's ORV trail areas. Expect motorised vehicles on the road you park on.",
+      "There is no sign, no marked trailhead and no facilities. The parking area is small.",
+      "The boulders are moss-covered and hold water. They are slick well after rain, and the passages between them are genuinely tight."
+    ],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR — Potomac-Garrett State Forest",
+        "url": "https://dnr.maryland.gov/forests/Pages/publiclands/western_potomacgarrettforest.aspx",
+        "note": "Confirms the forest (about 19,000 acres in southwestern Garrett County), the headquarters address, and that Snaggy Mountain Road is an ORV trail area and a primitive camping area. Does NOT name a Rock Maze trail."
+      },
+      {
+        "label": "Maryland DNR — Snaggy Mountain area map",
+        "url": "https://dnr.maryland.gov/forests/Documents/potomac/Snaggy-Area-Map24.pdf",
+        "note": "The official area map for Snaggy Mountain."
+      },
+      {
+        "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
+        "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
+        "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County site on it."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "PRIORITY: confirm the trailhead location and parking with the forest headquarters, and whether they consider it a sanctioned trail at all. It is unnamed on DNR's own material.",
+      "Confirm how far the walk in is, and roughly how long it takes.",
+      "Confirm whether dogs are permitted, and whether the ORV road affects that.",
+      "Confirm whether the parking area is passable for an ordinary car in winter and after rain.",
+      "Confirm the state forest day-use fee, if any."
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": "2026-08-03",
+        "from": "Site maintainer, first-hand",
+        "what": "The trailhead is a small parking area on Snaggy Mountain Road, near where it meets Cranesville Road. The walk in runs through open hardwood with heavy fern cover before it reaches the boulders.",
+        "affects": [
+          "trailhead",
+          "parking",
+          "approach"
+        ]
+      }
+    ],
+    "photos": [
+      {
+        "file": "rock-maze-trail",
+        "alt": "A narrow earth footpath running through open hardwood forest, banked on both sides by dense waist-high ferns, with sunlight coming through the canopy.",
+        "caption": "The approach: open hardwood and heavy fern cover before the ground turns to boulders.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-03",
+        "portrait": false
+      },
+      {
+        "file": "rock-maze-roots",
+        "alt": "Tree roots gripping the top of a large moss-covered sandstone boulder, with rhododendron leaves around it.",
+        "caption": "Sandstone under moss, with trees rooted straight over the rock. This is the surface the whole maze is made of — and why it stays slick.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-03",
+        "portrait": true
+      },
+      {
+        "file": "rock-maze-russula-group",
+        "alt": "A group of pink-capped Russula mushrooms on dark leaf litter on the forest floor.",
+        "caption": "Russula on the forest floor in early August. Look, photograph, do not eat.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-03",
+        "portrait": true
+      }
+    ],
+    "corrections": []
   }
 ]

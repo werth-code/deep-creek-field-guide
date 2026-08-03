@@ -1,0 +1,74 @@
+---
+/**
+ * A photograph, with its provenance.
+ *
+ * Same rule as every other fact here: a picture is evidence, and evidence
+ * carries a date and a name. A photo of a trail in full leaf tells you nothing
+ * useful if it was taken in 2019 and the bridge washed out in 2023, so the
+ * caption always says who took it and when. That is also what lets a reader
+ * challenge it.
+ *
+ * DELIVERY
+ * Two widths and a `sizes` hint, so a phone fetches ~100KB rather than ~450KB.
+ * `loading="lazy"` and `decoding="async"` everywhere except a hero, which is
+ * usually above the fold and should not be deferred. Explicit width/height so
+ * the space is reserved and nothing below jumps when the image lands — the
+ * same reasoning as the map embed.
+ *
+ * EXIF is stripped at import. Phone photos carry GPS and device identifiers,
+ * and republishing someone's camera serial number because we forgot to
+ * re-encode is not a trade worth making.
+ */
+export interface PhotoData {
+  /** Basename in /public/photos, without size suffix or extension. */
+  file: string;
+  /** Describes the content for someone who cannot see it. Never decorative. */
+  alt: string;
+  /** Shown under the image. What it shows, not what it looks like. */
+  caption?: string | null;
+  /** Who took it. */
+  credit: string;
+  /** ISO date it was taken. The whole point. */
+  takenOn: string;
+  /** Portrait shots need a different aspect box from landscape. */
+  portrait?: boolean;
+}
+
+interface Props extends PhotoData {
+  /** Hero images load eagerly and sit at the top of a page. */
+  hero?: boolean;
+  class?: string;
+}
+
+const {
+  file, alt, caption = null, credit, takenOn, portrait = false,
+  hero = false, class: klass = "",
+} = Astro.props;
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const [y, m, d] = takenOn.split("-").map(Number);
+const when = `${d} ${MONTHS[m - 1]} ${y}`;
+
+const w = portrait ? 1400 : 1400;
+const h = portrait ? 1866 : 1050;
+---
+
+<figure class={`sheet breakout my-6 overflow-hidden ${klass}`}>
+  <img
+    src={`/photos/${file}-1400.jpg`}
+    srcset={`/photos/${file}-700.jpg 700w, /photos/${file}-1400.jpg 1400w`}
+    sizes="(min-width: 60rem) 56rem, 100vw"
+    alt={alt}
+    width={w}
+    height={h}
+    loading={hero ? "eager" : "lazy"}
+    decoding={hero ? "sync" : "async"}
+    class="w-full h-auto block bg-lake/10"
+  />
+  <figcaption class="px-4 py-3 border-t-2 border-contour">
+    {caption && <p class="m-0 text-[0.92rem] leading-snug max-w-[62ch]">{caption}</p>}
+    <p class={`stamp text-ink-soft mb-0 ${caption ? "mt-2" : "m-0"}`}>
+      {credit} · {when}
+    </p>
+  </figcaption>
+</figure>

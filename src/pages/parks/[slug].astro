@@ -11,6 +11,7 @@ import Layout from "../../layouts/Layout.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import MapLink from "../../components/MapLink.astro";
 import MapEmbed from "../../components/MapEmbed.astro";
+import Photo from "../../components/Photo.astro";
 import ReportBox from "../../components/ReportBox.astro";
 
 import parksData from "../../data/state-parks.json";
@@ -157,6 +158,8 @@ const title =
     <div class="wrap prose-field pt-4">
       <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{park.blurb}</p>
 
+      {park.photos && park.photos.length > 0 && <Photo {...park.photos[0]} hero />}
+
       <h2>What's there</h2>
       <div class="sheet breakout my-6 p-4 sm:p-5">
         <div class="flex items-baseline justify-between gap-4">
@@ -284,6 +287,15 @@ const title =
           </dd>
         </div>
       </dl>
+
+      {
+        park.photos && park.photos.length > 1 && (
+          <>
+            <h2>More photographs</h2>
+            {park.photos.slice(1).map((ph) => <Photo {...ph} />)}
+          </>
+        )
+      }
 
       {/* Field reports sit ABOVE the sourcing too. Someone who was standing
           there is a real form of evidence, and burying it under the agency

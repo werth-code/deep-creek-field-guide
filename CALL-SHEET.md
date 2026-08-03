@@ -142,8 +142,16 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 - [ ] Confirm the acreage — sources vary between 54,000 and 55,000.
 - [ ] Confirm the Savage River release schedule for paddlers.
 
+### Rock Maze
+
+- [ ] PRIORITY: confirm the trailhead location and parking with the forest headquarters, and whether they consider it a sanctioned trail at all. It is unnamed on DNR's own material.
+- [ ] Confirm how far the walk in is, and roughly how long it takes.
+- [ ] Confirm whether dogs are permitted, and whether the ORV road affects that.
+- [ ] Confirm whether the parking area is passable for an ordinary car in winter and after rain.
+- [ ] Confirm the state forest day-use fee, if any.
+
 
 ---
 
-**70 open items.** Every one is a fact this site cannot confirm until
+**75 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.

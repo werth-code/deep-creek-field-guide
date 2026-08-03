@@ -63,6 +63,16 @@ export interface FieldReport {
   affects?: string[];
 }
 
+/** A photograph attached to a record. Shape mirrors Photo.astro's props. */
+export interface Photo {
+  file: string;
+  alt: string;
+  caption?: string | null;
+  credit: string;
+  takenOn: string;
+  portrait?: boolean;
+}
+
 export interface StateParkFeatures {
   waterfall: boolean | null;
   /** Sand you can sit on. Distinct from `swimming`, which is about the water. */
@@ -122,6 +132,7 @@ export interface StatePark {
   outstanding?: string[];
   corrections?: Correction[];
   reports?: FieldReport[];
+  photos?: Photo[];
 }
 
 export interface Restrooms {
@@ -170,6 +181,7 @@ export interface RegionalPark {
   verifiedDate: string | null;
   verifiedSource: string | null;
   outstanding?: string[];
+  photos?: Photo[];
 }
 
 /* ------------------------------------------------------------- rendering -- */
