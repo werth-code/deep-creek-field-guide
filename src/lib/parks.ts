@@ -85,6 +85,14 @@ export interface StateParkFeatures {
    * parks.
    */
   restrooms: boolean | null;
+  /**
+   * Somewhere to sit and eat. Added when a report named picnic areas at a
+   * state park and there was nowhere to record it — town parks had the field
+   * and state parks didn't. Third schema gap a field report has found, after
+   * restrooms and boat rentals, and all three the same shape: the dataset was
+   * built from what agencies publish rather than from what people ask.
+   */
+  picnic: boolean | null;
   camping: boolean | null;
   cabins: boolean | null;
   trails: boolean | null;
@@ -238,6 +246,7 @@ export const STATE_FEATURE_LABELS: [keyof StateParkFeatures, string][] = [
   ["beach", "Beach"],
   ["swimming", "Swimming"],
   ["restrooms", "Restrooms"],
+  ["picnic", "Picnic areas"],
   ["camping", "Camping"],
   ["cabins", "Cabins"],
   ["trails", "Trails"],
@@ -330,6 +339,7 @@ export function reservationFlag(r: Reservation): {
 const STATE_ASKS: [keyof StateParkFeatures, string][] = [
   ["restrooms", "Are there restrooms?"],
   ["petsAllowed", "Are dogs allowed?"],
+  ["picnic", "Are there picnic tables?"],
   ["beach", "Is there a beach?"],
   ["swimming", "Can you swim?"],
   ["camping", "Can you camp?"],

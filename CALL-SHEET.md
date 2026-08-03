@@ -101,10 +101,10 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ### Big Run
 
-- [ ] Get the Savage River release schedule and who publishes it — this is the single most useful fact for anyone coming to paddle.
-- [ ] Confirm whether a day-use fee is charged here at all.
-- [ ] Confirm campsite booking — first-come or reservable.
-- [ ] Confirm road access in winter.
+- [ ] Confirm whether the restrooms are flush or vault, and whether they stay open outside the camping season.
+- [ ] Confirm whether there is a rentable pavilion as well as picnic areas — DNR links a 'Picnicking and Pavilion' page.
+- [ ] Confirm drinking water on site. A primitive campground often has none, and that changes what you pack.
+- [ ] Confirm pet rules.
 
 ### Casselman River Bridge
 

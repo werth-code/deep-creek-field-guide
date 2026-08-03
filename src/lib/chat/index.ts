@@ -122,6 +122,7 @@ function stateEntry(p: StatePark): ChatEntry {
       ...EMPTY,
       beach: f.beach,
       restrooms: f.restrooms,
+      picnic: f.picnic,
       swimming: f.swimming,
       trails: f.trails,
       camping: f.camping,
