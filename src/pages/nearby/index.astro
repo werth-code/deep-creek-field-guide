@@ -1,0 +1,92 @@
+---
+/**
+ * Just over the line.
+ *
+ * The heading has to do the work: a reader who lands here from search must
+ * understand within one line that these are NOT in Garrett County.
+ */
+import Layout from "../../layouts/Layout.astro";
+import FlagIcon from "../../components/FlagIcon.astro";
+
+import nearbyData from "../../data/nearby.json";
+import type { NearbyPlace } from "../../lib/nearby";
+import { isPublishable, robotsFor } from "../../lib/verification";
+
+const places = (nearbyData as unknown as NearbyPlace[]).filter(isPublishable);
+const gate = {
+  verifiedDate: null,
+  verifiedSource: null,
+  sources: places.length ? [{ label: "x", url: "x" }] : null,
+  sourcedOn: places.length ? "2026-08-03" : null,
+};
+---
+
+<Layout
+  title="Just over the line — worth the drive from Deep Creek"
+  description="Places outside Garrett County that Deep Creek visitors actually drive to, clearly marked as out of county, with the same dated sourcing as everything else."
+  robots={robotsFor(gate)}
+>
+  <div class="wrap pt-11 pb-6">
+    <p class="label m-0">Just over the line</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[16ch] text-slate">
+      Worth the drive, outside the county
+    </h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      Everything else on this site is Garrett County, Maryland. These aren't —
+      they're near enough that people staying at the lake go anyway, and far
+      enough that the distance is the first thing worth telling you.
+    </p>
+  </div>
+
+  <div class="wrap pb-8">
+    <div class="grid gap-4 breakout">
+      {
+        places.map((p) => (
+          <article data-reveal class="sheet sheet-action relative group">
+            <a href={`/nearby/${p.slug}/`} class="absolute inset-0 z-10 no-underline">
+              <span class="sr-only">{p.name}</span>
+            </a>
+            <div class="p-4 sm:p-5">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h2 class="font-display text-[1.25rem] font-semibold tracking-[-0.03em] m-0 text-slate underline decoration-contour decoration-2 underline-offset-[0.16em] group-hover:decoration-slate">
+                  {p.name}
+                </h2>
+                <span class="stamp text-flag-red-bearing">{p.state}</span>
+              </div>
+              <p class="stamp text-ink-soft mt-1 mb-0">{p.kind} · {p.town}</p>
+              <p class="font-display text-[1rem] font-semibold mt-2.5 mb-0 text-slate">{p.distance}</p>
+              <p class="mt-2.5 mb-0 text-[0.93rem] leading-[1.55] max-w-[62ch]">{p.blurb}</p>
+              <p class="stamp text-ink-soft mt-3.5 mb-0 flex items-center justify-between gap-3">
+                <span>{p.season ? "Seasonal — see dates" : "Season not confirmed"}</span>
+                <span class="text-contour-deep group-hover:translate-x-0.5 transition-transform duration-100">→</span>
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <h2>Why these are kept separate</h2>
+    <p class="max-w-[58ch]">
+      This site says it covers Garrett County, and that claim is worth
+      something because it's narrow. Filing a West Virginia zoo among the
+      county's parks would spend it. Visitors don't care about county lines —
+      a reference that tells you what it covers has to.
+    </p>
+    <p class="max-w-[58ch]">
+      These are also a different kind of record. A private business sets its own
+      prices and hours and changes them without telling anyone, where a state
+      park's fee is published by an agency. Expect admission to be the first
+      thing that goes out of date, and ring ahead.
+    </p>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/parks/">The state parks</a></li>
+      <li><a href="/events/">Fairs and events</a></li>
+      <li><a href="/how-we-verify/">How we check this</a></li>
+    </ul>
+  </div>
+</Layout>

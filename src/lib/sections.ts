@@ -19,6 +19,11 @@ export interface Section {
 
 export const SECTIONS: Section[] = [
   {
+    slug: "nearby",
+    label: "Nearby",
+    nav: [{ href: "/nearby/", label: "Just over the line" }],
+  },
+  {
     slug: "events",
     label: "Events",
     nav: [{ href: "/events/", label: "Fairs and events" }],

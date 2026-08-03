@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "hovatters-wildlife-zoo",
+    "name": "Hovatter's Wildlife Zoo",
+    "alsoKnownAs": "West Virginia Zoo",
+    "distance": "About 26 miles from Oakland — roughly 45 minutes, and over the state line",
+    "town": "Kingwood",
+    "state": "West Virginia",
+    "county": "Preston County",
+    "address": "291 Wagner Lane, Kingwood, WV 26537",
+    "kind": "Private wildlife zoo",
+    "blurb": "A family-run zoo in rural Preston County with over thirty species — chimpanzees, grizzlies, tigers, lemurs, giraffes and camels among them. Reported to have a walk-in room full of parakeets, which is the bit people remember.",
+    "season": "Opens 11 April 2026 for its 34th season. Closing date and daily hours are not confirmed.",
+    "admission": {
+      "note": "Charged. The zoo does not publish prices on its front page and we have not confirmed them — ring ahead.",
+      "amount": null
+    },
+    "phone": "304-329-3122",
+    "website": { "label": "West Virginia Zoo (Hovatter's Wildlife Zoo)", "url": "https://www.westvirginiazoo.com/" },
+    "warnings": [
+      "This is in West Virginia, not Garrett County. Everything else on this site is Maryland.",
+      "A private business sets its own hours and prices and can change them without notice. Ring before driving 45 minutes."
+    ],
+    "sources": [
+      {
+        "label": "West Virginia Zoo — official site",
+        "url": "https://www.westvirginiazoo.com/",
+        "note": "The operator. Gives the 11 April 2026 opening, the 34th season, the phone number, and the species list. Publishes no admission prices or daily hours on the front page."
+      },
+      {
+        "label": "West Virginia Zoo — directions",
+        "url": "https://www.westvirginiazoo.com/directions/",
+        "note": "Confirms Hovatter's Wildlife Zoo and West Virginia Zoo are the same place, gives the address, and routes visitors from Oakland, Maryland — though it describes the zoo as east of Oakland when it is west."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "A bit far out, but genuinely fun — and there's a room full of parakeets.",
+        "affects": ["parakeet room", "worth the drive"]
+      }
+    ],
+    "outstanding": [
+      "PRIORITY: get admission prices and daily hours from the zoo directly. Neither is published on the site and both are what someone needs before driving 45 minutes.",
+      "Confirm the parakeet room — the zoo's own site never mentions it, and it is the thing our reporter singled out.",
+      "Confirm the closing date of the season.",
+      "Confirm whether it is walk-through, drive-through or both, and roughly how long a visit takes.",
+      "Confirm whether the directions page really means west of Oakland rather than east."
+    ]
+  }
+]

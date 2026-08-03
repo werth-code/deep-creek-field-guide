@@ -1,0 +1,168 @@
+---
+/**
+ * One out-of-county place. The state banner leads, before anything else.
+ */
+import type { GetStaticPaths } from "astro";
+
+import Layout from "../../layouts/Layout.astro";
+import FlagIcon from "../../components/FlagIcon.astro";
+import MapEmbed from "../../components/MapEmbed.astro";
+import MapLink from "../../components/MapLink.astro";
+import Photo from "../../components/Photo.astro";
+import ReportBox from "../../components/ReportBox.astro";
+
+import nearbyData from "../../data/nearby.json";
+import type { NearbyPlace } from "../../lib/nearby";
+import { isPublishable, isVerified, robotsFor, sourcedText, stampText, tierOf } from "../../lib/verification";
+import { formatStampDate } from "../../lib/dates";
+
+export const getStaticPaths = (() =>
+  (nearbyData as unknown as NearbyPlace[]).map((place) => ({ params: { slug: place.slug }, props: { place } }))) satisfies GetStaticPaths;
+
+const { place } = Astro.props as { place: NearbyPlace };
+const tier = tierOf(place);
+
+const asks = [
+  place.admission.amount === null ? "What's admission?" : null,
+  "What are the hours?",
+  "Are dogs allowed?",
+  "How long does a visit take?",
+].filter(Boolean) as string[];
+
+const schema = isPublishable(place)
+  ? [{
+      "@context": "https://schema.org",
+      "@type": "TouristAttraction",
+      name: place.name,
+      description: place.blurb,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: place.address ?? undefined,
+        addressLocality: place.town,
+        addressRegion: place.state,
+      },
+    }]
+  : [];
+
+const base = `${place.name}, ${place.town} ${place.state} — ${place.distance.toLowerCase()}.`;
+const description = `${base} Season, admission and what's confirmed.`.slice(0, 157);
+const title = [`${place.name} — ${place.distance.split("—")[0].trim()}`, place.name].find((t) => t.length <= 60) ?? place.name;
+---
+
+<Layout title={title} description={description} robots={robotsFor(place)} dateModified={place.verifiedDate ?? place.sourcedOn} schema={schema}>
+  <article>
+    <div class="wrap pt-11 pb-6">
+      <p class="label m-0">
+        <a href="/nearby/" class="no-underline hover:underline">Just over the line</a>
+        <span class="text-ink-soft"> · </span>{place.town}, {place.state}
+      </p>
+      <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[16ch] text-slate">{place.name}</h1>
+      <p class="stamp text-ink-soft mt-3 mb-0">
+        {place.kind}{place.alsoKnownAs ? ` · also called ${place.alsoKnownAs}` : ""}
+      </p>
+    </div>
+
+    {/* Out of county, out of state. This leads, always. */}
+    <div class="wrap">
+      <aside class="sheet breakout border-l-[9px] border-l-flag-red px-4 sm:px-5 py-4 my-2">
+        <p class="label text-flag-red-bearing m-0 flex items-center gap-1.5">
+          <FlagIcon icon="alert" class="w-[1em] h-[1em]" />
+          Not in Garrett County
+        </p>
+        <p class="font-display text-[1.15rem] font-semibold mt-2 mb-0 text-slate">{place.distance}</p>
+        <ul class="list-none p-0 m-0 mt-2.5 space-y-1.5">
+          {place.warnings.map((w) => <li class="text-[0.94rem] leading-[1.5] max-w-[58ch]">{w}</li>)}
+        </ul>
+      </aside>
+    </div>
+
+    <div class="wrap prose-field pt-4">
+      <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{place.blurb}</p>
+
+      {place.photos && place.photos.length > 0 && <Photo {...place.photos[0]} hero />}
+
+      <h2>Going</h2>
+      <dl class="sheet breakout my-6 divide-y-2 divide-lake/25">
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Season</dt>
+          <dd class={`m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55] ${place.season ? "" : "text-ink-soft italic"}`}>
+            {place.season ?? "Not confirmed"}
+          </dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Admission</dt>
+          <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55]">{place.admission.note}</dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Phone</dt>
+          <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem]">
+            {place.phone
+              ? <a href={`tel:${place.phone.replace(/[^0-9+]/g, "")}`} class="tap stamp text-[1rem]">{place.phone}</a>
+              : <span class="text-ink-soft italic">Not confirmed</span>}
+          </dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Getting there</dt>
+          <dd class="m-0 mt-1 sm:mt-0">
+            <MapLink name={place.name} town={place.town} address={place.address} region={place.state} label="Open in Google Maps" />
+          </dd>
+        </div>
+        {place.website && (
+          <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+            <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Website</dt>
+            <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem]">
+              <a href={place.website.url} rel="nofollow">{place.website.label}</a>
+            </dd>
+          </div>
+        )}
+      </dl>
+
+      <h2>Where it is</h2>
+      <MapEmbed name={place.name} town={place.town} address={place.address} region={place.state} />
+
+      {place.reports && place.reports.length > 0 && (
+        <>
+          <h2 id="reports">From people who were there</h2>
+          <ul class="list-none p-0 m-0 space-y-4">
+            {place.reports.map((r) => (
+              <li class="sheet px-4 sm:px-5 py-4 border-l-[9px] border-l-lake">
+                <p class="m-0 text-[0.96rem] leading-[1.55] max-w-[58ch]">{r.what}</p>
+                <p class="stamp text-ink-soft mt-2.5 mb-0">
+                  {r.from} · reported {formatStampDate(r.receivedOn)}
+                  {r.visitedOn ? ` · visited ${formatStampDate(r.visitedOn)}` : " · visit date not given"}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+
+      <aside class={`sheet breakout my-8 px-4 sm:px-5 py-5 border-l-[9px] ${isVerified(place) ? "border-l-flag-green" : "border-l-contour"}`}>
+        {isVerified(place)
+          ? <p class="m-0"><span class="stamp stamp-struck">{stampText(place)}</span></p>
+          : tier === "sourced"
+            ? (<>
+                <p class="label text-contour-deep m-0">Read from the source — not yet confirmed by phone</p>
+                <p class="stamp text-ink-soft mt-1.5 mb-0">{sourcedText(place)}</p>
+              </>)
+            : <p class="stamp text-ink-soft m-0">Not yet checked against a primary source.</p>}
+        <ul class="list-none p-0 mt-4 mb-0 space-y-1.5">
+          {place.sources.map((s) => (
+            <li class="text-[0.88rem] leading-snug">
+              <a href={s.url} rel="nofollow">{s.label}</a>
+              {s.note && <span class="text-ink-soft"> — {s.note}</span>}
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      <ReportBox subject={place.name} path={`/nearby/${place.slug}/`} asks={asks} />
+
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/nearby/">Everything just over the line</a></li>
+        <li><a href="/parks/">The state parks, in the county</a></li>
+      </ul>
+    </div>
+  </article>
+</Layout>

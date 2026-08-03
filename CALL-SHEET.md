@@ -24,6 +24,17 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 - [ ] Confirm whether dogs are welcome along the parade route.
 
 
+## Nearby
+
+### Hovatter's Wildlife Zoo — 304-329-3122
+
+- [ ] PRIORITY: get admission prices and daily hours from the zoo directly. Neither is published on the site and both are what someone needs before driving 45 minutes.
+- [ ] Confirm the parakeet room — the zoo's own site never mentions it, and it is the thing our reporter singled out.
+- [ ] Confirm the closing date of the season.
+- [ ] Confirm whether it is walk-through, drive-through or both, and roughly how long a visit takes.
+- [ ] Confirm whether the directions page really means west of Oakland rather than east.
+
+
 ## Regional parks
 
 ### Broadford Lake Park
@@ -149,5 +160,5 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ---
 
-**74 open items.** Every one is a fact this site cannot confirm until
+**79 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.
