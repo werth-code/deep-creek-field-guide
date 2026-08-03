@@ -113,7 +113,7 @@
     "hoursNote": null,
     "phone": null,
     "fee": {
-      "note": "Believed free. To be confirmed.",
+      "note": "Not confirmed. Most town parks here are free to enter, but nobody has checked this one.",
       "amount": null
     },
     "warnings": [],
@@ -143,10 +143,12 @@
     "acres": null,
     "blurb": "The smaller Accident park, at the western end of Wood Street. A large pavilion plus climbing cubes, a saucer swing, a seesaw, and a swing set that includes an accessible seat — which is worth knowing, because accessible play equipment is rare out here and almost never published.",
     "restrooms": {
-      "present": null,
+      "present": true,
       "type": null,
       "seasonal": null,
-      "note": "Not confirmed."
+      "note": "Reported first-hand. Whether they are open year-round is not confirmed.",
+      "confirmedOn": "2026-08-03",
+      "confirmedBy": "Site maintainer, first-hand"
     },
     "facilities": {
       "playground": true,
@@ -167,8 +169,8 @@
     "hoursNote": null,
     "phone": null,
     "fee": {
-      "note": "Believed free. To be confirmed.",
-      "amount": null
+      "note": "Free to use the park. The pavilion can be booked and there is a charge for that — the amount is not confirmed.",
+      "amount": 0
     },
     "warnings": [],
     "sources": [
@@ -182,9 +184,22 @@
     "verifiedDate": null,
     "verifiedSource": null,
     "outstanding": [
-      "RESTROOMS — confirm.",
-      "Confirm the accessible swing is still in place, and whether any path to it is paved.",
-      "Confirm pavilion rental — whether it can be booked and what it costs."
+      "Get the pavilion rental charge and how to book it from the Town of Accident.",
+      "Confirm whether the restrooms are open year-round.",
+      "Confirm park hours."
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "Restrooms, and a pavilion you can rent. No charge to use the park itself; the pavilion rental is charged.",
+        "affects": [
+          "restrooms",
+          "fee",
+          "pavilion"
+        ]
+      }
     ]
   },
   {
@@ -222,7 +237,7 @@
     "hoursNote": null,
     "phone": null,
     "fee": {
-      "note": "Believed free. To be confirmed.",
+      "note": "Not confirmed. Most town parks here are free to enter, but nobody has checked this one.",
       "amount": null
     },
     "warnings": [

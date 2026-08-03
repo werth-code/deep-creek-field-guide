@@ -42,9 +42,9 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ### Town Park West
 
-- [ ] RESTROOMS — confirm.
-- [ ] Confirm the accessible swing is still in place, and whether any path to it is paved.
-- [ ] Confirm pavilion rental — whether it can be booked and what it costs.
+- [ ] Get the pavilion rental charge and how to book it from the Town of Accident.
+- [ ] Confirm whether the restrooms are open year-round.
+- [ ] Confirm park hours.
 
 ### Friendsville Community Park
 
