@@ -21,6 +21,7 @@ const publishable = (r) =>
 const unverified = [
   ...read('./src/data/state-parks.json').filter((r) => !publishable(r)).map((r) => `/parks/${r.slug}/`),
   ...read('./src/data/regional-parks.json').filter((r) => !publishable(r)).map((r) => `/parks/regional/${r.slug}/`),
+  ...read('./src/data/events.json').filter((r) => !publishable(r)).map((r) => `/events/${r.slug}/`),
 ];
 
 export default defineConfig({

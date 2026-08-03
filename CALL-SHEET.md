@@ -7,6 +7,23 @@
 Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 
+## Events
+
+### Garrett County Agriculture Fair
+
+- [ ] PRIORITY: get the admission price, and whether there is a separate parking charge.
+- [ ] Ask whether the fair follows any recurring pattern — first full week of August, or set fresh each year. It would let us publish future years instead of going quiet.
+- [ ] Confirm the fairgrounds street address and gate times.
+- [ ] Confirm whether dogs are permitted on the fairgrounds during the fair.
+
+### Autumn Glory Festival
+
+- [ ] PRIORITY: ask the Chamber whether the festival follows a rule — a stated pattern would let us publish future years rather than going quiet after 2026.
+- [ ] Confirm the parade route and start time for 2026, and which streets close.
+- [ ] Confirm which individual events charge admission.
+- [ ] Confirm whether dogs are welcome along the parade route.
+
+
 ## Regional parks
 
 ### Broadford Lake Park
@@ -153,5 +170,5 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ---
 
-**75 open items.** Every one is a fact this site cannot confirm until
+**83 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.

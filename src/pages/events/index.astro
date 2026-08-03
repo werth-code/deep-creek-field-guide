@@ -1,0 +1,150 @@
+---
+/**
+ * Fairs and events.
+ *
+ * Ordered by the next occurrence, so the page reorders itself as the year
+ * turns and nobody has to remember to move things. Undated events sort last
+ * and say plainly that they are undated, rather than being quietly dropped.
+ */
+import Layout from "../../layouts/Layout.astro";
+import FlagIcon from "../../components/FlagIcon.astro";
+
+import eventsData from "../../data/events.json";
+import { upcoming, datedCount, type FieldEvent } from "../../lib/events";
+import { isPublishable, robotsFor } from "../../lib/verification";
+import { describe } from "../../lib/recurrence";
+
+const events = eventsData as unknown as FieldEvent[];
+const rows = upcoming(events);
+const live = events.filter(isPublishable);
+const gate = {
+  verifiedDate: null,
+  verifiedSource: null,
+  sources: live.length ? [{ label: "x", url: "x" }] : null,
+  sourcedOn: live.length ? "2026-08-03" : null,
+};
+
+const withDates = datedCount(rows);
+
+const schema = rows
+  .filter((r) => r.label.state !== "unknown")
+  .map((r) => ({
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: r.event.name,
+    description: r.event.blurb,
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "Place",
+      name: r.event.venue ?? r.event.town,
+      address: { "@type": "PostalAddress", addressLocality: r.event.town, addressRegion: "MD" },
+    },
+  }));
+
+const STATE_CLASS = {
+  running: "text-flag-green-bearing",
+  upcoming: "text-slate",
+  unknown: "text-ink-soft italic",
+};
+---
+
+<Layout
+  title="Garrett County fairs and events, with dates"
+  description="Annual fairs and festivals around Deep Creek Lake: the county fair, Autumn Glory and more, with confirmed dates and a note when dates aren't out yet."
+  robots={robotsFor(gate)}
+  schema={schema}
+>
+  <div class="wrap pt-11 pb-6">
+    <p class="label m-0">Fairs and events</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[15ch] text-slate">
+      What's on, and when
+    </h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      The annual fixtures around Deep Creek. Dates come from the organiser, and
+      where they haven't published next year's yet, this page says so instead of
+      guessing.
+    </p>
+  </div>
+
+  <div class="wrap pb-8">
+    <dl class="sheet breakout grid grid-cols-3 divide-x divide-lake/30">
+      {
+        [
+          { n: String(events.length), label: "annual events" },
+          { n: String(withDates), label: "with dates we can point at" },
+          { n: "0", label: "publish a recurring rule" },
+        ].map((s) => (
+          <div class="px-4 py-4">
+            <dt class="font-display text-[1.9rem] font-semibold text-slate leading-none tracking-[-0.04em]">
+              {s.n}
+            </dt>
+            <dd class="m-0 mt-1.5 stamp text-ink-soft">{s.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <p class="mt-4 mb-0 text-[0.92rem] leading-[1.55] text-ink-soft max-w-[58ch]">
+      That last number is the interesting one. Not one of these publishes a
+      pattern like "the third weekend in August" — they all announce dates a
+      year at a time. So this page shows the year we've confirmed and goes
+      quiet afterwards, rather than working out a date that might be wrong.
+    </p>
+  </div>
+
+  <div class="wrap pb-8">
+    <div class="grid gap-4 breakout">
+      {
+        rows.map(({ event, label }) => (
+          <article data-reveal class="sheet sheet-action relative group">
+            <a href={`/events/${event.slug}/`} class="absolute inset-0 z-10 no-underline">
+              <span class="sr-only">{event.name}</span>
+            </a>
+            <div class="p-4 sm:p-5">
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                <h2 class="font-display text-[1.25rem] font-semibold tracking-[-0.03em] m-0 text-slate underline decoration-contour decoration-2 underline-offset-[0.16em] group-hover:decoration-slate">
+                  {event.name}
+                </h2>
+                <span class="stamp text-ink-soft">{event.town}</span>
+              </div>
+
+              <p class={`font-display text-[1.05rem] font-semibold mt-2 mb-0 ${STATE_CLASS[label.state]}`}>
+                {label.text}
+              </p>
+              {label.computed && (
+                <p class="stamp text-contour-deep mt-1 mb-0">Worked out from the pattern</p>
+              )}
+
+              <p class="mt-2.5 mb-0 text-[0.93rem] leading-[1.55] max-w-[62ch]">{event.blurb}</p>
+
+              <p class="stamp text-ink-soft mt-3.5 mb-0 flex items-center justify-between gap-3">
+                <span>{event.edition ?? describe(event.rule).slice(0, 40)}</span>
+                <span class="text-contour-deep group-hover:translate-x-0.5 transition-transform duration-100">→</span>
+              </p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <h2>Why there's no calendar of everything</h2>
+    <p class="max-w-[58ch]">
+      An events page is the fastest-rotting thing on any local site. It gets
+      written once in March, it's wrong by September, and nobody notices because
+      a date in the past still looks like content. So this lists the annual
+      fixtures we've actually checked with the organiser, and grows slowly.
+    </p>
+    <p class="max-w-[58ch]">
+      Know one that belongs here? <a href="/how-we-verify/">Tell us</a> — a
+      link to the organiser's own page is all we need to start.
+    </p>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/parks/">The state parks</a></li>
+      <li><a href="/parks/regional/">Town parks</a></li>
+      <li><a href="/verified/">Every fact on the site, with its source and age</a></li>
+    </ul>
+  </div>
+</Layout>

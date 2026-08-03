@@ -1,0 +1,94 @@
+[
+  {
+    "slug": "garrett-county-agriculture-fair",
+    "name": "Garrett County Agriculture Fair",
+    "edition": "69th Annual",
+    "town": "McHenry",
+    "venue": "Garrett County Fairgrounds",
+    "address": "Garrett Highway (Route 219), McHenry, MD",
+    "blurb": "Eight days of livestock, 4-H judging, tractor pulls and food at the county fairgrounds. It is the county's biggest week and the fairgrounds are booked solid, so it also decides what parking around McHenry looks like.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Early August — the fair publishes dates a year at a time and states no recurring rule"
+    },
+    "confirmed": {
+      "2026": { "start": "2026-08-01", "end": "2026-08-08" }
+    },
+    "admission": {
+      "note": "Admission is charged; the amount is not confirmed. The fair publishes an admission page but does not state a figure we can quote.",
+      "amount": null
+    },
+    "website": {
+      "label": "Garrett County Agriculture Fair",
+      "url": "https://garrettcountyfair.org/"
+    },
+    "warnings": [
+      "The fairgrounds are also the venue for the Autumn Glory Craft & Gift Sale in October. Check which event you are booking for."
+    ],
+    "sources": [
+      {
+        "label": "Garrett County Agriculture Fair — official site",
+        "url": "https://garrettcountyfair.org/",
+        "note": "States \"August 1st – August 8th 2026\" and \"69th Annual\". Publishes no recurring rule, so future years are not computed."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "PRIORITY: get the admission price, and whether there is a separate parking charge.",
+      "Ask whether the fair follows any recurring pattern — first full week of August, or set fresh each year. It would let us publish future years instead of going quiet.",
+      "Confirm the fairgrounds street address and gate times.",
+      "Confirm whether dogs are permitted on the fairgrounds during the fair."
+    ]
+  },
+  {
+    "slug": "autumn-glory-festival",
+    "name": "Autumn Glory Festival",
+    "edition": "59th Annual",
+    "town": "Oakland",
+    "venue": "Downtown Oakland and venues across the county",
+    "address": "Oakland, MD",
+    "blurb": "Five days built around the leaf change, with the Grand Feature Parade through downtown Oakland on the Saturday. It is the busiest weekend of the autumn in Garrett County, and the one where finding a room needs planning.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Early to mid October — the festival publishes dates a year at a time and states no recurring rule"
+    },
+    "confirmed": {
+      "2026": { "start": "2026-10-07", "end": "2026-10-11" }
+    },
+    "admission": {
+      "note": "No admission cost is stated for the festival itself; individual events within it may charge. Not confirmed.",
+      "amount": null
+    },
+    "website": {
+      "label": "Autumn Glory Festival — Garrett County Chamber of Commerce",
+      "url": "https://www.visitdeepcreek.com/autumnglory/"
+    },
+    "warnings": [
+      "The Grand Feature Parade closes streets in downtown Oakland. The county has published detour notices in past years.",
+      "Do not assume a fixed weekend. 2023 ran 11–15 October and 2026 runs 7–11 October, and neither tracks Columbus Day consistently."
+    ],
+    "sources": [
+      {
+        "label": "Autumn Glory Festival — Garrett County Chamber of Commerce",
+        "url": "https://www.visitdeepcreek.com/autumnglory/",
+        "note": "States \"October 7 - 11 2026\" and \"59th Annual\". Publishes no recurring rule."
+      },
+      {
+        "label": "Autumn Glory Craft & Gift Sale 2026",
+        "url": "https://business.visitdeepcreek.com/events/details/autumn-glory-craft-gift-sale-2026-43965",
+        "note": "Craft and gift sale 9–10 October 2026 at the Exhibit Hall, Garrett County Fairgrounds, McHenry."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "PRIORITY: ask the Chamber whether the festival follows a rule — a stated pattern would let us publish future years rather than going quiet after 2026.",
+      "Confirm the parade route and start time for 2026, and which streets close.",
+      "Confirm which individual events charge admission.",
+      "Confirm whether dogs are welcome along the parade route."
+    ]
+  }
+]

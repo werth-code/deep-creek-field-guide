@@ -1,0 +1,244 @@
+---
+/**
+ * One annual event.
+ *
+ * The dates block leads and states BOTH the rule and the resolved dates, so a
+ * local who knows the fair moved this year can see at a glance which of the
+ * two we got wrong.
+ */
+import type { GetStaticPaths } from "astro";
+
+import Layout from "../../layouts/Layout.astro";
+import FlagIcon from "../../components/FlagIcon.astro";
+import MapEmbed from "../../components/MapEmbed.astro";
+import MapLink from "../../components/MapLink.astro";
+import Photo from "../../components/Photo.astro";
+import ReportBox from "../../components/ReportBox.astro";
+
+import eventsData from "../../data/events.json";
+import type { FieldEvent } from "../../lib/events";
+import { describe, occurrenceLabel, resolve } from "../../lib/recurrence";
+import { isPublishable, isVerified, robotsFor, sourcedText, stampText, tierOf } from "../../lib/verification";
+
+export const getStaticPaths = (() =>
+  (eventsData as unknown as FieldEvent[]).map((event) => ({
+    params: { slug: event.slug },
+    props: { event },
+  }))) satisfies GetStaticPaths;
+
+const { event } = Astro.props as { event: FieldEvent };
+const tier = tierOf(event);
+const publishable = isPublishable(event);
+const label = occurrenceLabel(event.rule, event.confirmed);
+
+/* Every year we hold a confirmed date for, newest first. Showing the list
+   makes the gap obvious: two entries means we know two years, not "annual". */
+const years = Object.keys(event.confirmed).sort().reverse();
+
+const others = (eventsData as unknown as FieldEvent[]).filter((e) => e.slug !== event.slug);
+
+const schema = publishable && label.state !== "unknown"
+  ? [
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: event.name,
+        description: event.blurb,
+        eventStatus: "https://schema.org/EventScheduled",
+        location: {
+          "@type": "Place",
+          name: event.venue ?? event.town,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: event.address ?? undefined,
+            addressLocality: event.town,
+            addressRegion: "MD",
+          },
+        },
+      },
+    ]
+  : [];
+
+const base = `${event.name}, ${event.town} — dates, admission and what's actually confirmed.`;
+const description = base.length < 118 ? `${base} Checked with the organiser and dated.` : base;
+
+const title =
+  [`${event.name} — dates and what to expect`, `${event.name}, ${event.town} MD`, event.name]
+    .find((t) => t.length <= 60) ?? event.name;
+
+const STATE_CLASS = {
+  running: "text-flag-green-bearing",
+  upcoming: "text-slate",
+  unknown: "text-ink-soft italic",
+};
+---
+
+<Layout
+  title={title}
+  description={description.slice(0, 157)}
+  robots={robotsFor(event)}
+  dateModified={event.verifiedDate ?? event.sourcedOn}
+  schema={schema}
+>
+  <article>
+    <div class="wrap pt-11 pb-6">
+      <p class="label m-0">
+        <a href="/events/" class="no-underline hover:underline">Fairs and events</a>
+        <span class="text-ink-soft"> · </span>{event.town}
+      </p>
+      <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[16ch] text-slate">{event.name}</h1>
+      {event.edition && <p class="stamp text-ink-soft mt-3 mb-0">{event.edition}</p>}
+    </div>
+
+    {/* Dates lead. Rule and resolved dates together, deliberately. */}
+    <div class="wrap">
+      <section class="sheet breakout my-2 px-4 sm:px-5 py-5" aria-label="Dates">
+        <p class="label m-0">Next</p>
+        <p class={`font-display text-[1.6rem] font-semibold tracking-[-0.03em] mt-1.5 mb-0 ${STATE_CLASS[label.state]}`}>
+          {label.text}
+        </p>
+        {label.note && (
+          <p class="mt-2.5 mb-0 text-[0.92rem] leading-[1.55] text-ink-soft max-w-[58ch]">{label.note}</p>
+        )}
+
+        <dl class="grid sm:grid-cols-2 gap-x-6 gap-y-0 mt-4 mb-0 border-t-2 border-contour">
+          <div class="border-b border-lake/30 py-2.5">
+            <dt class="label">The pattern</dt>
+            <dd class="m-0 mt-0.5 text-[0.95rem] leading-snug">{describe(event.rule)}</dd>
+          </div>
+          <div class="border-b border-lake/30 py-2.5">
+            <dt class="label">Years we've confirmed</dt>
+            <dd class="m-0 mt-0.5 text-[0.95rem] leading-snug">
+              {years.length ? years.join(", ") : <span class="text-ink-soft italic">None</span>}
+            </dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+
+    {
+      event.warnings.length > 0 && (
+        <div class="wrap">
+          <aside class="sheet breakout border-l-[9px] border-l-flag-red px-4 sm:px-5 py-4 my-4">
+            <p class="label text-flag-red-bearing m-0 flex items-center gap-1.5">
+              <FlagIcon icon="alert" class="w-[1em] h-[1em]" />
+              Before you plan around it
+            </p>
+            <ul class="list-none p-0 m-0 mt-2 space-y-1.5">
+              {event.warnings.map((w) => (
+                <li class="text-[0.96rem] leading-[1.5] max-w-[56ch]">{w}</li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      )
+    }
+
+    <div class="wrap prose-field pt-4">
+      <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{event.blurb}</p>
+
+      {event.photos && event.photos.length > 0 && <Photo {...event.photos[0]} hero />}
+
+      <h2>Getting in</h2>
+      <dl class="sheet breakout my-6 divide-y-2 divide-lake/25">
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Admission</dt>
+          <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55]">{event.admission.note}</dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Where</dt>
+          <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55]">
+            {event.venue ?? event.town}
+            {event.address && (
+              <span class="block text-[0.88rem] text-ink-soft mt-1 leading-snug">{event.address}</span>
+            )}
+          </dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Getting there</dt>
+          <dd class="m-0 mt-1 sm:mt-0">
+            <MapLink name={event.venue ?? event.name} town={event.town} address={event.address} label="Open in Google Maps" />
+          </dd>
+        </div>
+        {
+          event.website && (
+            <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+              <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Organiser</dt>
+              <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem]">
+                <a href={event.website.url} rel="nofollow">{event.website.label}</a>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+
+      <h2>Where it is</h2>
+      <MapEmbed name={event.venue ?? event.name} town={event.town} address={event.address} />
+
+      {
+        event.photos && event.photos.length > 1 && (
+          <>
+            <h2>More photographs</h2>
+            {event.photos.slice(1).map((ph) => <Photo {...ph} />)}
+          </>
+        )
+      }
+
+      {/* Provenance. */}
+      <aside class={`sheet breakout my-8 px-4 sm:px-5 py-5 border-l-[9px] ${isVerified(event) ? "border-l-flag-green" : "border-l-contour"}`}>
+        {
+          isVerified(event) ? (
+            <p class="m-0"><span class="stamp stamp-struck">{stampText(event)}</span></p>
+          ) : tier === "sourced" ? (
+            <>
+              <p class="label text-contour-deep m-0">Read from the source — not yet confirmed by phone</p>
+              <p class="stamp text-ink-soft mt-1.5 mb-0">{sourcedText(event)}</p>
+            </>
+          ) : (
+            <p class="stamp text-ink-soft m-0">Not yet checked against a primary source.</p>
+          )
+        }
+        <ul class="list-none p-0 mt-4 mb-0 space-y-1.5">
+          {event.sources.map((s) => (
+            <li class="text-[0.88rem] leading-snug">
+              <a href={s.url} rel="nofollow">{s.label}</a>
+              {s.note && <span class="text-ink-soft"> — {s.note}</span>}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4 mb-0 text-[0.85rem] text-ink-soft max-w-[56ch]">
+          Dates move. If this is wrong,{" "}
+          <a href="/how-we-verify/#corrections">tell us and we'll fix it and say we did</a>.
+        </p>
+      </aside>
+
+      {
+        event.outstanding && event.outstanding.length > 0 && !isVerified(event) && (
+          <>
+            <h2>Still to confirm</h2>
+            <ul>{event.outstanding.map((o) => <li>{o}</li>)}</ul>
+          </>
+        )
+      }
+
+      <ReportBox subject={event.name} path={`/events/${event.slug}/`} gaps={event.outstanding ?? []} />
+
+      {
+        others.length > 0 && (
+          <>
+            <h2>Other events</h2>
+            <ul>
+              {others.map((e) => (
+                <li>
+                  <a href={`/events/${e.slug}/`}>{e.name}</a>
+                  <span class="stamp text-ink-soft"> — {e.town}</span>
+                </li>
+              ))}
+              <li><a href="/events/">All of them, by date</a></li>
+            </ul>
+          </>
+        )
+      }
+    </div>
+  </article>
+</Layout>
