@@ -72,11 +72,11 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ### Swallow Falls
 
-- [ ] PRIORITY: confirm the day-use fee amount — the county announcement says a fee is charged at booking but does not give the figure.
-- [ ] Resolve a source conflict: DNR's own reservation page implies same-day booking is possible when a park is under capacity; the county announcement does not mention same-day at all. Do not publish either until the park confirms.
-- [ ] Confirm what actually happens on arrival without a reservation — turned away, or waitlisted?
-- [ ] Confirm whether the requirement covers the campground and cabin guests or day-use only.
-- [ ] Confirm pet rules — Maryland restricts pets at many day-use areas and this is unchecked.
+- [ ] PRIORITY: ask the park to settle the county-vs-DNR conflict on whether weekdays ever need a reservation, and get the county announcement corrected if DNR is right.
+- [ ] PRIORITY: confirm the day-use fee amount — every source says a fee is charged at booking, none gives the figure.
+- [ ] Confirm which dates count as 'holidays' for the reservation requirement.
+- [ ] Confirm what actually happens on arrival at a weekend without a reservation — turned away, or waitlisted?
+- [ ] Confirm whether campground and cabin guests need a separate day-use reservation.
 - [ ] Confirm winter access and whether the road to the falls is maintained.
 
 ### Deep Creek Lake

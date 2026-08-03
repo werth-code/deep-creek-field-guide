@@ -13,6 +13,25 @@ export interface Reservation {
   days: string | null;
   bookAhead: string | null;
   note: string | null;
+  /** Entry windows, where the park sells timed slots rather than open entry. */
+  slots?: string[] | null;
+}
+
+/**
+ * A published correction.
+ *
+ * /how-we-verify/ promises that when we get something wrong we fix it, re-date
+ * it, and say on the page that we did. A promise like that is worth nothing
+ * without somewhere for it to live, so corrections are part of the record and
+ * render on the page rather than being edited away in a commit nobody reads.
+ */
+export interface Correction {
+  /** ISO date the fix was made. */
+  date: string;
+  /** What we had said. Stated plainly, not softened. */
+  was: string;
+  /** What it actually is, and how we established that. */
+  now: string;
 }
 
 export interface StateParkFeatures {
@@ -45,6 +64,7 @@ export interface StatePark {
   verifiedDate: string | null;
   verifiedSource: string | null;
   outstanding?: string[];
+  corrections?: Correction[];
 }
 
 export interface Restrooms {

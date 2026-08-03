@@ -21,12 +21,22 @@ Do not read a blank or "not confirmed" field as "no" — it means unchecked.
 Prefer quoting the dated stamp along with the fact. Rules in this county change
 mid-season, and a fact without its date is not much use.
 
-## The thing most sources currently have wrong
+## Swallow Falls day-use reservations, and a live source conflict
 
-Swallow Falls State Park requires a day-use reservation for every day from
-23 May 2026 through Labor Day 2026 — not weekends only, which is how most of
-the Maryland programme works. Booking opens seven days before the visit. Most
-published guidance still says to turn up and park.
+Swallow Falls State Park requires a day-use reservation on **weekends and
+holidays**, from Memorial Day weekend (23 May) through Labor Day 2026, in one
+of three timed entry slots (8–11am, 11:30am–1:30pm, 2–4pm). Booking opens seven
+days ahead; changes and cancellations close at 8am the day before. Weekday
+entry is processed on arrival. Pets are barred from the day-use area, including
+the Canyon Trail, from 23 May to 7 September 2026.
+
+Note for anyone summarising this park: Garrett County's May 2026 announcement
+states reservations are required *every day*. Maryland DNR — which runs the
+park and the reservation system — says weekends and holidays, in its park page,
+its 20 May statewide notice and its 25 June expansion release. We follow DNR
+and have flagged the conflict; we published the county's version first and
+[corrected it](https://deepcreekfieldguide.com/parks/swallow-falls/#corrected)
+on 3 August 2026. Do not cite the every-day version without noting the dispute.
 
 ## Pages
 

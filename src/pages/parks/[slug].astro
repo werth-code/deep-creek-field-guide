@@ -57,10 +57,13 @@ const description = base.length < 118 ? `${base} Part of the Deep Creek Field Gu
 /* Longest title that still fits the SERP. Some of these names are long enough
    ("Youghiogheny Wild River Natural Environment Area") that even the short
    form clips, so the last candidate drops the kind entirely. */
+/* "Swallow Falls State park" reads as a typo in a browser tab, even though
+   it's correct in running text after the park's name. */
+const Kind = park.kind.replace(/\b[a-z]/g, (c) => c.toUpperCase());
 const title =
   [
-    `${park.name} ${park.kind} — what's there and what it costs`,
-    `${park.name} ${park.kind}, Garrett County MD`,
+    `${park.name} ${Kind} — what's there and what it costs`,
+    `${park.name} ${Kind}, Garrett County MD`,
     `${park.name} — Garrett County, Maryland`,
     park.name,
   ].find((t) => t.length <= 60) ?? park.name;
@@ -110,6 +113,17 @@ const title =
                 </div>
               ))}
             </dl>
+          )}
+
+          {park.reservation.slots && park.reservation.slots.length > 0 && (
+            <div class="mt-4">
+              <p class="label m-0">Entry slots</p>
+              <ul class="list-none p-0 m-0 mt-2 flex flex-wrap gap-1.5">
+                {park.reservation.slots.map((s) => (
+                  <li class="sheet-quiet px-2.5 py-1 stamp text-slate">{s}</li>
+                ))}
+              </ul>
+            </div>
           )}
 
           {park.reservation.note && (
@@ -188,6 +202,32 @@ const title =
           </dd>
         </div>
       </dl>
+
+      {/* Corrections run ABOVE the provenance block and above "still to confirm".
+          Burying a correction under the sourcing would be a way of technically
+          keeping the promise while hoping nobody reads it. */}
+      {
+        park.corrections && park.corrections.length > 0 && (
+          <>
+            <h2 id="corrected">We got this wrong</h2>
+            <ul class="list-none p-0 m-0 space-y-4">
+              {park.corrections.map((c) => (
+                <li class="sheet px-4 sm:px-5 py-4 border-l-[9px] border-l-contour-deep">
+                  <p class="label text-contour-deep m-0">
+                    Corrected {formatStampDate(c.date)}
+                  </p>
+                  <p class="mt-2 mb-0 text-[0.94rem] leading-[1.55] max-w-[58ch]">
+                    <span class="font-medium">We had said:</span> {c.was}
+                  </p>
+                  <p class="mt-1.5 mb-0 text-[0.94rem] leading-[1.55] max-w-[58ch]">
+                    <span class="font-medium">Actually:</span> {c.now}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      }
 
       {/* Provenance. */}
       <aside class={`sheet breakout my-8 px-4 sm:px-5 py-5 border-l-[9px] ${isVerified(park) ? "border-l-flag-green" : "border-l-contour"}`}>
