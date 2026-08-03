@@ -85,13 +85,12 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 - [ ] Confirm boat launch fees and whether a separate launch permit is needed.
 - [ ] Confirm pet rules on the beach specifically.
 
-### Herrington Manor
+### Herrington Manor — 301-334-9180
 
-- [ ] Confirm the cabin booking lead time — this is the fact that decides a trip and nobody publishes it.
-- [ ] Confirm cross-country ski rental still operates and its season.
-- [ ] Confirm the no-gas-motor rule and what is allowed instead.
-- [ ] Confirm swimming beach season and lifeguard cover.
-- [ ] Confirm whether pets are allowed in the cabins.
+- [ ] Confirm whether the swimming beach is guarded, and the dates it is open.
+- [ ] Confirm what the Park Store stocks and its season.
+- [ ] Confirm boat rental prices and what can be hired.
+- [ ] Confirm whether the restrooms stay open outside the summer season.
 
 ### New Germany
 
@@ -150,5 +149,5 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ---
 
-**75 open items.** Every one is a fact this site cannot confirm until
+**74 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.
