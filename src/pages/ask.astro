@@ -284,56 +284,167 @@ const schema = [
     </article>`;
   }
 
+  /* ------------------------------------------------------- conversation -- */
+
   const form = document.getElementById("ask-form");
   const input = document.getElementById("ask-input");
   const out = document.getElementById("ask-out");
 
-  function render(r, lead, followUps, pending) {
-    const grid = a => a.length
-      ? `<div class="grid gap-3 sm:grid-cols-2 mt-4">${a.map(s => card(s, true)).join("")}</div>` : "";
-    const fu = followUps.length
-      ? `<div class="mt-6"><p class="label m-0">Ask next</p><ul class="list-none p-0 m-0 mt-2 flex flex-wrap gap-1.5">${
-          followUps.map(f => `<button type="button" data-example="${esc(f)}" class="tap sheet-quiet px-2.5 py-1 stamp text-slate hover:bg-slate hover:text-snow border-0">${esc(f)}</button>`).join("")
-        }</ul></div>` : "";
+  /**
+   * Conversation state.
+   *
+   * `filters` accumulates across turns — "somewhere to swim", then "with
+   * restrooms", narrows rather than restarting. `messages` is the transcript
+   * sent to the worker: the visitor's own words and our own summary lines, and
+   * never any park data, so the model cannot launder a fact through history it
+   * wrote earlier.
+   */
+  const EMPTY_FILTERS = { wants: [], excludes: [], town: null, kind: null };
+  let filters = { ...EMPTY_FILTERS };
+  let messages = [];
+  let turns = [];
+  let busy = false;
+  let seq = 0;
 
-    // A question with no usable requirement matched nothing in particular, so
-    // showing every park as a "confirmed" result would be a straight lie.
-    const bare = r.empty;
+  const VOCAB_KEYS = new Set(Object.keys(SAYS));
+  const TOWN_LIST = [...new Set(INDEX.map(e => e.town))];
+  const KIND_LIST = ["state", "town"];
 
-    out.innerHTML = `
-      <section class="sheet breakout p-4 sm:p-5">
-        <p class="label m-0 flex items-center gap-1.5">
-          Answer${pending ? ' <span class="text-ink-soft normal-case tracking-normal">— refining…</span>' : ""}
-        </p>
-        <p class="mt-2.5 mb-0 text-[1.05rem] leading-[1.5] max-w-[58ch]">${esc(lead)}</p>
-        ${bare ? "" : r.matches.length ? `<p class="label mt-6 mb-0 text-flag-green-bearing">Confirmed</p>${grid(r.matches)}` : ""}
-        ${!bare && r.unconfirmed.length ? `<p class="label mt-6 mb-0 text-contour-deep">Might match — not checked</p>
-           <p class="mt-1.5 mb-0 text-[0.88rem] leading-snug text-ink-soft max-w-[58ch]">A blank in our data means nobody has asked yet, not that the park lacks it.</p>
-           ${grid(r.unconfirmed)}` : ""}
-        ${fu}
-      </section>`;
+  const validFilters = f => ({
+    wants: [...new Set((f?.wants ?? []).filter(k => VOCAB_KEYS.has(k)))],
+    excludes: [...new Set((f?.excludes ?? []).filter(k => VOCAB_KEYS.has(k)))],
+    town: TOWN_LIST.includes(f?.town) ? f.town : null,
+    kind: KIND_LIST.includes(f?.kind) ? f.kind : null,
+  });
+
+  /** Merge a fresh deterministic parse into what we already knew. */
+  function accumulate(prev, parsed) {
+    return validFilters({
+      wants: [...prev.wants, ...parsed.wants],
+      excludes: [...prev.excludes, ...parsed.excludes],
+      town: parsed.town ?? prev.town,
+      kind: parsed.kind ?? prev.kind,
+    });
   }
 
-  async function ask(q) {
-    const r = match(q);
-    // Correct answer first, immediately, with no network involved.
-    render(r, deterministicLead(r), [], Boolean(ENDPOINT));
-    out.scrollIntoView({ behavior: "smooth", block: "start" });
-    if (!ENDPOINT) return;
+  /** Run the matcher directly off a filter set, bypassing text parsing. */
+  function runFilters(f) {
+    const scored = [];
+    for (const entry of INDEX) {
+      if (f.kind && entry.kind !== f.kind) continue;
+      if (f.town && entry.town !== f.town) continue;
+      if (f.excludes.some(k => entry.attrs[k] === true)) continue;
+      if (f.wants.some(k => entry.attrs[k] === false)) continue;
+      const met = f.wants.filter(k => entry.attrs[k] === true);
+      const unknown = f.wants.filter(k => entry.attrs[k] === null || entry.attrs[k] === undefined);
+      let score = met.length * 10;
+      if (entry.tier === "confirmed") score += 2;
+      score += entry.facts.filter(x => x.state !== "unknown").length * 0.1;
+      scored.push({ entry, met, unknown, score });
+    }
+    scored.sort((a, b) => b.score - a.score || a.entry.name.localeCompare(b.entry.name));
+    const empty = !f.wants.length && !f.excludes.length && !f.town && !f.kind;
+    return {
+      query: { wants: f.wants, excludes: f.excludes, town: f.town, kind: f.kind },
+      matches: scored.filter(s => !s.unknown.length),
+      unconfirmed: scored.filter(s => s.unknown.length),
+      empty,
+    };
+  }
 
-    const all = [...r.matches, ...r.unconfirmed].slice(0, 24);
+  function chipRow() {
+    const bits = [
+      ...filters.wants.map(k => ({ t: says(k), kind: "wants", v: k })),
+      ...filters.excludes.map(k => ({ t: `not ${says(k)}`, kind: "excludes", v: k })),
+      ...(filters.town ? [{ t: filters.town, kind: "town", v: filters.town }] : []),
+      ...(filters.kind ? [{ t: filters.kind === "state" ? "State parks" : "Town parks", kind: "kind", v: filters.kind }] : []),
+    ];
+    if (!bits.length) return "";
+    return `<div class="flex flex-wrap items-center gap-1.5 mb-4">
+      <span class="label">Looking for</span>
+      ${bits.map(b => `<button type="button" data-drop="${esc(b.kind)}" data-val="${esc(b.v)}"
+          class="tap sheet-quiet px-2.5 py-1 stamp text-slate hover:bg-flag-red-bearing hover:text-white border-0"
+          title="Remove">${esc(b.t)} <span aria-hidden="true">×</span><span class="sr-only"> — remove</span></button>`).join("")}
+      <button type="button" data-drop="all" class="tap stamp text-ink-soft underline px-1">clear all</button>
+    </div>`;
+  }
+
+  function bubble(role, text) {
+    return role === "user"
+      ? `<p class="m-0 mt-5 first:mt-0"><span class="inline-block bg-slate text-snow px-3 py-1.5 text-[0.95rem] leading-snug max-w-[46ch]">${esc(text)}</span></p>`
+      : `<p class="mt-2.5 mb-0 text-[1.05rem] leading-[1.5] max-w-[58ch]">${esc(text)}</p>`;
+  }
+
+  function render({ result, lead, clarify, followUps, pending }) {
+    const grid = a => a.length ? `<div class="grid gap-3 sm:grid-cols-2 mt-4">${a.map(s => card(s, true)).join("")}</div>` : "";
+    const bare = result.empty;
+
+    const answer = `
+      ${bubble("assistant", lead)}
+      ${pending ? '<p class="stamp text-ink-soft mt-1.5 mb-0">thinking…</p>' : ""}
+      ${clarify ? `<div class="sheet-quiet px-4 py-3.5 mt-4">
+          <p class="m-0 text-[0.98rem] leading-snug font-medium text-slate">${esc(clarify.question)}</p>
+          ${clarify.options.length ? `<ul class="list-none p-0 m-0 mt-2.5 flex flex-wrap gap-1.5">${
+            clarify.options.map(o => `<button type="button" data-example="${esc(o)}" data-replace="1" class="tap sheet px-2.5 py-1 stamp text-slate hover:bg-slate hover:text-snow border-0">${esc(o)}</button>`).join("")
+          }</ul>` : ""}
+        </div>` : ""}
+      ${bare ? "" : result.matches.length ? `<p class="label mt-6 mb-0 text-flag-green-bearing">Confirmed</p>${grid(result.matches)}` : ""}
+      ${!bare && result.unconfirmed.length ? `<p class="label mt-6 mb-0 text-contour-deep">Might match — not checked</p>
+         <p class="mt-1.5 mb-0 text-[0.88rem] leading-snug text-ink-soft max-w-[58ch]">A blank in our data means nobody has asked yet, not that the park lacks it.</p>
+         ${grid(result.unconfirmed)}` : ""}
+      ${!clarify && followUps.length ? `<div class="mt-6"><p class="label m-0">Ask next</p>
+         <ul class="list-none p-0 m-0 mt-2 flex flex-wrap gap-1.5">${
+           followUps.map(f => `<button type="button" data-example="${esc(f)}" class="tap sheet-quiet px-2.5 py-1 stamp text-slate hover:bg-slate hover:text-snow border-0">${esc(f)}</button>`).join("")
+         }</ul></div>` : ""}`;
+
+    turns[turns.length - 1].html = answer;
+
+    out.innerHTML = `<section class="sheet breakout p-4 sm:p-5">
+      ${chipRow()}
+      ${turns.map(t => `${bubble("user", t.q)}${t.html}`).join('<hr class="border-0 border-t-2 border-lake/25 mt-7" />')}
+    </section>`;
+    out.querySelector("section > p:last-of-type, section")?.scrollIntoView?.({ behavior: "smooth", block: "nearest" });
+  }
+
+  async function ask(q, { replace = false } = {}) {
+    if (busy) return;
+    const mine = ++seq;
+
+    const parsed = parse(q);
+    const isReset = /^(start over|reset|new search|clear)$/i.test(q.trim());
+    /* Answering "which matters most?" means narrow to THAT, not add it to the
+       pile we already failed to satisfy. Accumulating here would leave the
+       question pointless — the result set could not change. */
+    const base = isReset ? { ...EMPTY_FILTERS }
+      : replace ? { ...filters, wants: [], excludes: [] }
+      : filters;
+    filters = isReset ? base : accumulate(base, parsed);
+
+    let result = runFilters(filters);
+    // A question that parsed to nothing at all, with nothing remembered.
+    if (result.empty) result = match(q);
+
+    turns.push({ q, html: "" });
+    messages.push({ role: "user", content: q.slice(0, 400) });
+
+    const detLead = deterministicLead(result);
+    render({ result, lead: detLead, clarify: null, followUps: [], pending: Boolean(ENDPOINT) });
+    if (!ENDPOINT) { messages.push({ role: "assistant", content: detLead }); return; }
+
+    busy = true;
     let data;
     try {
       const res = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
-          question: q.slice(0, 200),
           site: "deep-creek",
-          // The searchable vocabulary, so follow-up suggestions can only be
-          // built from things the matcher can actually answer.
-          attributes: Object.values(SAYS),
-          candidates: all.map(s => ({
+          messages: messages.slice(-12),
+          vocabulary: Object.entries(SAYS).map(([key, saysText]) => ({ key, says: saysText })),
+          towns: TOWN_LIST,
+          kinds: KIND_LIST,
+          filters,
+          candidates: [...result.matches, ...result.unconfirmed].slice(0, 24).map(s => ({
             slug: s.entry.slug, name: s.entry.name, kind: s.entry.kindLabel, town: s.entry.town,
             met: s.met, unknown: s.unknown, confirmed: s.entry.tier === "confirmed",
           })),
@@ -342,41 +453,69 @@ const schema = [
       if (!res.ok) throw new Error("bad status");
       data = await res.json();
     } catch {
-      render(r, deterministicLead(r), [], false);   // silent, correct fallback
+      busy = false;
+      if (mine === seq) {
+        render({ result, lead: detLead, clarify: null, followUps: [], pending: false });
+        messages.push({ role: "assistant", content: detLead });
+      }
       return;
     }
+    busy = false;
+    if (mine !== seq) return;   // a newer question overtook this one
 
-    // Validate everything the model sent before it reaches the page.
-    const lead = leadIsSafe(data?.lead, r) ? data.lead : deterministicLead(r);
+    // The model's filters only ever re-run the same deterministic matcher.
+    const proposed = validFilters(data?.filters);
+    const changed = JSON.stringify(proposed) !== JSON.stringify(filters);
+    if (changed && (proposed.wants.length || proposed.excludes.length || proposed.town || proposed.kind)) {
+      filters = proposed;
+      result = runFilters(filters);
+    }
+
+    const lead = leadIsSafe(data?.lead, result) ? data.lead : deterministicLead(result);
+
+    const all = [...result.matches, ...result.unconfirmed];
     const bySlug = new Map(all.map(s => [s.entry.slug, s]));
-    const order = Array.isArray(data?.order) ? data.order.filter(s => bySlug.has(s)) : [];
+    const order = (Array.isArray(data?.order) ? data.order : []).filter(s => bySlug.has(s));
     if (order.length) {
       const rank = new Map(order.map((s, i) => [s, i]));
       const by = (a, b) => (rank.get(a.entry.slug) ?? 999) - (rank.get(b.entry.slug) ?? 999);
-      r.matches = [...r.matches].sort(by);
-      r.unconfirmed = [...r.unconfirmed].sort(by);
+      result.matches = [...result.matches].sort(by);
+      result.unconfirmed = [...result.unconfirmed].sort(by);
     }
-    // A suggestion is only offered if the matcher can actually parse it into a
-    // requirement. Prompting alone doesn't guarantee that — "Which town is
-    // closest to you?" extracts nothing and would dead-end on a click.
-    const followUps = (Array.isArray(data?.followUps) ? data.followUps : [])
-      .filter(f => typeof f === "string" && f.length > 2 && f.length < 80)
-      .filter(f => { const p = parse(f); return p.wants.length || p.kind || p.town; })
-      .slice(0, 3);
 
-    render(r, lead, followUps, false);
+    const usable = f => { const p = parse(f); return p.wants.length || p.excludes.length || p.kind || p.town; };
+    const clarify = data?.clarify?.question
+      ? { question: String(data.clarify.question), options: (data.clarify.options ?? []).filter(usable).slice(0, 4) }
+      : null;
+    const followUps = (Array.isArray(data?.followUps) ? data.followUps : [])
+      .filter(f => typeof f === "string" && f.length > 2 && f.length < 80).filter(usable).slice(0, 3);
+
+    render({ result, lead, clarify, followUps, pending: false });
+    messages.push({ role: "assistant", content: lead });
   }
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", e => {
     e.preventDefault();
     const q = input.value.trim();
-    if (q) ask(q);
+    if (!q) return;
+    input.value = "";
+    ask(q);
   });
 
-  document.addEventListener("click", (e) => {
+  document.addEventListener("click", e => {
+    const drop = e.target.closest("[data-drop]");
+    if (drop) {
+      const { drop: kind, val } = drop.dataset;
+      if (kind === "all") { filters = { ...EMPTY_FILTERS }; messages = []; turns = []; out.innerHTML = ""; return; }
+      if (kind === "wants" || kind === "excludes") filters[kind] = filters[kind].filter(k => k !== val);
+      else filters[kind] = null;
+      const result = runFilters(filters);
+      if (!turns.length) turns.push({ q: "(filters)", html: "" });
+      render({ result, lead: deterministicLead(result), clarify: null, followUps: [], pending: false });
+      return;
+    }
     const b = e.target.closest("[data-example]");
     if (!b) return;
-    input.value = b.dataset.example;
-    ask(b.dataset.example);
+    ask(b.dataset.example, { replace: b.dataset.replace === "1" });
   });
 </script>

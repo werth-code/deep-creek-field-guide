@@ -44,7 +44,7 @@ const schema = [
 >
   <div class="wrap pt-12 sm:pt-16 pb-9">
     <p class="label m-0 flex items-center gap-2">
-      <Logo class="w-[0.95rem] h-[0.95rem] shrink-0" />
+      <Logo animate class="w-[0.95rem] h-[0.95rem] shrink-0" />
       A reference for Garrett County, Maryland
     </p>
 
@@ -136,7 +136,7 @@ const schema = [
           count: `${regional.length} listed`,
         },
       ].map((s) => (
-        <a href={s.href} class="sheet sheet-action no-underline block p-5 group relative">
+        <a href={s.href} data-reveal class="sheet sheet-action no-underline block p-5 group relative">
           <span class="stamp text-contour-deep absolute top-5 right-5">{s.n}</span>
           <p class="label m-0">Section {s.n}</p>
           <p class="font-display text-[1.7rem] font-semibold mt-2 mb-0 tracking-[-0.04em] text-slate underline decoration-contour decoration-[3px] underline-offset-[0.14em] group-hover:decoration-slate">

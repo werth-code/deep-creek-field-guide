@@ -363,3 +363,78 @@
     background-image: none;
   }
 }
+
+/* ------------------------------------------------------------- motion ---- */
+/*
+ * Movement is used for two things only: telling you something arrived, and
+ * telling you something reacted to your finger. Nothing here loops, nothing
+ * moves on its own after the page settles, and nothing moves more than a few
+ * pixels — a reference you check in the sun on a phone should not be
+ * performing at you.
+ *
+ * Everything below is wrapped so that a reader who has asked their OS for less
+ * motion gets a plain fade or nothing at all. That preference is a real
+ * accessibility need (vestibular disorders, migraine), not a taste setting.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  /*
+   * Cards, rows and blocks entering the viewport.
+   *
+   * Gated behind .js-reveal, which a tiny head script sets only once it is
+   * certain it can also REMOVE the hidden state. Without that gate this rule
+   * hides content by default and relies on JavaScript to give it back — so a
+   * blocked script, a failed observer or an old browser silently deletes the
+   * page. Content must never be hidden by something that might not run.
+   */
+  .js-reveal [data-reveal] {
+    /*
+     * TRANSFORM ONLY — deliberately never opacity.
+     *
+     * A fade needs the element to start invisible, which means any failure to
+     * add .is-in deletes content from a page whose entire job is to be read.
+     * Offsetting by 10px has the same arrival effect and its worst case is a
+     * card sitting ten pixels low. Never trade legibility for a fade.
+     */
+    transform: translateY(10px);
+    transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .js-reveal [data-reveal].is-in {
+    transform: none;
+  }
+
+  /* The mark drawing itself in, once, on the home page. */
+  .logo-draw g path {
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    animation: contour-draw 1.1s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  }
+  .logo-draw g path:nth-child(2) { animation-delay: 0.12s; }
+  .logo-draw g path:nth-child(3) { animation-delay: 0.24s; }
+  @keyframes contour-draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* Anything that behaves like a control gets a small, quick reaction. */
+  .sheet-action,
+  .tap {
+    transition:
+      transform 0.13s ease-out,
+      background-color 0.13s ease-out,
+      color 0.13s ease-out,
+      box-shadow 0.13s ease-out;
+  }
+  .sheet-action:hover {
+    transform: translateY(-2px);
+  }
+  .tap:active {
+    transform: translateY(1px);
+  }
+}
+
+/* Reduced motion: state changes still need to be perceivable, so reveal
+   resolves instantly rather than being animated away into nothing. */
+@media (prefers-reduced-motion: reduce) {
+  .js-reveal [data-reveal] {
+    transform: none;
+  }
+}

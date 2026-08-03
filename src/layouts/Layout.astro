@@ -66,5 +66,62 @@ checkMeta(Astro.url.pathname, title, description);
     <Header />
     <main id="main"><slot /></main>
     <Footer />
-  </body>
+  
+<script>
+  /*
+   * Reveal-on-scroll.
+   *
+   * The ordering here is the whole point. The hidden state lives behind a
+   * .js-reveal class that this script adds, so the page is FULLY VISIBLE until
+   * JavaScript has proved it is running and capable of undoing it. No script,
+   * blocked script, dead observer, ancient browser — content still shows.
+   *
+   * There is also a hard timeout. An IntersectionObserver can fail to fire for
+   * reasons that have nothing to do with this code, and the failure mode would
+   * be a blank page that looks deliberate. After 1.5s everything is revealed
+   * whether or not the observer ever spoke.
+   */
+  (() => {
+    const targets = document.querySelectorAll("[data-reveal]");
+    if (!targets.length) return;
+
+    const showAll = () => targets.forEach((el) => el.classList.add("is-in"));
+
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    ) {
+      return;   // never gated, so nothing to undo
+    }
+
+    document.documentElement.classList.add("js-reveal");
+    const safety = setTimeout(showAll, 1500);
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          e.target.classList.add("is-in");
+          io.unobserve(e.target);
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
+    );
+    targets.forEach((el) => io.observe(el));
+
+    /* Anything already on screen at load should not wait for a scroll. */
+    requestAnimationFrame(() => {
+      targets.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          el.classList.add("is-in");
+          io.unobserve(el);
+        }
+      });
+    });
+
+    window.addEventListener("pagehide", () => clearTimeout(safety), { once: true });
+  })();
+</script>
+</body>
 </html>

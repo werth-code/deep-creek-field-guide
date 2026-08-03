@@ -14,6 +14,9 @@
  * Runs automatically after `npm run build`.
  */
 import { readFileSync, readdirSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { writeFileSync, mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join, relative } from "node:path";
 
 const DIST = "dist";
@@ -70,6 +73,61 @@ if (problems.length) {
   console.error(`\n  ✗ Build check failed:\n${problems.map((p) => `      ${p}`).join("\n")}\n`);
   process.exit(1);
 }
+
+/*
+ * Every script that ships must PARSE — inline ones included.
+ *
+ * Added after a duplicate `const` in an inline <script> shipped a build that
+ * looked completely healthy: Astro bundled it without complaint, the page
+ * rendered, and the only symptom was that no JavaScript ran at all. Nothing in
+ * the pipeline noticed. A page whose interactive half is silently dead is
+ * exactly what this exists to catch.
+ *
+ * Astro inlines small scripts straight into the HTML rather than emitting a
+ * .js file, so checking dist/**\/*.js alone finds nothing — the first version
+ * of this guard passed by checking zero files, which is its own lesson.
+ */
+const tmp = mkdtempSync(join(tmpdir(), "buildcheck-"));
+const probe = join(tmp, "probe.mjs");
+let checked = 0;
+
+const parses = (code, where) => {
+  writeFileSync(probe, code);
+  try {
+    execFileSync(process.execPath, ["--check", probe], { stdio: "pipe" });
+  } catch (err) {
+    const msg = String(err.stderr ?? err).split("\n").find((l) => /Error/.test(l)) ?? "parse error";
+    problems.push(`${where} does not parse — ${msg.trim()}`);
+  }
+  checked++;
+};
+
+for (const f of files.filter((x) => x.endsWith(".js"))) {
+  parses(readFileSync(f, "utf8"), relative(DIST, f));
+}
+
+for (const f of files.filter((x) => x.endsWith(".html"))) {
+  const html = readFileSync(f, "utf8");
+  let i = 0;
+  for (const m of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
+    const [, attrs, code] = m;
+    if (/\bsrc=/i.test(attrs)) continue;                 // external, checked above
+    if (/type=["']?(application\/(ld\+json|json)|importmap)/i.test(attrs)) continue;
+    if (!code.trim()) continue;
+    parses(code, `${relative(DIST, f)} inline script #${++i}`);
+  }
+}
+
+if (problems.length) {
+  console.error("\n  ✗ Build check failed:\n" + problems.map((p) => `    - ${p}`).join("\n") + "\n");
+  process.exit(1);
+}
+
+if (!checked) {
+  console.error("\n  ✗ Build check failed: no scripts were checked — the parse guard is not looking anywhere.\n");
+  process.exit(1);
+}
+
 
 console.log(
   `  ✓ Build check: ${listed.size} URLs in sitemap, ${indexable} indexable pages, no contradictions.\n`,

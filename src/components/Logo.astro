@@ -1,49 +1,79 @@
 ---
 /**
- * The mark: a survey benchmark disc.
+ * The mark: a surveyed summit.
  *
  * WHY THIS
- * A benchmark is a brass disc set into rock at a point that has been measured
- * and recorded by someone accountable for the measurement. That is precisely
- * the claim this site makes about every fact on it — so the mark is the thing,
- * not a metaphor for it. They are also scattered all over these mountains.
+ * Contour lines closing around a high point, with a survey station triangle
+ * set on it. Two claims in one shape — this is the high ground (Garrett County
+ * holds Maryland's highest land), and it has been measured by someone
+ * accountable for the measurement. The second is what the whole site is about.
+ *
+ * WHAT CHANGED AND WHY
+ * The first version was a plain benchmark disc: rim, brass face, triangle. The
+ * concept was right but the drawing wasn't — a filled triangle inside a brown
+ * circle reads as a generic camping or tent glyph at nav size, which is the
+ * only size most people ever see it. Contours fix that: nobody else's mark has
+ * them, they tie the logo to the topographic sheet the rest of the site is
+ * built from, and the irregular closed curves are legible as *terrain* even
+ * when they're 20 pixels wide.
  *
  * WHY NOT A WATERFALL OR A LAKE
- * Swallow Falls is section one of several, and Deep Creek Lake is one feature
- * of a county. A mark tied to either dates the brand the moment the next
- * section lands. The benchmark represents the method, which doesn't change.
+ * Swallow Falls is one section and Deep Creek Lake is one feature. A mark tied
+ * to either dates the brand the moment the next section lands. Terrain and
+ * measurement don't go out of date.
  *
  * DRAWING NOTES
- * Rim, brass face, triangle, centre point — four elements, nothing else. The
- * triangle is the survey station symbol and it's what makes this read as a
- * benchmark rather than a coin. Checked at 220/72/40/22px; below about 28px
- * the rim text would be mush, so there isn't any.
+ * Checked at 220/72/40/22px. The innermost contour and the station triangle
+ * are the only things that must survive at 22px, so everything else is set
+ * lighter and gets out of their way. Stroke widths are absolute against a
+ * 100-unit box, not scaled, so the mark thickens rather than vanishes as it
+ * shrinks.
  */
 interface Props {
   class?: string;
+  /** Draw the contours in on first paint. Off inside dense nav rows. */
+  animate?: boolean;
 }
-const { class: className = "" } = Astro.props;
+const { class: className = "", animate = false } = Astro.props;
 ---
 
-<svg class={className} viewBox="0 0 100 100" role="img" aria-label="Deep Creek Field Guide">
-  <!-- Rim -->
+<svg
+  class={`${className} ${animate ? "logo-draw" : ""}`}
+  viewBox="0 0 100 100"
+  role="img"
+  aria-label="Deep Creek Field Guide"
+>
+  <!-- The disc: a benchmark is set into rock, so the mark sits in something. -->
   <circle cx="50" cy="50" r="49" fill="var(--color-slate)" />
-  <!-- Brass face -->
-  <circle cx="50" cy="50" r="43" fill="var(--color-contour)" />
-  <!-- Inner scribe line, the way a real disc is stamped -->
-  <circle
-    cx="50"
-    cy="50"
-    r="37"
-    fill="none"
-    stroke="var(--color-slate)"
-    stroke-width="1.5"
-    opacity="0.45"
-  />
 
-  <!-- Survey station triangle. The element that says "benchmark". -->
-  <path d="M50 26 L72 66 L28 66 Z" fill="var(--color-paper)" />
+  <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Outer contours. Irregular on purpose: a symmetrical ring reads as a
+         target, an uneven one reads as ground. -->
+    <path
+      d="M14 62c4-11 9-17 17-22s14-13 24-13 17 7 21 14 9 12 9 21"
+      stroke="var(--color-contour)"
+      stroke-width="3"
+      opacity="0.55"
+    />
+    <path
+      d="M23 63c3-9 8-14 14-18s12-10 18-9 13 7 16 13 6 10 6 17"
+      stroke="var(--color-contour)"
+      stroke-width="3"
+      opacity="0.8"
+    />
+    <!-- Innermost contour. Must hold at 22px, so it is the heaviest line. -->
+    <path
+      d="M33 64c2-7 6-11 10-14s8-7 12-6 9 6 11 10 4 7 4 12"
+      stroke="var(--color-paper)"
+      stroke-width="3.6"
+    />
+  </g>
 
-  <!-- The mark point itself — the measured spot. -->
-  <circle cx="50" cy="55" r="4.2" fill="var(--color-slate)" />
+  <!-- Survey station triangle on the summit — the element that says measured. -->
+  <path d="M50 26 L59 43 L41 43 Z" fill="var(--color-paper)" />
+  <circle cx="50" cy="38.5" r="2.6" fill="var(--color-slate)" />
+
+  <!-- Waterline: the lake the county is named for, as a single flat band. -->
+  <path d="M11 72h78" stroke="var(--color-lake)" stroke-width="4.5" stroke-linecap="round" />
+  <path d="M20 80h60" stroke="var(--color-lake)" stroke-width="3" stroke-linecap="round" opacity="0.6" />
 </svg>

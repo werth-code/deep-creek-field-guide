@@ -1,0 +1,53 @@
+---
+/**
+ * Rendered Google map.
+ *
+ * Two deliberate constraints, because an embed is the heaviest thing on any
+ * page that has one:
+ *
+ *   - `loading="lazy"` so the iframe is not fetched until it is scrolled near.
+ *     A reader who never reaches the map never pays for it, and it stays off
+ *     the critical path for the answer at the top of the page.
+ *   - A fixed aspect box, so it reserves its space and nothing below it jumps
+ *     when the frame arrives.
+ *
+ * It uses the keyless `output=embed` form, so there is no API key to leak,
+ * rotate or bill. The trade is that this loads Google's frame and its cookies
+ * on view — which is why the directions link still sits beside it for anyone
+ * who would rather just open their own map app.
+ */
+interface Props {
+  name: string;
+  town?: string | null;
+  address?: string | null;
+  region?: string;
+  /** Roughly: 14 = neighbourhood, 12 = town, 10 = region. */
+  zoom?: number;
+  class?: string;
+}
+
+const { name, town = null, address = null, region = "MD", zoom = 13, class: klass = "" } = Astro.props;
+
+const query = [name, address ?? town, region].filter(Boolean).join(", ");
+const src = `https://www.google.com/maps?q=${encodeURIComponent(query)}&z=${zoom}&output=embed`;
+const linkHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+---
+
+<figure class={`sheet breakout my-6 overflow-hidden ${klass}`}>
+  <div class="relative w-full aspect-[16/10] sm:aspect-[2/1] bg-lake/10">
+    <iframe
+      src={src}
+      title={`Map showing ${name}`}
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen
+      class="absolute inset-0 w-full h-full border-0"
+    ></iframe>
+  </div>
+  <figcaption class="px-4 py-2.5 border-t-2 border-contour flex flex-wrap items-center justify-between gap-2">
+    <span class="stamp text-ink-soft">{query}</span>
+    <a href={linkHref} target="_blank" rel="noopener nofollow" class="stamp text-contour-deep">
+      Directions →
+    </a>
+  </figcaption>
+</figure>

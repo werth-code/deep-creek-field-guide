@@ -99,7 +99,7 @@ const schema = live.length
           const has = presentState(park);
           const flag = reservationFlag(park.reservation);
           return (
-            <article class="sheet sheet-action relative group">
+            <article data-reveal class="sheet sheet-action relative group">
               <a href={`/parks/${park.slug}/`} class="absolute inset-0 z-10 no-underline">
                 <span class="sr-only">{park.name}</span>
               </a>

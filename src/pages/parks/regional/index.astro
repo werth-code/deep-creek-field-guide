@@ -106,7 +106,7 @@ const ranked = [...parks].sort(
           const wc = restroomAnswer(park.restrooms);
           const has = presentRegional(park);
           return (
-            <article class="sheet sheet-action relative group">
+            <article data-reveal class="sheet sheet-action relative group">
               <a href={`/parks/regional/${park.slug}/`} class="absolute inset-0 z-10 no-underline">
                 <span class="sr-only">{park.name}</span>
               </a>
