@@ -64,10 +64,6 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 - [ ] Everything. Call the town, get park names, addresses and facilities — or drop this record.
 
-### Loch Lynn Heights town parks
-
-- [ ] Everything. Call the town, get park names, addresses and facilities — or drop this record.
-
 
 ## State parks
 
@@ -154,5 +150,5 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ---
 
-**76 open items.** Every one is a fact this site cannot confirm until
+**75 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.

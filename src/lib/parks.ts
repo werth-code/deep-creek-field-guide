@@ -139,6 +139,16 @@ export interface Restrooms {
   present: boolean | null;
   type: "permanent" | "portable" | null;
   seasonal: boolean | null;
+  /**
+   * The catch, in three or four words — "sometimes locked", "campers only".
+   *
+   * Added because a reader scanning a card sees the summary answer and nothing
+   * else, and "Yes" for a block that is often locked is the kind of true
+   * statement that strands somebody. The caveat rides along with the answer
+   * everywhere it appears, rather than sitting in a note further down the page
+   * that a scanner never reaches.
+   */
+  caveat?: string | null;
   note: string | null;
   /** Field-level provenance — a toilet gets confirmed long before a park does. */
   confirmedOn?: string | null;
@@ -217,8 +227,9 @@ export function restroomAnswer(r: Restrooms): Answer {
   }
   if (!r.present) return { text: "None", state: "no" };
   const bits = [r.type === "portable" ? "Portable units" : "Yes"];
+  if (r.caveat) bits.push(r.caveat);
   if (r.seasonal === true) bits.push("seasonal only");
-  if (r.seasonal === null) bits.push("season not confirmed");
+  if (r.seasonal === null && !r.caveat) bits.push("season not confirmed");
   return { text: bits.join(" — "), state: "yes" };
 }
 

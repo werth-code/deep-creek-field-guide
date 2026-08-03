@@ -661,29 +661,32 @@
     ]
   },
   {
-    "slug": "loch-lynn-heights-town-park",
-    "name": "Loch Lynn Heights town parks",
+    "slug": "loch-lynn-heights-wetlands-trail",
+    "name": "Loch Lynn Heights Wetlands Trail",
     "operator": "Town of Loch Lynn Heights",
     "town": "Loch Lynn Heights",
     "address": "Loch Lynn Heights, MD 21550",
     "acres": null,
-    "blurb": "Named by the county among the municipalities maintaining community parks. Park-level detail not yet confirmed.",
+    "blurb": "A boardwalk trail through wetland rather than a park with a field in it. Restrooms are on site, though they are not always unlocked — worth planning around rather than counting on.",
     "restrooms": {
-      "present": null,
+      "present": true,
       "type": null,
       "seasonal": null,
-      "note": "Not confirmed."
+      "caveat": "sometimes locked",
+      "note": "On site, but reported as sometimes locked. Nobody has established when they are open, so treat them as a maybe rather than a yes.",
+      "confirmedOn": "2026-08-03",
+      "confirmedBy": "Site maintainer, first-hand"
     },
     "facilities": {
       "playground": null,
-      "swimming": null,
-      "beach": null,
+      "swimming": false,
+      "beach": false,
       "picnic": null,
       "pavilion": null,
       "grills": null,
-      "trails": null,
+      "trails": true,
       "sports": null,
-      "boatLaunch": null,
+      "boatLaunch": false,
       "fishing": null,
       "pavedPath": null,
       "winterUse": null
@@ -693,7 +696,7 @@
     "hoursNote": null,
     "phone": null,
     "fee": {
-      "note": "Unconfirmed.",
+      "note": "Not confirmed.",
       "amount": null
     },
     "warnings": [],
@@ -706,10 +709,25 @@
       }
     ],
     "sourcedOn": "2026-08-03",
-    "verifiedDate": null,
-    "verifiedSource": null,
+    "verifiedDate": "2026-08-03",
+    "verifiedSource": "Site maintainer, on site",
     "outstanding": [
-      "Everything. Call the town, get park names, addresses and facilities — or drop this record."
+      "PRIORITY: find out when the restrooms are actually unlocked — this is the difference between a usable stop and a wasted one.",
+      "Confirm the boardwalk's length and whether it is a loop or out-and-back.",
+      "Confirm whether the boardwalk is wheelchair and pushchair passable end to end.",
+      "Confirm the trailhead location and parking."
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "A boardwalk wetlands trail. Restrooms on site, but sometimes locked.",
+        "affects": [
+          "trails",
+          "restrooms"
+        ]
+      }
     ]
   }
 ]
