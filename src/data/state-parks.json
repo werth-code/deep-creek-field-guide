@@ -901,6 +901,14 @@
     ],
     "photos": [
       {
+        "file": "rock-maze-passage",
+        "alt": "Two children walking away from the camera down a narrow passage between two towering moss-covered sandstone walls, with daylight above.",
+        "caption": "The passage itself. The walls are what the name is about, and the figures are there for scale — several of the gaps are barely shoulder-width.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-03",
+        "portrait": true
+      },
+      {
         "file": "rock-maze-trail",
         "alt": "A narrow earth footpath running through open hardwood forest, banked on both sides by dense waist-high ferns, with sunlight coming through the canopy.",
         "caption": "The approach: open hardwood and heavy fern cover before the ground turns to boulders.",
@@ -910,7 +918,7 @@
       },
       {
         "file": "rock-maze-roots",
-        "alt": "Tree roots gripping the top of a large moss-covered sandstone boulder, with rhododendron leaves around it.",
+        "alt": "A tree growing directly out of a large moss-covered sandstone boulder, its roots running down the rock face, with rhododendron around it.",
         "caption": "Sandstone under moss, with trees rooted straight over the rock. This is the surface the whole maze is made of — and why it stays slick.",
         "credit": "Site maintainer",
         "takenOn": "2026-08-03",
@@ -918,7 +926,7 @@
       },
       {
         "file": "rock-maze-russula-group",
-        "alt": "A group of pink-capped Russula mushrooms on dark leaf litter on the forest floor.",
+        "alt": "Several pink-capped Russula mushrooms growing on dark leaf litter on the forest floor.",
         "caption": "Russula on the forest floor in early August. Look, photograph, do not eat.",
         "credit": "Site maintainer",
         "takenOn": "2026-08-03",
