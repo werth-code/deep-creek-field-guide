@@ -1,0 +1,53 @@
+---
+/**
+ * Directions link.
+ *
+ * A LINK, not an embedded map. An embed would pull Google's iframe, scripts
+ * and cookies into a page that currently loads no third-party anything — it
+ * costs several hundred kilobytes, tracks the reader before they've asked for
+ * a map, and pushes the actual content down the page on a phone. A link opens
+ * the map app the reader already has, with their location and live traffic,
+ * which is what "show me a map" actually means on the device this gets read on.
+ *
+ * The query is built from the place's own name and town rather than
+ * coordinates we'd have to verify and maintain. It is a search, not a claim,
+ * so it carries no verification stamp — but it is deliberately specific enough
+ * that it can't land on a same-named park in another state.
+ */
+interface Props {
+  name: string;
+  town?: string | null;
+  address?: string | null;
+  region?: string;
+  label?: string;
+  class?: string;
+}
+
+const {
+  name,
+  town = null,
+  address = null,
+  region = "MD",
+  label = "Directions",
+  class: klass = "",
+} = Astro.props;
+
+/* Prefer a real street address; fall back to name + town, which Google
+   resolves reliably for parks. */
+const query = [name, address ?? town, region].filter(Boolean).join(", ");
+const href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener nofollow"
+  class={`tap sheet-quiet px-3 py-1.5 stamp text-slate hover:bg-slate hover:text-snow no-underline gap-1.5 ${klass}`}
+>
+  <svg viewBox="0 0 16 16" class="w-[0.95em] h-[0.95em] shrink-0" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M8 1.6c-2.3 0-4.1 1.8-4.1 4.1C3.9 9 8 14.4 8 14.4S12.1 9 12.1 5.7c0-2.3-1.8-4.1-4.1-4.1z" stroke-linejoin="round" />
+    <circle cx="8" cy="5.7" r="1.5" />
+  </svg>
+  {label}
+  <span class="sr-only"> to {name} (opens Google Maps)</span>
+</a>

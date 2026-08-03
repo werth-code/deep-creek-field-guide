@@ -329,8 +329,12 @@ const schema = [
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           question: q.slice(0, 200),
+          site: "deep-creek",
+          // The searchable vocabulary, so follow-up suggestions can only be
+          // built from things the matcher can actually answer.
+          attributes: Object.values(SAYS),
           candidates: all.map(s => ({
-            slug: s.entry.slug, name: s.entry.name, kind: s.entry.kind, town: s.entry.town,
+            slug: s.entry.slug, name: s.entry.name, kind: s.entry.kindLabel, town: s.entry.town,
             met: s.met, unknown: s.unknown, confirmed: s.entry.tier === "confirmed",
           })),
         }),
@@ -352,8 +356,13 @@ const schema = [
       r.matches = [...r.matches].sort(by);
       r.unconfirmed = [...r.unconfirmed].sort(by);
     }
+    // A suggestion is only offered if the matcher can actually parse it into a
+    // requirement. Prompting alone doesn't guarantee that — "Which town is
+    // closest to you?" extracts nothing and would dead-end on a click.
     const followUps = (Array.isArray(data?.followUps) ? data.followUps : [])
-      .filter(f => typeof f === "string" && f.length > 2 && f.length < 80).slice(0, 3);
+      .filter(f => typeof f === "string" && f.length > 2 && f.length < 80)
+      .filter(f => { const p = parse(f); return p.wants.length || p.kind || p.town; })
+      .slice(0, 3);
 
     render(r, lead, followUps, false);
   }

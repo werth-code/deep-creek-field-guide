@@ -7,6 +7,8 @@ import type { GetStaticPaths } from "astro";
 
 import Layout from "../../../layouts/Layout.astro";
 import FlagIcon from "../../../components/FlagIcon.astro";
+import MapLink from "../../../components/MapLink.astro";
+import ReportBox from "../../../components/ReportBox.astro";
 
 import parksData from "../../../data/regional-parks.json";
 import {
@@ -169,6 +171,12 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
           <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55]">{park.fee.note}</dd>
         </div>
         <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Getting there</dt>
+          <dd class="m-0 mt-1 sm:mt-0">
+            <MapLink name={park.name} town={park.town} address={park.address} label="Open in Google Maps" />
+          </dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
           <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Phone</dt>
           <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem]">
             {park.phone ? (
@@ -215,6 +223,8 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
           </>
         )
       }
+
+      <ReportBox subject={park.name} path={`/parks/regional/${park.slug}/`} gaps={park.outstanding ?? []} />
 
       <h2>Other town parks</h2>
       <ul>

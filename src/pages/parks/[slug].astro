@@ -9,6 +9,8 @@ import type { GetStaticPaths } from "astro";
 
 import Layout from "../../layouts/Layout.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
+import MapLink from "../../components/MapLink.astro";
+import ReportBox from "../../components/ReportBox.astro";
 
 import parksData from "../../data/state-parks.json";
 import {
@@ -180,11 +182,62 @@ const title =
       </div>
 
       <h2>Getting in</h2>
+
+      {/* Maryland charges PER PERSON in summer and PER VEHICLE off-season at
+          the parks that charge at all, which is the detail that surprises a
+          carful of five. Worth a table rather than a sentence. */}
+      {
+        park.fee.schedule && park.fee.schedule.length > 0 && (
+          <div class="sheet breakout my-6 overflow-x-auto">
+            <table class="w-full border-collapse text-left min-w-[30rem]">
+              <thead>
+                <tr class="border-b-2 border-contour">
+                  <th class="label px-4 py-3 font-normal">When</th>
+                  <th class="label px-4 py-3 font-normal whitespace-nowrap">Maryland residents</th>
+                  <th class="label px-4 py-3 font-normal whitespace-nowrap">Out of state</th>
+                </tr>
+              </thead>
+              <tbody>
+                {park.fee.schedule.map((row) => (
+                  <tr class="border-b border-lake/25 align-top">
+                    <td class="px-4 py-3 text-[0.92rem] leading-snug">{row.when}</td>
+                    <td class="px-4 py-3 text-[0.92rem] whitespace-nowrap font-medium">{row.resident}</td>
+                    <td class="px-4 py-3 text-[0.92rem] whitespace-nowrap font-medium">{row.nonResident}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
+      }
+
       <dl class="sheet breakout my-6 divide-y-2 divide-lake/25">
         <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
           <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Fee</dt>
           <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55]">{park.fee.note}</dd>
         </div>
+        {
+          park.fee.passes && (
+            <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+              <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Annual pass</dt>
+              <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55]">{park.fee.passes}</dd>
+            </div>
+          )
+        }
+        {
+          park.services?.giftShop !== undefined && (
+            <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+              <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Shop</dt>
+              <dd class={`m-0 mt-1 sm:mt-0 text-[0.95rem] ${park.services.giftShop === null ? "text-ink-soft italic" : ""}`}>
+                {park.services.giftShop === null
+                  ? "Gift shop or camp store not confirmed"
+                  : park.services.giftShop
+                    ? "Gift shop or camp store on site"
+                    : "No shop on site"}
+              </dd>
+            </div>
+          )
+        }
         <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
           <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Hours</dt>
           <dd class={`m-0 mt-1 sm:mt-0 text-[0.95rem] ${park.hours ? "" : "text-ink-soft italic"}`}>
@@ -194,11 +247,33 @@ const title =
         <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
           <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Park office</dt>
           <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem]">
-            {park.phone ? (
-              <a href={`tel:${park.phone.replace(/[^0-9+]/g, "")}`} class="tap stamp text-[1rem]">{park.phone}</a>
+            {park.services?.officePhone || park.phone ? (
+              <a
+                href={`tel:${(park.services?.officePhone ?? park.phone ?? "").replace(/[^0-9+]/g, "")}`}
+                class="tap stamp text-[1rem]"
+              >
+                {park.services?.officePhone ?? park.phone}
+              </a>
             ) : (
               <span class="text-ink-soft italic">Not confirmed</span>
             )}
+            {park.services?.parkOffice && (
+              <span class="block text-[0.88rem] text-ink-soft mt-1 leading-snug">
+                {park.services.parkOffice}
+                {park.services.officeAddress ? ` — ${park.services.officeAddress}` : ""}
+              </span>
+            )}
+            {park.services?.note && (
+              <span class="block text-[0.86rem] text-ink-soft mt-1 leading-snug">{park.services.note}</span>
+            )}
+          </dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Getting there</dt>
+          <dd class="m-0 mt-1 sm:mt-0">
+            {/* Include the kind: "Swallow Falls" alone is ambiguous, "Swallow
+                Falls State Park" is not. */}
+            <MapLink name={`${park.name} ${park.kind}`} town={park.town} label="Open in Google Maps" />
           </dd>
         </div>
       </dl>
@@ -271,6 +346,8 @@ const title =
           </>
         )
       }
+
+      <ReportBox subject={park.name} path={`/parks/${park.slug}/`} gaps={park.outstanding ?? []} />
 
       <h2>The other parks</h2>
       <ul>

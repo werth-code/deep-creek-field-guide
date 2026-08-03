@@ -55,7 +55,23 @@ export interface StatePark {
   blurb: string;
   features: StateParkFeatures;
   reservation: Reservation;
-  fee: { note: string; amount: number | null };
+  fee: {
+    note: string;
+    amount: number | null;
+    /** Maryland charges per PERSON in summer and per VEHICLE off-season. */
+    schedule?: { when: string; resident: string; nonResident: string }[] | null;
+    passes?: string | null;
+  };
+  /** Where you find a person, a shop, or a pass. Mostly unchecked so far. */
+  services?: {
+    parkOffice: string | null;
+    officePhone: string | null;
+    officeAddress: string | null;
+    giftShop: boolean | null;
+    campStore: boolean | null;
+    passesSoldHere: boolean | null;
+    note: string | null;
+  };
   warnings: string[];
   phone: string | null;
   hours: string | null;

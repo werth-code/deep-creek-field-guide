@@ -30,8 +30,21 @@
       ]
     },
     "fee": {
-      "note": "Regular day-use fees are paid when you book. Each reservation also carries a non-refundable service charge of about $1.50 per person. The day-use fee itself is not confirmed.",
-      "amount": null
+      "note": "Sat of Memorial Day weekend – Labor Day: $3 per person Maryland residents, $5 per person out-of-state; Tue after Labor Day – Fri before Memorial Day: $3 per vehicle Maryland residents, $5 per vehicle out-of-state. Day-use fees are paid when you book a weekend reservation, plus a non-refundable service charge of about $1.50 per person.",
+      "amount": 3,
+      "schedule": [
+        {
+          "when": "Sat of Memorial Day weekend – Labor Day",
+          "resident": "$3 per person",
+          "nonResident": "$5 per person"
+        },
+        {
+          "when": "Tue after Labor Day – Fri before Memorial Day",
+          "resident": "$3 per vehicle",
+          "nonResident": "$5 per vehicle"
+        }
+      ],
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [
       "Pets are not permitted in the day-use area, including the Canyon Trail, from 23 May to 7 September 2026.",
@@ -59,6 +72,11 @@
         "label": "Garrett County Government — day-use reservations at Swallow Falls",
         "url": "https://www.garrettcountymd.gov/news/2026-05/new-day-use-reservations-required-swallow-falls-state-park-beginning-memorial-day-weekend",
         "note": "CONFLICTS with DNR. Says reservations are required every day. Recorded because it is why we had it wrong, and because it is still live."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -78,7 +96,16 @@
         "was": "That a reservation was required every day from 23 May through Labor Day, not just weekends.",
         "now": "Reservations are required on weekends and holidays only; weekdays are entry on arrival. Garrett County's May announcement said every day, but Maryland DNR runs the park and the reservation system, and three DNR sources — the park page, the 20 May statewide notice and the 25 June expansion release — all say weekends and holidays. We had followed the county."
       }
-    ]
+    ],
+    "services": {
+      "parkOffice": "Swallow Falls State Park Office",
+      "officePhone": "301-387-6938",
+      "officeAddress": "c/o Herrington Manor State Park, 222 Herrington Lane, Oakland, MD 21550",
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": "Swallow Falls is administered from Herrington Manor; the mailing address is Herrington Manor's."
+    }
   },
   {
     "slug": "deep-creek-lake",
@@ -106,8 +133,21 @@
       "note": "Not on Maryland DNR's list of parks requiring day-use reservations as of 25 June 2026. Day-use fees may still apply on arrival."
     },
     "fee": {
-      "note": "Day-use fee applies. Amount to be confirmed.",
-      "amount": null
+      "note": "Memorial Day weekend – Labor Day: $3 per person Maryland residents, $5 per person out-of-state; Day after Labor Day – Fri before Memorial Day: $3 per vehicle Maryland residents, $5 per vehicle out-of-state.",
+      "amount": 3,
+      "schedule": [
+        {
+          "when": "Memorial Day weekend – Labor Day",
+          "resident": "$3 per person",
+          "nonResident": "$5 per person"
+        },
+        {
+          "when": "Day after Labor Day – Fri before Memorial Day",
+          "resident": "$3 per vehicle",
+          "nonResident": "$5 per vehicle"
+        }
+      ],
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [],
     "phone": null,
@@ -122,6 +162,11 @@
         "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -133,7 +178,16 @@
       "Confirm beach season dates and whether lifeguards are posted.",
       "Confirm boat launch fees and whether a separate launch permit is needed.",
       "Confirm pet rules on the beach specifically."
-    ]
+    ],
+    "services": {
+      "parkOffice": null,
+      "officePhone": null,
+      "officeAddress": null,
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": null
+    }
   },
   {
     "slug": "herrington-manor",
@@ -161,8 +215,21 @@
       "note": "Not on Maryland DNR's list of parks requiring day-use reservations as of 25 June 2026. Day-use fees may still apply on arrival."
     },
     "fee": {
-      "note": "Day-use fee applies. Amount to be confirmed.",
-      "amount": null
+      "note": "Summer weekends, and ski-season weekends and holidays: $3 per person Maryland residents, $5 per person out-of-state; Weekdays: $3 per vehicle Maryland residents, $5 per vehicle out-of-state.",
+      "amount": 3,
+      "schedule": [
+        {
+          "when": "Summer weekends, and ski-season weekends and holidays",
+          "resident": "$3 per person",
+          "nonResident": "$5 per person"
+        },
+        {
+          "when": "Weekdays",
+          "resident": "$3 per vehicle",
+          "nonResident": "$5 per vehicle"
+        }
+      ],
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [],
     "phone": null,
@@ -177,6 +244,11 @@
         "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -188,7 +260,16 @@
       "Confirm the no-gas-motor rule and what is allowed instead.",
       "Confirm swimming beach season and lifeguard cover.",
       "Confirm whether pets are allowed in the cabins."
-    ]
+    ],
+    "services": {
+      "parkOffice": null,
+      "officePhone": null,
+      "officeAddress": null,
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": null
+    }
   },
   {
     "slug": "new-germany",
@@ -216,8 +297,10 @@
       "note": "Not on Maryland DNR's list of parks requiring day-use reservations as of 25 June 2026. Day-use fees may still apply on arrival."
     },
     "fee": {
-      "note": "Day-use fee applies. Amount to be confirmed.",
-      "amount": null
+      "note": "No day-use service charge listed by Maryland DNR as of 3 August 2026.",
+      "amount": 0,
+      "schedule": null,
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [],
     "phone": null,
@@ -232,6 +315,11 @@
         "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -242,7 +330,16 @@
       "Confirm cabin season — whether all eleven are winterised.",
       "Confirm boat rental availability and season.",
       "Confirm the day-use fee."
-    ]
+    ],
+    "services": {
+      "parkOffice": null,
+      "officePhone": null,
+      "officeAddress": null,
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": null
+    }
   },
   {
     "slug": "big-run",
@@ -270,8 +367,10 @@
       "note": "Not on Maryland DNR's list of parks requiring day-use reservations as of 25 June 2026. Day-use fees may still apply on arrival."
     },
     "fee": {
-      "note": "To be confirmed — small primitive parks are sometimes free.",
-      "amount": null
+      "note": "No day-use service charge listed by Maryland DNR as of 3 August 2026.",
+      "amount": 0,
+      "schedule": null,
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [
       "Whitewater here depends on scheduled dam releases from the Savage River Reservoir. Without a release there may be no runnable water at all."
@@ -288,6 +387,11 @@
         "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -298,7 +402,16 @@
       "Confirm whether a day-use fee is charged here at all.",
       "Confirm campsite booking — first-come or reservable.",
       "Confirm road access in winter."
-    ]
+    ],
+    "services": {
+      "parkOffice": null,
+      "officePhone": null,
+      "officeAddress": null,
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": null
+    }
   },
   {
     "slug": "casselman-river-bridge",
@@ -326,8 +439,10 @@
       "note": "Not on Maryland DNR's list of parks requiring day-use reservations as of 25 June 2026. Day-use fees may still apply on arrival."
     },
     "fee": {
-      "note": "Believed free. To be confirmed.",
-      "amount": null
+      "note": "No day-use service charge listed for this site on DNR's fee schedule. Not confirmed.",
+      "amount": null,
+      "schedule": null,
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [],
     "phone": null,
@@ -342,6 +457,11 @@
         "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -351,7 +471,16 @@
       "Confirm it is free and has no gate hours.",
       "Confirm whether the bridge itself is still walkable.",
       "Confirm parking — it is small and on a busy road."
-    ]
+    ],
+    "services": {
+      "parkOffice": null,
+      "officePhone": null,
+      "officeAddress": null,
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": null
+    }
   },
   {
     "slug": "sang-run",
@@ -379,8 +508,10 @@
       "note": "Not on Maryland DNR's list of parks requiring day-use reservations as of 25 June 2026. Day-use fees may still apply on arrival."
     },
     "fee": {
-      "note": "To be confirmed.",
-      "amount": null
+      "note": "No day-use service charge listed for this site on DNR's fee schedule. Not confirmed.",
+      "amount": null,
+      "schedule": null,
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [
       "The upper Youghiogheny below here is expert whitewater and depends on scheduled releases. It is not a place to improvise."
@@ -397,6 +528,11 @@
         "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -406,7 +542,16 @@
       "Confirm whether the historic buildings are open to visitors and when.",
       "Get the Youghiogheny release schedule and its publisher.",
       "Confirm put-in access rules and whether a permit is needed."
-    ]
+    ],
+    "services": {
+      "parkOffice": null,
+      "officePhone": null,
+      "officeAddress": null,
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": null
+    }
   },
   {
     "slug": "wolf-den-run",
@@ -434,8 +579,10 @@
       "note": "OHV parks usually require a separate permit rather than a day-use reservation. Unconfirmed."
     },
     "fee": {
-      "note": "OHV permit likely required. To be confirmed.",
-      "amount": null
+      "note": "No day-use service charge listed for this site on DNR's fee schedule. Not confirmed.",
+      "amount": null,
+      "schedule": null,
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [
       "Active OHV trails. Not a quiet-walk park, and hikers should know that before arriving."
@@ -447,6 +594,11 @@
         "label": "Maryland DNR — Wolf Den Run State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/wolfdenrun.aspx",
         "note": "OHV trails and access."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -457,7 +609,16 @@
       "Confirm which trails are shared with hikers and which are OHV-only.",
       "Confirm open season and days — OHV parks often run limited schedules.",
       "Confirm whether street-legal vehicles can access trailheads."
-    ]
+    ],
+    "services": {
+      "parkOffice": null,
+      "officePhone": null,
+      "officeAddress": null,
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": null
+    }
   },
   {
     "slug": "youghiogheny-wild-river",
@@ -485,8 +646,10 @@
       "note": "Not on Maryland DNR's list of parks requiring day-use reservations as of 25 June 2026. Day-use fees may still apply on arrival."
     },
     "fee": {
-      "note": "To be confirmed.",
-      "amount": null
+      "note": "No day-use service charge listed for this site on DNR's fee schedule. Not confirmed.",
+      "amount": null,
+      "schedule": null,
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [
       "Expert whitewater with limited access and limited rescue. Release-dependent."
@@ -503,6 +666,11 @@
         "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -512,7 +680,16 @@
       "Confirm access points and any permit requirement.",
       "Get the release schedule and its source.",
       "Confirm what facilities exist, if any."
-    ]
+    ],
+    "services": {
+      "parkOffice": null,
+      "officePhone": null,
+      "officeAddress": null,
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": null
+    }
   },
   {
     "slug": "savage-river-state-forest",
@@ -540,8 +717,10 @@
       "note": "State forests run different rules from state parks. Dispersed camping usually needs a permit. Unconfirmed."
     },
     "fee": {
-      "note": "To be confirmed.",
-      "amount": null
+      "note": "No day-use service charge listed for this site on DNR's fee schedule. Not confirmed.",
+      "amount": null,
+      "schedule": null,
+      "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [
       "Hunting is permitted in season across the forest. Check dates and wear blaze orange."
@@ -553,6 +732,11 @@
         "label": "Maryland DNR — Savage River State Forest",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/savageriver.aspx",
         "note": "Forest management, camping and access."
+      },
+      {
+        "label": "Maryland DNR — park service charges",
+        "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
+        "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -563,6 +747,15 @@
       "Get the hunting season dates that matter for hikers.",
       "Confirm the acreage — sources vary between 54,000 and 55,000.",
       "Confirm the Savage River release schedule for paddlers."
-    ]
+    ],
+    "services": {
+      "parkOffice": null,
+      "officePhone": null,
+      "officeAddress": null,
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": null
+    }
   }
 ]
