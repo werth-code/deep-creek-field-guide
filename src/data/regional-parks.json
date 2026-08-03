@@ -528,29 +528,31 @@
     ]
   },
   {
-    "slug": "kitzmiller-town-park",
-    "name": "Kitzmiller town parks",
+    "slug": "kitzmiller-botanical-garden",
+    "name": "Kitzmiller Botanical Garden",
     "operator": "Town of Kitzmiller",
     "town": "Kitzmiller",
     "address": "Kitzmiller, MD 21538",
     "acres": null,
-    "blurb": "Named by the county among the municipalities maintaining community parks. Kitzmiller sits on the north branch of the Potomac below Wolf Den Run. Park-level detail not yet confirmed.",
+    "blurb": "Kitzmiller's town park is a botanical garden — planted ground rather than ball fields, with a playground, pavilions and restrooms. Free to visit.",
     "restrooms": {
-      "present": null,
+      "present": true,
       "type": null,
       "seasonal": null,
-      "note": "Not confirmed."
+      "note": "Reported first-hand. Season and hours not confirmed.",
+      "confirmedOn": "2026-08-03",
+      "confirmedBy": "Site maintainer, first-hand"
     },
     "facilities": {
-      "playground": null,
-      "swimming": null,
-      "beach": null,
-      "picnic": null,
-      "pavilion": null,
+      "playground": true,
+      "swimming": false,
+      "beach": false,
+      "picnic": true,
+      "pavilion": true,
       "grills": null,
       "trails": null,
       "sports": null,
-      "boatLaunch": null,
+      "boatLaunch": false,
       "fishing": null,
       "pavedPath": null,
       "winterUse": null
@@ -560,8 +562,8 @@
     "hoursNote": null,
     "phone": null,
     "fee": {
-      "note": "Unconfirmed.",
-      "amount": null
+      "note": "Free. Whether the pavilions can be booked, and for what, is not confirmed.",
+      "amount": 0
     },
     "warnings": [],
     "sources": [
@@ -573,10 +575,37 @@
       }
     ],
     "sourcedOn": "2026-08-03",
-    "verifiedDate": null,
-    "verifiedSource": null,
+    "verifiedDate": "2026-08-03",
+    "verifiedSource": "Site maintainer, on site",
     "outstanding": [
-      "Everything. Call the town, get park names, addresses and facilities — or drop this record."
+      "Confirm the river walk trail across from the garden — who maintains it, where it starts, how long it is, and whether it is its own record. Reported second-hand only.",
+      "Confirm the garden's address and hours with the Town of Kitzmiller.",
+      "Confirm whether the pavilions can be booked and what that costs.",
+      "Confirm what is planted and whether anything is labelled — a botanical garden is a different visit from a park.",
+      "Confirm whether the restrooms are open through winter."
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "Kitzmiller has a botanical garden — free, with a playground, pavilions and restrooms.",
+        "affects": [
+          "fee",
+          "playground",
+          "pavilion",
+          "restrooms"
+        ]
+      },
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, second-hand — not personally seen",
+        "what": "There is said to be a river walk trail across the street from the botanical garden, and it is said to be well worth doing. Passed on as heard, not as checked.",
+        "affects": [
+          "nearby trail"
+        ]
+      }
     ]
   },
   {

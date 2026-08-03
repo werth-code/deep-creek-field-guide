@@ -60,10 +60,6 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 - [ ] Confirm whether fishing needs a permit or prior notice.
 - [ ] Confirm facility hire rates and minimum group size.
 
-### Kitzmiller town parks
-
-- [ ] Everything. Call the town, get park names, addresses and facilities — or drop this record.
-
 ### Deer Park town parks
 
 - [ ] Everything. Call the town, get park names, addresses and facilities — or drop this record.
@@ -158,5 +154,5 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ---
 
-**77 open items.** Every one is a fact this site cannot confirm until
+**76 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.
