@@ -7,10 +7,11 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/check-build.mjs",
+    "build": "npx tsx scripts/test-recurrence.mjs && astro build && node scripts/check-build.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "calls": "node scripts/call-sheet.mjs"
+    "calls": "node scripts/call-sheet.mjs",
+    "test": "npx tsx scripts/test-recurrence.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
