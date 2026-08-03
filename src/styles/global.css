@@ -438,3 +438,37 @@
     transform: none;
   }
 }
+
+/* ------------------------------------------------------- date inputs ---- */
+/*
+ * <input type="date"> lays itself out from its own shadow DOM, not from its
+ * container. On iOS Safari the value field and the picker icon claim an
+ * intrinsic width that ignores `width: 100%`, and the control spills out of
+ * the card on a narrow phone. Utility classes cannot reach it — the fix has to
+ * address the webkit pseudo-elements directly.
+ *
+ * Reported twice from a real phone before this landed. Worth remembering that
+ * a form control can overflow while every wrapper around it measures correctly.
+ */
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+  min-width: 0;
+  margin: 0;
+}
+input[type="date"]::-webkit-datetime-edit {
+  padding: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+/* Keep the picker button from being pushed off the right edge. */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
