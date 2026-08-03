@@ -287,3 +287,70 @@ export function reservationFlag(r: Reservation): {
     icon: "alert",
   };
 }
+
+/* ----------------------------------------------------------------- asks -- */
+
+/**
+ * Reader-facing questions for the report form.
+ *
+ * DERIVED FROM THE DATA, never from `outstanding`. Those entries are written
+ * for whoever is making the phone calls — "PRIORITY: get the admission price,
+ * and whether there is a separate parking charge" — and putting that in front
+ * of a visitor asks them to care about our workflow. They don't. They want the
+ * answer too.
+ *
+ * So the questions come from which fields are actually null, phrased the way
+ * someone standing in the car park would say them. That also means they can
+ * never drift out of date: fill the field in and the question stops appearing.
+ */
+const STATE_ASKS: [keyof StateParkFeatures, string][] = [
+  ["restrooms", "Are there restrooms?"],
+  ["petsAllowed", "Are dogs allowed?"],
+  ["beach", "Is there a beach?"],
+  ["swimming", "Can you swim?"],
+  ["camping", "Can you camp?"],
+  ["cabins", "Are there cabins?"],
+  ["boatRentals", "Can you rent a boat?"],
+  ["boatLaunch", "Is there a boat launch?"],
+  ["winterUse", "Is it open in winter?"],
+  ["trails", "Are there trails?"],
+  ["fishing", "Can you fish?"],
+];
+
+const REGIONAL_ASKS: [keyof RegionalFacilities, string][] = [
+  ["playground", "Is there a playground?"],
+  ["swimming", "Can you swim?"],
+  ["beach", "Is there a beach?"],
+  ["picnic", "Are there picnic tables?"],
+  ["pavilion", "Is there a pavilion?"],
+  ["sports", "Are there courts or fields?"],
+  ["pavedPath", "Is there a paved path?"],
+  ["trails", "Are there trails?"],
+  ["boatLaunch", "Is there a boat launch?"],
+  ["winterUse", "Is it used in winter?"],
+];
+
+/** Four at most. A wall of questions reads as a survey and gets nothing back. */
+export function asksForState(p: StatePark): string[] {
+  const out: string[] = [];
+  if (!p.hours) out.push("What are the hours?");
+  for (const [k, q] of STATE_ASKS) {
+    if (p.features[k] === null || p.features[k] === undefined) out.push(q);
+  }
+  if (p.services && p.services.giftShop === null && p.services.campStore === null) {
+    out.push("Is there a shop?");
+  }
+  return out.slice(0, 4);
+}
+
+export function asksForRegional(p: RegionalPark): string[] {
+  const out: string[] = [];
+  if (p.restrooms.present === null || p.restrooms.present === undefined) {
+    out.push("Are there restrooms?");
+  }
+  if (!p.hours) out.push("What are the hours?");
+  for (const [k, q] of REGIONAL_ASKS) {
+    if (p.facilities[k] === null || p.facilities[k] === undefined) out.push(q);
+  }
+  return out.slice(0, 4);
+}

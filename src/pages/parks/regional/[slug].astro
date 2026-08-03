@@ -14,6 +14,7 @@ import ReportBox from "../../../components/ReportBox.astro";
 import parksData from "../../../data/regional-parks.json";
 import {
   REGIONAL_FACILITY_LABELS,
+  asksForRegional,
   completenessRegional,
   restroomAnswer,
   tri,
@@ -216,19 +217,19 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
         </p>
       </aside>
 
-      {
-        park.outstanding && park.outstanding.length > 0 && !isVerified(park) && (
-          <>
-            <h2>Still to confirm</h2>
-            <ul>{park.outstanding.map((o) => <li>{o}</li>)}</ul>
-          </>
-        )
-      }
+      {/* The internal to-do list used to render here as "Still to confirm".
+          It was written for whoever makes the phone calls — "PRIORITY: get the
+          admission price" — and putting that in front of a visitor asks them
+          to care about our workflow. They don't; they wanted the answer too.
+          It lives in CALL-SHEET.md now, and the reader gets the same gaps as
+          tappable questions in the report box below. Every unconfirmed field
+          still reads "Not confirmed" where it sits, which is the honest signal
+          that actually helps. */}
 
       <h2>Where it is</h2>
       <MapEmbed name={park.name} town={park.town} address={park.address} />
 
-      <ReportBox subject={park.name} path={`/parks/regional/${park.slug}/`} gaps={park.outstanding ?? []} />
+      <ReportBox subject={park.name} path={`/parks/regional/${park.slug}/`} asks={asksForRegional(park)} />
 
       <h2>Other town parks</h2>
       <ul>

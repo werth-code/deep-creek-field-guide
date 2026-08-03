@@ -31,6 +31,15 @@ const tier = tierOf(event);
 const publishable = isPublishable(event);
 const label = occurrenceLabel(event.rule, event.confirmed);
 
+/* Same rule as the parks: reader-facing, derived from blanks, never from the
+   internal `outstanding` list. */
+const asks = [
+  event.admission.amount === null ? "What's admission?" : null,
+  "Are dogs allowed?",
+  !event.address ? "Where exactly is it?" : null,
+  label.state === "unknown" ? "Do you know next year's dates?" : "What are the gate times?",
+].filter(Boolean) as string[];
+
 /* Every year we hold a confirmed date for, newest first. Showing the list
    makes the gap obvious: two entries means we know two years, not "annual". */
 const years = Object.keys(event.confirmed).sort().reverse();
@@ -212,16 +221,16 @@ const STATE_CLASS = {
         </p>
       </aside>
 
-      {
-        event.outstanding && event.outstanding.length > 0 && !isVerified(event) && (
-          <>
-            <h2>Still to confirm</h2>
-            <ul>{event.outstanding.map((o) => <li>{o}</li>)}</ul>
-          </>
-        )
-      }
+      {/* The internal to-do list used to render here as "Still to confirm".
+          It was written for whoever makes the phone calls — "PRIORITY: get the
+          admission price" — and putting that in front of a visitor asks them
+          to care about our workflow. They don't; they wanted the answer too.
+          It lives in CALL-SHEET.md now, and the reader gets the same gaps as
+          tappable questions in the report box below. Every unconfirmed field
+          still reads "Not confirmed" where it sits, which is the honest signal
+          that actually helps. */}
 
-      <ReportBox subject={event.name} path={`/events/${event.slug}/`} gaps={event.outstanding ?? []} />
+      <ReportBox subject={event.name} path={`/events/${event.slug}/`} asks={asks} />
 
       {
         others.length > 0 && (

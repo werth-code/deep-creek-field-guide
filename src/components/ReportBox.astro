@@ -24,11 +24,15 @@ interface Props {
   subject: string;
   /** Path of the page, so a report can be traced back to what it was about. */
   path: string;
-  /** The specific open questions, offered as one-tap answers. */
-  gaps?: string[];
+  /**
+   * Short reader-facing questions, DERIVED FROM THE DATA — never the internal
+   * `outstanding` list, which is written for whoever makes the phone calls.
+   * Tapping one drops it into the box.
+   */
+  asks?: string[];
 }
 
-const { subject, path, gaps = [] } = Astro.props;
+const { subject, path, asks = [] } = Astro.props;
 
 const endpoint = import.meta.env.PUBLIC_REPORT_ENDPOINT ?? "";
 const mailto = `mailto:reports@deepcreekfieldguide.com?subject=${encodeURIComponent(
@@ -45,24 +49,31 @@ const id = `report-${path.replace(/[^a-z0-9]+/gi, "-")}`;
   <h2 id={`${id}-h`} class="font-display text-[1.3rem] font-semibold tracking-[-0.03em] mt-2 mb-0 text-slate max-w-[26ch]">
     Tell us what you saw
   </h2>
-  <p class="mt-2.5 mb-0 text-[0.95rem] leading-[1.55] max-w-[58ch]">
-    {
-      gaps.length > 0
-        ? "You can answer one of these in ten seconds, and it's worth more than another phone call."
-        : "If something here is wrong or has changed, this is the fastest way to fix it."
-    }
+  <p class="mt-2 mb-0 text-[0.95rem] leading-[1.5] max-w-[52ch]">
+    Anything you noticed. If it's wrong or it's changed, this is the fastest fix.
   </p>
 
   {
-    gaps.length > 0 && (
-      <ul class="list-none p-0 m-0 mt-3.5 space-y-1.5">
-        {gaps.slice(0, 4).map((g) => (
-          <li class="text-[0.9rem] leading-snug text-ink-soft flex gap-2">
-            <span class="text-contour-deep shrink-0" aria-hidden="true">?</span>
-            <span>{g}</span>
-          </li>
-        ))}
-      </ul>
+    asks.length > 0 && (
+      <div class="mt-4">
+        <p class="label m-0">Still open — tap one</p>
+        {/* Full width and left-aligned on a phone: these wrap to two lines,
+            and a centred 44px-tall pill of wrapped text reads as stray copy
+            rather than a control. Inline pills once there's room for them. */}
+        <ul class="list-none p-0 m-0 mt-2 flex flex-col sm:flex-row sm:flex-wrap gap-1.5">
+          {asks.map((q) => (
+            <li class="contents sm:block">
+              <button
+                type="button"
+                data-ask={q}
+                class="tap w-full sm:w-auto justify-start text-left bg-paper border-2 border-slate/25 hover:border-slate hover:bg-slate hover:text-snow px-3 py-2 text-[0.88rem] text-slate leading-snug"
+              >
+                {q}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     )
   }
 
@@ -128,50 +139,66 @@ const id = `report-${path.replace(/[^a-z0-9]+/gi, "-")}`;
       }
     </div>
 
-    <p class="mt-3.5 mb-0 text-[0.83rem] leading-snug text-ink-soft max-w-[58ch]">
-      Reports aren't published. A person reads yours, and if we can use it, it
-      becomes a dated fact on this page with the date you saw it —
-      <a href="/how-we-verify/">the same bar as everything else</a>. We don't
-      post your name or your email.
+    <p class="mt-3.5 mb-0 text-[0.83rem] leading-snug text-ink-soft max-w-[54ch]">
+      Not published. A person reads it, and if we can use it, it becomes a
+      dated fact here. <a href="/how-we-verify/">How that works</a>.
     </p>
 
     <p class="mt-3 mb-0 text-[0.86rem] hidden" data-report-status role="status"></p>
   </form>
 </section>
 
-{
-  endpoint && (
-    <script>
-      // Submit in place so the reader isn't thrown to a third-party thank-you
-      // page. Falls back to a normal form POST if fetch fails.
-      document.querySelectorAll("form[data-report-form]").forEach((form) => {
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const status = form.querySelector("[data-report-status]");
-          const button = form.querySelector("button[type=submit]");
-          const say = (msg, ok) => {
-            status.textContent = msg;
-            status.classList.remove("hidden");
-            status.classList.toggle("text-flag-green-bearing", ok);
-            status.classList.toggle("text-flag-red-bearing", !ok);
-          };
-          button.disabled = true;
-          say("Sending…", true);
-          try {
-            const res = await fetch(form.action, {
-              method: "POST",
-              body: new FormData(form),
-              headers: { Accept: "application/json" },
-            });
-            if (!res.ok) throw new Error("bad status");
-            form.querySelectorAll("textarea, input[type=date], input[type=email]").forEach((el) => (el.value = ""));
-            say("Thank you — that's with us. We'll check it and date it.", true);
-          } catch {
-            say("That didn't send. Please try again, or email us.", false);
-            button.disabled = false;
-          }
+<script>
+  /*
+   * Two jobs, and the first must work whether or not a form endpoint is
+   * configured — hence one unconditional script rather than one gated on it.
+   *
+   * 1. Tapping an open question drops it into the box and puts the cursor
+   *    after it. The question stays in the text so the report arrives with its
+   *    own context: "Are dogs allowed? — yes, on lead, saw signs at the gate"
+   *    needs no interpreting at the other end.
+   * 2. If an endpoint IS set, submit in place so the reader isn't thrown to a
+   *    third-party thank-you page.
+   */
+  document.querySelectorAll("[data-ask]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const form = button.closest("section").querySelector("form");
+      const box = form.querySelector("textarea");
+      const q = button.dataset.ask;
+      const existing = box.value.trim();
+      box.value = existing ? `${existing}\n${q} — ` : `${q} — `;
+      box.focus();
+      box.setSelectionRange(box.value.length, box.value.length);
+      button.setAttribute("aria-pressed", "true");
+    });
+  });
+
+  document.querySelectorAll("form[data-report-form]").forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const status = form.querySelector("[data-report-status]");
+      const button = form.querySelector("button[type=submit]");
+      const say = (msg, ok) => {
+        status.textContent = msg;
+        status.classList.remove("hidden");
+        status.classList.toggle("text-flag-green-bearing", ok);
+        status.classList.toggle("text-flag-red-bearing", !ok);
+      };
+      button.disabled = true;
+      say("Sending…", true);
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: { Accept: "application/json" },
         });
-      });
-    </script>
-  )
-}
+        if (!res.ok) throw new Error("bad status");
+        form.querySelectorAll("textarea, input[type=date], input[type=email]").forEach((el) => (el.value = ""));
+        say("Thank you — that's with us. We'll check it and date it.", true);
+      } catch {
+        say("That didn't send. Please try again, or email us.", false);
+        button.disabled = false;
+      }
+    });
+  });
+</script>
