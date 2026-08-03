@@ -34,14 +34,21 @@ const here = (p: string) => pathname === p;
           </a>
         ))
       }
-      <a
-        href="/verified/"
-        class={`tap label no-underline ${here("/verified/") ? "text-snow" : "text-snow-soft hover:text-snow"}`}
-        aria-current={here("/verified/") ? "page" : undefined}
-        style={here("/verified/") ? "box-shadow: inset 0 -3px 0 var(--color-contour);" : ""}
-      >
-        Verified
-      </a>
+      {
+        [
+          ["/ask/", "Ask"],
+          ["/verified/", "Verified"],
+        ].map(([href, label]) => (
+          <a
+            href={href}
+            class={`tap label no-underline ${here(href) ? "text-snow" : "text-snow-soft hover:text-snow"}`}
+            aria-current={here(href) ? "page" : undefined}
+            style={here(href) ? "box-shadow: inset 0 -3px 0 var(--color-contour);" : ""}
+          >
+            {label}
+          </a>
+        ))
+      }
     </nav>
   </div>
 

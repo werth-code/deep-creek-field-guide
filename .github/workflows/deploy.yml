@@ -20,6 +20,10 @@ jobs:
       - uses: withastro/action@v3
         with:
           node-version: 22   # the action defaults to 20; Astro 7 needs >=22.12
+        env:
+          # Optional. Unset is fine — /ask/ falls back to a deterministic
+          # summary and still returns correct results.
+          PUBLIC_CHAT_ENDPOINT: ${{ vars.PUBLIC_CHAT_ENDPOINT }}
   deploy:
     needs: build
     runs-on: ubuntu-latest

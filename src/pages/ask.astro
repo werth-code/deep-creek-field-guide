@@ -1,0 +1,373 @@
+---
+/**
+ * Ask — the park finder.
+ *
+ * The matcher, the index and the deterministic lead are all bundled into the
+ * page, so this works with JavaScript's only dependency being the browser.
+ * The worker is optional: if PUBLIC_CHAT_ENDPOINT is unset or the call fails,
+ * the page still answers correctly, just without the conversational framing.
+ *
+ * Facts are rendered from the index, never from the model. See
+ * src/lib/chat/index.ts for why that is not negotiable.
+ */
+import Layout from "../layouts/Layout.astro";
+import FlagIcon from "../components/FlagIcon.astro";
+import { CHAT_INDEX } from "../lib/chat/index";
+
+const endpoint = import.meta.env.PUBLIC_CHAT_ENDPOINT ?? "";
+
+const examples = [
+  "Swimming and a playground",
+  "Somewhere with restrooms",
+  "Waterfall hike",
+  "Can I go today without booking?",
+  "Boat launch for a kayak",
+  "Sledding in winter",
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "Deep Creek Field Guide — park finder",
+    applicationCategory: "TravelApplication",
+    operatingSystem: "Any",
+    url: "https://deepcreekfieldguide.com/ask/",
+    description:
+      "Ask for what you need — restrooms, a beach, a walk-in visit — and get the Garrett County parks that confirm it, with the source and date for every fact.",
+  },
+];
+---
+
+<Layout
+  title="Ask — find a Garrett County park by what you need"
+  description="Say what you're after — restrooms, swimming, a waterfall, somewhere you can turn up to without booking — and get the Garrett County parks that confirm it."
+  schema={schema}
+>
+  <div class="wrap pt-11 pb-6">
+    <p class="label m-0">Park finder</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[15ch] text-slate">
+      Ask for what you need
+    </h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      Tell it what matters for the trip. It answers from the same checked data
+      as the rest of the site — and tells you plainly when something hasn't been
+      checked, rather than guessing.
+    </p>
+  </div>
+
+  <div class="wrap pb-6">
+    <form id="ask-form" class="sheet breakout p-4 sm:p-5" autocomplete="off">
+      <label for="ask-input" class="label block">Your question</label>
+      <div class="mt-2.5 flex flex-col sm:flex-row gap-2.5">
+        <input
+          id="ask-input"
+          name="q"
+          type="text"
+          required
+          maxlength="200"
+          placeholder="Somewhere to swim with a playground"
+          class="flex-1 min-w-0 bg-paper border-2 border-slate px-3 py-2.5 text-[1rem] text-ink placeholder:text-ink-soft focus:outline-none focus:ring-2 focus:ring-contour"
+        />
+        <button
+          type="submit"
+          class="tap bg-slate text-snow border-2 border-slate px-5 py-2.5 font-mono text-[0.78rem] uppercase tracking-[0.1em] font-medium hover:bg-ink"
+        >
+          Ask
+        </button>
+      </div>
+
+      <p class="label mt-4 mb-0">Or try</p>
+      <ul class="list-none p-0 m-0 mt-2 flex flex-wrap gap-1.5">
+        {
+          examples.map((e) => (
+            <li>
+              <button
+                type="button"
+                data-example={e}
+                class="tap sheet-quiet px-2.5 py-1 stamp text-slate hover:bg-slate hover:text-snow border-0"
+              >
+                {e}
+              </button>
+            </li>
+          ))
+        }
+      </ul>
+    </form>
+  </div>
+
+  <div class="wrap pb-4">
+    <div id="ask-out" aria-live="polite"></div>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <h2>How this answers</h2>
+    <p class="max-w-[58ch]">
+      Your question is turned into a checklist — restrooms, a beach, no booking
+      — and matched against the data by plain comparison. A park only appears as
+      a match when the thing you asked for is <em>confirmed</em> for it.
+    </p>
+    <p class="max-w-[58ch]">
+      Anything unchecked is shown separately and labelled, because a blank in
+      our data means nobody has asked yet, not that the park lacks it. Treating
+      those as "no" would be inventing facts at scale.
+    </p>
+    <p class="max-w-[58ch]">
+      There's an AI here, and it is kept on a short lead: it writes the summary
+      line and orders the results. It is never given the park data and cannot
+      state a fact about a park. Everything you see below the summary is
+      rendered from the checked dataset, with the same source link the park page
+      carries. <a href="/how-we-verify/">The full method is here</a>.
+    </p>
+  </div>
+</Layout>
+
+<script define:vars={{ INDEX: CHAT_INDEX, ENDPOINT: endpoint }}>
+  // The matcher is duplicated here in plain JS rather than imported, because
+  // this script is the client bundle and the TS module is build-time only.
+  // Keep in step with src/lib/chat/match.ts.
+  const VOCAB = [
+    [["restroom","restrooms","toilet","toilets","bathroom","bathrooms","washroom","wc","porta potty"],"restrooms"],
+    [["playground","play ground","swings","swing set","slide","play area"],"playground"],
+    [["swim","swimming","swimmable","wade","wading"],"swimming"],
+    [["beach","sand","sandy"],"beach"],
+    [["trail","trails","hike","hiking","walk","walking","hikes"],"trails"],
+    [["camp","camping","campground","campsite","campsites","tent","tents","rv"],"camping"],
+    [["cabin","cabins","lodge","lodging"],"cabins"],
+    [["boat launch","boat ramp","launch","ramp","kayak","canoe","paddle","paddling","boating","boat"],"boatLaunch"],
+    [["fish","fishing","trout","angling"],"fishing"],
+    [["picnic","picnic table","picnic tables","lunch","eat outside"],"picnic"],
+    [["pavilion","pavilions","shelter","shelters","gazebo","covered"],"pavilion"],
+    [["sports","ball field","ball fields","baseball","soccer","basketball","tennis","court","courts","field","fields"],"sports"],
+    [["paved","paved path","stroller","strollers","wheelchair","accessible","pram","buggy"],"pavedPath"],
+    [["winter","snow","sled","sledding","ski","skiing","snowshoe","cross country","cross-country"],"winterUse"],
+    [["waterfall","waterfalls","falls","cascade"],"waterfall"],
+    [["dog","dogs","pet","pets","puppy","leash","leashed"],"petsAllowed"],
+    [["no reservation","without a reservation","without booking","walk in","walk-in","turn up","show up","last minute","spontaneous","no booking","same day","today","right now","drive up"],"walkIn"],
+    [["free","no fee","no charge","costs nothing","without paying","cheap"],"free"],
+  ];
+  const PHRASES = VOCAB.flatMap(([ws,k]) => ws.map(w => [w,k])).sort((a,b) => b[0].length - a[0].length);
+  const KIND_WORDS = [
+    [["state park","state parks","state forest","dnr","big park","big parks"],"state"],
+    [["town park","town parks","local park","local parks","municipal","community park","community parks"],"town"],
+  ];
+  const SAYS = {
+    restrooms:"restrooms", playground:"a playground", swimming:"swimming", beach:"a beach",
+    trails:"trails", camping:"camping", cabins:"cabins", boatLaunch:"a boat launch",
+    fishing:"fishing", picnic:"picnic tables", pavilion:"a pavilion", sports:"courts or fields",
+    pavedPath:"a paved path", winterUse:"winter use", waterfall:"a waterfall",
+    petsAllowed:"dogs allowed", walkIn:"no reservation needed", free:"no fee",
+  };
+  const NEGATORS = ["no ","without ","not ","don't ","dont ","doesn't ","avoid ","except "];
+
+  const TOWNS = [...new Set(INDEX.map(e => e.town.toLowerCase()))].sort((a,b)=>b.length-a.length);
+  const NAMES = INDEX.map(e => [e.name.toLowerCase(), e.slug]).sort((a,b)=>b[0].length-a[0].length);
+
+  const norm = s => s.toLowerCase().replace(/[^a-z0-9\s'-]/g," ").replace(/\s+/g," ").trim();
+  function has(hay, needle) {
+    const i = hay.indexOf(needle);
+    if (i === -1) return false;
+    const b = i === 0 ? " " : hay[i-1];
+    const a = i + needle.length >= hay.length ? " " : hay[i+needle.length];
+    return !/[a-z0-9]/.test(b) && !/[a-z0-9]/.test(a);
+  }
+
+  function parse(raw) {
+    const q = norm(raw), wants = [], excludes = [];
+    let rest = ` ${q} `;
+    for (const [phrase, key] of PHRASES) {
+      if (!has(rest, phrase)) continue;
+      const at = rest.indexOf(phrase);
+      const lead = rest.slice(Math.max(0, at-12), at);
+      const neg = NEGATORS.some(n => lead.endsWith(n));
+      const bucket = neg && key !== "walkIn" && key !== "free" ? excludes : wants;
+      if (!bucket.includes(key)) bucket.push(key);
+      rest = rest.replace(phrase, " ");
+    }
+    let kind = null;
+    for (const [ws,k] of KIND_WORDS) if (ws.some(w => has(` ${q} `, w))) { kind = k; break; }
+    const town = TOWNS.find(t => has(` ${q} `, t)) ?? null;
+    const named = (NAMES.find(([n]) => has(` ${q} `, n)) ?? [])[1] ?? null;
+    return { raw, wants, excludes, kind, town, named };
+  }
+
+  function match(raw) {
+    const query = parse(raw);
+    const scored = [];
+    for (const entry of INDEX) {
+      if (query.kind && entry.kind !== query.kind) continue;
+      if (query.town && entry.town.toLowerCase() !== query.town) continue;
+      if (query.excludes.some(k => entry.attrs[k] === true)) continue;
+      const met = query.wants.filter(k => entry.attrs[k] === true);
+      const unknown = query.wants.filter(k => entry.attrs[k] === null || entry.attrs[k] === undefined);
+      if (query.wants.some(k => entry.attrs[k] === false)) continue;
+      let score = met.length * 10 + (query.named === entry.slug ? 100 : 0);
+      for (const w of norm(raw).split(" ")) if (w.length > 3 && entry.haystack.includes(w)) score += 1;
+      if (entry.tier === "confirmed") score += 2;
+      score += entry.facts.filter(f => f.state !== "unknown").length * 0.1;
+      scored.push({ entry, met, unknown, score });
+    }
+    scored.sort((a,b) => b.score - a.score || a.entry.name.localeCompare(b.entry.name));
+    const empty = !query.wants.length && !query.excludes.length && !query.kind && !query.town && !query.named;
+    return {
+      query,
+      matches: scored.filter(s => !s.unknown.length),
+      unconfirmed: scored.filter(s => s.unknown.length),
+      empty,
+    };
+  }
+
+  const listOf = a => a.length === 0 ? "" : a.length === 1 ? a[0] : a.slice(0,-1).join(", ") + " and " + a[a.length-1];
+  const pl = (n,o,m) => n === 1 ? o : m;
+  const says = k => SAYS[k] ?? k;
+  const cap = s => s.replace(/\b[a-z]/g, c => c.toUpperCase());
+
+  function deterministicLead(r) {
+    const asked = listOf(r.query.wants.map(says));
+    const where = r.query.town ? ` in ${cap(r.query.town)}` : "";
+    const what = r.query.kind === "state" ? "state park" : r.query.kind === "town" ? "town park" : "park";
+    if (r.empty) return "Tell me what you're after — a beach, restrooms, a playground, trails, somewhere you can turn up to without booking — and I'll show you what's confirmed.";
+    if (!r.matches.length && !r.unconfirmed.length)
+      return `Nothing on the site matches${asked ? " " + asked : ""}${where}. That may mean it doesn't exist here, or that we haven't checked it yet.`;
+    // Gaps are a UNION across candidates — never phrase them as though every
+    // candidate is missing every item.
+    const gapsOf = rows => listOf([...new Set(rows.flatMap(s => s.unknown))].map(says));
+    if (!r.matches.length)
+      return `Nothing is confirmed for ${asked || "that"}${where} yet, but ${r.unconfirmed.length} ${pl(r.unconfirmed.length, what, what+"s")} could still qualify — the unchecked gaps among them are ${gapsOf(r.unconfirmed)}. They're below so you can call and ask.`;
+    const head = `${r.matches.length} ${pl(r.matches.length, what, what+"s")}${where} ${pl(r.matches.length,"confirms","confirm")} ${asked || "what you asked for"}.`;
+    if (!r.unconfirmed.length) return head;
+    return `${head} Another ${r.unconfirmed.length} could qualify — the gaps among them are ${gapsOf(r.unconfirmed)}, which nobody has checked yet.`;
+  }
+
+  function leadIsSafe(lead, r) {
+    if (!lead || lead.length > 400) return false;
+    const ok = new Set([r.matches.length, r.unconfirmed.length, r.matches.length + r.unconfirmed.length, r.query.wants.length].map(String));
+    for (const n of lead.match(/\d+/g) ?? []) if (!ok.has(n)) return false;
+    const offered = [...r.matches, ...r.unconfirmed].map(s => s.entry.name.toLowerCase());
+    const known = new Set([...offered, ...offered.flatMap(n => n.split(/\s+/))]);
+    for (const m of lead.match(/\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+/g) ?? []) {
+      const low = m.toLowerCase();
+      if (offered.some(n => n.includes(low) || low.includes(n))) continue;
+      if (low.split(/\s+/).every(w => known.has(w))) continue;
+      return false;
+    }
+    return true;
+  }
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+
+  function card(s, showUnknown) {
+    const e = s.entry;
+    const chips = e.facts.filter(f => f.state === "yes").slice(0, 6)
+      .map(f => `<li class="sheet-quiet px-2 py-0.5 stamp text-[0.68rem] text-slate">${esc(f.label)}</li>`).join("");
+    const gaps = showUnknown && s.unknown.length
+      ? `<p class="mt-2.5 mb-0 text-[0.85rem] leading-snug text-ink-soft">Not checked here: ${esc(s.unknown.map(says).join(", "))}.</p>`
+      : "";
+    const res = e.reservation
+      ? `<p class="stamp mt-2.5 mb-0 ${e.reservation.startsWith("Reservation required") ? "text-flag-red-bearing" : "text-ink-soft"}">${esc(e.reservation)}</p>`
+      : "";
+    const src = e.source
+      ? `<p class="mt-3 mb-0 text-[0.8rem] leading-snug text-ink-soft">${e.tier === "confirmed" ? "Confirmed" : "Read from"} <a href="${esc(e.source.url)}" rel="nofollow">${esc(e.source.label)}</a></p>`
+      : "";
+    return `<article class="sheet p-4">
+      <div class="flex items-baseline justify-between gap-3">
+        <h3 class="font-display text-[1.1rem] font-semibold tracking-[-0.03em] m-0 text-slate">
+          <a href="${esc(e.url)}">${esc(e.name)}</a>
+        </h3>
+        <span class="stamp text-ink-soft shrink-0">${esc(e.town)}</span>
+      </div>
+      <p class="stamp text-ink-soft mt-1 mb-0">${esc(e.kindLabel)}</p>
+      ${res}
+      ${chips ? `<ul class="list-none p-0 m-0 mt-3 flex flex-wrap gap-1.5">${chips}</ul>` : ""}
+      ${gaps}
+      ${src}
+    </article>`;
+  }
+
+  const form = document.getElementById("ask-form");
+  const input = document.getElementById("ask-input");
+  const out = document.getElementById("ask-out");
+
+  function render(r, lead, followUps, pending) {
+    const grid = a => a.length
+      ? `<div class="grid gap-3 sm:grid-cols-2 mt-4">${a.map(s => card(s, true)).join("")}</div>` : "";
+    const fu = followUps.length
+      ? `<div class="mt-6"><p class="label m-0">Ask next</p><ul class="list-none p-0 m-0 mt-2 flex flex-wrap gap-1.5">${
+          followUps.map(f => `<button type="button" data-example="${esc(f)}" class="tap sheet-quiet px-2.5 py-1 stamp text-slate hover:bg-slate hover:text-snow border-0">${esc(f)}</button>`).join("")
+        }</ul></div>` : "";
+
+    // A question with no usable requirement matched nothing in particular, so
+    // showing every park as a "confirmed" result would be a straight lie.
+    const bare = r.empty;
+
+    out.innerHTML = `
+      <section class="sheet breakout p-4 sm:p-5">
+        <p class="label m-0 flex items-center gap-1.5">
+          Answer${pending ? ' <span class="text-ink-soft normal-case tracking-normal">— refining…</span>' : ""}
+        </p>
+        <p class="mt-2.5 mb-0 text-[1.05rem] leading-[1.5] max-w-[58ch]">${esc(lead)}</p>
+        ${bare ? "" : r.matches.length ? `<p class="label mt-6 mb-0 text-flag-green-bearing">Confirmed</p>${grid(r.matches)}` : ""}
+        ${!bare && r.unconfirmed.length ? `<p class="label mt-6 mb-0 text-contour-deep">Might match — not checked</p>
+           <p class="mt-1.5 mb-0 text-[0.88rem] leading-snug text-ink-soft max-w-[58ch]">A blank in our data means nobody has asked yet, not that the park lacks it.</p>
+           ${grid(r.unconfirmed)}` : ""}
+        ${fu}
+      </section>`;
+  }
+
+  async function ask(q) {
+    const r = match(q);
+    // Correct answer first, immediately, with no network involved.
+    render(r, deterministicLead(r), [], Boolean(ENDPOINT));
+    out.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (!ENDPOINT) return;
+
+    const all = [...r.matches, ...r.unconfirmed].slice(0, 24);
+    let data;
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          question: q.slice(0, 200),
+          candidates: all.map(s => ({
+            slug: s.entry.slug, name: s.entry.name, kind: s.entry.kind, town: s.entry.town,
+            met: s.met, unknown: s.unknown, confirmed: s.entry.tier === "confirmed",
+          })),
+        }),
+      });
+      if (!res.ok) throw new Error("bad status");
+      data = await res.json();
+    } catch {
+      render(r, deterministicLead(r), [], false);   // silent, correct fallback
+      return;
+    }
+
+    // Validate everything the model sent before it reaches the page.
+    const lead = leadIsSafe(data?.lead, r) ? data.lead : deterministicLead(r);
+    const bySlug = new Map(all.map(s => [s.entry.slug, s]));
+    const order = Array.isArray(data?.order) ? data.order.filter(s => bySlug.has(s)) : [];
+    if (order.length) {
+      const rank = new Map(order.map((s, i) => [s, i]));
+      const by = (a, b) => (rank.get(a.entry.slug) ?? 999) - (rank.get(b.entry.slug) ?? 999);
+      r.matches = [...r.matches].sort(by);
+      r.unconfirmed = [...r.unconfirmed].sort(by);
+    }
+    const followUps = (Array.isArray(data?.followUps) ? data.followUps : [])
+      .filter(f => typeof f === "string" && f.length > 2 && f.length < 80).slice(0, 3);
+
+    render(r, lead, followUps, false);
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if (q) ask(q);
+  });
+
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-example]");
+    if (!b) return;
+    input.value = b.dataset.example;
+    ask(b.dataset.example);
+  });
+</script>

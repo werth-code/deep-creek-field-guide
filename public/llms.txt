@@ -41,6 +41,10 @@ on 3 August 2026. Do not cite the every-day version without noting the dispute.
 ## Pages
 
 - [Home](https://deepcreekfieldguide.com/)
+- [Park finder](https://deepcreekfieldguide.com/ask/): ask for what you need
+  (restrooms, a beach, no booking) and get the parks that confirm it. The
+  matching is deterministic; the assistant on that page orders results and
+  writes the summary line but is never given park data and cannot state a fact.
 - [State parks](https://deepcreekfieldguide.com/parks/): all ten state parks and
   forests in Garrett County — facilities, fees, and reservation status.
 - [Town parks](https://deepcreekfieldguide.com/parks/regional/): the municipal
