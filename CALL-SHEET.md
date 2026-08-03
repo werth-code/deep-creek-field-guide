@@ -72,8 +72,8 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ### Swallow Falls
 
-- [ ] PRIORITY: confirm whether there is a staffed ranger or contact station at the main parking area, and the hours it is staffed. Reported first-hand; DNR lists only a phone number and the park is administered from Herrington Manor.
-- [ ] PRIORITY: confirm whether the main parking area restrooms are the same ones Maryland lists under the campground, or a separate day-use block — and whether they are open outside camping season.
+- [ ] Confirm the hours the ranger station at the main parking area is staffed, and whether it is staffed outside the summer reservation window. Its existence is first-hand observed (3 Aug 2026); DNR lists only a phone number.
+- [ ] Confirm whether the main parking area restrooms are the same ones Maryland lists under the campground, or a separate day-use block — and whether they open outside camping season.
 - [ ] PRIORITY: confirm the day-use fee amount — every source says a fee is charged at booking, none gives the figure.
 - [ ] Confirm what the Park Store stocks and whether it opens outside camping season.
 - [ ] Resolve the county-vs-DNR conflict on whether weekdays ever need a reservation.
