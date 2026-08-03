@@ -285,6 +285,38 @@ const title =
         </div>
       </dl>
 
+      {/* Field reports sit ABOVE the sourcing too. Someone who was standing
+          there is a real form of evidence, and burying it under the agency
+          links would imply otherwise — but the wording has to keep it clearly
+          distinct from "the agency told us", which is a different claim. */}
+      {
+        park.reports && park.reports.length > 0 && (
+          <>
+            <h2 id="reports">From people who were there</h2>
+            <ul class="list-none p-0 m-0 space-y-4">
+              {park.reports.map((r) => (
+                <li class="sheet px-4 sm:px-5 py-4 border-l-[9px] border-l-lake">
+                  <p class="m-0 text-[0.96rem] leading-[1.55] max-w-[58ch]">{r.what}</p>
+                  <p class="stamp text-ink-soft mt-2.5 mb-0">
+                    {r.from} · reported {formatStampDate(r.receivedOn)}
+                    {r.visitedOn
+                      ? ` · visited ${formatStampDate(r.visitedOn)}`
+                      : " · visit date not given"}
+                  </p>
+                  {r.affects && r.affects.length > 0 && (
+                    <p class="stamp text-ink-soft mt-1 mb-0">Bears on: {r.affects.join(", ")}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <p class="text-[0.86rem] leading-snug text-ink-soft max-w-[58ch]">
+              First-hand and useful, but not the same as the agency confirming it —
+              so it doesn't change the stamp below. It changes what we go and ask.
+            </p>
+          </>
+        )
+      }
+
       {/* Corrections run ABOVE the provenance block and above "still to confirm".
           Burying a correction under the sourcing would be a way of technically
           keeping the promise while hoping nobody reads it. */}

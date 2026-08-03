@@ -91,10 +91,10 @@
     "verifiedDate": null,
     "verifiedSource": null,
     "outstanding": [
-      "PRIORITY: confirm whether day-use visitors can use the campground restrooms and showers, or whether they are for campers only. A field report says the park has restrooms; Maryland lists them under the campground.",
-      "PRIORITY: confirm whether there is a staffed ranger or contact station ON SITE. A field report says yes; DNR lists only a phone number, and the park is administered from Herrington Manor.",
-      "Confirm what the Park Store stocks and whether it opens outside camping season — a day-use visitor in May needs a different answer from a camper in July.",
+      "PRIORITY: confirm whether there is a staffed ranger or contact station at the main parking area, and the hours it is staffed. Reported first-hand; DNR lists only a phone number and the park is administered from Herrington Manor.",
+      "PRIORITY: confirm whether the main parking area restrooms are the same ones Maryland lists under the campground, or a separate day-use block — and whether they are open outside camping season.",
       "PRIORITY: confirm the day-use fee amount — every source says a fee is charged at booking, none gives the figure.",
+      "Confirm what the Park Store stocks and whether it opens outside camping season.",
       "Resolve the county-vs-DNR conflict on whether weekdays ever need a reservation.",
       "Confirm which dates count as 'holidays' for the reservation requirement.",
       "Confirm winter access and whether the road to the falls is maintained."
@@ -113,8 +113,22 @@
       "giftShop": null,
       "campStore": true,
       "passesSoldHere": null,
-      "note": "Maryland's campground listing shows restrooms, showers, a Park Store and a dump station. Those are listed under the CAMPGROUND — whether a day-use visitor can use them is not confirmed. Swallow Falls is administered from Herrington Manor, and no staffed ranger station on site is listed anywhere by DNR."
-    }
+      "note": "Reported first-hand as all being at the main parking area, with the trailheads a few steps away. Maryland's campground listing separately shows restrooms, showers, a Park Store and a dump station. Whether those are the same facilities or a second set at the campground is not yet confirmed."
+    },
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "The ranger station, restrooms and store are all at the main parking area, not off at the campground. The trailheads start a few steps from that same lot.",
+        "affects": [
+          "restrooms",
+          "ranger station",
+          "park store",
+          "trailheads"
+        ]
+      }
+    ]
   },
   {
     "slug": "deep-creek-lake",

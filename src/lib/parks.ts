@@ -34,6 +34,35 @@ export interface Correction {
   now: string;
 }
 
+/**
+ * A field report — someone who was actually there.
+ *
+ * /how-we-verify/ says a report becomes a dated fact if we can use it. That
+ * promise needs somewhere to live, or reports quietly turn into unattributed
+ * prose and the site loses the thing it sells.
+ *
+ * A first-hand visit legitimately counts as `confirmed` under the method
+ * ("we called, visited, or asked"). But it confirms a FIELD, not a record:
+ * standing in the car park tells you where the restrooms are, and nothing
+ * about the fee schedule. So reports attach here, name what they bear on, and
+ * the record's own tier is unaffected until the rest is checked.
+ *
+ * `visitedOn` is separate from `receivedOn` on purpose. A report from someone
+ * who was there last August is worth less than one from Tuesday, and a site
+ * that stamps dates on everything cannot be vague about which date it means.
+ */
+export interface FieldReport {
+  /** ISO date we received it. */
+  receivedOn: string;
+  /** ISO date they were there. null when they didn't say — and it shows. */
+  visitedOn: string | null;
+  /** Who. A name, "a reader", or the maintainer. */
+  from: string;
+  what: string;
+  /** Which fields this bears on, for display beside them. */
+  affects?: string[];
+}
+
 export interface StateParkFeatures {
   waterfall: boolean | null;
   /** Sand you can sit on. Distinct from `swimming`, which is about the water. */
@@ -92,6 +121,7 @@ export interface StatePark {
   verifiedSource: string | null;
   outstanding?: string[];
   corrections?: Correction[];
+  reports?: FieldReport[];
 }
 
 export interface Restrooms {
