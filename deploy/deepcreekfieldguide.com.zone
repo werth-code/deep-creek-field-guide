@@ -1,0 +1,46 @@
+;; deepcreekfieldguide.com — DNS zone file
+;;
+;; Import at: Cloudflare → deepcreekfieldguide.com → DNS → Records
+;;            → Import and Export → Import DNS records → upload this file
+;;
+;; DO IT IN THIS ORDER:
+;;
+;;   1. Import. Cloudflare imports records PROXIED (orange) by default — switch
+;;      all five to DNS only (grey) before going any further. Proxying before
+;;      GitHub has issued its certificate is what causes the infinite redirect
+;;      loop.
+;;
+;;   2. GitHub → repo Settings → Pages → Custom domain →
+;;      deepcreekfieldguide.com → Save. Wait for the green tick; usually a few
+;;      minutes, occasionally an hour.
+;;
+;;   3. Tick "Enforce HTTPS" on that same page. It stays greyed out until the
+;;      certificate exists.
+;;
+;;   4. Only now, if you want Cloudflare's CDN: switch the four apex A records
+;;      and www back to Proxied (orange), then set
+;;      SSL/TLS → Overview → FULL (STRICT). Not Flexible.
+;;
+;;   5. With the proxy on: turn OFF Auto Minify and Rocket Loader, and add a
+;;      Cache Rule bypassing cache for *.html — Cloudflare will otherwise serve
+;;      stale pages after every deploy.
+;;
+;; The four A records are GitHub Pages' published apex addresses.
+;; https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
+
+$ORIGIN deepcreekfieldguide.com.
+$TTL 3600
+
+;; Apex → GitHub Pages
+@	3600	IN	A	185.199.108.153
+@	3600	IN	A	185.199.109.153
+@	3600	IN	A	185.199.110.153
+@	3600	IN	A	185.199.111.153
+
+;; www → the GitHub Pages host (NOT the apex, and not the repo path)
+www	3600	IN	CNAME	werth-code.github.io.
+
+;; No mail on this domain. These two say so publicly, which stops the domain
+;; being used to spoof mail from you. Remove them if you ever add email.
+@	3600	IN	TXT	"v=spf1 -all"
+_dmarc	3600	IN	TXT	"v=DMARC1; p=reject; rua=mailto:matthewwerth@gmail.com"

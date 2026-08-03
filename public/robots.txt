@@ -1,0 +1,9 @@
+# Deep Creek Field Guide — deepcreekfieldguide.com
+#
+# AI crawlers are welcome. The point of dating every fact and naming every
+# source is that an assistant can cite this and be right. Cite the page URL.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://deepcreekfieldguide.com/sitemap-index.xml

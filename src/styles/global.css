@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+/* Self-hosted. No Google Fonts request. */
+@import "@fontsource-variable/public-sans";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+
+/*
+  Deep Creek Field Guide — design system
+  ==========================================================================
+
+  DIRECTION: USGS topographic survey.
+
+  Garrett County's defining fact is altitude. It holds Maryland's highest
+  ground, its deepest snow and its coldest water, and everything people come
+  for — the falls, the lake, the whitewater, the skiing — exists because of
+  elevation. So the visual language is the one used to describe elevation: a
+  topographic quadrangle. Contour browns on map paper, slate-blue chrome the
+  colour of winter rock, and mono type doing the work of survey annotation.
+
+  Deliberately NOT the coastal WPA-poster direction used at
+  delawarefieldguide.com. Different region, different vernacular. If this ever
+  starts looking like marsh green and dune sand, something has gone wrong.
+
+  THE MARK
+  A survey benchmark disc — the object that means "this point has been measured
+  and recorded by someone accountable for it", which is the same claim the site
+  makes about every fact on it. They are also literally scattered across these
+  mountains.
+
+  READING CONDITIONS
+  A phone, outdoors, often cold, frequently in a car park deciding whether to
+  drive further on. So: 19px base, 7:1 minimum on body text, 44px targets, no
+  entrance animation.
+
+  STATUS IS ENCODED FOUR WAYS
+  Colour + icon + word + BAR TEXTURE. Solid = open, dotted = limits apply,
+  cross-hatch = closed or reservation required. Three survive grayscale.
+
+  MEASURED CONTRAST — do not change a token without re-measuring
+    ink        on paper   14.7:1      snow      on slate  12.4:1
+    ink-soft   on paper    8.3:1      snow-soft on slate   9.8:1
+    contour-deep on sheet  7.6:1      contour-deep on paper 7.4:1
+  SURFACE-ONLY, never text on a light background:
+    lake  4.9:1 on paper · contour 5.2:1 on paper. Use contour-deep for text.
+*/
+
+@theme {
+  /* ---- Type ------------------------------------------------------------ */
+  --font-display: "IBM Plex Mono", ui-monospace, monospace;
+  --font-body: "Public Sans Variable", "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* ---- Deep field — chrome, mastheads, status -------------------------- */
+  --color-slate: #1e2a33; /* deepest. masthead, footer. winter rock */
+  --color-ridge: #2c3d47; /* raised deep surfaces */
+  --color-lake: #3e6e8e; /* Deep Creek Lake. SURFACE ONLY — 4.9:1 on paper */
+  --color-shallow: #7ba7bf; /* light lake. accents on dark only */
+  --color-mist: #b9d2df; /* palest. hairlines on dark */
+
+  /* ---- Reading field — map paper --------------------------------------- */
+  --color-paper: #f2f1ec;
+  --color-sheet: #fafaf7;
+  --color-sheet-sunk: #e4e2d9;
+
+  /* ---- Ink ------------------------------------------------------------- */
+  --color-ink: #17201f;
+  --color-ink-soft: #3a4a46;
+  --color-snow: #f7f7f4;
+  --color-snow-soft: #cfdae0;
+
+  /* ---- Contour — the accent, and why it reads as a map ------------------ */
+  --color-contour: #8a5a32; /* contour + index lines. SURFACE ONLY */
+  --color-contour-deep: #6b4423; /* text-safe: 7.6:1 on sheet, 7.4:1 on paper */
+
+  /* ---- Flags — status only --------------------------------------------- */
+  --color-flag-green: #2f6b3a;
+  --color-flag-green-bearing: #1d4a25;
+  --color-flag-green-wash: #dde9dc;
+
+  --color-flag-amber: #c8842a;
+  --color-flag-amber-bearing: #c8842a; /* ink sits on it, not white */
+  --color-flag-amber-wash: #f6e6cd;
+
+  --color-flag-red: #a8342a;
+  --color-flag-red-bearing: #7d211a;
+  --color-flag-red-wash: #f2ded9;
+
+  --radius-sheet: 1px;
+  --ease-map: cubic-bezier(0.2, 0, 0.15, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    background-color: var(--color-slate);
+  }
+
+  /*
+    Contour lines under everything, at a scale you read as texture rather than
+    as lines. This is the whole visual idea, so it earns the bytes.
+  */
+  body {
+    background-color: var(--color-paper);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%238a5a32' stroke-opacity='0.11' stroke-width='1'%3E%3Cpath d='M-20 60 Q 40 20 110 55 T 240 40'/%3E%3Cpath d='M-20 84 Q 40 46 110 79 T 240 66'/%3E%3Cpath d='M-20 108 Q 40 72 110 103 T 240 92'/%3E%3Cpath d='M-20 148 Q 60 118 130 152 T 250 138'/%3E%3Cpath d='M-20 176 Q 60 148 130 180 T 250 166'/%3E%3Cpath d='M-20 204 Q 60 178 130 208 T 250 196'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 19px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    font-synthesis-weight: none;
+  }
+
+  /*
+    Headings are mono. On a survey sheet the annotations carry the authority —
+    everything is labelled, nothing is decorated. It also sets this apart from
+    the slab-serif signage voice used on the coast.
+  */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  h1 {
+    letter-spacing: -0.045em;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.16em;
+    text-decoration-color: var(--color-contour);
+    transition: text-decoration-color 110ms var(--ease-map);
+  }
+
+  a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-contour-deep);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-flag-amber-wash);
+    color: var(--color-ink);
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  /* No entrance animation. Someone is deciding whether to keep driving. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* ---- Layout ---------------------------------------------------------- */
+  .wrap {
+    width: 100%;
+    max-width: 47rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 70rem) {
+    .breakout {
+      width: calc(100% + 7rem);
+      margin-inline-start: -3.5rem;
+    }
+  }
+
+  .tap {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* ---- Deep field ------------------------------------------------------- */
+  .field-deep {
+    background-color: var(--color-slate);
+    color: var(--color-snow);
+  }
+
+  .field-deep a {
+    text-decoration-color: var(--color-shallow);
+  }
+
+  /* ---- The sheet --------------------------------------------------------
+     A map sheet: thin keyline, square corners, no shadow at all. A topo
+     quadrangle is a flat printed thing, and the absence of depth is the point
+     — it keeps this off the card-and-shadow web default. */
+  .sheet {
+    background: var(--color-sheet);
+    border: 1px solid var(--color-ink-soft);
+    border-radius: var(--radius-sheet);
+  }
+
+  .sheet-quiet {
+    background: var(--color-sheet);
+    border: 1px solid var(--color-lake);
+    border-radius: var(--radius-sheet);
+  }
+
+  /* Pressable sheets get an index-line underscore rather than a lift. */
+  .sheet-action {
+    transition:
+      border-color 110ms var(--ease-map),
+      box-shadow 110ms var(--ease-map);
+    box-shadow: inset 0 -3px 0 -1px transparent;
+  }
+
+  .sheet-action:hover {
+    border-color: var(--color-contour-deep);
+    box-shadow: inset 0 -3px 0 -1px var(--color-contour);
+  }
+
+  .sheet-action:active {
+    box-shadow: inset 0 -3px 0 -1px var(--color-contour-deep);
+  }
+
+  /* ---- Status bar textures ----------------------------------------------
+     The fourth channel. Reads with zero colour information. */
+  .bar-solid {
+    background-color: var(--color-flag-green);
+  }
+
+  .bar-dotted {
+    background-color: var(--color-flag-amber);
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgba(23, 32, 31, 0.6) 0 5px,
+      transparent 5px 14px
+    );
+  }
+
+  .bar-hatch {
+    background-color: var(--color-flag-red);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(23, 32, 31, 0.46) 0 4px, transparent 4px 10px),
+      repeating-linear-gradient(-45deg, rgba(23, 32, 31, 0.46) 0 4px, transparent 4px 10px);
+  }
+
+  /* ---- Mono utilities --------------------------------------------------- */
+  .stamp {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+
+  /* The confirmed stamp — struck on, slightly out of true. */
+  .stamp-struck {
+    display: inline-block;
+    border: 2px solid var(--color-flag-green-bearing);
+    border-radius: var(--radius-sheet);
+    padding: 0.35rem 0.65rem;
+    color: var(--color-flag-green-bearing);
+    rotate: -0.7deg;
+  }
+
+  /* ---- Prose ------------------------------------------------------------ */
+  .prose-field > p {
+    margin-block: 1rem;
+    max-width: 64ch;
+  }
+
+  .prose-field > :first-child {
+    margin-block-start: 0;
+  }
+
+  /* Section heads sit on an index contour — the heavier every-fifth line. */
+  .prose-field h2 {
+    font-size: 1.5rem;
+    color: var(--color-slate);
+    margin-block: 3.25rem 1.1rem;
+    padding-block-end: 0.55rem;
+    border-block-end: 2px solid var(--color-contour);
+  }
+
+  .prose-field h3 {
+    font-size: 1.1rem;
+    color: var(--color-slate);
+    margin-block: 2.1rem 0.4rem;
+  }
+
+  .prose-field ul {
+    margin-block: 1rem;
+    padding-inline-start: 1.4rem;
+    list-style: none;
+    max-width: 64ch;
+  }
+
+  .prose-field li {
+    position: relative;
+    margin-block: 0.55rem;
+  }
+
+  /* Elevation tick. */
+  .prose-field ul > li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: -1.4rem;
+    inset-block-start: 0.62em;
+    width: 0.7rem;
+    height: 0;
+    border-block-start: 2px solid var(--color-contour);
+  }
+
+  .prose-field ul.list-none > li::before {
+    content: none;
+  }
+
+  .prose-field ol {
+    margin-block: 1rem;
+    padding-inline-start: 1.5rem;
+    list-style: decimal;
+    max-width: 64ch;
+  }
+
+  .prose-field ol > li::marker {
+    font-family: var(--font-mono);
+    font-size: 0.82em;
+    color: var(--color-contour-deep);
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    background-image: none;
+  }
+}

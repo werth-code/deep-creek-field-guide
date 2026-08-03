@@ -1,0 +1,197 @@
+/**
+ * Parks — state and regional.
+ *
+ * Same convention as everything else here: `null` means UNVERIFIED, never
+ * "no". A park with `camping: null` has not been checked; it does not lack a
+ * campground. Rendering those as "No" would invent facts ten at a time.
+ */
+
+export interface Reservation {
+  /** null = we haven't established whether one is needed. */
+  required: boolean | null;
+  window: string | null;
+  days: string | null;
+  bookAhead: string | null;
+  note: string | null;
+}
+
+export interface StateParkFeatures {
+  waterfall: boolean | null;
+  swimming: boolean | null;
+  camping: boolean | null;
+  cabins: boolean | null;
+  trails: boolean | null;
+  boatLaunch: boolean | null;
+  fishing: boolean | null;
+  winterUse: boolean | null;
+  petsAllowed: boolean | null;
+}
+
+export interface StatePark {
+  slug: string;
+  name: string;
+  kind: string;
+  town: string;
+  acres: number | null;
+  blurb: string;
+  features: StateParkFeatures;
+  reservation: Reservation;
+  fee: { note: string; amount: number | null };
+  warnings: string[];
+  phone: string | null;
+  hours: string | null;
+  sources: { label: string; url: string; note?: string | null }[];
+  sourcedOn: string | null;
+  verifiedDate: string | null;
+  verifiedSource: string | null;
+  outstanding?: string[];
+}
+
+export interface Restrooms {
+  present: boolean | null;
+  type: "permanent" | "portable" | null;
+  seasonal: boolean | null;
+  note: string | null;
+  /** Field-level provenance — a toilet gets confirmed long before a park does. */
+  confirmedOn?: string | null;
+  confirmedBy?: string | null;
+}
+
+export interface RegionalFacilities {
+  playground: boolean | null;
+  swimming: boolean | null;
+  beach: boolean | null;
+  picnic: boolean | null;
+  pavilion: boolean | null;
+  grills: boolean | null;
+  trails: boolean | null;
+  sports: boolean | null;
+  boatLaunch: boolean | null;
+  fishing: boolean | null;
+  pavedPath: boolean | null;
+  winterUse: boolean | null;
+}
+
+export interface RegionalPark {
+  slug: string;
+  name: string;
+  operator: string;
+  town: string;
+  address: string;
+  acres: number | null;
+  blurb: string;
+  restrooms: Restrooms;
+  facilities: RegionalFacilities;
+  accessibility: string | null;
+  hours: string | null;
+  hoursNote: string | null;
+  phone: string | null;
+  fee: { note: string; amount: number | null };
+  warnings: string[];
+  sources: { label: string; url: string; note?: string | null }[];
+  sourcedOn: string | null;
+  verifiedDate: string | null;
+  verifiedSource: string | null;
+  outstanding?: string[];
+}
+
+/* ------------------------------------------------------------- rendering -- */
+
+export type Answer = { text: string; state: "yes" | "no" | "unknown" };
+
+export function tri(v: boolean | null, yes = "Yes", no = "No"): Answer {
+  if (v === null || v === undefined) return { text: "Not confirmed", state: "unknown" };
+  return v ? { text: yes, state: "yes" } : { text: no, state: "no" };
+}
+
+/**
+ * The restroom answer in the words someone needs — not "true". A permanent
+ * block, a portable unit and a block that opens after Memorial Day are three
+ * different answers, and the third ruins an April trip.
+ */
+export function restroomAnswer(r: Restrooms): Answer {
+  if (r.present === null || r.present === undefined) {
+    return { text: "Not confirmed", state: "unknown" };
+  }
+  if (!r.present) return { text: "None", state: "no" };
+  const bits = [r.type === "portable" ? "Portable units" : "Yes"];
+  if (r.seasonal === true) bits.push("seasonal only");
+  if (r.seasonal === null) bits.push("season not confirmed");
+  return { text: bits.join(" — "), state: "yes" };
+}
+
+export const STATE_FEATURE_LABELS: [keyof StateParkFeatures, string][] = [
+  ["waterfall", "Waterfall"],
+  ["swimming", "Swimming"],
+  ["camping", "Camping"],
+  ["cabins", "Cabins"],
+  ["trails", "Trails"],
+  ["boatLaunch", "Boat launch"],
+  ["fishing", "Fishing"],
+  ["winterUse", "Winter use"],
+  ["petsAllowed", "Pets"],
+];
+
+export const REGIONAL_FACILITY_LABELS: [keyof RegionalFacilities, string][] = [
+  ["playground", "Playground"],
+  ["swimming", "Swimming"],
+  ["beach", "Beach"],
+  ["picnic", "Picnic tables"],
+  ["pavilion", "Pavilion"],
+  ["grills", "Grills"],
+  ["trails", "Trails"],
+  ["sports", "Courts / fields"],
+  ["boatLaunch", "Boat launch"],
+  ["fishing", "Fishing"],
+  ["pavedPath", "Paved path"],
+  ["winterUse", "Winter use"],
+];
+
+export const presentState = (p: StatePark) =>
+  STATE_FEATURE_LABELS.filter(([k]) => p.features[k] === true).map(([, l]) => l);
+
+export const presentRegional = (p: RegionalPark) =>
+  REGIONAL_FACILITY_LABELS.filter(([k]) => p.facilities[k] === true).map(([, l]) => l);
+
+export function completenessState(p: StatePark) {
+  const v = STATE_FEATURE_LABELS.map(([k]) => p.features[k]);
+  return { known: v.filter((x) => x !== null && x !== undefined).length, total: v.length };
+}
+
+/** Restrooms count as a field here — it's the one people ask about. */
+export function completenessRegional(p: RegionalPark) {
+  const v: (boolean | null)[] = [
+    p.restrooms.present,
+    ...REGIONAL_FACILITY_LABELS.map(([k]) => p.facilities[k]),
+  ];
+  return { known: v.filter((x) => x !== null && x !== undefined).length, total: v.length };
+}
+
+/** Reservation status, as a flag with a redundant texture channel. */
+export function reservationFlag(r: Reservation): {
+  word: string;
+  bar: "bar-solid" | "bar-dotted" | "bar-hatch";
+  chip: string;
+  icon: "check" | "alert" | "cross";
+} {
+  if (r.required === true)
+    return {
+      word: "Reservation required",
+      bar: "bar-hatch",
+      chip: "bg-flag-red-bearing text-white",
+      icon: "alert",
+    };
+  if (r.required === false)
+    return {
+      word: "No reservation needed",
+      bar: "bar-solid",
+      chip: "bg-flag-green-bearing text-white",
+      icon: "check",
+    };
+  return {
+    word: "Not confirmed",
+    bar: "bar-dotted",
+    chip: "bg-flag-amber text-ink",
+    icon: "alert",
+  };
+}

@@ -1,0 +1,202 @@
+---
+/**
+ * The audit page — every record on the site with its tier, source and age.
+ *
+ * This is the claim made checkable. It's generated from the same JSON the pages
+ * render from, so it cannot flatter the site: if a record is thin or stale, it
+ * shows up here whether or not anyone remembered to mention it.
+ */
+import Layout from "../layouts/Layout.astro";
+
+import stateParksData from "../data/state-parks.json";
+import regionalParksData from "../data/regional-parks.json";
+import type { StatePark, RegionalPark } from "../lib/parks";
+import { completenessRegional, completenessState } from "../lib/parks";
+import { tierOf, type Tier, type Verifiable } from "../lib/verification";
+import { ageInDays, formatStampDate } from "../lib/dates";
+
+interface Row {
+  name: string;
+  href: string;
+  section: string;
+  tier: Tier;
+  source: string;
+  url: string | null;
+  date: string | null;
+  age: number | null;
+  known: number;
+  total: number;
+}
+
+function row(
+  item: Verifiable & { name: string },
+  href: string,
+  section: string,
+  known: number,
+  total: number,
+): Row {
+  const tier = tierOf(item);
+  const date = tier === "confirmed" ? item.verifiedDate : (item.sourcedOn ?? null);
+  return {
+    name: item.name,
+    href,
+    section,
+    tier,
+    source:
+      tier === "confirmed"
+        ? (item.verifiedSource ?? "—")
+        : (item.sources?.[0]?.label ?? "—"),
+    url: tier === "confirmed" ? null : (item.sources?.[0]?.url ?? null),
+    date,
+    age: ageInDays(date),
+    known,
+    total,
+  };
+}
+
+const stateParks = stateParksData as StatePark[];
+const regional = regionalParksData as RegionalPark[];
+
+const rows: Row[] = [
+  ...stateParks.map((p) => {
+    const c = completenessState(p);
+    return row(p, `/parks/${p.slug}/`, "State parks", c.known, c.total);
+  }),
+  ...regional.map((p) => {
+    const c = completenessRegional(p);
+    return row(p, `/parks/regional/${p.slug}/`, "Town parks", c.known, c.total);
+  }),
+];
+
+/* Oldest first — the point of the page is to surface what's gone stale, not to
+   lead with the freshest thing we did. */
+const ordered = [...rows].sort((a, b) => (b.age ?? 1e9) - (a.age ?? 1e9));
+
+const counts = {
+  confirmed: rows.filter((r) => r.tier === "confirmed").length,
+  sourced: rows.filter((r) => r.tier === "sourced").length,
+  reported: rows.filter((r) => r.tier === "reported").length,
+};
+const ages = rows.map((r) => r.age).filter((a): a is number => a !== null);
+const oldest = ages.length ? Math.max(...ages) : null;
+
+const TIER_LABEL: Record<Tier, string> = {
+  confirmed: "Confirmed",
+  sourced: "From source",
+  reported: "Unpublished",
+};
+const TIER_CLASS: Record<Tier, string> = {
+  confirmed: "text-flag-green-bearing",
+  sourced: "text-contour-deep",
+  reported: "text-flag-red-bearing",
+};
+---
+
+<Layout
+  title="Every fact on this site, with its source"
+  description="The full audit: every park record on Deep Creek Field Guide, how it was checked, who said so and how long ago. Sorted oldest first, so the stale ones surface."
+>
+  <div class="wrap pt-11 pb-6">
+    <p class="label m-0">Audit</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[17ch] text-slate">
+      Every fact, and where it came from
+    </h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      Generated from the data the pages render from, sorted oldest first. If
+      something here has gone stale, this is where it shows.
+    </p>
+  </div>
+
+  <div class="wrap pb-8">
+    <dl class="sheet breakout grid grid-cols-2 sm:grid-cols-4 divide-x divide-y sm:divide-y-0 divide-lake/30">
+      {
+        [
+          { n: String(rows.length), label: "records" },
+          { n: String(counts.confirmed), label: "confirmed by phone" },
+          { n: String(counts.sourced), label: "read from source" },
+          { n: oldest === null ? "—" : `${oldest}d`, label: "oldest check" },
+        ].map((s) => (
+          <div class="px-4 py-4">
+            <dt class="font-display text-[1.9rem] font-semibold text-slate leading-none tracking-[-0.04em]">
+              {s.n}
+            </dt>
+            <dd class="m-0 mt-1.5 stamp text-ink-soft">{s.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    {
+      counts.confirmed === 0 && (
+        <p class="mt-4 mb-0 text-[0.92rem] leading-[1.55] text-ink-soft max-w-[58ch]">
+          Nothing is phone-confirmed yet. Everything on the site is currently
+          read from a named primary source — the county, Maryland DNR, or a
+          town's own listing — and every page says so. The calls are in
+          progress; this number will move.
+        </p>
+      )
+    }
+  </div>
+
+  <div class="wrap pb-9">
+    <div class="sheet breakout overflow-x-auto">
+      <table class="w-full border-collapse text-left min-w-[38rem]">
+        <thead>
+          <tr class="border-b-2 border-contour">
+            <th class="label px-4 py-3 font-normal">Record</th>
+            <th class="label px-4 py-3 font-normal">How</th>
+            <th class="label px-4 py-3 font-normal">Source</th>
+            <th class="label px-4 py-3 font-normal whitespace-nowrap">Checked</th>
+            <th class="label px-4 py-3 font-normal whitespace-nowrap">Fields</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            ordered.map((r) => (
+              <tr class="border-b border-lake/25 align-top">
+                <td class="px-4 py-3">
+                  <a href={r.href} class="text-[0.94rem] font-medium">{r.name}</a>
+                  <span class="stamp text-ink-soft block mt-0.5">{r.section}</span>
+                </td>
+                <td class={`px-4 py-3 stamp whitespace-nowrap ${TIER_CLASS[r.tier]}`}>
+                  {TIER_LABEL[r.tier]}
+                </td>
+                <td class="px-4 py-3 text-[0.86rem] leading-snug max-w-[16rem]">
+                  {r.url ? <a href={r.url} rel="nofollow">{r.source}</a> : r.source}
+                </td>
+                <td class="px-4 py-3 stamp text-ink-soft whitespace-nowrap">
+                  {r.date ? formatStampDate(r.date) : "—"}
+                  {r.age !== null && <span class="block mt-0.5">{r.age}d ago</span>}
+                </td>
+                <td class="px-4 py-3 stamp text-ink-soft whitespace-nowrap">
+                  {r.known}/{r.total}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <h2>Reading this table</h2>
+    <p class="max-w-[58ch]">
+      <strong>Confirmed</strong> means someone called or visited and the source
+      column names who answered. <strong>From source</strong> means it was read
+      from a named primary source — linked, so you can check it yourself — but
+      not yet confirmed by phone. Anything that would be
+      <strong>unpublished</strong> never reaches this table at all: it's blocked
+      from search and dropped from the sitemap by the build.
+    </p>
+    <p class="max-w-[58ch]">
+      <strong>Fields</strong> is how much of a record we actually know. A park
+      showing 3/11 is a real park with a real gap, not a mistake — the page will
+      say "not confirmed" on the eight we haven't checked rather than guess.
+    </p>
+    <p class="max-w-[58ch]">
+      <a href="/how-we-verify/">The full method is here</a>, including what
+      happens when two sources disagree.
+    </p>
+  </div>
+</Layout>

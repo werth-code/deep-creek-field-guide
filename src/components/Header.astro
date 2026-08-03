@@ -1,0 +1,52 @@
+---
+/**
+ * Masthead — a survey sheet's title block. Deep field, benchmark disc,
+ * wordmark, and an index rule under it in contour brown.
+ */
+import Logo from "./Logo.astro";
+import SectionNav from "./SectionNav.astro";
+import { SECTIONS, sectionFor } from "../lib/sections";
+
+const { pathname } = Astro.url;
+const current = sectionFor(pathname);
+const here = (p: string) => pathname === p;
+---
+
+<header class="field-deep">
+  <div class="wrap flex items-center justify-between gap-4 py-3">
+    <a href="/" class="tap no-underline gap-2.5 text-snow">
+      <Logo class="w-[2.1rem] h-[2.1rem] shrink-0" />
+      <span class="font-display text-[1.05rem] font-semibold tracking-[-0.04em] leading-none">
+        Deep Creek Field&nbsp;Guide
+      </span>
+    </a>
+
+    <nav aria-label="Sections" class="flex gap-4 sm:gap-5 items-center">
+      {
+        SECTIONS.map((s) => (
+          <a
+            href={`/${s.slug}/`}
+            class={`tap label no-underline ${current?.slug === s.slug ? "text-snow" : "text-snow-soft hover:text-snow"}`}
+            aria-current={current?.slug === s.slug ? "page" : undefined}
+            style={current?.slug === s.slug ? "box-shadow: inset 0 -3px 0 var(--color-contour);" : ""}
+          >
+            {s.label}
+          </a>
+        ))
+      }
+      <a
+        href="/verified/"
+        class={`tap label no-underline ${here("/verified/") ? "text-snow" : "text-snow-soft hover:text-snow"}`}
+        aria-current={here("/verified/") ? "page" : undefined}
+        style={here("/verified/") ? "box-shadow: inset 0 -3px 0 var(--color-contour);" : ""}
+      >
+        Verified
+      </a>
+    </nav>
+  </div>
+
+  {/* Index contour — the heavier every-fifth line on a topo sheet. */}
+  <div class="h-[3px] w-full bg-contour"></div>
+</header>
+
+<SectionNav />

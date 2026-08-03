@@ -1,0 +1,164 @@
+---
+/**
+ * The method, stated plainly. It must describe what the build ACTUALLY does —
+ * if the gate changes, this page changes with it.
+ */
+import Layout from "../layouts/Layout.astro";
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Where do the facts on this site come from?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "From the body that sets them — the park, the county, the town — by phone or from its own published notice. Never from another guide or a review site.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What do the labels mean?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Confirmed means we called or visited. Read from the source means it came from a named primary source but has not yet been confirmed by phone. Anything whose only origin is an aggregator is not published at all.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What happens when a fact turns out to be wrong?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We fix it, re-date it, and say on the page that it was corrected and when. Corrections are not quietly edited away.",
+        },
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="How we verify — Deep Creek Field Guide"
+  description="Every fact here carries the date it was checked and the source it came from. The method in full, including what we refuse to publish and why."
+  schema={schema}
+>
+  <div class="wrap pt-11 pb-2">
+    <p class="label m-0">Method</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[15ch] text-slate">How we verify</h1>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <p class="text-[1.2rem] leading-[1.5] font-medium max-w-[58ch]">
+      We go to the source, we date every fact, and we publish corrections. That's
+      the whole method. It is unglamorous and it is the entire reason this site
+      exists.
+    </p>
+
+    <h2>Why it needs saying</h2>
+    <p>
+      Swallow Falls started requiring a day-use reservation every day of the
+      summer in May 2026. Months later, most of what you'll find still tells you
+      to turn up and park. That's not anyone being careless — it's that nobody
+      re-checks a page they wrote three years ago, and nobody wrote down where
+      the fact came from in the first place.
+    </p>
+    <p>
+      Getting that wrong costs a three-hour drive from Baltimore. So the useful
+      thing isn't more description of the waterfall; it's knowing when the answer
+      was last true.
+    </p>
+
+    <h2>The rules</h2>
+
+    <h3>1. The source is the body that sets the rule</h3>
+    <p>
+      A park rule comes from the park or the agency that runs it. A town park's
+      hours come from the town. A fee comes from whoever collects it. We do not
+      take a fact from another guide, ever, including when that guide is probably
+      right.
+    </p>
+
+    <h3>2. Every page says which kind of fact it is</h3>
+    <p>
+      There are two honest answers to "how do you know that", and they aren't the
+      same, so they're labelled separately rather than blurred into one word.
+    </p>
+
+    <dl class="sheet breakout my-6 divide-y-2 divide-lake/25">
+      <div class="px-4 sm:px-5 py-4">
+        <dt class="label text-flag-green-bearing">Confirmed</dt>
+        <dd class="m-0 mt-1.5 text-[0.95rem] leading-[1.55] max-w-[58ch]">
+          We called, visited, or asked the body that sets the rule. The page
+          carries a stamp with the date and the name of whoever told us.
+        </dd>
+      </div>
+      <div class="px-4 sm:px-5 py-4">
+        <dt class="label text-contour-deep">Read from the source</dt>
+        <dd class="m-0 mt-1.5 text-[0.95rem] leading-[1.55] max-w-[58ch]">
+          Taken from a named primary source — the county's own announcement,
+          Maryland DNR's park page, a town's own listing — but not yet confirmed
+          by phone. The page says so and names the source.
+        </dd>
+      </div>
+    </dl>
+
+    <p>
+      Both get published. The difference is stated, because "the county published
+      this" and "we rang the county and asked" are different claims and you
+      deserve to know which one you're reading. Most of this site is currently
+      the second kind, and it says so on every page.
+    </p>
+
+    <h3>3. What we will not publish</h3>
+    <p>
+      A fact whose only origin is another guide, a review site or an aggregator
+      does not go in. It gets no stamp, it's marked
+      <code class="stamp">noindex</code>, and it stays out of the sitemap until
+      someone has actually checked it. That's enforced by the site's build rather
+      than by good intentions, so a draft can't ship as a fact by accident.
+    </p>
+
+    <h3>4. "Not confirmed" is a real answer</h3>
+    <p>
+      Where we don't know something, the page says so rather than guessing or
+      quietly leaving it out. An empty field on a park listing means we haven't
+      checked it — it does not mean the park lacks the thing. Most of the
+      restroom fields on the town parks read "not confirmed" right now, and
+      that's the truth rather than an oversight.
+    </p>
+
+    <h3>5. Conflicts stay unpublished</h3>
+    <p>
+      When two sources disagree we don't average them and we don't pick one. Both
+      get recorded, the field stays out of the published answer, and it goes to
+      the top of the call list. There's one live example: Maryland's reservation
+      page implies same-day booking works when a park is under capacity, and the
+      county announcement doesn't mention same-day at all. Until the park settles
+      it, we don't say either.
+    </p>
+
+    <h3 id="corrections">6. Corrections are published, not buried</h3>
+    <p>
+      When we get something wrong, we fix it, re-date it, and note on the page
+      that it was corrected and when. A site that claims to be verified and
+      silently rewrites its mistakes is worth less than one that never claimed it.
+    </p>
+
+    <h2>Found something wrong?</h2>
+    <p>
+      Tell us and we'll check it. Locals know these parks better than any
+      publisher does, and a correction from someone who was standing there
+      yesterday is worth more than another phone call.
+      <a href="https://werth.design" rel="noopener">Get in touch through Werth Design</a>,
+      who build and maintain this site.
+    </p>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/verified/">Every fact on the site, with its source and age</a></li>
+      <li><a href="/parks/">The state parks</a></li>
+    </ul>
+  </div>
+</Layout>

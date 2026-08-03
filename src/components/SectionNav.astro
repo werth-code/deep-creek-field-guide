@@ -1,0 +1,54 @@
+---
+/**
+ * Section nav — every page in the current section, one tap away.
+ *
+ * No hamburger and no JS for the links. On a phone it's a horizontally
+ * scrolling strip with snap points; on desktop it wraps. Hiding a handful of
+ * links behind a tap fails at exactly the moment someone is in a car park
+ * deciding whether to drive further.
+ */
+import { sectionFor } from "../lib/sections";
+
+const path = Astro.url.pathname;
+const section = sectionFor(path);
+---
+
+{
+  section && (
+    <nav class="bg-ridge border-b border-b-slate" aria-label={`${section.label} section`}>
+      <div class="wrap !px-0 sm:!px-5">
+        <ul class="list-none m-0 p-0 flex gap-0 overflow-x-auto snap-x snap-mandatory sm:flex-wrap sm:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {section.nav.map((item) => {
+            const here = path === item.href;
+            return (
+              <li class="snap-start shrink-0">
+                <a
+                  href={item.href}
+                  class={`tap px-4 sm:px-3 no-underline font-mono text-[0.72rem] font-medium uppercase tracking-[0.1em] whitespace-nowrap ${
+                    here ? "text-slate bg-paper" : "text-snow-soft hover:text-snow"
+                  }`}
+                  aria-current={here ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </nav>
+  )
+}
+
+{/* Bring the current item into view. Positional only — with JS off the nav
+    still works, it just starts at the left. */}
+<script is:inline>
+  (() => {
+    const here = document.querySelector('nav[aria-label$="section"] [aria-current="page"]');
+    if (!here) return;
+    const strip = here.closest("ul");
+    if (strip && strip.scrollWidth > strip.clientWidth) {
+      strip.scrollTo({ left: here.parentElement.offsetLeft - 16, behavior: "instant" });
+    }
+  })();
+</script>

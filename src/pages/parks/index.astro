@@ -1,0 +1,173 @@
+---
+/**
+ * Section one: every state park and forest in Garrett County.
+ *
+ * The Swallow Falls reservation requirement leads, because it's the fact that
+ * ruins a trip if you don't have it and almost nothing published has caught up.
+ */
+import Layout from "../../layouts/Layout.astro";
+import FlagIcon from "../../components/FlagIcon.astro";
+
+import parksData from "../../data/state-parks.json";
+import {
+  completenessState,
+  presentState,
+  reservationFlag,
+  type StatePark,
+} from "../../lib/parks";
+import { isPublishable, robotsFor } from "../../lib/verification";
+
+const parks = parksData as StatePark[];
+const live = parks.filter(isPublishable);
+const gate = {
+  verifiedDate: live.length ? "sourced" : null,
+  verifiedSource: live.length ? "sourced" : null,
+  sources: live.length ? [{ label: "x", url: "x" }] : null,
+  sourcedOn: live.length ? "2026-08-03" : null,
+};
+
+const needReservation = parks.filter((p) => p.reservation.required === true);
+
+const schema = live.length
+  ? [
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "State parks in Garrett County, Maryland",
+        itemListElement: live.map((p, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: { "@type": "Park", name: `${p.name} ${p.kind}`, address: `${p.town}, MD` },
+        })),
+      },
+    ]
+  : [];
+---
+
+<Layout
+  title="Garrett County state parks — what's there and what it costs"
+  description="Every state park and forest around Deep Creek Lake: what each one has, which now needs a day-use reservation, and what's still to be confirmed."
+  robots={robotsFor(gate)}
+  schema={schema}
+>
+  <div class="wrap pt-11 pb-6">
+    <p class="label m-0">Section one</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[18ch] text-slate">
+      Garrett County state parks
+    </h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      Ten state parks and forests sit within half an hour of Deep Creek Lake,
+      including Maryland's tallest waterfall, its largest lake and its biggest
+      state forest. One of them now needs a reservation to walk into.
+    </p>
+  </div>
+
+  {/* The wedge, above everything else. */}
+  {
+    needReservation.length > 0 && (
+      <div class="wrap pb-2">
+        <aside class="sheet breakout border-l-[9px] border-l-flag-red px-4 sm:px-5 py-5">
+          <p class="label text-flag-red-bearing m-0 flex items-center gap-1.5">
+            <FlagIcon icon="alert" class="w-[1em] h-[1em]" />
+            New for 2026 — you can't just turn up
+          </p>
+          {needReservation.map((p) => (
+            <>
+              <p class="font-display text-[1.3rem] font-semibold tracking-[-0.03em] mt-2.5 mb-0 text-slate">
+                <a href={`/parks/${p.slug}/`}>{p.name}</a> needs a day-use reservation
+              </p>
+              <p class="mt-2 mb-0 text-[0.98rem] leading-[1.5] max-w-[58ch]">
+                <strong>{p.reservation.days}</strong>, {p.reservation.window}.{" "}
+                {p.reservation.bookAhead}. Most Maryland parks in this programme
+                only require one at weekends — Swallow Falls is the exception.
+              </p>
+            </>
+          ))}
+          <p class="stamp text-ink-soft mt-3.5 mb-0">
+            Read from the Garrett County announcement · not yet confirmed by phone
+          </p>
+        </aside>
+      </div>
+    )
+  }
+
+  <div class="wrap py-8">
+    <div class="grid gap-4 sm:grid-cols-2 breakout">
+      {
+        parks.map((park) => {
+          const { known, total } = completenessState(park);
+          const has = presentState(park);
+          const flag = reservationFlag(park.reservation);
+          return (
+            <article class="sheet sheet-action relative group">
+              <a href={`/parks/${park.slug}/`} class="absolute inset-0 z-10 no-underline">
+                <span class="sr-only">{park.name}</span>
+              </a>
+
+              <div class={`${flag.bar} h-1.5 w-full`} />
+
+              <div class="p-4 sm:p-5">
+                <header class="flex items-start justify-between gap-3">
+                  <div>
+                    <h2 class="font-display text-[1.15rem] font-semibold tracking-[-0.03em] m-0 text-slate underline decoration-contour decoration-2 underline-offset-[0.16em] group-hover:decoration-slate">
+                      {park.name}
+                    </h2>
+                    <p class="stamp text-ink-soft mt-1 mb-0">
+                      {park.kind} · {park.town}
+                      {park.acres ? ` · ${park.acres.toLocaleString()} acres` : ""}
+                    </p>
+                  </div>
+                  <span class="stamp text-ink-soft shrink-0">{known}/{total}</span>
+                </header>
+
+                <p class="mt-3 mb-0 text-[0.92rem] leading-[1.55]">{park.blurb}</p>
+
+                {has.length > 0 && (
+                  <ul class="list-none p-0 m-0 mt-3.5 flex flex-wrap gap-1.5">
+                    {has.map((f) => (
+                      <li class="sheet-quiet px-2 py-0.5 stamp text-[0.68rem] text-slate">{f}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {park.warnings.length > 0 && (
+                  <p class="mt-3 mb-0 text-[0.85rem] leading-snug text-ink-soft flex gap-1.5">
+                    <FlagIcon icon="alert" class="w-[1em] h-[1em] mt-1 shrink-0 text-flag-red" />
+                    <span>{park.warnings[0]}</span>
+                  </p>
+                )}
+
+                <p class="stamp mt-3.5 mb-0 flex items-center justify-between gap-3">
+                  <span
+                    class={`${flag.chip} inline-flex items-center gap-1.5 px-2 py-0.5 border-2 border-ink text-[0.66rem] uppercase tracking-[0.08em]`}
+                  >
+                    <FlagIcon icon={flag.icon} class="w-[1em] h-[1em]" />
+                    {flag.word}
+                  </span>
+                  <span class="text-contour-deep group-hover:translate-x-0.5 transition-transform duration-100">→</span>
+                </p>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <h2>How complete this is</h2>
+    <p class="max-w-[58ch]">
+      Every card shows how many of its nine facilities are confirmed. A field
+      reading <em>Not confirmed</em> means we haven't checked it — it does not
+      mean the park lacks the thing. Day-use fees and park office numbers are the
+      biggest gap, and every one is on the call list.
+    </p>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/parks/regional/">Town parks — the municipal ones</a></li>
+      <li><a href="/verified/">Every fact on the site, with its source and age</a></li>
+      <li><a href="/how-we-verify/">How we check this</a></li>
+    </ul>
+  </div>
+</Layout>

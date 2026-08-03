@@ -1,0 +1,164 @@
+---
+/**
+ * Home.
+ *
+ * Orients someone who has never been, then points at the one live section.
+ * Counts derive from the data so they can't drift.
+ */
+import Layout from "../layouts/Layout.astro";
+import Logo from "../components/Logo.astro";
+import FlagIcon from "../components/FlagIcon.astro";
+
+import stateParksData from "../data/state-parks.json";
+import regionalParksData from "../data/regional-parks.json";
+import type { StatePark, RegionalPark } from "../lib/parks";
+
+const stateParks = stateParksData as StatePark[];
+const regional = regionalParksData as RegionalPark[];
+const reservationParks = stateParks.filter((p) => p.reservation.required === true);
+
+const facts = [
+  { n: String(stateParks.length), label: "state parks & forests" },
+  { n: String(regional.length), label: "town parks" },
+  { n: "3,360", label: "feet at the highest point" },
+  { n: "8", label: "towns with their own parks" },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Deep Creek Field Guide",
+    url: "https://deepcreekfieldguide.com/",
+    description:
+      "A reference for Garrett County and Deep Creek Lake. Every fact carries the date it was checked and the source it came from.",
+    publisher: { "@type": "Organization", name: "Deep Creek Field Guide" },
+  },
+];
+---
+
+<Layout
+  title="Deep Creek Field Guide — Garrett County parks, dated"
+  description="A reference for Deep Creek Lake and Garrett County: every state park and town park, what's actually there, and which now need a reservation to get in."
+  schema={schema}
+>
+  <div class="wrap pt-12 sm:pt-16 pb-9">
+    <p class="label m-0 flex items-center gap-2">
+      <Logo class="w-[0.95rem] h-[0.95rem] shrink-0" />
+      A reference for Garrett County, Maryland
+    </p>
+
+    <h1 class="text-[2.4rem] sm:text-[3.3rem] mt-4 mb-0 max-w-[16ch] text-slate">
+      The high ground, measured and dated.
+    </h1>
+
+    <p class="mt-6 mb-0 text-[1.2rem] leading-[1.5] max-w-[52ch]">
+      Garrett County holds Maryland's highest ground, its deepest snow and its
+      largest lake. Ten state parks and forests sit within half an hour of Deep
+      Creek — a 53-foot waterfall, old-growth hemlock that predates the state,
+      and 54,000 acres of forest behind it.
+    </p>
+
+    <p class="mt-4 mb-0 text-[1.05rem] leading-[1.55] max-w-[52ch]">
+      This is the guide that tells you what's actually there this season: what a
+      park costs, whether there's a toilet, and — new this year — which one you
+      can no longer just turn up to. Every fact carries the date we checked it
+      and who told us. <a href="/how-we-verify/">Here's how that works</a>.
+    </p>
+  </div>
+
+  {
+    reservationParks.length > 0 && (
+      <div class="wrap pb-9">
+        <aside class="sheet breakout border-l-[9px] border-l-flag-red px-4 sm:px-5 py-5">
+          <p class="label text-flag-red-bearing m-0 flex items-center gap-1.5">
+            <FlagIcon icon="alert" class="w-[1em] h-[1em]" />
+            New for 2026
+          </p>
+          <p class="font-display text-[1.35rem] font-semibold tracking-[-0.03em] mt-2.5 mb-0 text-slate max-w-[24ch]">
+            <a href={`/parks/${reservationParks[0].slug}/`}>Swallow Falls</a> now needs a
+            day-use reservation
+          </p>
+          <p class="mt-2.5 mb-0 text-[0.98rem] leading-[1.55] max-w-[58ch]">
+            Every day from 23 May through Labor Day — not just weekends, which is
+            how most of the Maryland programme works. Booking opens seven days
+            ahead. It's a three-hour drive from Baltimore, and nearly everything
+            published still tells you to turn up.
+          </p>
+        </aside>
+      </div>
+    )
+  }
+
+  <div class="wrap pb-9">
+    <dl class="sheet breakout grid grid-cols-2 sm:grid-cols-4 gap-0 divide-x divide-y sm:divide-y-0 divide-lake/30">
+      {
+        facts.map((f) => (
+          <div class="px-4 py-4">
+            <dt class="font-display text-[1.9rem] font-semibold text-slate leading-none tracking-[-0.04em]">
+              {f.n}
+            </dt>
+            <dd class="m-0 mt-1.5 stamp text-ink-soft">{f.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  <div class="wrap pb-9 grid gap-5 sm:grid-cols-2">
+    {
+      [
+        {
+          href: "/parks/",
+          n: "01",
+          title: "State parks",
+          lede: "All ten, and the one that now needs booking.",
+          detail:
+            "Swallow Falls, Deep Creek Lake, Herrington Manor, New Germany and the rest — facilities, fees, reservation status and what's still unconfirmed.",
+          count: `${stateParks.length} parks and forests`,
+        },
+        {
+          href: "/parks/regional/",
+          n: "02",
+          title: "Town parks",
+          lede: "The municipal ones. Starting with: are there restrooms?",
+          detail:
+            "Garrett County itself owns only four park sites — the parks people use belong to eight small towns, and nobody documents them in one place.",
+          count: `${regional.length} listed`,
+        },
+      ].map((s) => (
+        <a href={s.href} class="sheet sheet-action no-underline block p-5 group relative">
+          <span class="stamp text-contour-deep absolute top-5 right-5">{s.n}</span>
+          <p class="label m-0">Section {s.n}</p>
+          <p class="font-display text-[1.7rem] font-semibold mt-2 mb-0 tracking-[-0.04em] text-slate underline decoration-contour decoration-[3px] underline-offset-[0.14em] group-hover:decoration-slate">
+            {s.title}
+          </p>
+          <p class="mt-2.5 mb-0 text-[0.98rem] leading-[1.45] font-medium">{s.lede}</p>
+          <p class="mt-2 mb-0 text-[0.9rem] leading-[1.5] text-ink-soft">{s.detail}</p>
+          <p class="stamp text-ink-soft mt-4 mb-0">{s.count}</p>
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="wrap prose-field pb-6">
+    <h2>Every fact here is dated</h2>
+    <p class="max-w-[58ch]">
+      Rules around here change more than you'd expect, and the published answer
+      lags by years. Swallow Falls started requiring reservations in May and
+      most guides haven't noticed. So we go and ask — the county, the park, the
+      town — and then we write down the date and who said it.
+    </p>
+    <p class="max-w-[58ch]">
+      It means you can see how fresh an answer is before you drive anywhere, and
+      what we haven't checked yet is marked as unchecked rather than guessed.
+      <a href="/verified/">Every fact on the site is listed with its source and age</a>.
+    </p>
+
+    <h2>Still to come</h2>
+    <p class="max-w-[58ch]">
+      Dogs, the lake itself, and winter. One section at a time, each checked
+      before it goes up.
+    </p>
+  </div>
+</Layout>

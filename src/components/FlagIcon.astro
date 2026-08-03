@@ -1,0 +1,42 @@
+---
+/**
+ * Status icons. These exist so status is never carried by colour alone — the
+ * shape must be unambiguous in grayscale, at a glance, outdoors. Blunt
+ * geometry, no thin strokes.
+ */
+interface Props {
+  icon: "check" | "cross" | "alert";
+  class?: string;
+}
+const { icon, class: className = "" } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="3.25"
+  stroke-linecap="square"
+  stroke-linejoin="miter"
+  aria-hidden="true"
+  focusable="false"
+>
+  {icon === "check" && <path d="M4 12.8 9.5 18.5 20 5.8" />}
+  {
+    icon === "cross" && (
+      <>
+        <path d="M5.5 5.5 18.5 18.5" />
+        <path d="M18.5 5.5 5.5 18.5" />
+      </>
+    )
+  }
+  {
+    icon === "alert" && (
+      <>
+        <path d="M12 4.5V13.5" />
+        <path d="M12 18.6V18.7" stroke-width="3.6" />
+      </>
+    )
+  }
+</svg>

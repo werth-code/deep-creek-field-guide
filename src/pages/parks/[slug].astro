@@ -1,0 +1,252 @@
+---
+/**
+ * One state park.
+ *
+ * Reservation status leads, because at Swallow Falls it's the difference
+ * between a day out and a three-hour drive for nothing.
+ */
+import type { GetStaticPaths } from "astro";
+
+import Layout from "../../layouts/Layout.astro";
+import FlagIcon from "../../components/FlagIcon.astro";
+
+import parksData from "../../data/state-parks.json";
+import {
+  STATE_FEATURE_LABELS,
+  completenessState,
+  reservationFlag,
+  tri,
+  type StatePark,
+} from "../../lib/parks";
+import { isPublishable, isVerified, reportOutstanding, robotsFor, sourcedText, stampText, tierOf } from "../../lib/verification";
+import { formatStampDate } from "../../lib/dates";
+
+export const getStaticPaths = (() =>
+  (parksData as StatePark[]).map((park) => ({ params: { slug: park.slug }, props: { park } }))) satisfies GetStaticPaths;
+
+const { park } = Astro.props as { park: StatePark };
+reportOutstanding(`parks/${park.slug}`, park);
+
+const { known, total } = completenessState(park);
+const flag = reservationFlag(park.reservation);
+const tier = tierOf(park);
+const publishable = isPublishable(park);
+
+const others = (parksData as StatePark[]).filter((p) => p.slug !== park.slug).slice(0, 6);
+
+const schema = publishable
+  ? [
+      {
+        "@context": "https://schema.org",
+        "@type": "Park",
+        name: `${park.name} ${park.kind}`,
+        description: park.blurb,
+        address: { "@type": "PostalAddress", addressLocality: park.town, addressRegion: "MD" },
+      },
+    ]
+  : [];
+
+const base =
+  `${park.name} ${park.kind}, ${park.town} — ` +
+  (park.reservation.required === true
+    ? "day-use reservation now required. "
+    : "facilities, fees and access. ") +
+  "Checked and dated, with the gaps marked.";
+const description = base.length < 118 ? `${base} Part of the Deep Creek Field Guide.` : base;
+
+/* Longest title that still fits the SERP. Some of these names are long enough
+   ("Youghiogheny Wild River Natural Environment Area") that even the short
+   form clips, so the last candidate drops the kind entirely. */
+const title =
+  [
+    `${park.name} ${park.kind} — what's there and what it costs`,
+    `${park.name} ${park.kind}, Garrett County MD`,
+    `${park.name} — Garrett County, Maryland`,
+    park.name,
+  ].find((t) => t.length <= 60) ?? park.name;
+---
+
+<Layout
+  title={title}
+  description={description.slice(0, 157)}
+  robots={robotsFor(park)}
+  dateModified={park.verifiedDate ?? park.sourcedOn}
+  schema={schema}
+>
+  <article>
+    <div class="wrap pt-11 pb-6">
+      <p class="label m-0">
+        <a href="/parks/" class="no-underline hover:underline">State parks</a>
+        <span class="text-ink-soft"> · </span>{park.town}
+      </p>
+      <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[16ch] text-slate">{park.name}</h1>
+      <p class="stamp text-ink-soft mt-3 mb-0">
+        {park.kind}{park.acres ? ` · ${park.acres.toLocaleString()} acres` : ""}
+      </p>
+    </div>
+
+    {/* Reservation status — the thing that decides the trip. */}
+    <div class="wrap">
+      <section class="sheet breakout overflow-hidden my-2" aria-label="Reservation status">
+        <div class={`${flag.bar} h-3 w-full`}></div>
+        <div class="px-4 sm:px-5 py-4">
+          <span
+            class={`${flag.chip} inline-flex items-center gap-2 px-3 py-1.5 border-2 border-ink font-mono text-[0.74rem] font-medium uppercase tracking-[0.1em]`}
+          >
+            <FlagIcon icon={flag.icon} class="w-[1.05em] h-[1.05em]" />
+            {flag.word}
+          </span>
+
+          {park.reservation.required === true && (
+            <dl class="grid sm:grid-cols-3 gap-x-6 gap-y-0 mt-4 mb-0 border-t-2 border-contour">
+              {[
+                ["When", park.reservation.window],
+                ["Which days", park.reservation.days],
+                ["Booking opens", park.reservation.bookAhead],
+              ].map(([k, v]) => (
+                <div class="border-b border-lake/30 py-2.5">
+                  <dt class="label">{k}</dt>
+                  <dd class="m-0 mt-0.5 text-[0.95rem] leading-snug">{v ?? "Not confirmed"}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          {park.reservation.note && (
+            <p class="mt-3.5 mb-0 text-[0.93rem] leading-[1.55] max-w-[58ch]">{park.reservation.note}</p>
+          )}
+        </div>
+      </section>
+    </div>
+
+    {
+      park.warnings.length > 0 && (
+        <div class="wrap">
+          <aside class="sheet breakout border-l-[9px] border-l-flag-red px-4 sm:px-5 py-4 my-4">
+            <p class="label text-flag-red-bearing m-0 flex items-center gap-1.5">
+              <FlagIcon icon="alert" class="w-[1em] h-[1em]" />
+              Before you go
+            </p>
+            <ul class="list-none p-0 m-0 mt-2 space-y-1.5">
+              {park.warnings.map((w) => (
+                <li class="text-[0.96rem] leading-[1.5] max-w-[56ch]">{w}</li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      )
+    }
+
+    <div class="wrap prose-field pt-4">
+      <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{park.blurb}</p>
+
+      <h2>What's there</h2>
+      <div class="sheet breakout my-6 p-4 sm:p-5">
+        <div class="flex items-baseline justify-between gap-4">
+          <p class="label m-0">Facilities</p>
+          <span class="stamp text-ink-soft">{known}/{total} confirmed</span>
+        </div>
+        <dl class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-0 mt-3.5 mb-0 border-t-2 border-contour">
+          {
+            STATE_FEATURE_LABELS.map(([key, label]) => {
+              const v = tri(park.features[key]);
+              return (
+                <div class="border-b border-lake/30 py-2.5">
+                  <dt class="label">{label}</dt>
+                  <dd
+                    class={`m-0 mt-0.5 text-[0.93rem] ${v.state === "unknown" ? "text-ink-soft italic" : "text-ink"}`}
+                  >
+                    {v.text}
+                  </dd>
+                </div>
+              );
+            })
+          }
+        </dl>
+      </div>
+
+      <h2>Getting in</h2>
+      <dl class="sheet breakout my-6 divide-y-2 divide-lake/25">
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Fee</dt>
+          <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55]">{park.fee.note}</dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Hours</dt>
+          <dd class={`m-0 mt-1 sm:mt-0 text-[0.95rem] ${park.hours ? "" : "text-ink-soft italic"}`}>
+            {park.hours ?? "Not confirmed"}
+          </dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Park office</dt>
+          <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem]">
+            {park.phone ? (
+              <a href={`tel:${park.phone.replace(/[^0-9+]/g, "")}`} class="tap stamp text-[1rem]">{park.phone}</a>
+            ) : (
+              <span class="text-ink-soft italic">Not confirmed</span>
+            )}
+          </dd>
+        </div>
+      </dl>
+
+      {/* Provenance. */}
+      <aside class={`sheet breakout my-8 px-4 sm:px-5 py-5 border-l-[9px] ${isVerified(park) ? "border-l-flag-green" : "border-l-contour"}`}>
+        {
+          isVerified(park) ? (
+            <p class="m-0"><span class="stamp stamp-struck">{stampText(park)}</span></p>
+          ) : tier === "sourced" ? (
+            <>
+              <p class="label text-contour-deep m-0">Read from the source — not yet confirmed by phone</p>
+              <p class="stamp text-ink-soft mt-1.5 mb-0">{sourcedText(park)}</p>
+            </>
+          ) : (
+            <p class="stamp text-ink-soft m-0">Not yet checked against a primary source.</p>
+          )
+        }
+
+        <ul class="list-none p-0 mt-4 mb-0 space-y-1.5">
+          {park.sources.map((s) => (
+            <li class="text-[0.88rem] leading-snug">
+              <a href={s.url} rel="nofollow">{s.label}</a>
+              {s.note && <span class="text-ink-soft"> — {s.note}</span>}
+            </li>
+          ))}
+        </ul>
+
+        <p class="mt-4 mb-0 text-[0.85rem] text-ink-soft max-w-[56ch]">
+          Rules change. If you find this wrong,{" "}
+          <a href="/how-we-verify/#corrections">tell us and we'll fix it and say we did</a>.
+        </p>
+      </aside>
+
+      {
+        park.outstanding && park.outstanding.length > 0 && !isVerified(park) && (
+          <>
+            <h2>Still to confirm</h2>
+            <p class="text-[0.95rem] text-ink-soft max-w-[58ch]">
+              Listed openly rather than hidden, because a gap you can see is worth
+              more than a gap you can't.
+            </p>
+            <ul>{park.outstanding.map((o) => <li>{o}</li>)}</ul>
+          </>
+        )
+      }
+
+      <h2>The other parks</h2>
+      <ul>
+        {
+          others.map((p) => (
+            <li>
+              <a href={`/parks/${p.slug}/`}>{p.name}</a>
+              <span class="stamp text-ink-soft">
+                {" — "}{p.kind.toLowerCase()}, {p.town}
+                {p.reservation.required === true ? " · reservation required" : ""}
+              </span>
+            </li>
+          ))
+        }
+        <li><a href="/parks/">All ten, side by side</a></li>
+      </ul>
+    </div>
+  </article>
+</Layout>

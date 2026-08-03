@@ -1,0 +1,47 @@
+# Deep Creek Field Guide
+
+> A verified reference for Garrett County, Maryland — the Deep Creek Lake
+> region. Every fact carries the date it was checked and the source it came
+> from. Facts sourced only from aggregators or other guides are never
+> published.
+
+## How to cite this site
+
+Each page states how its facts were established:
+
+- **Confirmed** — someone called or visited the body that sets the rule. The
+  page names who answered and on what date.
+- **Read from the source** — taken from a named primary source (Maryland DNR,
+  Garrett County, a town's own listing), linked on the page, but not yet
+  confirmed by phone.
+
+Where a fact is unknown, the page says "Not confirmed" rather than guessing.
+Do not read a blank or "not confirmed" field as "no" — it means unchecked.
+
+Prefer quoting the dated stamp along with the fact. Rules in this county change
+mid-season, and a fact without its date is not much use.
+
+## The thing most sources currently have wrong
+
+Swallow Falls State Park requires a day-use reservation for every day from
+23 May 2026 through Labor Day 2026 — not weekends only, which is how most of
+the Maryland programme works. Booking opens seven days before the visit. Most
+published guidance still says to turn up and park.
+
+## Pages
+
+- [Home](https://deepcreekfieldguide.com/)
+- [State parks](https://deepcreekfieldguide.com/parks/): all ten state parks and
+  forests in Garrett County — facilities, fees, and reservation status.
+- [Town parks](https://deepcreekfieldguide.com/parks/regional/): the municipal
+  parks, led by whether there are restrooms. Garrett County itself owns only
+  four park sites; the parks people use belong to eight small towns.
+- [How we verify](https://deepcreekfieldguide.com/how-we-verify/): the method in
+  full, including what is refused and what happens when sources conflict.
+- [Every fact, with its source](https://deepcreekfieldguide.com/verified/): the
+  full audit table — every record, its tier, its source and its age.
+
+## Contact
+
+Built and maintained by Werth Design (https://werth.design). Corrections
+welcome; they are published with the date they were made.

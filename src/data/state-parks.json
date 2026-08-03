@@ -1,0 +1,510 @@
+[
+  {
+    "slug": "swallow-falls",
+    "name": "Swallow Falls",
+    "kind": "State park",
+    "town": "Oakland",
+    "acres": 257,
+    "blurb": "Muddy Creek Falls is the tallest free-falling waterfall in Maryland at 53 feet, and the mile-long loop past it runs through a stand of old-growth hemlock and white pine \u2014 some of it over 300 years old, the last of its kind in the state. It is the most visited park in Garrett County and the reason the reservation system exists.",
+    "features": {
+      "waterfall": true,
+      "swimming": false,
+      "camping": true,
+      "cabins": null,
+      "trails": true,
+      "boatLaunch": false,
+      "fishing": true,
+      "winterUse": true,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": true,
+      "window": "23 May 2026 \u2013 Labor Day 2026",
+      "days": "Every day, not just weekends",
+      "bookAhead": "Opens 7 days before the visit",
+      "note": "Swallow Falls is stricter than the rest of the Maryland system. Most participating parks require a day-use reservation on weekends and holidays only; Swallow Falls requires one EVERY DAY across the whole summer window."
+    },
+    "fee": {
+      "note": "Regular day-use fee, paid at the time of reservation. The amount is not stated in the county announcement and is still to be confirmed.",
+      "amount": null
+    },
+    "warnings": [
+      "You cannot turn up without a reservation in summer. This is a three-hour drive from Baltimore or DC and the booking window only opens seven days out."
+    ],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Garrett County Government \u2014 new day-use reservations required at Swallow Falls",
+        "url": "https://www.garrettcountymd.gov/news/2026-05/new-day-use-reservations-required-swallow-falls-state-park-beginning-memorial-day-weekend",
+        "note": "Published May 2026. Establishes the every-day requirement, the 23 May start and the 7-day booking window."
+      },
+      {
+        "label": "Maryland DNR \u2014 Swallow Falls State Park",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/swallowfalls.aspx",
+        "note": "Park facilities and description."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "PRIORITY: confirm the day-use fee amount \u2014 the county announcement says a fee is charged at booking but does not give the figure.",
+      "Resolve a source conflict: DNR's own reservation page implies same-day booking is possible when a park is under capacity; the county announcement does not mention same-day at all. Do not publish either until the park confirms.",
+      "Confirm what actually happens on arrival without a reservation \u2014 turned away, or waitlisted?",
+      "Confirm whether the requirement covers the campground and cabin guests or day-use only.",
+      "Confirm pet rules \u2014 Maryland restricts pets at many day-use areas and this is unchecked.",
+      "Confirm winter access and whether the road to the falls is maintained."
+    ]
+  },
+  {
+    "slug": "deep-creek-lake",
+    "name": "Deep Creek Lake",
+    "kind": "State park",
+    "town": "Swanton",
+    "acres": 1818,
+    "blurb": "The state park sits on the northeast shore of Maryland's largest lake, with the only public swimming beach on Deep Creek and a discovery centre that stays open year-round. Everything else on the lake is private shoreline, which is why this one gets busy.",
+    "features": {
+      "waterfall": false,
+      "swimming": true,
+      "camping": true,
+      "cabins": null,
+      "trails": true,
+      "boatLaunch": true,
+      "fishing": true,
+      "winterUse": true,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": false,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "Not part of the day-use reservation programme as of the May 2026 announcement, which names only Swallow Falls in this county. Camping and cabins are booked separately through the state system."
+    },
+    "fee": {
+      "note": "Day-use fee applies. Amount to be confirmed.",
+      "amount": null
+    },
+    "warnings": [],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR \u2014 Deep Creek Lake State Park",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/deepcreek.aspx",
+        "note": "Park facilities and description."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm it is genuinely NOT in the day-use reservation programme \u2014 visitors will assume all Garrett parks changed together.",
+      "Confirm the day-use fee, and whether it differs in and out of season.",
+      "Confirm beach season dates and whether lifeguards are posted.",
+      "Confirm boat launch fees and whether a separate launch permit is needed.",
+      "Confirm pet rules on the beach specifically."
+    ]
+  },
+  {
+    "slug": "herrington-manor",
+    "name": "Herrington Manor",
+    "kind": "State park",
+    "town": "Oakland",
+    "acres": 365,
+    "blurb": "A 53-acre lake made by damming Herrington Creek, with twenty year-round cabins built by the Civilian Conservation Corps. No gas motors on the lake, which keeps it quiet. Cross-country ski rental in winter \u2014 one of very few places in Maryland where that is a real option.",
+    "features": {
+      "waterfall": false,
+      "swimming": true,
+      "camping": false,
+      "cabins": true,
+      "trails": true,
+      "boatLaunch": true,
+      "fishing": true,
+      "winterUse": true,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": false,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "Not named in the 2026 day-use reservation programme. Cabins book through the state reservation system and go months ahead."
+    },
+    "fee": {
+      "note": "Day-use fee applies. Amount to be confirmed.",
+      "amount": null
+    },
+    "warnings": [],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR \u2014 Herrington Manor State Park",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/herringtonmanor.aspx",
+        "note": "Lake, cabins and facilities."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the cabin booking lead time \u2014 this is the fact that decides a trip and nobody publishes it.",
+      "Confirm cross-country ski rental still operates and its season.",
+      "Confirm the no-gas-motor rule and what is allowed instead.",
+      "Confirm swimming beach season and lifeguard cover.",
+      "Confirm whether pets are allowed in the cabins."
+    ]
+  },
+  {
+    "slug": "new-germany",
+    "name": "New Germany",
+    "kind": "State park",
+    "town": "Grantsville",
+    "acres": 455,
+    "blurb": "A 13-acre lake on the site of a nineteenth-century milling settlement, wrapped inside Savage River State Forest. Eleven cabins, a groomed cross-country ski network in winter, and enough elevation that it holds snow when the rest of Maryland has none.",
+    "features": {
+      "waterfall": false,
+      "swimming": true,
+      "camping": true,
+      "cabins": true,
+      "trails": true,
+      "boatLaunch": true,
+      "fishing": true,
+      "winterUse": true,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": false,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "Not named in the 2026 day-use reservation programme."
+    },
+    "fee": {
+      "note": "Day-use fee applies. Amount to be confirmed.",
+      "amount": null
+    },
+    "warnings": [],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR \u2014 New Germany State Park",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/newgermany.aspx",
+        "note": "Lake, cabins, trails."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the cross-country trail network is still groomed and by whom.",
+      "Confirm cabin season \u2014 whether all eleven are winterised.",
+      "Confirm boat rental availability and season.",
+      "Confirm the day-use fee."
+    ]
+  },
+  {
+    "slug": "big-run",
+    "name": "Big Run",
+    "kind": "State park",
+    "town": "Grantsville",
+    "acres": 300,
+    "blurb": "Three hundred acres at the mouth of the Savage River where it meets the reservoir, surrounded on all sides by Savage River State Forest. Primitive camping, and the put-in for some of the most serious whitewater in the mid-Atlantic when the river is released.",
+    "features": {
+      "waterfall": false,
+      "swimming": false,
+      "camping": true,
+      "cabins": false,
+      "trails": true,
+      "boatLaunch": true,
+      "fishing": true,
+      "winterUse": null,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": false,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "Not named in the 2026 day-use reservation programme."
+    },
+    "fee": {
+      "note": "To be confirmed \u2014 small primitive parks are sometimes free.",
+      "amount": null
+    },
+    "warnings": [
+      "Whitewater here depends on scheduled dam releases from the Savage River Reservoir. Without a release there may be no runnable water at all."
+    ],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR \u2014 Big Run State Park",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/bigrun.aspx",
+        "note": "Camping and river access."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Get the Savage River release schedule and who publishes it \u2014 this is the single most useful fact for anyone coming to paddle.",
+      "Confirm whether a day-use fee is charged here at all.",
+      "Confirm campsite booking \u2014 first-come or reservable.",
+      "Confirm road access in winter."
+    ]
+  },
+  {
+    "slug": "casselman-river-bridge",
+    "name": "Casselman River Bridge",
+    "kind": "State park",
+    "town": "Grantsville",
+    "acres": 4,
+    "blurb": "Four acres around an 80-foot stone arch built in 1813 for the National Road \u2014 the largest single-span stone arch in America when it was finished, and a National Historic Landmark. A ten-minute stop rather than a day out, and worth it.",
+    "features": {
+      "waterfall": false,
+      "swimming": false,
+      "camping": false,
+      "cabins": false,
+      "trails": null,
+      "boatLaunch": false,
+      "fishing": true,
+      "winterUse": null,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": false,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "No reservation. A roadside historic site."
+    },
+    "fee": {
+      "note": "Believed free. To be confirmed.",
+      "amount": null
+    },
+    "warnings": [],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR \u2014 Casselman River Bridge State Park",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/casselman.aspx",
+        "note": "Historic bridge and picnic area."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm it is free and has no gate hours.",
+      "Confirm whether the bridge itself is still walkable.",
+      "Confirm parking \u2014 it is small and on a busy road."
+    ]
+  },
+  {
+    "slug": "sang-run",
+    "name": "Sang Run",
+    "kind": "State park",
+    "town": "McHenry",
+    "acres": null,
+    "blurb": "A restored 1800s homestead and former general store on the Youghiogheny, kept as a picture of rural life before the lake existed. Also the put-in for the upper Yough, which is genuinely expert-only water.",
+    "features": {
+      "waterfall": false,
+      "swimming": false,
+      "camping": false,
+      "cabins": false,
+      "trails": null,
+      "boatLaunch": true,
+      "fishing": true,
+      "winterUse": null,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": false,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "No day-use reservation. Commercial rafting outfitters run their own bookings."
+    },
+    "fee": {
+      "note": "To be confirmed.",
+      "amount": null
+    },
+    "warnings": [
+      "The upper Youghiogheny below here is expert whitewater and depends on scheduled releases. It is not a place to improvise."
+    ],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR \u2014 Sang Run State Park",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/sangrun.aspx",
+        "note": "Historic site and river access."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm whether the historic buildings are open to visitors and when.",
+      "Get the Youghiogheny release schedule and its publisher.",
+      "Confirm put-in access rules and whether a permit is needed."
+    ]
+  },
+  {
+    "slug": "wolf-den-run",
+    "name": "Wolf Den Run",
+    "kind": "State park",
+    "town": "Kitzmiller",
+    "acres": null,
+    "blurb": "Maryland's designated off-highway vehicle park, on reclaimed mine land above the Potomac's north branch. Miles of ATV and dirt bike trail, plus hiking, fishing and hunting. Unlike anywhere else in the state park system.",
+    "features": {
+      "waterfall": false,
+      "swimming": false,
+      "camping": null,
+      "cabins": false,
+      "trails": true,
+      "boatLaunch": false,
+      "fishing": true,
+      "winterUse": null,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": null,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "OHV parks usually require a separate permit rather than a day-use reservation. Unconfirmed."
+    },
+    "fee": {
+      "note": "OHV permit likely required. To be confirmed.",
+      "amount": null
+    },
+    "warnings": [
+      "Active OHV trails. Not a quiet-walk park, and hikers should know that before arriving."
+    ],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR \u2014 Wolf Den Run State Park",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/wolfdenrun.aspx",
+        "note": "OHV trails and access."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the permit system, cost and where to buy.",
+      "Confirm which trails are shared with hikers and which are OHV-only.",
+      "Confirm open season and days \u2014 OHV parks often run limited schedules.",
+      "Confirm whether street-legal vehicles can access trailheads."
+    ]
+  },
+  {
+    "slug": "youghiogheny-wild-river",
+    "name": "Youghiogheny Wild River",
+    "kind": "Natural environment area",
+    "town": "Friendsville",
+    "acres": null,
+    "blurb": "Maryland's only designated wild river, running north through a gorge toward Pennsylvania. Managed for the river itself rather than for visitors \u2014 few facilities, and the whitewater through here is among the hardest in the east.",
+    "features": {
+      "waterfall": false,
+      "swimming": false,
+      "camping": false,
+      "cabins": false,
+      "trails": true,
+      "boatLaunch": true,
+      "fishing": true,
+      "winterUse": null,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": false,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "No day-use reservation. River access is managed separately."
+    },
+    "fee": {
+      "note": "To be confirmed.",
+      "amount": null
+    },
+    "warnings": [
+      "Expert whitewater with limited access and limited rescue. Release-dependent."
+    ],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR \u2014 Youghiogheny Wild River",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/youghioghenyriver.aspx",
+        "note": "Wild river designation and access."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm access points and any permit requirement.",
+      "Get the release schedule and its source.",
+      "Confirm what facilities exist, if any."
+    ]
+  },
+  {
+    "slug": "savage-river-state-forest",
+    "name": "Savage River State Forest",
+    "kind": "State forest",
+    "town": "Grantsville",
+    "acres": 54000,
+    "blurb": "Maryland's largest state forest at around 54,000 acres, wrapping Big Run and New Germany. Dispersed camping, hunting, trout water and the reservoir behind it. A forest rather than a park \u2014 different rules, and worth knowing which you are standing in.",
+    "features": {
+      "waterfall": false,
+      "swimming": false,
+      "camping": true,
+      "cabins": false,
+      "trails": true,
+      "boatLaunch": true,
+      "fishing": true,
+      "winterUse": true,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": null,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": "State forests run different rules from state parks. Dispersed camping usually needs a permit. Unconfirmed."
+    },
+    "fee": {
+      "note": "To be confirmed.",
+      "amount": null
+    },
+    "warnings": [
+      "Hunting is permitted in season across the forest. Check dates and wear blaze orange."
+    ],
+    "phone": null,
+    "hours": null,
+    "sources": [
+      {
+        "label": "Maryland DNR \u2014 Savage River State Forest",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/savageriver.aspx",
+        "note": "Forest management, camping and access."
+      }
+    ],
+    "sourcedOn": "2026-08-03",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the dispersed camping permit process and cost.",
+      "Get the hunting season dates that matter for hikers.",
+      "Confirm the acreage \u2014 sources vary between 54,000 and 55,000.",
+      "Confirm the Savage River release schedule for paddlers."
+    ]
+  }
+]

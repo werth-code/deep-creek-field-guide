@@ -1,0 +1,49 @@
+---
+/**
+ * The mark: a survey benchmark disc.
+ *
+ * WHY THIS
+ * A benchmark is a brass disc set into rock at a point that has been measured
+ * and recorded by someone accountable for the measurement. That is precisely
+ * the claim this site makes about every fact on it — so the mark is the thing,
+ * not a metaphor for it. They are also scattered all over these mountains.
+ *
+ * WHY NOT A WATERFALL OR A LAKE
+ * Swallow Falls is section one of several, and Deep Creek Lake is one feature
+ * of a county. A mark tied to either dates the brand the moment the next
+ * section lands. The benchmark represents the method, which doesn't change.
+ *
+ * DRAWING NOTES
+ * Rim, brass face, triangle, centre point — four elements, nothing else. The
+ * triangle is the survey station symbol and it's what makes this read as a
+ * benchmark rather than a coin. Checked at 220/72/40/22px; below about 28px
+ * the rim text would be mush, so there isn't any.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 100 100" role="img" aria-label="Deep Creek Field Guide">
+  <!-- Rim -->
+  <circle cx="50" cy="50" r="49" fill="var(--color-slate)" />
+  <!-- Brass face -->
+  <circle cx="50" cy="50" r="43" fill="var(--color-contour)" />
+  <!-- Inner scribe line, the way a real disc is stamped -->
+  <circle
+    cx="50"
+    cy="50"
+    r="37"
+    fill="none"
+    stroke="var(--color-slate)"
+    stroke-width="1.5"
+    opacity="0.45"
+  />
+
+  <!-- Survey station triangle. The element that says "benchmark". -->
+  <path d="M50 26 L72 66 L28 66 Z" fill="var(--color-paper)" />
+
+  <!-- The mark point itself — the measured spot. -->
+  <circle cx="50" cy="55" r="4.2" fill="var(--color-slate)" />
+</svg>

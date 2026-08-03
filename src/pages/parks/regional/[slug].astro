@@ -1,0 +1,236 @@
+---
+/**
+ * One town park. Restrooms get their own block at the top — it's the question
+ * this page exists to answer.
+ */
+import type { GetStaticPaths } from "astro";
+
+import Layout from "../../../layouts/Layout.astro";
+import FlagIcon from "../../../components/FlagIcon.astro";
+
+import parksData from "../../../data/regional-parks.json";
+import {
+  REGIONAL_FACILITY_LABELS,
+  completenessRegional,
+  restroomAnswer,
+  tri,
+  type RegionalPark,
+} from "../../../lib/parks";
+import {
+  isPublishable,
+  isVerified,
+  reportOutstanding,
+  robotsFor,
+  sourcedText,
+  stampText,
+  tierOf,
+} from "../../../lib/verification";
+import { formatStampDate } from "../../../lib/dates";
+
+export const getStaticPaths = (() =>
+  (parksData as RegionalPark[]).map((park) => ({ params: { slug: park.slug }, props: { park } }))) satisfies GetStaticPaths;
+
+const { park } = Astro.props as { park: RegionalPark };
+reportOutstanding(`parks/regional/${park.slug}`, park);
+
+const { known, total } = completenessRegional(park);
+const wc = restroomAnswer(park.restrooms);
+const tier = tierOf(park);
+const publishable = isPublishable(park);
+
+const others = (parksData as RegionalPark[]).filter((p) => p.slug !== park.slug).slice(0, 6);
+
+const schema = publishable
+  ? [
+      {
+        "@context": "https://schema.org",
+        "@type": "Park",
+        name: park.name,
+        description: park.blurb,
+        address: { "@type": "PostalAddress", streetAddress: park.address, addressRegion: "MD" },
+      },
+    ]
+  : [];
+
+const base = `${park.name}, ${park.town} — restrooms ${wc.text.toLowerCase()}. Playground, pavilions, trails and access, checked and dated.`;
+const description = base.length < 118 ? `${base} Run by ${park.operator}.` : base;
+---
+
+<Layout
+  title={park.name.length > 38 ? `${park.name}, ${park.town} MD` : `${park.name} — restrooms and facilities`}
+  description={description.slice(0, 157)}
+  robots={robotsFor(park)}
+  dateModified={park.verifiedDate ?? park.sourcedOn}
+  schema={schema}
+>
+  <article>
+    <div class="wrap pt-11 pb-6">
+      <p class="label m-0">
+        <a href="/parks/regional/" class="no-underline hover:underline">Town parks</a>
+        <span class="text-ink-soft"> · </span>{park.town}
+      </p>
+      <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[16ch] text-slate">{park.name}</h1>
+      <p class="stamp text-ink-soft mt-3 mb-0">
+        {park.operator} · {park.address}{park.acres ? ` · ${park.acres.toLocaleString()} acres` : ""}
+      </p>
+    </div>
+
+    {
+      park.warnings.length > 0 && (
+        <div class="wrap">
+          <aside class="sheet breakout border-l-[9px] border-l-flag-red px-4 sm:px-5 py-4 my-2">
+            <p class="label text-flag-red-bearing m-0 flex items-center gap-1.5">
+              <FlagIcon icon="alert" class="w-[1em] h-[1em]" />
+              Before you go
+            </p>
+            <ul class="list-none p-0 m-0 mt-2 space-y-1.5">
+              {park.warnings.map((w) => (
+                <li class="text-[0.96rem] leading-[1.5] max-w-[56ch]">{w}</li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      )
+    }
+
+    {/* The question this page exists to answer. */}
+    <div class="wrap pt-4">
+      <div class="sheet breakout px-4 sm:px-5 py-5 border-l-[9px] border-l-contour">
+        <p class="label m-0">Restrooms</p>
+        <p
+          class={`font-display text-[1.5rem] font-semibold tracking-[-0.03em] mt-1.5 mb-0 ${wc.state === "unknown" ? "text-ink-soft" : "text-slate"}`}
+        >
+          {wc.text}
+        </p>
+        {park.restrooms.note && (
+          <p class="mt-2 mb-0 text-[0.92rem] leading-[1.55] text-ink-soft max-w-[56ch]">
+            {park.restrooms.note}
+          </p>
+        )}
+        {/* Field-level provenance — confirming a toilet doesn't verify a park. */}
+        {park.restrooms.confirmedOn && park.restrooms.confirmedBy && (
+          <p class="stamp text-flag-green-bearing mt-3 mb-0">
+            Confirmed {formatStampDate(park.restrooms.confirmedOn)} · {park.restrooms.confirmedBy}
+          </p>
+        )}
+      </div>
+    </div>
+
+    <div class="wrap prose-field pt-6">
+      <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{park.blurb}</p>
+
+      <h2>What's there</h2>
+      <div class="sheet breakout my-6 p-4 sm:p-5">
+        <div class="flex items-baseline justify-between gap-4">
+          <p class="label m-0">Facilities</p>
+          <span class="stamp text-ink-soft">{known}/{total} confirmed</span>
+        </div>
+        <dl class="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-0 mt-3.5 mb-0 border-t-2 border-contour">
+          {
+            REGIONAL_FACILITY_LABELS.map(([key, label]) => {
+              const v = tri(park.facilities[key]);
+              return (
+                <div class="border-b border-lake/30 py-2.5">
+                  <dt class="label">{label}</dt>
+                  <dd
+                    class={`m-0 mt-0.5 text-[0.93rem] ${v.state === "unknown" ? "text-ink-soft italic" : "text-ink"}`}
+                  >
+                    {v.text}
+                  </dd>
+                </div>
+              );
+            })
+          }
+        </dl>
+      </div>
+
+      {
+        park.accessibility && (
+          <>
+            <h2>Getting around</h2>
+            <p class="max-w-[58ch]">{park.accessibility}</p>
+          </>
+        )
+      }
+
+      <h2>Hours, fees and contact</h2>
+      <dl class="sheet breakout my-6 divide-y-2 divide-lake/25">
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Hours</dt>
+          <dd class={`m-0 mt-1 sm:mt-0 text-[0.95rem] ${park.hours ? "" : "text-ink-soft italic"}`}>
+            {park.hours ?? "Not confirmed"}
+            {park.hoursNote && (
+              <span class="block text-[0.86rem] text-ink-soft mt-1 leading-snug">{park.hoursNote}</span>
+            )}
+          </dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Fee</dt>
+          <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55]">{park.fee.note}</dd>
+        </div>
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Phone</dt>
+          <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem]">
+            {park.phone ? (
+              <a href={`tel:${park.phone.replace(/[^0-9+]/g, "")}`} class="tap stamp text-[1rem]">{park.phone}</a>
+            ) : (
+              <span class="text-ink-soft italic">Not confirmed</span>
+            )}
+          </dd>
+        </div>
+      </dl>
+
+      <aside class={`sheet breakout my-8 px-4 sm:px-5 py-5 border-l-[9px] ${isVerified(park) ? "border-l-flag-green" : "border-l-contour"}`}>
+        {
+          isVerified(park) ? (
+            <p class="m-0"><span class="stamp stamp-struck">{stampText(park)}</span></p>
+          ) : tier === "sourced" ? (
+            <>
+              <p class="label text-contour-deep m-0">Read from the source — not yet confirmed by phone</p>
+              <p class="stamp text-ink-soft mt-1.5 mb-0">{sourcedText(park)}</p>
+            </>
+          ) : (
+            <p class="stamp text-ink-soft m-0">Not yet checked against a primary source.</p>
+          )
+        }
+        <ul class="list-none p-0 mt-4 mb-0 space-y-1.5">
+          {park.sources.map((s) => (
+            <li class="text-[0.88rem] leading-snug">
+              <a href={s.url} rel="nofollow">{s.label}</a>
+              {s.note && <span class="text-ink-soft"> — {s.note}</span>}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4 mb-0 text-[0.85rem] text-ink-soft max-w-[56ch]">
+          Rules change. If you find this wrong,{" "}
+          <a href="/how-we-verify/#corrections">tell us and we'll fix it and say we did</a>.
+        </p>
+      </aside>
+
+      {
+        park.outstanding && park.outstanding.length > 0 && !isVerified(park) && (
+          <>
+            <h2>Still to confirm</h2>
+            <ul>{park.outstanding.map((o) => <li>{o}</li>)}</ul>
+          </>
+        )
+      }
+
+      <h2>Other town parks</h2>
+      <ul>
+        {
+          others.map((p) => {
+            const w = restroomAnswer(p.restrooms);
+            return (
+              <li>
+                <a href={`/parks/regional/${p.slug}/`}>{p.name}</a>
+                <span class="stamp text-ink-soft"> — {p.town} · restrooms {w.text.toLowerCase()}</span>
+              </li>
+            );
+          })
+        }
+        <li><a href="/parks/regional/">All of them, side by side</a></li>
+      </ul>
+    </div>
+  </article>
+</Layout>
