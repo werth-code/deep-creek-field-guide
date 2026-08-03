@@ -7,16 +7,41 @@
     "address": "Broadford Road, Oakland, MD 21550",
     "acres": null,
     "blurb": "The largest municipal park in the county, built around a 140-acre reservoir dug in 1972 to supply Oakland and opened to recreation three years later. A sandy beach and swimming area, several playgrounds, ball fields, trails, and pavilions you can rent. It is the closest thing Garrett County has to a public lake beach that isn't a state park.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed. A park with a public swimming beach almost certainly has them, but we have not checked, and whether they open outside the beach season is the part that matters." },
-    "facilities": { "playground": true, "swimming": true, "beach": true, "picnic": true, "pavilion": true, "grills": true, "trails": true, "sports": true, "boatLaunch": true, "fishing": true, "pavedPath": null, "winterUse": null },
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "Not confirmed. A park with a public swimming beach almost certainly has them, but we have not checked, and whether they open outside the beach season is the part that matters."
+    },
+    "facilities": {
+      "playground": true,
+      "swimming": true,
+      "beach": true,
+      "picnic": true,
+      "pavilion": true,
+      "grills": true,
+      "trails": true,
+      "sports": true,
+      "boatLaunch": true,
+      "fishing": true,
+      "pavedPath": null,
+      "winterUse": null
+    },
     "accessibility": null,
     "hours": null,
     "hoursNote": "Seasonal. The beach and much of the park close outside summer — confirm before driving out in spring or autumn.",
     "phone": null,
-    "fee": { "note": "Believed to charge an entry or beach fee in season, and pavilions are rentable. Amounts unconfirmed.", "amount": null },
+    "fee": {
+      "note": "Believed to charge an entry or beach fee in season, and pavilions are rentable. Amounts unconfirmed.",
+      "amount": null
+    },
     "warnings": [],
     "sources": [
-      { "label": "Garrett County Chamber of Commerce — Broadford Lake Park", "url": "https://www.garrettheritage.com/list/member/broadford-lake-park-672", "note": "Facilities listing." }
+      {
+        "label": "Garrett County Chamber of Commerce — Broadford Lake Park",
+        "url": "https://www.garrettheritage.com/list/member/broadford-lake-park-672",
+        "note": "Facilities listing."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
@@ -38,16 +63,41 @@
     "address": "South Street, Accident, MD 21520",
     "acres": null,
     "blurb": "The larger of Accident's two town parks, on the southern end of South Street. A full playground, a little league field, a quarter-mile walking loop, horseshoe pits and a tennis court — a genuine neighbourhood park rather than a scenic one.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed." },
-    "facilities": { "playground": true, "swimming": false, "beach": false, "picnic": null, "pavilion": null, "grills": null, "trails": true, "sports": true, "boatLaunch": false, "fishing": null, "pavedPath": null, "winterUse": null },
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "Not confirmed."
+    },
+    "facilities": {
+      "playground": true,
+      "swimming": false,
+      "beach": false,
+      "picnic": null,
+      "pavilion": null,
+      "grills": null,
+      "trails": true,
+      "sports": true,
+      "boatLaunch": false,
+      "fishing": null,
+      "pavedPath": null,
+      "winterUse": null
+    },
     "accessibility": null,
     "hours": null,
     "hoursNote": null,
     "phone": null,
-    "fee": { "note": "Believed free. To be confirmed.", "amount": null },
+    "fee": {
+      "note": "Believed free. To be confirmed.",
+      "amount": null
+    },
     "warnings": [],
     "sources": [
-      { "label": "Town of Accident — community", "url": "http://www.accidentmd.org/community.html", "note": "Park facilities as listed by the town." }
+      {
+        "label": "Town of Accident — community",
+        "url": "http://www.accidentmd.org/community.html",
+        "note": "Park facilities as listed by the town."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
@@ -67,16 +117,41 @@
     "address": "Wood Street, Accident, MD 21520",
     "acres": null,
     "blurb": "The smaller Accident park, at the western end of Wood Street. A large pavilion plus climbing cubes, a saucer swing, a seesaw, and a swing set that includes an accessible seat — which is worth knowing, because accessible play equipment is rare out here and almost never published.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed." },
-    "facilities": { "playground": true, "swimming": false, "beach": false, "picnic": true, "pavilion": true, "grills": null, "trails": false, "sports": false, "boatLaunch": false, "fishing": false, "pavedPath": null, "winterUse": null },
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "Not confirmed."
+    },
+    "facilities": {
+      "playground": true,
+      "swimming": false,
+      "beach": false,
+      "picnic": true,
+      "pavilion": true,
+      "grills": null,
+      "trails": false,
+      "sports": false,
+      "boatLaunch": false,
+      "fishing": false,
+      "pavedPath": null,
+      "winterUse": null
+    },
     "accessibility": "Swing set includes a handicap accessible seat, per the town's own listing.",
     "hours": null,
     "hoursNote": null,
     "phone": null,
-    "fee": { "note": "Believed free. To be confirmed.", "amount": null },
+    "fee": {
+      "note": "Believed free. To be confirmed.",
+      "amount": null
+    },
     "warnings": [],
     "sources": [
-      { "label": "Town of Accident — community", "url": "http://www.accidentmd.org/community.html", "note": "Pavilion and playground equipment, including the accessible swing seat." }
+      {
+        "label": "Town of Accident — community",
+        "url": "http://www.accidentmd.org/community.html",
+        "note": "Pavilion and playground equipment, including the accessible swing seat."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
@@ -94,29 +169,81 @@
     "town": "Friendsville",
     "address": "Friendsville, MD 21531",
     "acres": null,
-    "blurb": "A riverside park on the Youghiogheny with ball fields, a playground, pavilions, tennis and volleyball courts, and direct river access. Friendsville is the take-out town for the upper Yough, so the park doubles as the place paddlers regroup.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed." },
-    "facilities": { "playground": true, "swimming": null, "beach": false, "picnic": true, "pavilion": true, "grills": null, "trails": null, "sports": true, "boatLaunch": null, "fishing": true, "pavedPath": null, "winterUse": null },
+    "blurb": "The town's park on the Youghiogheny, with a paved walking and biking loop, a river access ramp and a small sand beach. Two baseball fields, basketball, tennis, sand volleyball and horseshoe pits, a large playground and a lot of open ground.",
+    "restrooms": {
+      "present": true,
+      "type": null,
+      "seasonal": null,
+      "note": "Reported first-hand. Whether they are permanent or seasonal, and their hours, are not confirmed.",
+      "confirmedOn": "2026-08-03",
+      "confirmedBy": "Site maintainer, first-hand"
+    },
+    "facilities": {
+      "playground": true,
+      "swimming": null,
+      "beach": true,
+      "picnic": true,
+      "pavilion": true,
+      "grills": null,
+      "trails": null,
+      "sports": true,
+      "boatLaunch": true,
+      "fishing": true,
+      "pavedPath": true,
+      "winterUse": null
+    },
     "accessibility": null,
     "hours": null,
     "hoursNote": null,
     "phone": null,
-    "fee": { "note": "Believed free. To be confirmed.", "amount": null },
+    "fee": {
+      "note": "Believed free. To be confirmed.",
+      "amount": null
+    },
     "warnings": [
       "River access here is on serious whitewater. The Youghiogheny through Friendsville is not a place to swim casually."
     ],
     "sources": [
-      { "label": "Town of Friendsville — Riverside Community Park", "url": "https://www.friendsville.org/friendsville-river-side-community-park/", "note": "Facilities as listed by the town." }
+      {
+        "label": "Town of Friendsville — Riverside Community Park",
+        "url": "https://www.friendsville.org/friendsville-river-side-community-park/",
+        "note": "Facilities as listed by the town."
+      },
+      {
+        "label": "Garrett County Chamber of Commerce — Town of Friendsville",
+        "url": "https://www.visitdeepcreek.com/friendsville/",
+        "note": "Lists the park's facilities in full: paved loop, river access ramp, small sand beach, fishing on Bear Creek and the Youghiogheny, two baseball fields, pavilions, basketball, horseshoe pits, sand volleyball, tennis, large playground. Mentions neither restrooms nor pickleball."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
     "verifiedSource": null,
     "outstanding": [
-      "RESTROOMS — confirm, and whether they are seasonal. This is a take-out point, so it matters more than usual.",
-      "Confirm whether the river access is a formal boat take-out or just a bank.",
-      "Confirm pavilion booking.",
-      "Get a street address — the town listing doesn't give one.",
-      "Get the Town of Friendsville number."
+      "Confirm whether the tennis courts are lined for pickleball, or whether there are dedicated pickleball courts. Reported first-hand; the town's own facilities listing mentions tennis but not pickleball.",
+      "Confirm whether the restrooms are permanent or seasonal, and their hours.",
+      "Confirm whether the sand beach is a swimming beach or river access only — the listing says beach but never says swimming.",
+      "Confirm park hours and whether the paved loop is lit."
+    ],
+    "corrections": [
+      {
+        "date": "2026-08-03",
+        "was": "That there is no beach here.",
+        "now": "There is a small sand beach. The Chamber's own listing for the town says so, and we had it as a flat no — which is worse than leaving it blank, because a flat no stops the park appearing when someone searches for one. Whether it is a swimming beach or river access only is still not confirmed."
+      }
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "There are restrooms, a play area, ball fields and pickleball.",
+        "affects": [
+          "restrooms",
+          "playground",
+          "ball fields",
+          "pickleball"
+        ]
+      }
     ]
   },
   {
@@ -127,18 +254,43 @@
     "address": "Garrett County, MD",
     "acres": 1308,
     "blurb": "Thirteen hundred acres run by the University of Maryland, with a lake and beach open daily through the summer for swimming, fishing and canoeing. Not a town park and not a state park — a third category that most visitors never hear about.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed." },
-    "facilities": { "playground": null, "swimming": true, "beach": true, "picnic": null, "pavilion": null, "grills": null, "trails": null, "sports": null, "boatLaunch": null, "fishing": true, "pavedPath": null, "winterUse": null },
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "Not confirmed."
+    },
+    "facilities": {
+      "playground": null,
+      "swimming": true,
+      "beach": true,
+      "picnic": null,
+      "pavilion": null,
+      "grills": null,
+      "trails": null,
+      "sports": null,
+      "boatLaunch": null,
+      "fishing": true,
+      "pavedPath": null,
+      "winterUse": null
+    },
     "accessibility": null,
     "hours": null,
     "hoursNote": "Lake and beach reported open daily in summer. Season dates unconfirmed.",
     "phone": null,
-    "fee": { "note": "Unconfirmed. A university facility may restrict access or charge differently for non-programme visitors.", "amount": null },
+    "fee": {
+      "note": "Unconfirmed. A university facility may restrict access or charge differently for non-programme visitors.",
+      "amount": null
+    },
     "warnings": [
       "This is a university 4-H facility rather than a public park. Confirm public access before planning around it."
     ],
     "sources": [
-      { "label": "Garrett County — parks and recreation overview", "url": "https://garrettcountyinfo.com/parks_and_recreation/", "note": "Describes the 4-H Center's lake and summer beach access." }
+      {
+        "label": "Garrett County — parks and recreation overview",
+        "url": "https://garrettcountyinfo.com/parks_and_recreation/",
+        "note": "Describes the 4-H Center's lake and summer beach access."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
@@ -159,16 +311,41 @@
     "address": "Grantsville, MD 21536",
     "acres": null,
     "blurb": "Grantsville is listed by the county among the eight municipalities that maintain community parks, but we have not yet confirmed which parks, where they are, or what is in them. This record exists so the gap is visible rather than hidden.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed." },
-    "facilities": { "playground": null, "swimming": null, "beach": null, "picnic": null, "pavilion": null, "grills": null, "trails": null, "sports": null, "boatLaunch": null, "fishing": null, "pavedPath": null, "winterUse": null },
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "Not confirmed."
+    },
+    "facilities": {
+      "playground": null,
+      "swimming": null,
+      "beach": null,
+      "picnic": null,
+      "pavilion": null,
+      "grills": null,
+      "trails": null,
+      "sports": null,
+      "boatLaunch": null,
+      "fishing": null,
+      "pavedPath": null,
+      "winterUse": null
+    },
     "accessibility": null,
     "hours": null,
     "hoursNote": null,
     "phone": null,
-    "fee": { "note": "Unconfirmed.", "amount": null },
+    "fee": {
+      "note": "Unconfirmed.",
+      "amount": null
+    },
     "warnings": [],
     "sources": [
-      { "label": "Garrett County — parks and recreation overview", "url": "https://garrettcountyinfo.com/parks_and_recreation/", "note": "Names Grantsville among the municipalities maintaining community parks. No park-level detail." }
+      {
+        "label": "Garrett County — parks and recreation overview",
+        "url": "https://garrettcountyinfo.com/parks_and_recreation/",
+        "note": "Names Grantsville among the municipalities maintaining community parks. No park-level detail."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
@@ -185,16 +362,41 @@
     "address": "Mountain Lake Park, MD 21550",
     "acres": null,
     "blurb": "Named by the county among the municipalities maintaining community parks. Park-level detail not yet confirmed.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed." },
-    "facilities": { "playground": null, "swimming": null, "beach": null, "picnic": null, "pavilion": null, "grills": null, "trails": null, "sports": null, "boatLaunch": null, "fishing": null, "pavedPath": null, "winterUse": null },
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "Not confirmed."
+    },
+    "facilities": {
+      "playground": null,
+      "swimming": null,
+      "beach": null,
+      "picnic": null,
+      "pavilion": null,
+      "grills": null,
+      "trails": null,
+      "sports": null,
+      "boatLaunch": null,
+      "fishing": null,
+      "pavedPath": null,
+      "winterUse": null
+    },
     "accessibility": null,
     "hours": null,
     "hoursNote": null,
     "phone": null,
-    "fee": { "note": "Unconfirmed.", "amount": null },
+    "fee": {
+      "note": "Unconfirmed.",
+      "amount": null
+    },
     "warnings": [],
     "sources": [
-      { "label": "Garrett County — parks and recreation overview", "url": "https://garrettcountyinfo.com/parks_and_recreation/", "note": "Names Mountain Lake Park among the municipalities maintaining community parks." }
+      {
+        "label": "Garrett County — parks and recreation overview",
+        "url": "https://garrettcountyinfo.com/parks_and_recreation/",
+        "note": "Names Mountain Lake Park among the municipalities maintaining community parks."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
@@ -211,16 +413,41 @@
     "address": "Kitzmiller, MD 21538",
     "acres": null,
     "blurb": "Named by the county among the municipalities maintaining community parks. Kitzmiller sits on the north branch of the Potomac below Wolf Den Run. Park-level detail not yet confirmed.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed." },
-    "facilities": { "playground": null, "swimming": null, "beach": null, "picnic": null, "pavilion": null, "grills": null, "trails": null, "sports": null, "boatLaunch": null, "fishing": null, "pavedPath": null, "winterUse": null },
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "Not confirmed."
+    },
+    "facilities": {
+      "playground": null,
+      "swimming": null,
+      "beach": null,
+      "picnic": null,
+      "pavilion": null,
+      "grills": null,
+      "trails": null,
+      "sports": null,
+      "boatLaunch": null,
+      "fishing": null,
+      "pavedPath": null,
+      "winterUse": null
+    },
     "accessibility": null,
     "hours": null,
     "hoursNote": null,
     "phone": null,
-    "fee": { "note": "Unconfirmed.", "amount": null },
+    "fee": {
+      "note": "Unconfirmed.",
+      "amount": null
+    },
     "warnings": [],
     "sources": [
-      { "label": "Garrett County — parks and recreation overview", "url": "https://garrettcountyinfo.com/parks_and_recreation/", "note": "Names Kitzmiller among the municipalities maintaining community parks." }
+      {
+        "label": "Garrett County — parks and recreation overview",
+        "url": "https://garrettcountyinfo.com/parks_and_recreation/",
+        "note": "Names Kitzmiller among the municipalities maintaining community parks."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
@@ -237,16 +464,41 @@
     "address": "Deer Park, MD 21550",
     "acres": null,
     "blurb": "Named by the county among the municipalities maintaining community parks. Park-level detail not yet confirmed.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed." },
-    "facilities": { "playground": null, "swimming": null, "beach": null, "picnic": null, "pavilion": null, "grills": null, "trails": null, "sports": null, "boatLaunch": null, "fishing": null, "pavedPath": null, "winterUse": null },
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "Not confirmed."
+    },
+    "facilities": {
+      "playground": null,
+      "swimming": null,
+      "beach": null,
+      "picnic": null,
+      "pavilion": null,
+      "grills": null,
+      "trails": null,
+      "sports": null,
+      "boatLaunch": null,
+      "fishing": null,
+      "pavedPath": null,
+      "winterUse": null
+    },
     "accessibility": null,
     "hours": null,
     "hoursNote": null,
     "phone": null,
-    "fee": { "note": "Unconfirmed.", "amount": null },
+    "fee": {
+      "note": "Unconfirmed.",
+      "amount": null
+    },
     "warnings": [],
     "sources": [
-      { "label": "Garrett County — parks and recreation overview", "url": "https://garrettcountyinfo.com/parks_and_recreation/", "note": "Names Deer Park among the municipalities maintaining community parks." }
+      {
+        "label": "Garrett County — parks and recreation overview",
+        "url": "https://garrettcountyinfo.com/parks_and_recreation/",
+        "note": "Names Deer Park among the municipalities maintaining community parks."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
@@ -263,16 +515,41 @@
     "address": "Loch Lynn Heights, MD 21550",
     "acres": null,
     "blurb": "Named by the county among the municipalities maintaining community parks. Park-level detail not yet confirmed.",
-    "restrooms": { "present": null, "type": null, "seasonal": null, "note": "Not confirmed." },
-    "facilities": { "playground": null, "swimming": null, "beach": null, "picnic": null, "pavilion": null, "grills": null, "trails": null, "sports": null, "boatLaunch": null, "fishing": null, "pavedPath": null, "winterUse": null },
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "Not confirmed."
+    },
+    "facilities": {
+      "playground": null,
+      "swimming": null,
+      "beach": null,
+      "picnic": null,
+      "pavilion": null,
+      "grills": null,
+      "trails": null,
+      "sports": null,
+      "boatLaunch": null,
+      "fishing": null,
+      "pavedPath": null,
+      "winterUse": null
+    },
     "accessibility": null,
     "hours": null,
     "hoursNote": null,
     "phone": null,
-    "fee": { "note": "Unconfirmed.", "amount": null },
+    "fee": {
+      "note": "Unconfirmed.",
+      "amount": null
+    },
     "warnings": [],
     "sources": [
-      { "label": "Garrett County — parks and recreation overview", "url": "https://garrettcountyinfo.com/parks_and_recreation/", "note": "Names Loch Lynn among the municipalities maintaining community parks." }
+      {
+        "label": "Garrett County — parks and recreation overview",
+        "url": "https://garrettcountyinfo.com/parks_and_recreation/",
+        "note": "Names Loch Lynn among the municipalities maintaining community parks."
+      }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,

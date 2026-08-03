@@ -50,11 +50,10 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ### Friendsville Community Park
 
-- [ ] RESTROOMS — confirm, and whether they are seasonal. This is a take-out point, so it matters more than usual.
-- [ ] Confirm whether the river access is a formal boat take-out or just a bank.
-- [ ] Confirm pavilion booking.
-- [ ] Get a street address — the town listing doesn't give one.
-- [ ] Get the Town of Friendsville number.
+- [ ] Confirm whether the tennis courts are lined for pickleball, or whether there are dedicated pickleball courts. Reported first-hand; the town's own facilities listing mentions tennis but not pickleball.
+- [ ] Confirm whether the restrooms are permanent or seasonal, and their hours.
+- [ ] Confirm whether the sand beach is a swimming beach or river access only — the listing says beach but never says swimming.
+- [ ] Confirm park hours and whether the paved loop is lit.
 
 ### Pleasant Valley 4-H Center
 
@@ -170,5 +169,5 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ---
 
-**83 open items.** Every one is a fact this site cannot confirm until
+**82 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.

@@ -190,6 +190,50 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
         </div>
       </dl>
 
+      {/* Corrections and first-hand reports sit ABOVE the sourcing, for the
+          same reason they do on a state park page: burying a correction under
+          the agency links keeps the promise technically while hoping nobody
+          reads it. */}
+      {
+        park.corrections && park.corrections.length > 0 && (
+          <>
+            <h2 id="corrected">We got this wrong</h2>
+            <ul class="list-none p-0 m-0 space-y-4">
+              {park.corrections.map((c) => (
+                <li class="sheet px-4 sm:px-5 py-4 border-l-[9px] border-l-contour-deep">
+                  <p class="label text-contour-deep m-0">Corrected {formatStampDate(c.date)}</p>
+                  <p class="mt-2 mb-0 text-[0.94rem] leading-[1.55] max-w-[58ch]">
+                    <span class="font-medium">We had said:</span> {c.was}
+                  </p>
+                  <p class="mt-1.5 mb-0 text-[0.94rem] leading-[1.55] max-w-[58ch]">
+                    <span class="font-medium">Actually:</span> {c.now}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+
+      {
+        park.reports && park.reports.length > 0 && (
+          <>
+            <h2 id="reports">From people who were there</h2>
+            <ul class="list-none p-0 m-0 space-y-4">
+              {park.reports.map((r) => (
+                <li class="sheet px-4 sm:px-5 py-4 border-l-[9px] border-l-lake">
+                  <p class="m-0 text-[0.96rem] leading-[1.55] max-w-[58ch]">{r.what}</p>
+                  <p class="stamp text-ink-soft mt-2.5 mb-0">
+                    {r.from} · reported {formatStampDate(r.receivedOn)}
+                    {r.visitedOn ? ` · visited ${formatStampDate(r.visitedOn)}` : " · visit date not given"}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+
       <aside class={`sheet breakout my-8 px-4 sm:px-5 py-5 border-l-[9px] ${isVerified(park) ? "border-l-flag-green" : "border-l-contour"}`}>
         {
           isVerified(park) ? (

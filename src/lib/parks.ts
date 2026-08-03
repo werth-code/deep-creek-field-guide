@@ -182,6 +182,10 @@ export interface RegionalPark {
   verifiedSource: string | null;
   outstanding?: string[];
   photos?: Photo[];
+  /* Town parks correct and get reported on exactly like state parks do — the
+     promise on /how-we-verify/ isn't scoped to one dataset. */
+  corrections?: Correction[];
+  reports?: FieldReport[];
 }
 
 /* ------------------------------------------------------------- rendering -- */
