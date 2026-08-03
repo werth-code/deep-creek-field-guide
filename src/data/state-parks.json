@@ -8,11 +8,14 @@
     "blurb": "Muddy Creek Falls is the tallest free-falling waterfall in Maryland at 53 feet, and the mile-long loop past it runs through a stand of old-growth hemlock and white pine — some of it over 300 years old, the last of its kind in the state. It is the most visited park in Garrett County and the reason the reservation system exists.",
     "features": {
       "waterfall": true,
+      "beach": null,
       "swimming": false,
+      "restrooms": null,
       "camping": true,
       "cabins": null,
       "trails": true,
       "boatLaunch": false,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": true,
       "petsAllowed": false
@@ -116,11 +119,14 @@
     "blurb": "The state park sits on the northeast shore of Maryland's largest lake, with the only public swimming beach on Deep Creek and a discovery centre that stays open year-round. Everything else on the lake is private shoreline, which is why this one gets busy.",
     "features": {
       "waterfall": false,
+      "beach": true,
       "swimming": true,
+      "restrooms": true,
       "camping": true,
       "cabins": null,
       "trails": true,
       "boatLaunch": true,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": true,
       "petsAllowed": null
@@ -173,9 +179,9 @@
     "verifiedDate": null,
     "verifiedSource": null,
     "outstanding": [
-      "Confirm it is genuinely NOT in the day-use reservation programme — visitors will assume all Garrett parks changed together.",
+      "PRIORITY: confirm whether boats are rented AT the state park, or only at private marinas elsewhere on the lake. A field report says the park has rentals; DNR's page does not mention any.",
+      "Confirm beach season dates and whether lifeguards are posted — DNR says swimming is permitted 'when swim lines are installed' and never mentions guards.",
       "Confirm the day-use fee, and whether it differs in and out of season.",
-      "Confirm beach season dates and whether lifeguards are posted.",
       "Confirm boat launch fees and whether a separate launch permit is needed.",
       "Confirm pet rules on the beach specifically."
     ],
@@ -183,10 +189,10 @@
       "parkOffice": null,
       "officePhone": null,
       "officeAddress": null,
-      "giftShop": null,
+      "giftShop": true,
       "campStore": null,
       "passesSoldHere": null,
-      "note": null
+      "note": "The Deep Creek Discovery Center has a Nature Shop selling field guides and souvenirs. Open year-round."
     }
   },
   {
@@ -198,11 +204,14 @@
     "blurb": "A 53-acre lake made by damming Herrington Creek, with twenty year-round cabins built by the Civilian Conservation Corps. No gas motors on the lake, which keeps it quiet. Cross-country ski rental in winter — one of very few places in Maryland where that is a real option.",
     "features": {
       "waterfall": false,
+      "beach": null,
       "swimming": true,
+      "restrooms": null,
       "camping": false,
       "cabins": true,
       "trails": true,
       "boatLaunch": true,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": true,
       "petsAllowed": null
@@ -280,11 +289,14 @@
     "blurb": "A 13-acre lake on the site of a nineteenth-century milling settlement, wrapped inside Savage River State Forest. Eleven cabins, a groomed cross-country ski network in winter, and enough elevation that it holds snow when the rest of Maryland has none.",
     "features": {
       "waterfall": false,
+      "beach": null,
       "swimming": true,
+      "restrooms": null,
       "camping": true,
       "cabins": true,
       "trails": true,
       "boatLaunch": true,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": true,
       "petsAllowed": null
@@ -350,11 +362,14 @@
     "blurb": "Three hundred acres at the mouth of the Savage River where it meets the reservoir, surrounded on all sides by Savage River State Forest. Primitive camping, and the put-in for some of the most serious whitewater in the mid-Atlantic when the river is released.",
     "features": {
       "waterfall": false,
+      "beach": null,
       "swimming": false,
+      "restrooms": null,
       "camping": true,
       "cabins": false,
       "trails": true,
       "boatLaunch": true,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": null,
       "petsAllowed": null
@@ -422,11 +437,14 @@
     "blurb": "Four acres around an 80-foot stone arch built in 1813 for the National Road — the largest single-span stone arch in America when it was finished, and a National Historic Landmark. A ten-minute stop rather than a day out, and worth it.",
     "features": {
       "waterfall": false,
+      "beach": null,
       "swimming": false,
+      "restrooms": null,
       "camping": false,
       "cabins": false,
       "trails": null,
       "boatLaunch": false,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": null,
       "petsAllowed": null
@@ -491,11 +509,14 @@
     "blurb": "A restored 1800s homestead and former general store on the Youghiogheny, kept as a picture of rural life before the lake existed. Also the put-in for the upper Yough, which is genuinely expert-only water.",
     "features": {
       "waterfall": false,
+      "beach": null,
       "swimming": false,
+      "restrooms": null,
       "camping": false,
       "cabins": false,
       "trails": null,
       "boatLaunch": true,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": null,
       "petsAllowed": null
@@ -562,11 +583,14 @@
     "blurb": "Maryland's designated off-highway vehicle park, on reclaimed mine land above the Potomac's north branch. Miles of ATV and dirt bike trail, plus hiking, fishing and hunting. Unlike anywhere else in the state park system.",
     "features": {
       "waterfall": false,
+      "beach": null,
       "swimming": false,
+      "restrooms": null,
       "camping": null,
       "cabins": false,
       "trails": true,
       "boatLaunch": false,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": null,
       "petsAllowed": null
@@ -629,11 +653,14 @@
     "blurb": "Maryland's only designated wild river, running north through a gorge toward Pennsylvania. Managed for the river itself rather than for visitors — few facilities, and the whitewater through here is among the hardest in the east.",
     "features": {
       "waterfall": false,
+      "beach": null,
       "swimming": false,
+      "restrooms": null,
       "camping": false,
       "cabins": false,
       "trails": true,
       "boatLaunch": true,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": null,
       "petsAllowed": null
@@ -700,11 +727,14 @@
     "blurb": "Maryland's largest state forest at around 54,000 acres, wrapping Big Run and New Germany. Dispersed camping, hunting, trout water and the reservoir behind it. A forest rather than a park — different rules, and worth knowing which you are standing in.",
     "features": {
       "waterfall": false,
+      "beach": null,
       "swimming": false,
+      "restrooms": null,
       "camping": true,
       "cabins": false,
       "trails": true,
       "boatLaunch": true,
+      "boatRentals": null,
       "fishing": true,
       "winterUse": true,
       "petsAllowed": null

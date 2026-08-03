@@ -23,6 +23,7 @@ const SAYS: Record<AttrKey, string> = {
   camping: "camping",
   cabins: "cabins",
   boatLaunch: "a boat launch",
+  boatRentals: "boat rentals",
   fishing: "fishing",
   picnic: "picnic tables",
   pavilion: "a pavilion",

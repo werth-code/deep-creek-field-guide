@@ -23,6 +23,7 @@ const VOCAB: [string[], AttrKey][] = [
   [["trail", "trails", "hike", "hiking", "walk", "walking", "hikes"], "trails"],
   [["camp", "camping", "campground", "campsite", "campsites", "tent", "tents", "rv"], "camping"],
   [["cabin", "cabins", "lodge", "lodging"], "cabins"],
+  [["boat rental", "boat rentals", "rent a boat", "rent boats", "rent a kayak", "rent kayaks", "hire a boat", "rentals"], "boatRentals"],
   [["boat launch", "boat ramp", "launch", "ramp", "kayak", "canoe", "paddle", "paddling", "boating", "boat"], "boatLaunch"],
   [["fish", "fishing", "trout", "angling"], "fishing"],
   [["picnic", "picnic table", "picnic tables", "lunch", "eat outside"], "picnic"],

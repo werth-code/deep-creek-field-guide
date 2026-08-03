@@ -46,6 +46,7 @@ export interface ChatAttrs {
   camping: Tri;
   cabins: Tri;
   boatLaunch: Tri;
+  boatRentals: Tri;
   fishing: Tri;
   picnic: Tri;
   pavilion: Tri;
@@ -85,8 +86,8 @@ export interface ChatEntry {
 
 const ATTR_KEYS: (keyof ChatAttrs)[] = [
   "restrooms", "playground", "swimming", "beach", "trails", "camping",
-  "cabins", "boatLaunch", "fishing", "picnic", "pavilion", "sports",
-  "pavedPath", "winterUse", "waterfall", "petsAllowed", "walkIn", "free",
+  "cabins", "boatLaunch", "boatRentals", "fishing", "picnic", "pavilion",
+  "sports", "pavedPath", "winterUse", "waterfall", "petsAllowed", "walkIn", "free",
 ];
 
 const EMPTY: ChatAttrs = Object.fromEntries(ATTR_KEYS.map((k) => [k, null])) as ChatAttrs;
@@ -119,11 +120,14 @@ function stateEntry(p: StatePark): ChatEntry {
     blurb: p.blurb,
     attrs: {
       ...EMPTY,
+      beach: f.beach,
+      restrooms: f.restrooms,
       swimming: f.swimming,
       trails: f.trails,
       camping: f.camping,
       cabins: f.cabins,
       boatLaunch: f.boatLaunch,
+      boatRentals: f.boatRentals,
       fishing: f.fishing,
       winterUse: f.winterUse,
       waterfall: f.waterfall,

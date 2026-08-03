@@ -81,9 +81,9 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ### Deep Creek Lake
 
-- [ ] Confirm it is genuinely NOT in the day-use reservation programme — visitors will assume all Garrett parks changed together.
+- [ ] PRIORITY: confirm whether boats are rented AT the state park, or only at private marinas elsewhere on the lake. A field report says the park has rentals; DNR's page does not mention any.
+- [ ] Confirm beach season dates and whether lifeguards are posted — DNR says swimming is permitted 'when swim lines are installed' and never mentions guards.
 - [ ] Confirm the day-use fee, and whether it differs in and out of season.
-- [ ] Confirm beach season dates and whether lifeguards are posted.
 - [ ] Confirm boat launch fees and whether a separate launch permit is needed.
 - [ ] Confirm pet rules on the beach specifically.
 

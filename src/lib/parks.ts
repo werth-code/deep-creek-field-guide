@@ -36,11 +36,22 @@ export interface Correction {
 
 export interface StateParkFeatures {
   waterfall: boolean | null;
+  /** Sand you can sit on. Distinct from `swimming`, which is about the water. */
+  beach: boolean | null;
   swimming: boolean | null;
+  /**
+   * Added after a reader pointed out Deep Creek Lake has them and the schema
+   * had nowhere to say so. State parks had no restroom field at all, which
+   * meant the one question people ask most could only be answered for town
+   * parks.
+   */
+  restrooms: boolean | null;
   camping: boolean | null;
   cabins: boolean | null;
   trails: boolean | null;
   boatLaunch: boolean | null;
+  /** Renting a boat AT the park — not a private marina elsewhere on the lake. */
+  boatRentals: boolean | null;
   fishing: boolean | null;
   winterUse: boolean | null;
   petsAllowed: boolean | null;
@@ -158,11 +169,14 @@ export function restroomAnswer(r: Restrooms): Answer {
 
 export const STATE_FEATURE_LABELS: [keyof StateParkFeatures, string][] = [
   ["waterfall", "Waterfall"],
+  ["beach", "Beach"],
   ["swimming", "Swimming"],
+  ["restrooms", "Restrooms"],
   ["camping", "Camping"],
   ["cabins", "Cabins"],
   ["trails", "Trails"],
   ["boatLaunch", "Boat launch"],
+  ["boatRentals", "Boat rentals"],
   ["fishing", "Fishing"],
   ["winterUse", "Winter use"],
   ["petsAllowed", "Pets"],
