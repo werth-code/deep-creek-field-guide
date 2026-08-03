@@ -6,12 +6,14 @@
     "town": "Oakland",
     "address": "Broadford Road, Oakland, MD 21550",
     "acres": null,
-    "blurb": "The largest municipal park in the county, built around a 140-acre reservoir dug in 1972 to supply Oakland and opened to recreation three years later. A sandy beach and swimming area, several playgrounds, ball fields, trails, and pavilions you can rent. It is the closest thing Garrett County has to a public lake beach that isn't a state park.",
+    "blurb": "Oakland's lake park and the biggest municipal park in the county — a swimming beach, boat launch, and boat and pavilion rentals, with picnic ground, volleyball and basketball behind it.",
     "restrooms": {
-      "present": null,
+      "present": true,
       "type": null,
       "seasonal": null,
-      "note": "Not confirmed. A park with a public swimming beach almost certainly has them, but we have not checked, and whether they open outside the beach season is the part that matters."
+      "note": "Reported first-hand. Whether they stay open outside the beach season is the part that matters and is not confirmed.",
+      "confirmedOn": "2026-08-03",
+      "confirmedBy": "Site maintainer, first-hand"
     },
     "facilities": {
       "playground": true,
@@ -32,7 +34,7 @@
     "hoursNote": "Seasonal. The beach and much of the park close outside summer — confirm before driving out in spring or autumn.",
     "phone": null,
     "fee": {
-      "note": "Believed to charge an entry or beach fee in season, and pavilions are rentable. Amounts unconfirmed.",
+      "note": "Pavilions and boats can be rented, per the Chamber's listing. Whether there is an entry or beach fee, and how much, is not confirmed — the Town of Oakland sets it and its website is currently unreachable.",
       "amount": null
     },
     "warnings": [],
@@ -41,18 +43,41 @@
         "label": "Garrett County Chamber of Commerce — Broadford Lake Park",
         "url": "https://www.garrettheritage.com/list/member/broadford-lake-park-672",
         "note": "Facilities listing."
+      },
+      {
+        "label": "Garrett County Chamber of Commerce — Broadford Lake Park listing",
+        "url": "https://business.visitdeepcreek.com/list/member/broadford-lake-park-672",
+        "note": "Confirms the lake, beach area, volleyball, basketball, boat launch, and boat and pavilion rentals. Mentions neither fees, restrooms nor a playground."
       }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
     "verifiedSource": null,
     "outstanding": [
-      "RESTROOMS — confirm they exist, and crucially whether they are open outside the summer beach season.",
-      "Confirm the entry/beach fee and whether residents and non-residents pay differently.",
-      "Confirm the season dates and whether lifeguards are posted.",
-      "Get the Town of Oakland parks number.",
-      "Confirm pavilion rental cost and how to book.",
-      "Confirm whether dogs are allowed, and whether that differs on the beach."
+      "PRIORITY: get the entry fee and season-pass prices from the Town of Oakland directly. Figures circulate online but the town's own site is unreachable and we will not publish a number we cannot read at source.",
+      "Confirm the season the beach is open and staffed, and whether the park is accessible outside it.",
+      "Confirm whether the restrooms stay open outside the beach season.",
+      "Confirm boat rental prices and what is available to rent."
+    ],
+    "corrections": [
+      {
+        "date": "2026-08-03",
+        "was": "\"Believed to charge an entry or beach fee in season.\"",
+        "now": "We don't know, and \"believed\" is not something this site is allowed to publish. It was a guess with no source behind it, which is the one thing every page here promises not to do. The fee is now marked unconfirmed until the Town of Oakland confirms it."
+      }
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "There are restrooms, a playground and a beach area.",
+        "affects": [
+          "restrooms",
+          "playground",
+          "beach"
+        ]
+      }
     ]
   },
   {

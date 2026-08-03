@@ -28,12 +28,10 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ### Broadford Lake Park
 
-- [ ] RESTROOMS — confirm they exist, and crucially whether they are open outside the summer beach season.
-- [ ] Confirm the entry/beach fee and whether residents and non-residents pay differently.
-- [ ] Confirm the season dates and whether lifeguards are posted.
-- [ ] Get the Town of Oakland parks number.
-- [ ] Confirm pavilion rental cost and how to book.
-- [ ] Confirm whether dogs are allowed, and whether that differs on the beach.
+- [ ] PRIORITY: get the entry fee and season-pass prices from the Town of Oakland directly. Figures circulate online but the town's own site is unreachable and we will not publish a number we cannot read at source.
+- [ ] Confirm the season the beach is open and staffed, and whether the park is accessible outside it.
+- [ ] Confirm whether the restrooms stay open outside the beach season.
+- [ ] Confirm boat rental prices and what is available to rent.
 
 ### Town Park East
 
@@ -169,5 +167,5 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ---
 
-**82 open items.** Every one is a fact this site cannot confirm until
+**80 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.

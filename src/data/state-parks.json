@@ -213,7 +213,29 @@
       "campStore": null,
       "passesSoldHere": null,
       "note": "The Deep Creek Discovery Center has a Nature Shop selling field guides and souvenirs. Open year-round."
-    }
+    },
+    "photos": [
+      {
+        "file": "deep-creek-lake-beach",
+        "alt": "A wide sand beach curving to a lake, with stone breakwaters enclosing a swim area, people swimming and sitting on the sand, and forested hills along the far shore.",
+        "caption": "The swim area, enclosed by stone breakwaters. DNR lists two sandy beaches here; this is the one people mean.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-03",
+        "portrait": false
+      }
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "Photographed the beach area — sand, an enclosed swim area behind stone breakwaters, and open lake beyond.",
+        "affects": [
+          "beach",
+          "swimming"
+        ]
+      }
+    ]
   },
   {
     "slug": "herrington-manor",
