@@ -226,15 +226,21 @@ const title =
           )
         }
         {
-          park.services?.giftShop !== undefined && (
+          park.services && (
             <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
               <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Shop</dt>
-              <dd class={`m-0 mt-1 sm:mt-0 text-[0.95rem] ${park.services.giftShop === null ? "text-ink-soft italic" : ""}`}>
-                {park.services.giftShop === null
-                  ? "Gift shop or camp store not confirmed"
-                  : park.services.giftShop
-                    ? "Gift shop or camp store on site"
-                    : "No shop on site"}
+              <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55]">
+                {(() => {
+                  /* Two separate fields, because "there is a park store" and
+                     "it sells souvenirs" are different claims and we often
+                     only have the first. */
+                  const s = park.services!;
+                  if (s.giftShop === true) return "Gift shop on site";
+                  if (s.campStore === true)
+                    return "Park store on site — whether it stocks more than camp supplies is not confirmed";
+                  if (s.giftShop === false && s.campStore === false) return "No shop on site";
+                  return <span class="text-ink-soft italic">Not confirmed</span>;
+                })()}
               </dd>
             </div>
           )

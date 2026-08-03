@@ -10,7 +10,7 @@
       "waterfall": true,
       "beach": null,
       "swimming": false,
-      "restrooms": null,
+      "restrooms": true,
       "camping": true,
       "cabins": null,
       "trails": true,
@@ -62,6 +62,11 @@
         "note": "The operator's own park page. States reservations are required on weekends and holidays, Memorial Day weekend through Labor Day."
       },
       {
+        "label": "Maryland Park Reservations — Swallow Falls campground",
+        "url": "https://parkreservations.maryland.gov/camping/swallow-falls-state-park/r/campgroundDetails.do?contractCode=MD&parkId=380133",
+        "note": "Maryland's own reservation system. Lists restrooms, showers, a Park Store and a dump station. The park's main DNR page lists no facilities at all."
+      },
+      {
         "label": "Maryland DNR — additional parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "Most recent statewide notice. Gives the three entry slots and the ~$1.50 per person service charge, and confirms weekday entry is processed on arrival."
@@ -86,11 +91,12 @@
     "verifiedDate": null,
     "verifiedSource": null,
     "outstanding": [
-      "PRIORITY: ask the park to settle the county-vs-DNR conflict on whether weekdays ever need a reservation, and get the county announcement corrected if DNR is right.",
+      "PRIORITY: confirm whether day-use visitors can use the campground restrooms and showers, or whether they are for campers only. A field report says the park has restrooms; Maryland lists them under the campground.",
+      "PRIORITY: confirm whether there is a staffed ranger or contact station ON SITE. A field report says yes; DNR lists only a phone number, and the park is administered from Herrington Manor.",
+      "Confirm what the Park Store stocks and whether it opens outside camping season — a day-use visitor in May needs a different answer from a camper in July.",
       "PRIORITY: confirm the day-use fee amount — every source says a fee is charged at booking, none gives the figure.",
+      "Resolve the county-vs-DNR conflict on whether weekdays ever need a reservation.",
       "Confirm which dates count as 'holidays' for the reservation requirement.",
-      "Confirm what actually happens on arrival at a weekend without a reservation — turned away, or waitlisted?",
-      "Confirm whether campground and cabin guests need a separate day-use reservation.",
       "Confirm winter access and whether the road to the falls is maintained."
     ],
     "corrections": [
@@ -105,9 +111,9 @@
       "officePhone": "301-387-6938",
       "officeAddress": "c/o Herrington Manor State Park, 222 Herrington Lane, Oakland, MD 21550",
       "giftShop": null,
-      "campStore": null,
+      "campStore": true,
       "passesSoldHere": null,
-      "note": "Swallow Falls is administered from Herrington Manor; the mailing address is Herrington Manor's."
+      "note": "Maryland's campground listing shows restrooms, showers, a Park Store and a dump station. Those are listed under the CAMPGROUND — whether a day-use visitor can use them is not confirmed. Swallow Falls is administered from Herrington Manor, and no staffed ranger station on site is listed anywhere by DNR."
     }
   },
   {

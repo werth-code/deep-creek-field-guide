@@ -72,11 +72,12 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ### Swallow Falls
 
-- [ ] PRIORITY: ask the park to settle the county-vs-DNR conflict on whether weekdays ever need a reservation, and get the county announcement corrected if DNR is right.
+- [ ] PRIORITY: confirm whether day-use visitors can use the campground restrooms and showers, or whether they are for campers only. A field report says the park has restrooms; Maryland lists them under the campground.
+- [ ] PRIORITY: confirm whether there is a staffed ranger or contact station ON SITE. A field report says yes; DNR lists only a phone number, and the park is administered from Herrington Manor.
+- [ ] Confirm what the Park Store stocks and whether it opens outside camping season — a day-use visitor in May needs a different answer from a camper in July.
 - [ ] PRIORITY: confirm the day-use fee amount — every source says a fee is charged at booking, none gives the figure.
+- [ ] Resolve the county-vs-DNR conflict on whether weekdays ever need a reservation.
 - [ ] Confirm which dates count as 'holidays' for the reservation requirement.
-- [ ] Confirm what actually happens on arrival at a weekend without a reservation — turned away, or waitlisted?
-- [ ] Confirm whether campground and cabin guests need a separate day-use reservation.
 - [ ] Confirm winter access and whether the road to the falls is maintained.
 
 ### Deep Creek Lake
@@ -144,5 +145,5 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ---
 
-**69 open items.** Every one is a fact this site cannot confirm until
+**70 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.
