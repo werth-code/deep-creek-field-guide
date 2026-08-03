@@ -171,6 +171,15 @@ export interface RegionalPark {
   restrooms: Restrooms;
   facilities: RegionalFacilities;
   accessibility: string | null;
+  /**
+   * WHO MAY ACTUALLY USE IT.
+   *
+   * Added for the 4-H centre, where the honest answer is neither "public
+   * park" nor "closed": part is open, part is programme-and-hire only, and a
+   * facilities table alone would send a family there to swim in water they
+   * cannot get to. Where this is null the record is an ordinary public park.
+   */
+  access: string | null;
   hours: string | null;
   hoursNote: string | null;
   phone: string | null;

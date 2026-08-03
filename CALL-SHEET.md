@@ -53,21 +53,12 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 - [ ] Confirm whether the sand beach is a swimming beach or river access only — the listing says beach but never says swimming.
 - [ ] Confirm park hours and whether the paved loop is lit.
 
-### Pleasant Valley 4-H Center
+### Maryland 4-H Environmental Education & Camping Center — 301-334-6960
 
-- [ ] PRIORITY: confirm whether the general public can actually use the lake and beach, or only 4-H programme participants. Everything else depends on this.
-- [ ] RESTROOMS — confirm.
-- [ ] Confirm the summer season dates and daily hours.
-- [ ] Confirm any fee.
-- [ ] Get the centre's phone number.
-
-### Grantsville town parks
-
-- [ ] Everything. Call the Town of Grantsville, get the park names, addresses and facilities — or drop this record.
-
-### Mountain Lake Park town parks
-
-- [ ] Everything. Call the town, get park names, addresses and facilities — or drop this record.
+- [ ] Confirm what a member of the public can actually reach without a booking — is the lake shore walkable, and from where?
+- [ ] Confirm whether there is any public restroom, as distinct from the camp bath houses.
+- [ ] Confirm whether fishing needs a permit or prior notice.
+- [ ] Confirm facility hire rates and minimum group size.
 
 ### Kitzmiller town parks
 
@@ -167,5 +158,5 @@ Ordered by consequence. Whatever is most costly to get wrong comes first.
 
 ---
 
-**80 open items.** Every one is a fact this site cannot confirm until
+**77 open items.** Every one is a fact this site cannot confirm until
 someone picks up a phone. That is the moat, not overhead.

@@ -15,8 +15,15 @@ import sitemap from '@astrojs/sitemap';
  * create it.
  */
 const read = (p) => JSON.parse(readFileSync(fileURLToPath(new URL(p, import.meta.url)), 'utf8'));
-const publishable = (r) =>
-  Boolean((r.verifiedDate && r.verifiedSource) || (r.sources?.length && r.sourcedOn));
+/* Mirrors tierOf() in src/lib/verification.ts, INCLUDING the primary-source
+   rule. A source flagged `primary: false` is a community site or a guide and
+   cannot carry a record on its own. This duplication is why check-build.mjs
+   exists — it caught this the first time the two drifted apart. */
+const publishable = (r) => {
+  if (r.verifiedDate && r.verifiedSource) return true;
+  const primary = (r.sources ?? []).filter((s) => s.primary !== false);
+  return Boolean(primary.length && r.sourcedOn);
+};
 
 const unverified = [
   ...read('./src/data/state-parks.json').filter((r) => !publishable(r)).map((r) => `/parks/${r.slug}/`),

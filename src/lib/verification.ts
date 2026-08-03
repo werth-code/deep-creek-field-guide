@@ -19,8 +19,19 @@ import { formatStampDate } from "./dates";
 export interface Verifiable {
   verifiedDate: string | null;
   verifiedSource: string | null;
-  /** Named primary sources — the body that sets the rule, not an aggregator. */
-  sources?: { label: string; url: string; note?: string | null }[] | null;
+  /**
+   * Named sources. `primary: false` marks one that is NOT the body that sets
+   * the rule — a community site, a tourism board, a guide.
+   *
+   * This flag exists because the gate could not previously tell the
+   * difference. /how-we-verify/ promises that a fact whose only origin is an
+   * aggregator never publishes, and the build enforced it by checking that
+   * SOME source existed — which an aggregator satisfies. Five town-park
+   * records were live on the strength of a community information site, and
+   * one of them was wrong in a way that would have sent a family somewhere to
+   * swim. A promise the build cannot check is not enforced, it is decoration.
+   */
+  sources?: { label: string; url: string; note?: string | null; primary?: boolean }[] | null;
   /** ISO date those sources were read. Required for a record to count as sourced. */
   sourcedOn?: string | null;
 }
@@ -50,7 +61,10 @@ export type Tier = "confirmed" | "sourced" | "reported";
 
 export function tierOf(v: Verifiable): Tier {
   if (v.verifiedDate && v.verifiedSource) return "confirmed";
-  if (v.sources && v.sources.length > 0 && v.sourcedOn) return "sourced";
+  /* At least one PRIMARY source. A record standing only on third-party
+     write-ups is `reported`, and reported never publishes. */
+  const primary = (v.sources ?? []).filter((s) => s.primary !== false);
+  if (primary.length > 0 && v.sourcedOn) return "sourced";
   return "reported";
 }
 

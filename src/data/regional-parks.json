@@ -77,6 +77,19 @@
           "playground",
           "beach"
         ]
+      },
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "Playground, lake area, restrooms, trails and pavilions.",
+        "affects": [
+          "playground",
+          "beach",
+          "restrooms",
+          "trails",
+          "pavilion"
+        ]
       }
     ]
   },
@@ -288,28 +301,30 @@
   },
   {
     "slug": "pleasant-valley-4h-center",
-    "name": "Pleasant Valley 4-H Center",
-    "operator": "University of Maryland",
-    "town": "Grantsville",
-    "address": "Garrett County, MD",
-    "acres": 1308,
-    "blurb": "Thirteen hundred acres run by the University of Maryland, with a lake and beach open daily through the summer for swimming, fishing and canoeing. Not a town park and not a state park — a third category that most visitors never hear about.",
+    "name": "Maryland 4-H Environmental Education & Camping Center",
+    "operator": "University of Maryland Extension",
+    "town": "Mountain Lake Park",
+    "address": "1916 Maryland Highway, Suite A, Mountain Lake Park, MD 21550",
+    "acres": 1100,
+    "blurb": "Long known locally as Pleasant Valley. Over 1,100 acres run by University of Maryland Extension, part open to anyone and part reserved for camp programmes and private hires. The swimming beach, boating, challenge course, archery and shooting range and the cabins all sit on the reserved side.",
     "restrooms": {
-      "present": null,
+      "present": true,
       "type": null,
       "seasonal": null,
-      "note": "Not confirmed."
+      "note": "Extension lists modern bath houses. Those are on the reserved side — whether anything is open to a public visitor is not confirmed.",
+      "confirmedOn": null,
+      "confirmedBy": null
     },
     "facilities": {
       "playground": null,
-      "swimming": true,
-      "beach": true,
+      "swimming": false,
+      "beach": false,
       "picnic": null,
       "pavilion": null,
       "grills": null,
-      "trails": null,
-      "sports": null,
-      "boatLaunch": null,
+      "trails": true,
+      "sports": false,
+      "boatLaunch": false,
       "fishing": true,
       "pavedPath": null,
       "winterUse": null
@@ -317,56 +332,87 @@
     "accessibility": null,
     "hours": null,
     "hoursNote": "Lake and beach reported open daily in summer. Season dates unconfirmed.",
-    "phone": null,
+    "phone": "301-334-6960",
     "fee": {
-      "note": "Unconfirmed. A university facility may restrict access or charge differently for non-programme visitors.",
+      "note": "Not confirmed for public use. Facility hire is priced separately by Extension.",
       "amount": null
     },
     "warnings": [
-      "This is a university 4-H facility rather than a public park. Confirm public access before planning around it."
+      "This is a working camp, not a public park. The beach, boats, ranges and cabins are for camp programmes and booked groups.",
+      "Confirm with the centre before planning a visit around anything beyond the lake, trails and fishing."
     ],
     "sources": [
       {
-        "label": "Garrett County — parks and recreation overview",
-        "url": "https://garrettcountyinfo.com/parks_and_recreation/",
-        "note": "Describes the 4-H Center's lake and summer beach access."
+        "label": "University of Maryland Extension — Maryland 4-H Environmental Education & Camping Center",
+        "url": "https://extension.umd.edu/programs/4-h-youth-development/program-areas/environmental-sciences/maryland-4-h-environmental-education-camping-center",
+        "note": "The operator. Gives the proper name, over 1,100 acres, the address and phone, and splits what the public may use from what sits on the private side."
+      },
+      {
+        "label": "University of Maryland Extension — private events",
+        "url": "https://extension.umd.edu/programs/4-h-youth-development/program-areas/environmental-sciences/maryland-4-h-environmental-education-camping-center/private-events",
+        "note": "States the facility is open to the public for reservations, and names the booking contact."
       }
     ],
     "sourcedOn": "2026-08-03",
     "verifiedDate": null,
     "verifiedSource": null,
     "outstanding": [
-      "PRIORITY: confirm whether the general public can actually use the lake and beach, or only 4-H programme participants. Everything else depends on this.",
-      "RESTROOMS — confirm.",
-      "Confirm the summer season dates and daily hours.",
-      "Confirm any fee.",
-      "Get the centre's phone number."
+      "Confirm what a member of the public can actually reach without a booking — is the lake shore walkable, and from where?",
+      "Confirm whether there is any public restroom, as distinct from the camp bath houses.",
+      "Confirm whether fishing needs a permit or prior notice.",
+      "Confirm facility hire rates and minimum group size."
+    ],
+    "access": "Two halves. Extension says the public gets the lake, hiking trails, fishing, biking and wildlife viewing. Swimming, boating, shooting sports, the challenge course, sports fields, bath houses and cabins are listed under the private side — available through a camp programme or by booking the facility, not by turning up. Bookings and questions: 301-334-6960.",
+    "corrections": [
+      {
+        "date": "2026-08-03",
+        "was": "\"Thirteen hundred acres run by the University of Maryland, with a lake and beach open daily through the summer for swimming, fishing and canoeing.\" Swimming and the beach were listed as available.",
+        "now": "It is over 1,100 acres, and Extension — the operator — puts swimming, boating, the ranges, the challenge course and the cabins on the PRIVATE side, available through a camp programme or by booking. Only the lake, trails, fishing, biking and wildlife viewing are described as public. Our version would have sent a family there to swim. It also came from a county tourism site rather than from Extension, which is the kind of source this site is not supposed to use at all — that is the root of it."
+      }
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer — camper and volunteer at the centre for over 40 years",
+        "what": "Twelve rustic cabins for campers, an athletic field, a challenge course, a basketball, volleyball and four-square court, a beach area at the lake for swimming and canoeing, and marksmanship and archery ranges.",
+        "affects": [
+          "cabins",
+          "athletic field",
+          "challenge course",
+          "courts",
+          "beach",
+          "ranges"
+        ]
+      }
     ]
   },
   {
     "slug": "grantsville-town-park",
-    "name": "Grantsville town parks",
+    "name": "Grantsville Town Park",
     "operator": "Town of Grantsville",
     "town": "Grantsville",
     "address": "Grantsville, MD 21536",
     "acres": null,
-    "blurb": "Grantsville is listed by the county among the eight municipalities that maintain community parks, but we have not yet confirmed which parks, where they are, or what is in them. This record exists so the gap is visible rather than hidden.",
+    "blurb": "The town park in the middle of Grantsville, a block from the library and the restaurants. Playground, tennis and pickleball, basketball and sand volleyball, a softball diamond, and pavilions you can book.",
     "restrooms": {
-      "present": null,
+      "present": true,
       "type": null,
       "seasonal": null,
-      "note": "Not confirmed."
+      "note": "Reported first-hand. Whether they stay open through the winter is not confirmed.",
+      "confirmedOn": "2026-08-03",
+      "confirmedBy": "Site maintainer, first-hand"
     },
     "facilities": {
-      "playground": null,
-      "swimming": null,
-      "beach": null,
-      "picnic": null,
-      "pavilion": null,
+      "playground": true,
+      "swimming": false,
+      "beach": false,
+      "picnic": true,
+      "pavilion": true,
       "grills": null,
       "trails": null,
-      "sports": null,
-      "boatLaunch": null,
+      "sports": true,
+      "boatLaunch": false,
       "fishing": null,
       "pavedPath": null,
       "winterUse": null
@@ -376,40 +422,61 @@
     "hoursNote": null,
     "phone": null,
     "fee": {
-      "note": "Unconfirmed.",
+      "note": "No charge reported for the park itself. Pavilions can be booked and are charged; the amount is not confirmed.",
       "amount": null
     },
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County — parks and recreation overview",
+        "label": "Garrett County Information (community site) — parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
-        "note": "Names Grantsville among the municipalities maintaining community parks. No park-level detail."
+        "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
+        "primary": false
       }
     ],
     "sourcedOn": "2026-08-03",
-    "verifiedDate": null,
-    "verifiedSource": null,
+    "verifiedDate": "2026-08-03",
+    "verifiedSource": "Site maintainer, on site",
     "outstanding": [
-      "Everything. Call the Town of Grantsville, get the park names, addresses and facilities — or drop this record."
+      "Get the pavilion booking charge and how to reserve, from the Town of Grantsville.",
+      "Confirm whether the tennis and pickleball are separate courts or shared lines.",
+      "Confirm whether the restrooms are open through winter, and whether the ice rink still runs.",
+      "Confirm the duck pond fishing rule — a community listing says under-16 and visually impaired only."
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "Restrooms, playground, tennis, pickleball, and pavilions you can rent.",
+        "affects": [
+          "restrooms",
+          "playground",
+          "tennis",
+          "pickleball",
+          "pavilion"
+        ]
+      }
     ]
   },
   {
-    "slug": "mountain-lake-park",
-    "name": "Mountain Lake Park town parks",
+    "slug": "the-glades-town-park",
+    "name": "The Glades Town Park",
     "operator": "Town of Mountain Lake Park",
     "town": "Mountain Lake Park",
     "address": "Mountain Lake Park, MD 21550",
     "acres": null,
-    "blurb": "Named by the county among the municipalities maintaining community parks. Park-level detail not yet confirmed.",
+    "blurb": "One of several parks in Mountain Lake Park rather than the town's only one — the stub this record replaced assumed one park per town, which is wrong here. Restrooms and a play area.",
     "restrooms": {
-      "present": null,
+      "present": true,
       "type": null,
       "seasonal": null,
-      "note": "Not confirmed."
+      "note": "Reported first-hand. Season and hours not confirmed.",
+      "confirmedOn": "2026-08-03",
+      "confirmedBy": "Site maintainer, first-hand"
     },
     "facilities": {
-      "playground": null,
+      "playground": true,
       "swimming": null,
       "beach": null,
       "picnic": null,
@@ -427,22 +494,37 @@
     "hoursNote": null,
     "phone": null,
     "fee": {
-      "note": "Unconfirmed.",
+      "note": "Not confirmed.",
       "amount": null
     },
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County — parks and recreation overview",
+        "label": "Garrett County Information (community site) — parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
-        "note": "Names Mountain Lake Park among the municipalities maintaining community parks."
+        "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
+        "primary": false
       }
     ],
     "sourcedOn": "2026-08-03",
-    "verifiedDate": null,
-    "verifiedSource": null,
+    "verifiedDate": "2026-08-03",
+    "verifiedSource": "Site maintainer, on site",
     "outstanding": [
-      "Everything. Call the town, get park names, addresses and facilities — or drop this record."
+      "Get the full list of parks the Town of Mountain Lake Park maintains — this is one of several and we only have this one.",
+      "Confirm The Glades' address and hours.",
+      "Confirm what else is there beyond restrooms and the play area."
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-03",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "Mountain Lake Park isn't a single park. The Glades Town Park has restrooms and a playground area.",
+        "affects": [
+          "restrooms",
+          "playground"
+        ]
+      }
     ]
   },
   {
@@ -484,9 +566,10 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County — parks and recreation overview",
+        "label": "Garrett County Information (community site) — parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
-        "note": "Names Kitzmiller among the municipalities maintaining community parks."
+        "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
+        "primary": false
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -535,9 +618,10 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County — parks and recreation overview",
+        "label": "Garrett County Information (community site) — parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
-        "note": "Names Deer Park among the municipalities maintaining community parks."
+        "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
+        "primary": false
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -586,9 +670,10 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County — parks and recreation overview",
+        "label": "Garrett County Information (community site) — parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
-        "note": "Names Loch Lynn among the municipalities maintaining community parks."
+        "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
+        "primary": false
       }
     ],
     "sourcedOn": "2026-08-03",
