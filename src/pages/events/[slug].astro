@@ -69,7 +69,7 @@ const schema = publishable && label.state !== "unknown"
   : [];
 
 const base = `${event.name}, ${event.town} — dates, admission and what's actually confirmed.`;
-const description = base.length < 118 ? `${base} Checked with the organiser and dated.` : base;
+const description = base.length < 118 ? `${base} Checked with the organizer and dated.` : base;
 
 const title =
   [`${event.name} — dates and what to expect`, `${event.name}, ${event.town} MD`, event.name]
@@ -172,7 +172,7 @@ const STATE_CLASS = {
         {
           event.website && (
             <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
-              <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Organiser</dt>
+              <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Organizer</dt>
               <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem]">
                 <a href={event.website.url} rel="nofollow">{event.website.label}</a>
               </dd>

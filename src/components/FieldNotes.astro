@@ -33,9 +33,9 @@ const sorted = [...notes].sort((a, b) => b.date.localeCompare(a.date));
     {
       sorted.map((n) => (
         <li class="sheet breakout border-l-[9px] border-l-lake px-4 sm:px-5 py-4">
-          {/* ink-soft, not lake: --color-lake is a SURFACE colour and runs 5.2:1
+          {/* ink-soft, not lake: --color-lake is a SURFACE color and runs 5.2:1
               as text, under the 7:1 this site holds itself to. The left rule
-              carries the colour signal instead, which is the redundant-channel
+              carries the color signal instead, which is the redundant-channel
               approach used everywhere else here. */}
           <p class="stamp text-ink-soft m-0">Field note · {fmt(n.date)} · {n.author}</p>
           <p class="mt-2.5 mb-0 text-[0.98rem] leading-[1.6] max-w-[60ch]">{n.body}</p>
