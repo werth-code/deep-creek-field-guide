@@ -6,7 +6,7 @@
     "town": "Oakland",
     "address": "Broadford Road, Oakland, MD 21550",
     "acres": null,
-    "blurb": "Oakland's lake park and the biggest municipal park in the county — a swimming beach, boat launch, and boat and pavilion rentals, with picnic ground, volleyball and basketball behind it.",
+    "blurb": "Oakland's lake park and the biggest municipal park in the county. A swimming beach, boat launch, and boat and pavilion rentals, with picnic ground, volleyball and basketball behind it.",
     "restrooms": {
       "present": true,
       "type": null,
@@ -40,12 +40,12 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County Chamber of Commerce — Broadford Lake Park",
+        "label": "Garrett County Chamber of Commerce: Broadford Lake Park",
         "url": "https://www.garrettheritage.com/list/member/broadford-lake-park-672",
         "note": "Facilities listing."
       },
       {
-        "label": "Garrett County Chamber of Commerce — Broadford Lake Park listing",
+        "label": "Garrett County Chamber of Commerce: Broadford Lake Park listing",
         "url": "https://business.visitdeepcreek.com/list/member/broadford-lake-park-672",
         "note": "Confirms the lake, beach area, volleyball, basketball, boat launch, and boat and pavilion rentals. Mentions neither fees, restrooms nor a playground."
       }
@@ -100,7 +100,7 @@
     "town": "Accident",
     "address": "South Street, Accident, MD 21520",
     "acres": null,
-    "blurb": "The larger of Accident's two town parks, on the southern end of South Street. A full playground, a little league field, a quarter-mile walking loop, horseshoe pits and a tennis court — a genuine neighbourhood park rather than a scenic one.",
+    "blurb": "The larger of Accident's two town parks, on the southern end of South Street. A full playground, a little league field, a quarter-mile walking loop, horseshoe pits and a tennis court. A genuine neighbourhood park rather than a scenic one.",
     "restrooms": {
       "present": null,
       "type": null,
@@ -132,7 +132,7 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Town of Accident — community",
+        "label": "Town of Accident: community",
         "url": "http://www.accidentmd.org/community.html",
         "note": "Park facilities as listed by the town."
       }
@@ -154,7 +154,7 @@
     "town": "Accident",
     "address": "Wood Street, Accident, MD 21520",
     "acres": null,
-    "blurb": "The smaller Accident park, at the western end of Wood Street. A large pavilion plus climbing cubes, a saucer swing, a seesaw, and a swing set that includes an accessible seat — which is worth knowing, because accessible play equipment is rare out here and almost never published.",
+    "blurb": "The smaller Accident park, at the western end of Wood Street. A large pavilion plus climbing cubes, a saucer swing, a seesaw, and a swing set with an accessible seat. That last one is worth knowing. Accessible play equipment is rare out here and almost never published.",
     "restrooms": {
       "present": true,
       "type": null,
@@ -188,7 +188,7 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Town of Accident — community",
+        "label": "Town of Accident: community",
         "url": "http://www.accidentmd.org/community.html",
         "note": "Pavilion and playground equipment, including the accessible swing seat."
       }
@@ -258,12 +258,12 @@
     ],
     "sources": [
       {
-        "label": "Town of Friendsville — Riverside Community Park",
+        "label": "Town of Friendsville: Riverside Community Park",
         "url": "https://www.friendsville.org/friendsville-river-side-community-park/",
         "note": "Facilities as listed by the town."
       },
       {
-        "label": "Garrett County Chamber of Commerce — Town of Friendsville",
+        "label": "Garrett County Chamber of Commerce: Town of Friendsville",
         "url": "https://www.visitdeepcreek.com/friendsville/",
         "note": "Lists the park's facilities in full: paved loop, river access ramp, small sand beach, fishing on Bear Creek and the Youghiogheny, two baseball fields, pavilions, basketball, horseshoe pits, sand volleyball, tennis, large playground. Mentions neither restrooms nor pickleball."
       }
@@ -343,12 +343,12 @@
     ],
     "sources": [
       {
-        "label": "University of Maryland Extension — Maryland 4-H Environmental Education & Camping Center",
+        "label": "University of Maryland Extension: Maryland 4-H Environmental Education & Camping Center",
         "url": "https://extension.umd.edu/programs/4-h-youth-development/program-areas/environmental-sciences/maryland-4-h-environmental-education-camping-center",
         "note": "The operator. Gives the proper name, over 1,100 acres, the address and phone, and splits what the public may use from what sits on the private side."
       },
       {
-        "label": "University of Maryland Extension — private events",
+        "label": "University of Maryland Extension: private events",
         "url": "https://extension.umd.edu/programs/4-h-youth-development/program-areas/environmental-sciences/maryland-4-h-environmental-education-camping-center/private-events",
         "note": "States the facility is open to the public for reservations, and names the booking contact."
       }
@@ -428,7 +428,7 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County Information (community site) — parks and recreation",
+        "label": "Garrett County Information (community site): parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
         "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
         "primary": false
@@ -466,7 +466,7 @@
     "town": "Mountain Lake Park",
     "address": "Mountain Lake Park, MD 21550",
     "acres": null,
-    "blurb": "One of several parks in Mountain Lake Park rather than the town's only one — the stub this record replaced assumed one park per town, which is wrong here. Restrooms and a play area.",
+    "blurb": "One of several parks in Mountain Lake Park rather than the town's only one. The stub this record replaced assumed one park per town, which is wrong here. Restrooms and a play area.",
     "restrooms": {
       "present": true,
       "type": null,
@@ -500,7 +500,7 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County Information (community site) — parks and recreation",
+        "label": "Garrett County Information (community site): parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
         "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
         "primary": false
@@ -534,7 +534,7 @@
     "town": "Kitzmiller",
     "address": "Kitzmiller, MD 21538",
     "acres": null,
-    "blurb": "Kitzmiller's town park is a botanical garden — planted ground rather than ball fields, with a playground, pavilions and restrooms. Free to visit.",
+    "blurb": "Kitzmiller's town park is a botanical garden. Planted ground rather than ball fields, with a playground, pavilions and restrooms. Free to visit.",
     "restrooms": {
       "present": true,
       "type": null,
@@ -568,7 +568,7 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County Information (community site) — parks and recreation",
+        "label": "Garrett County Information (community site): parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
         "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
         "primary": false
@@ -647,7 +647,7 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County Information (community site) — parks and recreation",
+        "label": "Garrett County Information (community site): parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
         "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
         "primary": false
@@ -667,7 +667,7 @@
     "town": "Loch Lynn Heights",
     "address": "Loch Lynn Heights, MD 21550",
     "acres": null,
-    "blurb": "A boardwalk trail through wetland rather than a park with a field in it. Restrooms are on site, though they are not always unlocked — worth planning around rather than counting on.",
+    "blurb": "A boardwalk trail through wetland rather than a park with a field in it. Restrooms are on site, though not always unlocked. Worth planning around rather than counting on.",
     "restrooms": {
       "present": true,
       "type": null,
@@ -702,7 +702,7 @@
     "warnings": [],
     "sources": [
       {
-        "label": "Garrett County Information (community site) — parks and recreation",
+        "label": "Garrett County Information (community site): parks and recreation",
         "url": "https://garrettcountyinfo.com/parks_and_recreation/",
         "note": "A community information site, not the county government. Useful as a lead, not publishable on its own.",
         "primary": false

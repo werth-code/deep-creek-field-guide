@@ -12,7 +12,10 @@
       "hint": "Early August — the fair publishes dates a year at a time and states no recurring rule"
     },
     "confirmed": {
-      "2026": { "start": "2026-08-01", "end": "2026-08-08" }
+      "2026": {
+        "start": "2026-08-01",
+        "end": "2026-08-08"
+      }
     },
     "admission": {
       "note": "Admission is charged; the amount is not confirmed. The fair publishes an admission page but does not state a figure we can quote.",
@@ -27,7 +30,7 @@
     ],
     "sources": [
       {
-        "label": "Garrett County Agriculture Fair — official site",
+        "label": "Garrett County Agriculture Fair: official site",
         "url": "https://garrettcountyfair.org/",
         "note": "States \"August 1st – August 8th 2026\" and \"69th Annual\". Publishes no recurring rule, so future years are not computed."
       }
@@ -55,14 +58,17 @@
       "hint": "Early to mid October — the festival publishes dates a year at a time and states no recurring rule"
     },
     "confirmed": {
-      "2026": { "start": "2026-10-07", "end": "2026-10-11" }
+      "2026": {
+        "start": "2026-10-07",
+        "end": "2026-10-11"
+      }
     },
     "admission": {
       "note": "No admission cost is stated for the festival itself; individual events within it may charge. Not confirmed.",
       "amount": null
     },
     "website": {
-      "label": "Autumn Glory Festival — Garrett County Chamber of Commerce",
+      "label": "Autumn Glory Festival: Garrett County Chamber of Commerce",
       "url": "https://www.visitdeepcreek.com/autumnglory/"
     },
     "warnings": [
@@ -71,7 +77,7 @@
     ],
     "sources": [
       {
-        "label": "Autumn Glory Festival — Garrett County Chamber of Commerce",
+        "label": "Autumn Glory Festival: Garrett County Chamber of Commerce",
         "url": "https://www.visitdeepcreek.com/autumnglory/",
         "note": "States \"October 7 - 11 2026\" and \"59th Annual\". Publishes no recurring rule."
       },

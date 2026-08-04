@@ -38,8 +38,8 @@ const schema = [
 ---
 
 <Layout
-  title="Deep Creek Field Guide — Garrett County parks, dated"
-  description="A reference for Deep Creek Lake and Garrett County: every state park and town park, what's actually there, and which now need a reservation to get in."
+  title="Deep Creek Field Guide: Garrett County, checked"
+  description="Garrett County parks: what each one costs, whether there is a toilet, and which need booking now. Every fact carries the date I checked it."
   schema={schema}
 >
   <div class="wrap pt-12 sm:pt-16 pb-9">
@@ -48,22 +48,26 @@ const schema = [
       A reference for Garrett County, Maryland
     </p>
 
-    <h1 class="text-[2.4rem] sm:text-[3.3rem] mt-4 mb-0 max-w-[16ch] text-slate">
-      The high ground, measured and dated.
+    <h1 class="text-[2.4rem] sm:text-[3.3rem] mt-4 mb-0 max-w-[17ch] text-slate">
+      The part of Maryland Maryland forgets
     </h1>
 
     <p class="mt-6 mb-0 text-[1.2rem] leading-[1.5] max-w-[52ch]">
-      Garrett County holds Maryland's highest ground, its deepest snow and its
-      largest lake. Ten state parks and forests sit within half an hour of Deep
-      Creek — a 53-foot waterfall, old-growth hemlock that predates the state,
-      and 54,000 acres of forest behind it.
+      Highest ground in the state. Deepest snow. Biggest lake. It's three hours
+      from Baltimore and it does not feel like the same state when you get
+      there.
     </p>
 
     <p class="mt-4 mb-0 text-[1.05rem] leading-[1.55] max-w-[52ch]">
-      This is the guide that tells you what's actually there this season: what a
-      park costs, whether there's a toilet, and — new this year — which one you
-      can no longer just turn up to. Every fact carries the date we checked it
-      and who told us. <a href="/how-we-verify/">Here's how that works</a>.
+      I've been coming out here for forty years, first as a camper at the 4-H
+      centre and now with my own kids in the car. Long enough to know that the
+      answer to "is it open" changes more than anyone publishes.
+    </p>
+
+    <p class="mt-4 mb-0 text-[1.05rem] leading-[1.55] max-w-[52ch]">
+      So this is what a park costs, whether there's a toilet, and which one you
+      can't just turn up to any more. Every fact carries the date I checked it.
+      <a href="/how-we-verify/">Here's the method</a>.
     </p>
 
     <p class="mt-7 mb-0">
@@ -90,9 +94,9 @@ const schema = [
           </p>
           <p class="mt-2.5 mb-0 text-[0.98rem] leading-[1.55] max-w-[58ch]">
             Weekends and holidays, Memorial Day weekend through Labor Day, in one
-            of three timed entry slots. Booking opens seven days ahead and slots
-            sell out. Weekdays you can still turn up and pay on arrival — and
-            pets are barred from the day-use area and Canyon Trail all summer.
+            of three timed entry slots. Booking opens seven days ahead and they
+            sell out. Weekdays you can still turn up and pay at the gate. Pets
+            are barred from the day-use area and the Canyon Trail all summer.
           </p>
         </aside>
       </div>
@@ -123,16 +127,16 @@ const schema = [
           title: "State parks",
           lede: "All ten, and the one that now needs booking.",
           detail:
-            "Swallow Falls, Deep Creek Lake, Herrington Manor, New Germany and the rest — facilities, fees, reservation status and what's still unconfirmed.",
+            "Swallow Falls, Deep Creek Lake, Herrington Manor, New Germany and the rest. Facilities, fees, reservation status, and what I still haven't checked.",
           count: `${stateParks.length} parks and forests`,
         },
         {
           href: "/parks/regional/",
           n: "02",
           title: "Town parks",
-          lede: "The municipal ones. Starting with: are there restrooms?",
+          lede: "The small ones the towns run. Toilets first.",
           detail:
-            "Garrett County itself owns only four park sites — the parks people use belong to eight small towns, and nobody documents them in one place.",
+            "The county itself owns only four park sites. The ones people actually use belong to eight small towns, and nobody has put them in one place.",
           count: `${regional.length} listed`,
         },
       ].map((s) => (
@@ -151,30 +155,27 @@ const schema = [
   </div>
 
   <div class="wrap prose-field pb-6">
-    <h2>Every fact here is dated</h2>
+    <h2>I got the Swallow Falls rule wrong</h2>
     <p class="max-w-[58ch]">
-      Rules around here change more than you'd expect, and the published answer
-      lags by years. Swallow Falls started requiring reservations in May and
-      most guides haven't noticed. So we go and ask — the county, the park, the
-      town — and then we write down the date and who said it.
+      I published it as a reservation every day of the summer, because that's
+      what Garrett County's announcement said. Maryland DNR runs the park and
+      says weekends and holidays. A reader caught it.
     </p>
     <p class="max-w-[58ch]">
-      That includes when we're the ones who get it wrong. We published the
-      Swallow Falls rule as every-day, following the county's announcement;
-      Maryland DNR, which actually runs the park, says weekends and holidays.
-      <a href="/parks/swallow-falls/#corrected">The correction is on the page</a>,
-      dated, rather than quietly edited out.
+      <a href="/parks/swallow-falls/#corrected">The correction sits on the park
+      page</a> with the date and what I used to say. That's the deal here. When
+      I'm wrong you get to see it, because a site that promises checking and
+      quietly rewrites its errors isn't worth much.
     </p>
     <p class="max-w-[58ch]">
-      It means you can see how fresh an answer is before you drive anywhere, and
-      what we haven't checked yet is marked as unchecked rather than guessed.
-      <a href="/verified/">Every fact on the site is listed with its source and age</a>.
+      Everything I haven't checked says so instead of guessing.
+      <a href="/verified/">Here's the whole list, with sources and ages</a>.
     </p>
 
-    <h2>Still to come</h2>
+    <h2>Not done yet</h2>
     <p class="max-w-[58ch]">
-      Dogs, the lake itself, and winter. One section at a time, each checked
-      before it goes up.
+      Dogs. The lake itself. Winter, which out here is a season with its own
+      rules. I'd rather name the gaps than let you hunt for them.
     </p>
   </div>
 </Layout>

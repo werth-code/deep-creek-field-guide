@@ -5,7 +5,7 @@
     "kind": "State park",
     "town": "Oakland",
     "acres": 257,
-    "blurb": "Muddy Creek Falls is the tallest free-falling waterfall in Maryland at 53 feet, and the mile-long loop past it runs through a stand of old-growth hemlock and white pine — some of it over 300 years old, the last of its kind in the state. It is the most visited park in Garrett County and the reason the reservation system exists.",
+    "blurb": "Muddy Creek Falls is the tallest free-falling waterfall in Maryland at 53 feet. The mile-long loop past it runs through old-growth hemlock and white pine, some of it over 300 years old and the last of its kind in the state. It's the most visited park in Garrett County, and the reason the reservation system exists.",
     "features": {
       "waterfall": true,
       "beach": null,
@@ -58,32 +58,32 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Swallow Falls State Park",
+        "label": "Maryland DNR: Swallow Falls State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/swallowfalls.aspx",
         "note": "The operator's own park page. States reservations are required on weekends and holidays, Memorial Day weekend through Labor Day."
       },
       {
-        "label": "Maryland Park Reservations — Swallow Falls campground",
+        "label": "Maryland Park Reservations: Swallow Falls campground",
         "url": "https://parkreservations.maryland.gov/camping/swallow-falls-state-park/r/campgroundDetails.do?contractCode=MD&parkId=380133",
         "note": "Maryland's own reservation system. Lists restrooms, showers, a Park Store and a dump station. The park's main DNR page lists no facilities at all."
       },
       {
-        "label": "Maryland DNR — additional parks requiring day-use reservations (25 June 2026)",
+        "label": "Maryland DNR: additional parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "Most recent statewide notice. Gives the three entry slots and the ~$1.50 per person service charge, and confirms weekday entry is processed on arrival."
       },
       {
-        "label": "Maryland DNR — day-use reservations reminder (20 May 2026)",
+        "label": "Maryland DNR: day-use reservations reminder (20 May 2026)",
         "url": "https://news.maryland.gov/dnr/2026/05/20/reminder-day-use-reservations-required-for-six-maryland-state-parks-beginning-memorial-day-weekend/",
         "note": "Lists Swallow Falls alongside the other participating parks, with no every-day exception."
       },
       {
-        "label": "Garrett County Government — day-use reservations at Swallow Falls",
+        "label": "Garrett County Government: day-use reservations at Swallow Falls",
         "url": "https://www.garrettcountymd.gov/news/2026-05/new-day-use-reservations-required-swallow-falls-state-park-beginning-memorial-day-weekend",
         "note": "CONFLICTS with DNR. Says reservations are required every day. Recorded because it is why we had it wrong, and because it is still live."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -182,17 +182,17 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Deep Creek Lake State Park",
+        "label": "Maryland DNR: Deep Creek Lake State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/deepcreek.aspx",
         "note": "Park facilities and description."
       },
       {
-        "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
+        "label": "Maryland DNR: parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -245,7 +245,7 @@
     "kind": "State park",
     "town": "Oakland",
     "acres": 365,
-    "blurb": "A 53-acre lake made by damming Herrington Creek, with twenty year-round cabins built by the Civilian Conservation Corps. No gas motors on the lake, which keeps it quiet. Cross-country ski rental in winter — one of very few places in Maryland where that is a real option.",
+    "blurb": "A 53-acre lake made by damming Herrington Creek, with twenty year-round cabins built by the Civilian Conservation Corps. No gas motors on the lake, which keeps it quiet. Cross-country ski rental in winter, one of very few places in Maryland where that's a real option.",
     "features": {
       "waterfall": false,
       "beach": true,
@@ -292,22 +292,22 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Herrington Manor State Park",
+        "label": "Maryland DNR: Herrington Manor State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/herringtonmanor.aspx",
         "note": "Lake, cabins and facilities."
       },
       {
-        "label": "Maryland Park Reservations — Herrington Manor",
+        "label": "Maryland Park Reservations: Herrington Manor",
         "url": "https://parkreservations.maryland.gov/camping/herrington-manor-state-park/r/campgroundDetails.do?contractCode=MD&parkId=380115",
         "note": "Maryland's own reservation system. Lists restrooms, a Park Store and boat rentals."
       },
       {
-        "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
+        "label": "Maryland DNR: parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -383,17 +383,17 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — New Germany State Park",
+        "label": "Maryland DNR: New Germany State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/newgermany.aspx",
         "note": "Lake, cabins, trails."
       },
       {
-        "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
+        "label": "Maryland DNR: parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -459,17 +459,17 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Big Run State Park",
+        "label": "Maryland DNR: Big Run State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/bigrun.aspx",
         "note": "Camping and river access."
       },
       {
-        "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
+        "label": "Maryland DNR: parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -512,7 +512,7 @@
     "kind": "State park",
     "town": "Grantsville",
     "acres": 4,
-    "blurb": "Four acres around an 80-foot stone arch built in 1813 for the National Road — the largest single-span stone arch in America when it was finished, and a National Historic Landmark. A ten-minute stop rather than a day out, and worth it.",
+    "blurb": "Four acres around an 80-foot stone arch built in 1813 for the National Road. It was the largest single-span stone arch in America when it was finished, and it's a National Historic Landmark. A ten-minute stop rather than a day out, and worth it.",
     "features": {
       "waterfall": false,
       "beach": null,
@@ -546,17 +546,17 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Casselman River Bridge State Park",
+        "label": "Maryland DNR: Casselman River Bridge State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/casselman.aspx",
         "note": "Historic bridge and picnic area."
       },
       {
-        "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
+        "label": "Maryland DNR: parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -621,17 +621,17 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Sang Run State Park",
+        "label": "Maryland DNR: Sang Run State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/sangrun.aspx",
         "note": "Historic site and river access."
       },
       {
-        "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
+        "label": "Maryland DNR: parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -696,12 +696,12 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Wolf Den Run State Park",
+        "label": "Maryland DNR: Wolf Den Run State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/wolfdenrun.aspx",
         "note": "OHV trails and access."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -731,7 +731,7 @@
     "kind": "Natural environment area",
     "town": "Friendsville",
     "acres": null,
-    "blurb": "Maryland's only designated wild river, running north through a gorge toward Pennsylvania. Managed for the river itself rather than for visitors — few facilities, and the whitewater through here is among the hardest in the east.",
+    "blurb": "Maryland's only designated wild river, running north through a gorge toward Pennsylvania. Managed for the river rather than for visitors, so there are few facilities. The whitewater through here is among the hardest in the east.",
     "features": {
       "waterfall": false,
       "beach": null,
@@ -767,17 +767,17 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Youghiogheny Wild River",
+        "label": "Maryland DNR: Youghiogheny Wild River",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/youghioghenyriver.aspx",
         "note": "Wild river designation and access."
       },
       {
-        "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
+        "label": "Maryland DNR: parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County park on it."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -806,7 +806,7 @@
     "kind": "State forest",
     "town": "Grantsville",
     "acres": 54000,
-    "blurb": "Maryland's largest state forest at around 54,000 acres, wrapping Big Run and New Germany. Dispersed camping, hunting, trout water and the reservoir behind it. A forest rather than a park — different rules, and worth knowing which you are standing in.",
+    "blurb": "Maryland's largest state forest at around 54,000 acres, wrapping Big Run and New Germany. Dispersed camping, hunting, trout water and the reservoir behind it. A forest rather than a park, which means different rules. Worth knowing which one you're standing in.",
     "features": {
       "waterfall": false,
       "beach": null,
@@ -842,12 +842,12 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Savage River State Forest",
+        "label": "Maryland DNR: Savage River State Forest",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/savageriver.aspx",
         "note": "Forest management, camping and access."
       },
       {
-        "label": "Maryland DNR — park service charges",
+        "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
       }
@@ -877,7 +877,7 @@
     "kind": "Trail, Potomac-Garrett State Forest",
     "town": "Oakland",
     "acres": null,
-    "blurb": "A natural labyrinth of house-sized sandstone boulders, moss over every surface, with passages between them narrow enough to turn sideways for. It is not a signed DNR trail and it is not on the state forest's trail map — locals know it, and that is mostly how you find it.",
+    "blurb": "A natural labyrinth of house-sized sandstone boulders, moss over every surface, with passages narrow enough to turn sideways for. It isn't a signed DNR trail and it isn't on the state forest's map. Locals know it, and that's mostly how you find it.",
     "features": {
       "waterfall": false,
       "beach": null,
@@ -925,17 +925,17 @@
     "hours": null,
     "sources": [
       {
-        "label": "Maryland DNR — Potomac-Garrett State Forest",
+        "label": "Maryland DNR: Potomac-Garrett State Forest",
         "url": "https://dnr.maryland.gov/forests/Pages/publiclands/western_potomacgarrettforest.aspx",
         "note": "Confirms the forest (about 19,000 acres in southwestern Garrett County), the headquarters address, and that Snaggy Mountain Road is an ORV trail area and a primitive camping area. Does NOT name a Rock Maze trail."
       },
       {
-        "label": "Maryland DNR — Snaggy Mountain area map",
+        "label": "Maryland DNR: Snaggy Mountain area map",
         "url": "https://dnr.maryland.gov/forests/Documents/potomac/Snaggy-Area-Map24.pdf",
         "note": "The official area map for Snaggy Mountain."
       },
       {
-        "label": "Maryland DNR — parks requiring day-use reservations (25 June 2026)",
+        "label": "Maryland DNR: parks requiring day-use reservations (25 June 2026)",
         "url": "https://news.maryland.gov/dnr/2026/06/25/additional-maryland-state-parks-requiring-day-use-reservations-new-entrance-technology-starting-this-weekend/",
         "note": "The statewide list of participating parks. Swallow Falls is the only Garrett County site on it."
       }
