@@ -443,3 +443,109 @@ export function asksForRegional(p: RegionalPark): string[] {
   }
   return out.slice(0, 4);
 }
+
+/* ------------------------------------------------------------- goodFor -- */
+
+/**
+ * Situation tags.
+ *
+ * The filters on this site were attributes: restrooms, pavilion, paved path.
+ * People don't search in attributes. They search in situations. "Somewhere to
+ * take a toddler for an hour" is the actual query; "playground: true" is our
+ * internal shape for it.
+ *
+ * DERIVED, never authored. Every tag is a rule over fields that already exist,
+ * so a tag appears the moment the data supports it and vanishes when it
+ * doesn't. Nobody has to remember to retag anything, and a tag can never claim
+ * something the facts table contradicts.
+ *
+ * A tag is only awarded on a CONFIRMED true. Unknown never earns one, because
+ * the whole point of a situation tag is that you can trust it enough to drive
+ * there.
+ */
+export interface GoodForTag {
+  slug: string;
+  label: string;
+}
+
+const TAGS: { slug: string; label: string; state?: (p: StatePark) => boolean; regional?: (p: RegionalPark) => boolean }[] = [
+  {
+    slug: "restrooms-that-exist",
+    label: "Restrooms that exist",
+    state: (p) => p.features.restrooms === true,
+    regional: (p) => p.restrooms.present === true && !p.restrooms.caveat,
+  },
+  {
+    slug: "no-booking-needed",
+    label: "No booking needed",
+    state: (p) => p.reservation.required === false,
+    regional: () => true,
+  },
+  {
+    slug: "free",
+    label: "Free",
+    state: (p) => p.fee.amount === 0,
+    regional: (p) => p.fee.amount === 0,
+  },
+  {
+    slug: "burn-off-an-hour",
+    label: "Burn off an hour",
+    state: (p) => p.features.trails === true,
+    regional: (p) => p.facilities.playground === true || p.facilities.sports === true,
+  },
+  {
+    slug: "somewhere-to-sit",
+    label: "Somewhere to sit",
+    state: (p) => p.features.picnic === true,
+    regional: (p) => p.facilities.picnic === true || p.facilities.pavilion === true,
+  },
+  {
+    slug: "get-in-the-water",
+    label: "Get in the water",
+    state: (p) => p.features.swimming === true || p.features.beach === true,
+    regional: (p) => p.facilities.swimming === true || p.facilities.beach === true,
+  },
+  {
+    slug: "bring-the-dog",
+    label: "Bring the dog",
+    state: (p) => p.features.petsAllowed === true,
+  },
+  {
+    slug: "stay-the-night",
+    label: "Stay the night",
+    state: (p) => p.features.camping === true || p.features.cabins === true,
+  },
+  {
+    slug: "worth-it-in-winter",
+    label: "Worth it in winter",
+    state: (p) => p.features.winterUse === true,
+    regional: (p) => p.facilities.winterUse === true,
+  },
+  {
+    slug: "pushchair-friendly",
+    label: "Stroller-friendly",
+    regional: (p) => p.facilities.pavedPath === true,
+  },
+];
+
+export const goodForState = (p: StatePark): GoodForTag[] =>
+  TAGS.filter((t) => t.state?.(p)).map(({ slug, label }) => ({ slug, label }));
+
+export const goodForRegional = (p: RegionalPark): GoodForTag[] =>
+  TAGS.filter((t) => t.regional?.(p)).map(({ slug, label }) => ({ slug, label }));
+
+/** Every tag that at least one record earns, for building the filter pages. */
+export function allGoodFor(state: StatePark[], regional: RegionalPark[]) {
+  return TAGS.map(({ slug, label }) => ({
+    slug,
+    label,
+    parks: [
+      ...state.filter((p) => goodForState(p).some((t) => t.slug === slug)).map((p) => ({
+        name: p.name, href: `/parks/${p.slug}/`, kind: p.kind, town: p.town, verdict: p.verdict ?? null,
+      })),
+      ...regional.filter((p) => goodForRegional(p).some((t) => t.slug === slug)).map((p) => ({
+        name: p.name, href: `/parks/regional/${p.slug}/`, kind: "Town park", town: p.town, verdict: p.verdict ?? null,
+      })),
+    ],
+  })).filter((t) => t.parks.length > 0);
+}

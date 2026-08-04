@@ -1,0 +1,104 @@
+---
+/**
+ * One situation.
+ *
+ * These exist because the site's filters were attributes and people search in
+ * situations. "Restrooms that exist" is a real query shape. "restrooms: true"
+ * is our internal one.
+ *
+ * Static pages rather than only a client-side filter, for two reasons: they can
+ * rank, and they work with JavaScript off. The chips on the index pages
+ * enhance on top of these rather than replacing them.
+ */
+import type { GetStaticPaths } from "astro";
+import Layout from "../../layouts/Layout.astro";
+import Ethics from "../../components/Ethics.astro";
+
+import stateParksData from "../../data/state-parks.json";
+import regionalParksData from "../../data/regional-parks.json";
+import { allGoodFor, type StatePark, type RegionalPark } from "../../lib/parks";
+
+export const getStaticPaths = (() => {
+  const tags = allGoodFor(stateParksData as StatePark[], regionalParksData as RegionalPark[]);
+  return tags.map((t) => ({ params: { tag: t.slug }, props: { tag: t, all: tags } }));
+}) satisfies GetStaticPaths;
+
+const { tag, all } = Astro.props;
+const others = all.filter((t) => t.slug !== tag.slug);
+
+const LEDE: Record<string, string> = {
+  "restrooms-that-exist": "Confirmed, not assumed. The ones I haven't checked aren't on this list.",
+  "no-booking-needed": "Turn up and go. Swallow Falls is the one that changed, and it isn't here on a weekend.",
+  "free": "No entry charge that I've been able to confirm. A pavilion may still cost you.",
+  "burn-off-an-hour": "Trails, playgrounds, courts. Somewhere to let everyone run about.",
+  "somewhere-to-sit": "Picnic tables or a pavilion. Bring lunch.",
+  "get-in-the-water": "Swimming or a beach, confirmed. Garrett County has fewer of these than you'd think.",
+  "bring-the-dog": "Dogs confirmed allowed. Check the warnings, because several parks allow them everywhere except the sand.",
+  "stay-the-night": "Camping or cabins on site.",
+  "worth-it-in-winter": "Open and worth the drive once the snow arrives. Out here that's a real season.",
+  "pushchair-friendly": "A paved path you can actually push a stroller along.",
+};
+---
+
+<Layout
+  title={`${tag.label} — Deep Creek Lake parks`}
+  description={`Parks near Deep Creek Lake, Maryland that are good for one thing: ${tag.label.toLowerCase()}. ${tag.parks.length} of them, each confirmed rather than assumed.`}
+>
+  <div class="wrap pt-11 pb-6">
+    <p class="label m-0">
+      <a href="/good-for/" class="no-underline hover:underline">Good for</a>
+    </p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[15ch] text-slate">{tag.label}</h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      {LEDE[tag.slug] ?? `${tag.parks.length} parks, confirmed.`}
+    </p>
+  </div>
+
+  <div class="wrap pb-8">
+    <ul class="list-none p-0 m-0 grid gap-3 sm:grid-cols-2 breakout">
+      {
+        tag.parks.map((p, i) => (
+          <li data-reveal style={`--stagger:${Math.min(i, 7)}`}>
+            <a href={p.href} class="sheet sheet-action block p-4 sm:p-5 no-underline h-full">
+              <p class="font-display text-[1.15rem] font-semibold tracking-[-0.03em] m-0 text-slate">
+                {p.name}
+              </p>
+              <p class="stamp text-ink-soft mt-1 mb-0">{p.kind} · {p.town}</p>
+              {p.verdict && (
+                <p class="mt-2.5 mb-0 text-[0.92rem] leading-[1.55]">{p.verdict.text}</p>
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <h2>Other situations</h2>
+    <ul class="list-none p-0 m-0 flex flex-wrap gap-1.5 not-prose">
+      {
+        others.map((t) => (
+          <li>
+            <a href={`/good-for/${t.slug}/`} class="tap sheet-quiet px-3 py-1.5 stamp text-slate no-underline hover:bg-slate hover:text-snow">
+              {t.label} <span class="text-ink-soft">{t.parks.length}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>How a park earns a tag</h2>
+    <p class="max-w-[58ch]">
+      Every tag on this site is worked out from the facts, not typed in by hand.
+      A park lands here the moment the underlying fact is confirmed, and drops
+      off if it turns out to be wrong.
+    </p>
+    <p class="max-w-[58ch]">
+      A park never earns a tag on an unknown. If I haven't checked whether
+      somewhere has restrooms, it isn't on the restrooms list. That's the point.
+    </p>
+
+    <Ethics />
+  </div>
+</Layout>

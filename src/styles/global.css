@@ -472,3 +472,82 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-inline-start: auto;
   flex-shrink: 0;
 }
+
+
+/* ------------------------------------------------- load choreography ---- */
+/*
+ * The instrument, not the toy.
+ *
+ * This is a survey sheet. Motion here should read like a level settling or a
+ * needle coming to rest: fast, damped, and finished. Nothing bounces, nothing
+ * overshoots, nothing loops. If an animation draws attention to itself it is
+ * wrong for this site.
+ *
+ * The whole load sequence is under 500ms and every element is legible from
+ * frame one, because content is never hidden by motion here. Transform only —
+ * see the note on [data-reveal].
+ */
+@media (prefers-reduced-motion: no-preference) {
+  /* Masthead settles first, then the page beneath it. */
+  .field-deep {
+    animation: settle-down 0.42s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+  }
+  @keyframes settle-down {
+    from { transform: translateY(-6px); }
+    to   { transform: none; }
+  }
+
+  /* The rule under the masthead draws across, like a registration line. */
+  .field-deep + div[class*="bg-contour"] {
+    transform-origin: left center;
+    animation: draw-rule 0.55s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @keyframes draw-rule {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  /* First screen: h1 and the paragraph after it, staggered by one beat. */
+  main h1 { animation: rise 0.44s 0.08s cubic-bezier(0.16, 0.84, 0.44, 1) both; }
+  main h1 + p { animation: rise 0.44s 0.16s cubic-bezier(0.16, 0.84, 0.44, 1) both; }
+  @keyframes rise {
+    from { transform: translateY(7px); }
+    to   { transform: none; }
+  }
+
+  /* Cards entering on scroll stagger against their own index, so a grid
+     resolves left-to-right instead of all at once. --stagger is set inline. */
+  [data-reveal] { transition-delay: calc(var(--stagger, 0) * 45ms); }
+
+  /* ---- interaction ---- */
+
+  /* A card lifts a little and its rule thickens. The rule is the tell: on a
+     topographic sheet the heavier line is the one you're reading. */
+  .sheet-action { transition: transform 0.14s ease-out, box-shadow 0.14s ease-out; }
+  .sheet-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 0 0 var(--color-contour);
+  }
+  .sheet-action:active { transform: translateY(0); box-shadow: none; }
+
+  /* Buttons depress rather than glow. */
+  button.tap:active, a.tap:active { transform: translateY(1px); }
+
+  /* Tag chips fill from the left, like ink taking. */
+  .sheet-quiet { transition: background-color 0.15s ease-out, color 0.15s ease-out, border-color 0.15s ease-out; }
+}
+
+/* Focus is never animated away and never subtle. Keyboard users get the
+   loudest state on the page. */
+:focus-visible {
+  outline: 3px solid var(--color-contour-deep);
+  outline-offset: 2px;
+}
+
+/* An element that hasn't loaded its reveal yet must still be fully readable.
+   Belt and braces on top of the transform-only rule. */
+@media (prefers-reduced-motion: reduce) {
+  .field-deep, main h1, main h1 + p, .field-deep + div[class*="bg-contour"] {
+    animation: none !important;
+  }
+}
