@@ -129,6 +129,13 @@
           "trailheads"
         ]
       }
+    ],
+    "fieldNotes": [
+      {
+        "date": "2026-08-03",
+        "author": "Matt",
+        "body": "The ranger station, the restrooms and the store are all at the main parking area, not off at the campground the way Maryland's own listing implies. Trailheads start a few steps from the same lot, so you can park and be walking in under a minute."
+      }
     ]
   },
   {
@@ -236,6 +243,13 @@
           "beach",
           "swimming"
         ]
+      }
+    ],
+    "fieldNotes": [
+      {
+        "date": "2026-08-03",
+        "author": "Matt",
+        "body": "The swim area is roped inside stone breakwaters, so it stays calm even when the rest of the lake is busy with boats. Plenty of sand, and shade at the back of the beach if you get there early enough to claim it."
       }
     ]
   },
@@ -997,6 +1011,13 @@
         "portrait": true
       }
     ],
-    "corrections": []
+    "corrections": [],
+    "fieldNotes": [
+      {
+        "date": "2026-08-03",
+        "author": "Matt",
+        "body": "The trailhead is a small pull-in on Snaggy Mountain Road near Cranesville Road. No sign, so you are looking for the parking area rather than the trail. The walk in is open hardwood with fern up to your knees, and then the ground turns to boulders fairly suddenly. Some of the passages are barely shoulder-width and everything is mossy, which means slick long after it has stopped raining. Not one to do in a hurry."
+      }
+    ]
   }
 ]

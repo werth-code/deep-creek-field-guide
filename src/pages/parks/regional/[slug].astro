@@ -9,6 +9,7 @@ import Layout from "../../../layouts/Layout.astro";
 import FlagIcon from "../../../components/FlagIcon.astro";
 import MapLink from "../../../components/MapLink.astro";
 import MapEmbed from "../../../components/MapEmbed.astro";
+import FieldNotes from "../../../components/FieldNotes.astro";
 import ReportBox from "../../../components/ReportBox.astro";
 
 import parksData from "../../../data/regional-parks.json";
@@ -292,6 +293,8 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
 
       <h2>Where it is</h2>
       <MapEmbed name={park.name} town={park.town} address={park.address} />
+
+      {park.fieldNotes && park.fieldNotes.length > 0 && <FieldNotes notes={park.fieldNotes} />}
 
       <ReportBox subject={park.name} path={`/parks/regional/${park.slug}/`} asks={asksForRegional(park)} />
 
