@@ -57,12 +57,23 @@ const schema = publishable
     ]
   : [];
 
-const base = `${park.name}, ${park.town} — restrooms ${wc.text.toLowerCase()}. Playground, pavilions, trails and access, checked and dated.`;
+/* Names run long here (the 4-H center is 54 characters on its own), and the
+   restroom answer now carries a caveat, so build the description from the
+   short town park name rather than the full title. */
+const shortName = park.name.length > 30 ? park.town : park.name;
+const base =
+  `${shortName}, Garrett County MD. Restrooms ${wc.text.toLowerCase()}. ` +
+  `Playground, pavilions and access, checked and dated.`;
 const description = base.length < 118 ? `${base} Run by ${park.operator}.` : base;
 ---
 
 <Layout
-  title={park.name.length > 38 ? `${park.name}, ${park.town} MD` : `${park.name} — restrooms and facilities`}
+  title={[
+    `${park.name} — restrooms, playground, hours`,
+    `${park.name}, ${park.town} MD — what's there`,
+    `${park.name}, ${park.town} MD`,
+    park.name,
+  ].find((t) => t.length >= 25 && t.length <= 60) ?? park.name}
   description={description.slice(0, 157)}
   robots={robotsFor(park)}
   dateModified={park.verifiedDate ?? park.sourcedOn}

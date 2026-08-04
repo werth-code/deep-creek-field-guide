@@ -53,11 +53,11 @@ const schema = publishable
   : [];
 
 const base =
-  `${park.name} ${park.kind}, ${park.town} — ` +
+  `${park.name} ${park.kind} near Deep Creek Lake, Maryland. ` +
   (park.reservation.required === true
-    ? "day-use reservation now required. "
-    : "facilities, fees and access. ") +
-  "Checked and dated, with the gaps marked.";
+    ? "Do you need a reservation? Yes, and here are the days. "
+    : "Fees, restrooms, and what's actually there. ") +
+  "Every fact dated, with the gaps marked.";
 const description = base.length < 118 ? `${base} Part of the Deep Creek Field Guide.` : base;
 
 /* Longest title that still fits the SERP. Some of these names are long enough
@@ -66,13 +66,20 @@ const description = base.length < 118 ? `${base} Part of the Deep Creek Field Gu
 /* "Swallow Falls State park" reads as a typo in a browser tab, even though
    it's correct in running text after the park's name. */
 const Kind = park.kind.replace(/\b[a-z]/g, (c) => c.toUpperCase());
+/* "Deep Creek Lake" is what people type; "Garrett County" is the
+   administrative name and gets searched far less. Lake first, county as the
+   fallback when the name is already long. */
 const title =
   [
-    `${park.name} ${Kind} — what's there and what it costs`,
+    `${park.name} ${Kind} — Deep Creek Lake, MD`,
+    `${park.name} ${Kind} near Deep Creek Lake`,
     `${park.name} ${Kind}, Garrett County MD`,
+    `${park.name}, Deep Creek Lake, Maryland`,
     `${park.name} — Garrett County, Maryland`,
     park.name,
-  ].find((t) => t.length <= 60) ?? park.name;
+  ].find((t) => t.length >= 25 && t.length <= 60)
+  ?? [`${park.name} ${Kind}, Garrett County MD`, park.name].find((t) => t.length <= 60)
+  ?? park.name;
 ---
 
 <Layout

@@ -43,7 +43,7 @@ const ranked = [...parks].sort(
 ---
 
 <Layout
-  title="Garrett County town parks — restrooms and facilities"
+  title="Garrett County town parks — do they have restrooms?"
   description="The municipal parks around Deep Creek Lake: restrooms, playgrounds, beaches and pavilions. Small-town parks nobody else documents, with the gaps marked."
   robots={robotsFor(gate)}
 >
@@ -56,21 +56,25 @@ const ranked = [...parks].sort(
       Are there restrooms?
     </h1>
     <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
-      The small municipal parks — playgrounds, ball fields, a lake beach — on the
-      questions you ask before loading the car. Not the state parks —{" "}
-      <a href="/parks/">those are here</a>.
+      Playgrounds, ball fields, one lake beach. The small stuff, answered on the
+      questions you actually ask before loading the car. These aren't the state
+      parks. <a href="/parks/">Those are over here</a>.
     </p>
   </div>
 
   <div class="wrap prose-field pb-2">
     <h2>These belong to the towns, not the county</h2>
     <p class="max-w-[58ch]">
-      Garrett County itself owns only four park sites, and most of what gets
-      called "county recreation" is school grounds maintained by the Board of
-      Education. The parks people actually use are run by eight small towns —
-      Accident, Friendsville, Grantsville, Kitzmiller, Oakland, Deer Park,
-      Mountain Lake Park and Loch Lynn Heights — each with its own budget, its
-      own hours and nobody publishing any of it in one place.
+      Garrett County owns four park sites. Four. Most of what gets called
+      "county recreation" is actually school grounds run by the Board of
+      Education.
+    </p>
+
+    <p class="max-w-[58ch]">
+      So the parks people use belong to eight small towns: Accident,
+      Friendsville, Grantsville, Kitzmiller, Oakland, Deer Park, Mountain Lake
+      Park and Loch Lynn Heights. Each with its own budget and its own hours.
+      And nobody had put any of it in one place.
     </p>
 
     <div class="sheet breakout my-6 px-4 sm:px-5 py-4">
@@ -90,10 +94,9 @@ const ranked = [...parks].sort(
         }
       </dl>
       <p class="mt-3.5 mb-0 text-[0.9rem] leading-snug text-ink-soft max-w-[56ch]">
-        That's the honest state of it. Five of these are name-only records —
-        towns the county names as having parks, where we don't yet know which
-        parks or what's in them. They're listed so the gap is visible rather
-        than hidden.
+        That's where it honestly stands. A couple of these are still name-only:
+        towns the county says have parks, where I don't yet know which park or
+        what's in it. They're listed anyway so you can see the hole.
       </p>
     </div>
   </div>
@@ -166,7 +169,7 @@ const ranked = [...parks].sort(
     <ul>
       <li><a href="/parks/">The ten state parks and forests</a></li>
       <li><a href="/verified/">Every fact on the site, with its source and age</a></li>
-      <li><a href="/how-we-verify/">How we check this</a></li>
+      <li><a href="/how-we-verify/">How I check this</a></li>
     </ul>
   </div>
 </Layout>
