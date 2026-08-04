@@ -313,7 +313,7 @@
     "town": "Mountain Lake Park",
     "address": "1916 Maryland Highway, Suite A, Mountain Lake Park, MD 21550",
     "acres": 1100,
-    "blurb": "Long known locally as Pleasant Valley. Over 1,100 acres run by University of Maryland Extension, part open to anyone and part reserved for camp programmes and private hires. The swimming beach, boating, challenge course, archery and shooting range and the cabins all sit on the reserved side.",
+    "blurb": "Long known locally as Pleasant Valley. Over 1,100 acres run by University of Maryland Extension, part open to anyone and part reserved for camp programs and private hires. The swimming beach, boating, challenge course, archery and shooting range and the cabins all sit on the reserved side.",
     "restrooms": {
       "present": true,
       "type": null,
@@ -345,7 +345,7 @@
       "amount": null
     },
     "warnings": [
-      "This is a working camp, not a public park. The beach, boats, ranges and cabins are for camp programmes and booked groups.",
+      "This is a working camp, not a public park. The beach, boats, ranges and cabins are for camp programs and booked groups.",
       "Confirm with the center before planning a visit around anything beyond the lake, trails and fishing."
     ],
     "sources": [

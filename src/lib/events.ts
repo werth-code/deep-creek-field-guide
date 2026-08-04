@@ -9,11 +9,11 @@
  * Two decisions keep this one honest, both inherited from recurrence.ts:
  *
  *   1. The RULE and the DATE are separate claims. "Third weekend in August" is
- *      something the organiser publishes; "15–17 August 2026" is arithmetic we
+ *      something the organizer publishes; "15–17 August 2026" is arithmetic we
  *      did. A computed date says so on the page.
  *
  *   2. Confirmed dates for a specific year always beat the rule. When we have
- *      rung the organiser or read their own calendar, that is what shows.
+ *      rung the organizer or read their own calendar, that is what shows.
  *
  * In practice the research found something worth stating: of the events here,
  * NONE publishes a recurring rule. Every one announces dates a year at a time.
@@ -32,14 +32,14 @@ import { isPublishable, tierOf, type Tier } from "./verification";
 export interface FieldEvent {
   slug: string;
   name: string;
-  /** "69th Annual", where the organiser numbers them. */
+  /** "69th Annual", where the organizer numbers them. */
   edition: string | null;
   town: string;
   /** Where it actually happens, in words. */
   venue: string | null;
   address: string | null;
   blurb: string;
-  /** When it recurs. `announced` where the organiser publishes no pattern. */
+  /** When it recurs. `announced` where the organizer publishes no pattern. */
   rule: Recurrence;
   /** year → the dates we have actually confirmed. Always beats the rule. */
   confirmed: Record<string, { start: string; end?: string }>;

@@ -17,7 +17,7 @@
   for — the falls, the lake, the whitewater, the skiing — exists because of
   elevation. So the visual language is the one used to describe elevation: a
   topographic quadrangle. Contour browns on map paper, slate-blue chrome the
-  colour of winter rock, and mono type doing the work of survey annotation.
+  color of winter rock, and mono type doing the work of survey annotation.
 
   Deliberately NOT the coastal WPA-poster direction used at
   delawarefieldguide.com. Different region, different vernacular. If this ever
@@ -30,12 +30,12 @@
   mountains.
 
   READING CONDITIONS
-  A phone, outdoors, often cold, frequently in a car park deciding whether to
+  A phone, outdoors, often cold, frequently in a parking lot deciding whether to
   drive further on. So: 19px base, 7:1 minimum on body text, 44px targets, no
   entrance animation.
 
   STATUS IS ENCODED FOUR WAYS
-  Colour + icon + word + BAR TEXTURE. Solid = open, dotted = limits apply,
+  Color + icon + word + BAR TEXTURE. Solid = open, dotted = limits apply,
   cross-hatch = closed or reservation required. Three survive grayscale.
 
   MEASURED CONTRAST — do not change a token without re-measuring
@@ -238,7 +238,7 @@
   }
 
   /* ---- Status bar textures ----------------------------------------------
-     The fourth channel. Reads with zero colour information. */
+     The fourth channel. Reads with zero color information. */
   .bar-solid {
     background-color: var(--color-flag-green);
   }

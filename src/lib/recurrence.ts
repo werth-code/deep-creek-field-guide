@@ -3,7 +3,7 @@
  *
  * THE DISTINCTION THIS FILE EXISTS FOR
  *
- * "The third weekend in August" is a FACT — the organiser publishes it, it
+ * "The third weekend in August" is a FACT — the organizer publishes it, it
  * holds for years, and it can be verified once. "15–17 August 2026" is
  * ARITHMETIC performed on that fact. They are not the same kind of thing and
  * this site must not present them as if they were.
@@ -217,7 +217,7 @@ export function occurrenceLabel(
       text: rec.kind === "announced" ? rec.hint : "Dates not confirmed",
       state: "unknown",
       computed: false,
-      note: "The organiser hasn't published dates we can point at yet.",
+      note: "The organizer hasn't published dates we can point at yet.",
     };
   }
   if (isRunning(occ, today)) {
@@ -230,7 +230,7 @@ export function occurrenceLabel(
     state: "upcoming",
     computed: occ.computed,
     note: occ.computed
-      ? "Worked out from the usual pattern, not confirmed with the organiser for this year."
+      ? "Worked out from the usual pattern, not confirmed with the organizer for this year."
       : null,
   };
 }

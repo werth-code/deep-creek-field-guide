@@ -43,7 +43,7 @@ export interface Correction {
  *
  * A first-hand visit legitimately counts as `confirmed` under the method
  * ("we called, visited, or asked"). But it confirms a FIELD, not a record:
- * standing in the car park tells you where the restrooms are, and nothing
+ * standing in the parking lot tells you where the restrooms are, and nothing
  * about the fee schedule. So reports attach here, name what they bear on, and
  * the record's own tier is unaffected until the rest is checked.
  *
@@ -222,8 +222,8 @@ export interface RegionalPark {
   /**
    * WHO MAY ACTUALLY USE IT.
    *
-   * Added for the 4-H centre, where the honest answer is neither "public
-   * park" nor "closed": part is open, part is programme-and-hire only, and a
+   * Added for the 4-H center, where the honest answer is neither "public
+   * park" nor "closed": part is open, part is program-and-hire only, and a
    * facilities table alone would send a family there to swim in water they
    * cannot get to. Where this is null the record is an ordinary public park.
    */
@@ -364,7 +364,7 @@ export function reservationFlag(r: Reservation): {
  * answer too.
  *
  * So the questions come from which fields are actually null, phrased the way
- * someone standing in the car park would say them. That also means they can
+ * someone standing in the parking lot would say them. That also means they can
  * never drift out of date: fill the field in and the question stops appearing.
  */
 const STATE_ASKS: [keyof StateParkFeatures, string][] = [
