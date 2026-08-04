@@ -71,6 +71,17 @@ export interface Photo {
   credit: string;
   takenOn: string;
   portrait?: boolean;
+  /**
+   * Where to anchor the crop on a listing thumbnail, as a CSS object-position.
+   * Defaults to centre.
+   *
+   * Thumbnails are a fixed 16:9 box and most of these photos are 4:3, so a
+   * centre crop throws away the top and bottom eighth. That is usually sky and
+   * gravel, and occasionally it is the animal — the first card built here
+   * cropped a tortoise's shell off and left a fence. Only set this when the
+   * default actually loses the subject.
+   */
+  focus?: string;
 }
 
 /**
@@ -541,10 +552,10 @@ export function allGoodFor(state: StatePark[], regional: RegionalPark[]) {
     label,
     parks: [
       ...state.filter((p) => goodForState(p).some((t) => t.slug === slug)).map((p) => ({
-        name: p.name, href: `/parks/${p.slug}/`, kind: p.kind, town: p.town, verdict: p.verdict ?? null,
+        name: p.name, href: `/parks/${p.slug}/`, kind: p.kind, town: p.town, verdict: p.verdict ?? null, photo: p.photos?.[0] ?? null,
       })),
       ...regional.filter((p) => goodForRegional(p).some((t) => t.slug === slug)).map((p) => ({
-        name: p.name, href: `/parks/regional/${p.slug}/`, kind: "Town park", town: p.town, verdict: p.verdict ?? null,
+        name: p.name, href: `/parks/regional/${p.slug}/`, kind: "Town park", town: p.town, verdict: p.verdict ?? null, photo: p.photos?.[0] ?? null,
       })),
     ],
   })).filter((t) => t.parks.length > 0);

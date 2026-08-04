@@ -1,0 +1,67 @@
+---
+/**
+ * The thumbnail on a listing card.
+ *
+ * WHY THIS IS NOT <Photo>
+ *
+ * <Photo> carries provenance: who took it, when, and a caption. That is the
+ * point of it, and it belongs on the record's own page where the claim is
+ * being made. Repeating the credit line on twelve index cards would be noise,
+ * and shrinking it to fit would make the date unreadable — a stamp nobody can
+ * read is a stamp nobody checks, which is worse than leaving it off.
+ *
+ * So the thumbnail is deliberately just the image, and the reader is one tap
+ * from the page where the same photo appears in full with its date and credit.
+ * The alt text still travels, because that is not decoration.
+ *
+ * FIXED ASPECT BOX
+ *
+ * Cards sit in a grid, and a grid of images at their natural ratios reads as a
+ * mess. `object-cover` in a 16:9 box crops instead, so every card lines up.
+ * The cost is that a 4:3 photo loses its top and bottom eighth, which is
+ * usually sky and gravel and occasionally the subject — hence `focus`.
+ *
+ * TWO SHAPES
+ *
+ * `top` is the banner across a card in a two-up grid, where the card is about
+ * 30rem wide and a 16:9 strip is proportionate. `side` is for the full-width
+ * cards on a single-column list, where that same strip would be six hundred
+ * pixels tall and swamp the text it is meant to illustrate. Same image, same
+ * file, different box.
+ *
+ * Only the 700px file is ever fetched — no card is wider than about 30rem, so
+ * the 1400 would be waste on every listing page.
+ */
+import type { Photo } from "../lib/parks";
+
+interface Props extends Photo {
+  /** `side` sits the image beside the text from `sm` up. Default is a banner. */
+  variant?: "top" | "side";
+  class?: string;
+}
+
+const { file, alt, focus, variant = "top", class: klass = "" } = Astro.props;
+
+const box =
+  variant === "side"
+    ? "sm:w-[15rem] sm:shrink-0 border-b-2 sm:border-b-0 sm:border-r-2 border-contour"
+    : "border-b-2 border-contour";
+
+const img =
+  variant === "side"
+    ? "aspect-[16/9] sm:aspect-auto sm:h-full sm:min-h-[11rem]"
+    : "aspect-[16/9]";
+---
+
+<div class={`overflow-hidden bg-lake/10 ${box} ${klass}`}>
+  <img
+    src={`/photos/${file}-700.jpg`}
+    alt={alt}
+    width={700}
+    height={394}
+    loading="lazy"
+    decoding="async"
+    style={focus ? `object-position:${focus}` : undefined}
+    class={`w-full block object-cover ${img} transition-transform duration-200 group-hover:scale-[1.02]`}
+  />
+</div>

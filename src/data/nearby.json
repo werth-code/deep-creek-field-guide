@@ -15,6 +15,16 @@
       "note": "Adults 13-64 $15.99. Seniors 65+ and military with ID $12.99. Children 3-12 $11.99. Two and under free. Season passes: $70 adult, $65 senior or military, $60 child.",
       "amount": 15.99
     },
+    "onSite": [
+      {
+        "label": "Feeding them",
+        "note": "Feed runs $1 to $5 depending on what you buy, and they take credit. You don't need to hunt for an ATM first."
+      },
+      {
+        "label": "Strollers",
+        "note": "The paths take a stroller."
+      }
+    ],
     "phone": "304-329-3122",
     "website": {
       "label": "West Virginia Zoo (Hovatter's Wildlife Zoo)",
@@ -49,24 +59,24 @@
         "receivedOn": "2026-08-04",
         "visitedOn": "2026-08-04",
         "from": "Site maintainer, first-hand",
-        "what": "Restrooms, a snack area and somewhere to picnic. You can feed some of the animals, and there's a gift shop. Prices and hours photographed on site.",
+        "what": "Restrooms, a snack area and somewhere to picnic. You can feed some of the animals — feed is $1 to $5 and they take credit — and there's a gift shop. The paths take a stroller. Prices and hours photographed on site.",
         "affects": [
           "admission",
           "hours",
           "restrooms",
           "gift shop",
-          "feeding"
+          "feeding",
+          "feed prices",
+          "stroller access"
         ]
       }
     ],
     "outstanding": [
       "Confirm the closing date of the 2026 season.",
-      "Confirm whether it's walk-through throughout, and roughly how long a full visit takes.",
-      "Confirm what the animal feed costs and whether it's cash only.",
-      "Confirm whether the paths are passable with a stroller or wheelchair."
+      "Confirm whether it's walk-through throughout, and roughly how long a full visit takes."
     ],
     "verdict": {
-      "text": "Better than it has any right to be for the price. Chimps, grizzlies, a tortoise the size of a coffee table, and a room of parakeets that lands on you. Bring cash for feed, and note last admission is 5pm even though the gate says six.",
+      "text": "Better than it has any right to be for the price. Chimps, grizzlies, a giraffe, a tortoise the size of a coffee table, and a room of parakeets that lands on you. Feed is a few dollars and they take credit. Watch the 5pm last admission, because the gate says six.",
       "on": "2026-08-04"
     },
     "photos": [
@@ -76,7 +86,8 @@
         "caption": "One of the tortoises, out by the path rather than behind glass.",
         "credit": "Site maintainer",
         "takenOn": "2026-08-04",
-        "portrait": false
+        "portrait": false,
+        "focus": "50% 65%"
       },
       {
         "file": "hovatters-5931",

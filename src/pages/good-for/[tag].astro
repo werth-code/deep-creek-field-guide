@@ -13,6 +13,7 @@
 import type { GetStaticPaths } from "astro";
 import Layout from "../../layouts/Layout.astro";
 import Ethics from "../../components/Ethics.astro";
+import CardPhoto from "../../components/CardPhoto.astro";
 
 import stateParksData from "../../data/state-parks.json";
 import regionalParksData from "../../data/regional-parks.json";
@@ -59,7 +60,9 @@ const LEDE: Record<string, string> = {
       {
         tag.parks.map((p, i) => (
           <li data-reveal style={`--stagger:${Math.min(i, 7)}`}>
-            <a href={p.href} class="sheet sheet-action block p-4 sm:p-5 no-underline h-full">
+            <a href={p.href} class="sheet sheet-action block no-underline h-full group overflow-hidden">
+              {p.photo && <CardPhoto {...p.photo} />}
+              <div class="p-4 sm:p-5">
               <p class="font-display text-[1.15rem] font-semibold tracking-[-0.03em] m-0 text-slate">
                 {p.name}
               </p>
@@ -67,6 +70,7 @@ const LEDE: Record<string, string> = {
               {p.verdict && (
                 <p class="mt-2.5 mb-0 text-[0.92rem] leading-[1.55]">{p.verdict.text}</p>
               )}
+              </div>
             </a>
           </li>
         ))

@@ -36,6 +36,17 @@ export interface NearbyPlace {
   kind: string;
   season: string | null;
   admission: { note: string; amount: number | null };
+  /**
+   * Extra rows for the "Going" table — the questions that are specific to one
+   * place and don't deserve a field of their own on every record. Feed prices
+   * at a zoo, whether the paths take a stroller, what the parking costs.
+   *
+   * A list rather than a boolean per fact, because these answers are almost
+   * never yes/no. "You can feed them" and "feed is $1 to $5 and they take
+   * credit" are the same fact at two useful levels of detail, and only the
+   * second one stops someone hunting for an ATM.
+   */
+  onSite?: { label: string; note: string }[] | null;
   phone: string | null;
   website: { label: string; url: string } | null;
   warnings: string[];
