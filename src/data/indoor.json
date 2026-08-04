@@ -1,0 +1,379 @@
+[
+  {
+    "slug": "discovery-center",
+    "name": "Discovery Center at Deep Creek Lake State Park",
+    "kind": "Nature center",
+    "operator": "Maryland Department of Natural Resources",
+    "town": "Swanton",
+    "address": "Deep Creek Lake State Park, 898 State Park Road, Swanton, MD 21561",
+    "blurb": "A 6,000 square foot nature center inside Deep Creek Lake State Park. Aquariums of fish out of the lake, an aviary of nine raptors that can't be released, a walk-through replica coal mine, and reptiles. It costs nothing to walk in, though you pay to get into the park.",
+    "hours": {
+      "lines": null,
+      "season": null,
+      "note": "DNR publishes a phone number instead of hours for this building. Call 301-387-7067 before you drive out."
+    },
+    "admission": {
+      "note": "Free to enter, and DNR asks for donations toward animal care. Getting into the park is not free: $3 per person for Maryland residents and $5 out-of-state in summer, per vehicle the rest of the year.",
+      "free": true,
+      "amount": 0
+    },
+    "phone": "301-387-7067",
+    "website": {
+      "label": "Maryland DNR: Deep Creek Lake State Park",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/deepcreek.aspx"
+    },
+    "restrooms": true,
+    "giftShop": true,
+    "accessibility": "DNR describes the restrooms as ADA accessible. Nothing published about the entrance or the exhibit floor.",
+    "parking": null,
+    "inside": [
+      "Aquariums of native fish and aquatic life taken from the lake",
+      "An aviary of nine non-releasable raptors, including hawks, owls and golden eagles",
+      "Reptile and amphibian displays",
+      "A replica coal mine you walk through indoors",
+      "An indoor classroom and conference room with AV",
+      "The Nature Shop: field guides, books, toys and regional souvenirs"
+    ],
+    "branches": null,
+    "warnings": [
+      "The center is free but the park gate is not. Budget the day-use fee on top.",
+      "DNR does not publish opening hours for this building. Call before driving out."
+    ],
+    "sources": [
+      {
+        "label": "Maryland DNR: Deep Creek Lake State Park",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/deepcreek.aspx",
+        "note": "The operator. Describes the Discovery Center, its size, the aviary of nine raptors, the aquariums, the replica coal mine, the ADA restrooms and the Nature Shop, and states that admission is free with donations encouraged. Gives 301-387-7067 for hours rather than publishing them."
+      }
+    ],
+    "sourcedOn": "2026-08-04",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Get the actual opening days and hours, and whether they change off-season.",
+      "Confirm whether the day-use fee is charged year round for someone visiting only the Discovery Center.",
+      "Confirm whether the entrance and exhibit floor are step-free, not just the restrooms.",
+      "Confirm where you park for the center specifically."
+    ],
+    "verdict": null
+  },
+  {
+    "slug": "garrett-county-history-museum",
+    "name": "Garrett County History Museum",
+    "kind": "Museum",
+    "operator": "Garrett County Historical Society",
+    "town": "Oakland",
+    "address": "107 South Second Street, Oakland, MD 21550",
+    "blurb": "The county historical society's main museum, in downtown Oakland. Two hundred years of Garrett County in one building: the B&O Railroad, the Oakland and Deer Park hotels, the schools, the opera house, the coal mines.",
+    "hours": {
+      "lines": [{ "days": "Wednesday – Saturday", "text": "10:00am – 3:00pm" }],
+      "season": null,
+      "note": "The society doesn't say whether these hours hold through the winter."
+    },
+    "admission": {
+      "note": "Not confirmed. The society publishes no admission price and no donation policy on its own site.",
+      "free": null,
+      "amount": null
+    },
+    "phone": "301-334-3226",
+    "website": {
+      "label": "Garrett County Historical Society Museums",
+      "url": "https://garrettcountymuseums.com/"
+    },
+    "restrooms": null,
+    "giftShop": null,
+    "accessibility": null,
+    "parking": null,
+    "inside": [
+      "Artifacts across roughly two hundred years of county history",
+      "The B&O Railroad in Garrett County",
+      "The Oakland and Deer Park hotels",
+      "County schools and the opera house",
+      "Coal mining"
+    ],
+    "branches": null,
+    "warnings": [
+      "Closed Sunday through Tuesday. Four days a week is easy to get wrong on a weekend trip."
+    ],
+    "sources": [
+      {
+        "label": "Garrett County Historical Society Museums: hours and location",
+        "url": "https://garrettcountymuseums.com/hours/",
+        "note": "The operator. Gives Wednesday to Saturday, 10:00am to 3:00pm, and the phone number. Publishes no admission price."
+      },
+      {
+        "label": "Garrett County Historical Society Museums: home",
+        "url": "https://garrettcountymuseums.com/",
+        "note": "Gives the South Second Street address and describes the collection as spanning over 200 years of county history."
+      }
+    ],
+    "sourcedOn": "2026-08-04",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Ask what it costs to get in, or whether it's donation-based.",
+      "Confirm whether the Wednesday-to-Saturday hours hold in winter.",
+      "Ask about restrooms, parking and step-free access.",
+      "Confirm whether one ticket or donation covers both this and the transportation museum."
+    ],
+    "verdict": null
+  },
+  {
+    "slug": "garrett-county-transportation-museum",
+    "name": "Garrett County Museum of Transportation",
+    "kind": "Museum",
+    "operator": "Garrett County Historical Society",
+    "town": "Oakland",
+    "address": "112 East Liberty Street, Oakland, MD 21550",
+    "blurb": "Two floors of how people and things moved around this county: carriages, sleighs, automobiles, boats, fire equipment. The upstairs gallery is given over to the history of Deep Creek Lake itself. Open for the warm half of the year only.",
+    "hours": {
+      "lines": [{ "days": "Wednesday – Saturday", "text": "10:00am – 3:00pm" }],
+      "season": "6 May 2026 through the Autumn Glory Festival. Shut for the winter.",
+      "note": "Autumn Glory is the second full weekend in October, so the season ends around then."
+    },
+    "admission": {
+      "note": "Not confirmed. The society publishes no admission price and no donation policy on its own site.",
+      "free": null,
+      "amount": null
+    },
+    "phone": "301-334-3226",
+    "website": {
+      "label": "Garrett County Historical Society Museums",
+      "url": "https://garrettcountymuseums.com/"
+    },
+    "restrooms": null,
+    "giftShop": null,
+    "accessibility": null,
+    "parking": null,
+    "inside": [
+      "Carriages, sleighs and buggies",
+      "Automobiles and boats",
+      "Fire department equipment",
+      "The Deep Creek Gallery upstairs: the history of the lake and the state parks around it",
+      "Rotating exhibits"
+    ],
+    "branches": null,
+    "warnings": [
+      "Shut all winter. The 2026 season runs 6 May to Autumn Glory, so a January trip is wasted.",
+      "Closed Sunday through Tuesday even in season."
+    ],
+    "sources": [
+      {
+        "label": "Garrett County Historical Society Museums: hours and location",
+        "url": "https://garrettcountymuseums.com/hours/",
+        "note": "The operator. Gives the 2026 season as 6 May through Autumn Glory Festival, Wednesday to Saturday 10:00am to 3:00pm, and the phone number."
+      },
+      {
+        "label": "Garrett County Historical Society Museums: home",
+        "url": "https://garrettcountymuseums.com/",
+        "note": "Gives the East Liberty Street address, the 2011 opening, and describes automobiles, boats, the history of Deep Creek Lake and rotating exhibits."
+      }
+    ],
+    "sourcedOn": "2026-08-04",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Ask what it costs to get in.",
+      "Get the exact 2026 closing date rather than \"through Autumn Glory\".",
+      "Ask about restrooms, parking and whether the second floor is reachable without stairs.",
+      "Confirm whether one admission covers this and the history museum."
+    ],
+    "verdict": null
+  },
+  {
+    "slug": "oakland-b-and-o-museum",
+    "name": "Oakland B&O Museum",
+    "kind": "Museum",
+    "operator": "Oakland B&O Museum",
+    "town": "Oakland",
+    "address": "117 East Liberty Street, Oakland, MD 21550",
+    "blurb": "The 1884 B&O depot in the middle of Oakland, restored and run as a railroad museum. Model trains, telegraph equipment and station fittings inside; a Baldwin steam locomotive and a caboose parked outside. Open every day, which almost nothing else here is.",
+    "hours": {
+      "lines": [{ "days": "Every day", "text": "10:00am – 3:00pm" }],
+      "season": null,
+      "note": "The museum is volunteer-staffed, so the published hours depend on someone turning up. Call ahead if the trip is long."
+    },
+    "admission": {
+      "note": "Not confirmed. The museum publishes no admission price on its own site.",
+      "free": null,
+      "amount": null
+    },
+    "phone": null,
+    "website": {
+      "label": "Oakland, Maryland B&O Museum",
+      "url": "https://www.oaklandbandomuseum.org/visit-us"
+    },
+    "restrooms": null,
+    "giftShop": true,
+    "accessibility": null,
+    "parking": null,
+    "inside": [
+      "The restored 1884 depot, by the Baltimore architects Baldwin & Pennington",
+      "Model trains",
+      "Telegraph equipment and station artifacts",
+      "A Baldwin steam locomotive, boxcars and cabooses outside",
+      "A gift shop of train-themed things"
+    ],
+    "branches": null,
+    "warnings": [
+      "Volunteer-run. \"Open every day\" is the intention, not a guarantee."
+    ],
+    "sources": [
+      {
+        "label": "Oakland, Maryland B&O Museum: visit us",
+        "url": "https://www.oaklandbandomuseum.org/visit-us",
+        "note": "The operator. Gives \"Open Every Day, 10 am to 3 pm\", the East Liberty Street address, the gift shop, the volunteer-led tours, and the indoor and outdoor exhibits. Publishes no admission price and no phone number."
+      }
+    ],
+    "sourcedOn": "2026-08-04",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Get a phone number. Their own site doesn't publish one.",
+      "Ask what it costs to get in.",
+      "Ask whether the every-day hours hold through the winter.",
+      "Ask about restrooms and step-free access into an 1884 depot."
+    ],
+    "verdict": null
+  },
+  {
+    "slug": "ruth-enlow-library",
+    "name": "Ruth Enlow Library of Garrett County",
+    "kind": "Library",
+    "operator": "Ruth Enlow Library of Garrett County",
+    "town": "Oakland",
+    "address": "6 North Second Street, Oakland, MD 21550",
+    "blurb": "The county library, five branches, free to walk into. On a wet afternoon it's the most reliable indoor room in Garrett County: warm, quiet, has a bathroom, and nobody minds how long you sit there. Every branch keeps different hours, and three of the five shut at lunchtime on Saturday.",
+    "hours": {
+      "lines": [
+        { "days": "Monday & Wednesday", "text": "9:15am – 8:00pm" },
+        { "days": "Tuesday, Thursday, Friday", "text": "9:15am – 5:30pm" },
+        { "days": "Saturday", "text": "9:00am – 4:00pm" }
+      ],
+      "season": null,
+      "note": "These are the Oakland hours. The other four branches all differ — see the branch table."
+    },
+    "admission": {
+      "note": "Free. It's a public library.",
+      "free": true,
+      "amount": 0
+    },
+    "phone": "301-334-3996",
+    "website": {
+      "label": "Ruth Enlow Library of Garrett County: locations and hours",
+      "url": "https://www.relib.net/locations"
+    },
+    "restrooms": null,
+    "giftShop": null,
+    "accessibility": null,
+    "parking": null,
+    "inside": [
+      "Five branches across the county",
+      "Oakland is the main branch and keeps the longest hours"
+    ],
+    "branches": [
+      {
+        "name": "Oakland (main)",
+        "town": "Oakland",
+        "address": "6 North Second Street, Oakland, MD 21550",
+        "phone": "301-334-3996",
+        "hours": {
+          "lines": [
+            { "days": "Mon & Wed", "text": "9:15am – 8:00pm" },
+            { "days": "Tue, Thu, Fri", "text": "9:15am – 5:30pm" },
+            { "days": "Sat", "text": "9:00am – 4:00pm" }
+          ],
+          "season": null,
+          "note": null
+        },
+        "note": null
+      },
+      {
+        "name": "Accident",
+        "town": "Accident",
+        "address": "106 South North Street, Accident, MD 21520",
+        "phone": "301-746-8792",
+        "hours": {
+          "lines": [
+            { "days": "Mon, Tue, Thu, Fri", "text": "11:00am – 5:30pm" },
+            { "days": "Wed", "text": "11:00am – 7:00pm" },
+            { "days": "Sat", "text": "9:00am – 1:00pm" }
+          ],
+          "season": null,
+          "note": null
+        },
+        "note": null
+      },
+      {
+        "name": "Friendsville",
+        "town": "Friendsville",
+        "address": "Friendsville Senior Center, 947 Community Drive, Friendsville, MD 21531",
+        "phone": "301-746-5663",
+        "hours": {
+          "lines": [
+            { "days": "Mon & Wed", "text": "2:00pm – 8:00pm" },
+            { "days": "Tue & Thu", "text": "1:30pm – 5:30pm" },
+            { "days": "Sat", "text": "9:00am – 2:00pm" }
+          ],
+          "season": null,
+          "note": "Closed Friday."
+        },
+        "note": "Not at its own building. The branch is running out of the Friendsville Senior Center on Community Drive while 315 Chestnut Street is renovated. Every map and listing still sends you to Chestnut Street."
+      },
+      {
+        "name": "Grantsville",
+        "town": "Grantsville",
+        "address": "102 Parkview Drive, Grantsville, MD 21536",
+        "phone": "301-895-5298",
+        "hours": {
+          "lines": [
+            { "days": "Mon", "text": "11:00am – 8:00pm" },
+            { "days": "Tue – Fri", "text": "11:00am – 5:30pm" },
+            { "days": "Sat", "text": "9:00am – 1:00pm" }
+          ],
+          "season": null,
+          "note": null
+        },
+        "note": null
+      },
+      {
+        "name": "Kitzmiller",
+        "town": "Kitzmiller",
+        "address": "288 West Main Street, Kitzmiller, MD 21538",
+        "phone": "301-334-8091",
+        "hours": {
+          "lines": [
+            { "days": "Mon & Wed", "text": "2:00pm – 7:00pm" },
+            { "days": "Tue, Thu, Fri", "text": "10:00am – 3:00pm" },
+            { "days": "Sat & Sun", "text": "Closed" }
+          ],
+          "season": null,
+          "note": "The only branch shut all weekend."
+        },
+        "note": null
+      }
+    ],
+    "warnings": [
+      "The Friendsville branch is not on Chestnut Street right now. It's operating from the Friendsville Senior Center at 947 Community Drive while the building is renovated.",
+      "Kitzmiller is closed Saturday and Sunday. Every other branch opens Saturday morning.",
+      "The library closes for holidays and for some local festivals. Those dates aren't in this record yet."
+    ],
+    "sources": [
+      {
+        "label": "Ruth Enlow Library of Garrett County: locations and hours",
+        "url": "https://www.relib.net/locations",
+        "note": "The operator. Gives all five branches with addresses, phone numbers, per-day hours and branch managers, and states that Friendsville is temporarily at the Friendsville Senior Center during renovation. Lists system-wide holiday closures and some festival closures."
+      }
+    ],
+    "sourcedOn": "2026-08-04",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Get the holiday and festival closure dates into the record.",
+      "Ask whether the library lends Maryland state park passes, as some Maryland systems do.",
+      "Confirm public restrooms and wifi at each branch.",
+      "Confirm when Friendsville moves back to Chestnut Street."
+    ],
+    "verdict": null
+  }
+]

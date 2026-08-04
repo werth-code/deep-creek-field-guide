@@ -18,9 +18,13 @@ import {
   type StatePark,
 } from "../../lib/parks";
 import { isPublishable, robotsFor } from "../../lib/verification";
+import { byPhotoThen } from "../../lib/order";
 
 const parks = parksData as StatePark[];
 const live = parks.filter(isPublishable);
+
+/* Photographed records lead. See src/lib/order.ts for why. */
+const ranked = byPhotoThen(parks);
 const gate = {
   verifiedDate: live.length ? "sourced" : null,
   verifiedSource: live.length ? "sourced" : null,
@@ -96,7 +100,7 @@ const schema = live.length
   <div class="wrap py-8">
     <div class="grid gap-4 sm:grid-cols-2 breakout">
       {
-        parks.map((park) => {
+        ranked.map((park) => {
           const { known, total } = completenessState(park);
           const has = presentState(park);
           const flag = reservationFlag(park.reservation);

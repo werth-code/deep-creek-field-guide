@@ -10,8 +10,12 @@ import Layout from "../layouts/Layout.astro";
 
 import stateParksData from "../data/state-parks.json";
 import regionalParksData from "../data/regional-parks.json";
+import nearbyData from "../data/nearby.json";
+import indoorData from "../data/indoor.json";
 import type { StatePark, RegionalPark } from "../lib/parks";
 import { completenessRegional, completenessState } from "../lib/parks";
+import type { NearbyPlace } from "../lib/nearby";
+import { completeness as completenessIndoor, type IndoorPlace } from "../lib/indoor";
 import { tierOf, type Tier, type Verifiable } from "../lib/verification";
 import { ageInDays, formatStampDate } from "../lib/dates";
 
@@ -56,6 +60,8 @@ function row(
 
 const stateParks = stateParksData as StatePark[];
 const regional = regionalParksData as RegionalPark[];
+const nearby = nearbyData as unknown as NearbyPlace[];
+const indoor = indoorData as unknown as IndoorPlace[];
 
 const rows: Row[] = [
   ...stateParks.map((p) => {
@@ -65,6 +71,14 @@ const rows: Row[] = [
   ...regional.map((p) => {
     const c = completenessRegional(p);
     return row(p, `/parks/regional/${p.slug}/`, "Town parks", c.known, c.total);
+  }),
+  /* Nearby and Indoors were missing from this table while the page called
+     itself "every fact on this site". A promise the audit doesn't cover is
+     the exact thing this page exists to stop. */
+  ...nearby.map((p) => row(p, `/nearby/${p.slug}/`, "Just over the line", 0, 0)),
+  ...indoor.map((p) => {
+    const c = completenessIndoor(p);
+    return row(p, `/indoors/${p.slug}/`, "Indoors", c.known, c.total);
   }),
 ];
 
@@ -94,7 +108,7 @@ const TIER_CLASS: Record<Tier, string> = {
 
 <Layout
   title="Every fact on this site, with its source"
-  description="The full audit: every park record on Deep Creek Field Guide, how it was checked, who said so and how long ago. Sorted oldest first, so the stale ones surface."
+  description="The full audit: every record on Deep Creek Field Guide — parks, town parks, museums, libraries and the places just over the line — how each was checked, who said so and how long ago."
 >
   <div class="wrap pt-11 pb-6">
     <p class="label m-0">Audit</p>
@@ -169,7 +183,7 @@ const TIER_CLASS: Record<Tier, string> = {
                   {r.age !== null && <span class="block mt-0.5">{r.age}d ago</span>}
                 </td>
                 <td class="px-4 py-3 stamp text-ink-soft whitespace-nowrap">
-                  {r.known}/{r.total}
+                  {r.total === 0 ? "—" : `${r.known}/${r.total}`}
                 </td>
               </tr>
             ))

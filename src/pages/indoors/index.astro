@@ -1,0 +1,187 @@
+---
+/**
+ * Indoors — museums, science centers and libraries.
+ *
+ * The section exists because of the weather, not because of the institutions.
+ * Nobody wakes up wanting a county historical society; they wake up to rain
+ * with a rental house and two kids in it. So the page is organised around
+ * "what's open today and does it cost anything", and the H1 says the weather
+ * part out loud.
+ *
+ * Hours lead every card. A park is open; these are shut four days a week or
+ * shut all winter, and the failure mode is a locked door at the end of a
+ * forty-minute drive.
+ */
+import Layout from "../../layouts/Layout.astro";
+import Ethics from "../../components/Ethics.astro";
+import FlagIcon from "../../components/FlagIcon.astro";
+import CardPhoto from "../../components/CardPhoto.astro";
+
+import indoorData from "../../data/indoor.json";
+import { completeness, hoursAnswer, present, type IndoorPlace } from "../../lib/indoor";
+import { isPublishable, robotsFor } from "../../lib/verification";
+import { byPhotoThen } from "../../lib/order";
+
+const places = indoorData as unknown as IndoorPlace[];
+const live = places.filter(isPublishable);
+const gate = {
+  verifiedDate: null,
+  verifiedSource: null,
+  sources: live.length ? [{ label: "x", url: "x" }] : null,
+  sourcedOn: live.length ? "2026-08-04" : null,
+};
+
+const free = places.filter((p) => p.admission.free === true).length;
+const unknownAdmission = places.filter((p) => p.admission.free === null).length;
+const seasonal = places.filter((p) => p.hours.season !== null).length;
+
+const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completeness(a).known);
+---
+
+<Layout
+  title="Deep Creek museums and libraries — hours and admission"
+  description="Museums, the Discovery Center and all five library branches around Deep Creek Lake: opening hours, what admission costs, what's inside. Where to go when it rains."
+  robots={robotsFor(gate)}
+>
+  <div class="wrap pt-11 pb-6">
+    <p class="label m-0">Indoors</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[15ch] text-slate">
+      When it rains
+    </h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      Museums, the Discovery Center and the county library. Everywhere here is
+      warm, dry and indoors. The rest of the site covers
+      <a href="/parks/">the days you can get outside</a>.
+    </p>
+  </div>
+
+  <div class="wrap prose-field pb-2">
+    <h2>Check the hours before you drive</h2>
+    <p class="max-w-[58ch]">
+      This is the one part of the county where turning up unannounced doesn't
+      work. Most of these open four days a week. One shuts from October to May.
+      The Discovery Center doesn't publish hours at all, just a phone number.
+    </p>
+
+    <p class="max-w-[58ch]">
+      So hours sit at the top of every card and every page here, and where I
+      don't know them it says so instead of implying you're welcome.
+    </p>
+
+    <div class="sheet breakout my-6 px-4 sm:px-5 py-4">
+      <p class="label m-0">Where this dataset stands</p>
+      <dl class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-3 mb-0">
+        {
+          [
+            { n: places.length, label: "places listed" },
+            { n: free, label: "confirmed free" },
+            { n: unknownAdmission, label: "price unknown" },
+            { n: seasonal, label: "close for a season" },
+          ].map((s) => (
+            <div>
+              <dt class="font-display text-[2rem] font-semibold text-slate leading-none">{s.n}</dt>
+              <dd class="m-0 mt-1 stamp text-ink-soft">{s.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="mt-3.5 mb-0 text-[0.9rem] leading-snug text-ink-soft max-w-[56ch]">
+        Three of these publish hours on their own site but no admission price at
+        all. That's not an oversight on my end — it's genuinely not published,
+        and the calls are on the list.
+      </p>
+    </div>
+  </div>
+
+  <div class="wrap pb-8">
+    <div class="grid gap-4 sm:grid-cols-2 breakout">
+      {
+        ranked.map((place) => {
+          const { known, total } = completeness(place);
+          const hrs = hoursAnswer(place.hours);
+          const has = present(place);
+          return (
+            <article data-reveal class="sheet sheet-action relative group overflow-hidden">
+              <a href={`/indoors/${place.slug}/`} class="absolute inset-0 z-10 no-underline">
+                <span class="sr-only">{place.name}</span>
+              </a>
+
+              {place.photos?.[0] && <CardPhoto {...place.photos[0]} />}
+
+              <div class="p-4 sm:p-5">
+                <header class="flex items-start justify-between gap-3">
+                  <div>
+                    <h2 class="font-display text-[1.12rem] font-semibold tracking-[-0.03em] m-0 text-slate underline decoration-contour decoration-2 underline-offset-[0.16em] group-hover:decoration-slate">
+                      {place.name}
+                    </h2>
+                    <p class="stamp text-ink-soft mt-1 mb-0">{place.kind} · {place.town}</p>
+                  </div>
+                  <span class="stamp text-ink-soft shrink-0">{known}/{total}</span>
+                </header>
+
+                {/* Hours first, always, and visually separated. */}
+                <div class="mt-3.5 border-y-2 border-contour py-2.5">
+                  <div class="flex items-baseline justify-between gap-3">
+                    <span class="label">Open</span>
+                    <span
+                      class={`text-[0.9rem] text-right leading-snug ${
+                        hrs.state === "unknown" ? "text-ink-soft italic" : "text-ink font-medium"
+                      }`}
+                    >
+                      {hrs.text}
+                    </span>
+                  </div>
+                  {place.hours.season && (
+                    <p class="stamp text-flag-red-bearing mt-1.5 mb-0 text-right">{place.hours.season}</p>
+                  )}
+                </div>
+
+                <p class="mt-3 mb-0 text-[0.9rem] leading-[1.55]">{place.blurb}</p>
+
+                {has.length > 0 && (
+                  <ul class="list-none p-0 m-0 mt-3.5 flex flex-wrap gap-1.5">
+                    {has.map((f) => (
+                      <li class="sheet-quiet px-2 py-0.5 stamp text-[0.68rem] text-slate">{f}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {place.warnings.length > 0 && (
+                  <p class="mt-3 mb-0 text-[0.85rem] leading-snug text-ink-soft flex gap-1.5">
+                    <FlagIcon icon="alert" class="w-[1em] h-[1em] mt-1 shrink-0 text-flag-red" />
+                    <span>{place.warnings[0]}</span>
+                  </p>
+                )}
+
+                <p class="stamp text-ink-soft mt-3.5 mb-0 flex items-center justify-between gap-3">
+                  <span>{place.operator}</span>
+                  <span class="text-contour-deep group-hover:translate-x-0.5 transition-transform duration-100">→</span>
+                </p>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <h2>Why a library is in here</h2>
+    <p class="max-w-[58ch]">
+      Because on a wet Tuesday it's the most reliable indoor room in the county.
+      Free, warm, has a bathroom, and nobody minds how long you stay. The five
+      branches all keep different hours, which is exactly the kind of thing
+      that's a nuisance to look up five times, so they're in one table.
+    </p>
+
+    <Ethics />
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/parks/">The state parks and forests</a></li>
+      <li><a href="/parks/regional/">Town parks</a></li>
+      <li><a href="/events/">Fairs and events</a></li>
+      <li><a href="/verified/">Every fact on the site, with its source</a></li>
+    </ul>
+  </div>
+</Layout>

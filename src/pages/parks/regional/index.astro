@@ -24,6 +24,7 @@ import {
   type RegionalPark,
 } from "../../../lib/parks";
 import { isPublishable, robotsFor } from "../../../lib/verification";
+import { byPhotoThen } from "../../../lib/order";
 
 const parks = parksData as RegionalPark[];
 const live = parks.filter(isPublishable);
@@ -39,7 +40,8 @@ const unknownRestrooms = parks.filter((p) => p.restrooms.present === null).lengt
 
 /* Detailed records first, name-only stubs last — a reader shouldn't have to
    scroll past five placeholders to reach the park with a beach on it. */
-const ranked = [...parks].sort(
+const ranked = byPhotoThen(
+  parks,
   (a, b) => completenessRegional(b).known - completenessRegional(a).known,
 );
 ---

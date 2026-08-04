@@ -27,6 +27,10 @@ export const getStaticPaths = (() => {
 const { tag, all } = Astro.props;
 const others = all.filter((t) => t.slug !== tag.slug);
 
+/* Photographed entries lead. These carry a single `photo`, not a `photos`
+   array, so byPhotoThen doesn't fit — same rule, spelled out. */
+const ranked = [...tag.parks].sort((a, b) => Number(!!b.photo) - Number(!!a.photo));
+
 const LEDE: Record<string, string> = {
   "restrooms-that-exist": "Confirmed, not assumed. The ones I haven't checked aren't on this list.",
   "no-booking-needed": "Turn up and go. Swallow Falls is the one that changed, and it isn't here on a weekend.",
@@ -58,7 +62,7 @@ const LEDE: Record<string, string> = {
   <div class="wrap pb-8">
     <ul class="list-none p-0 m-0 grid gap-3 sm:grid-cols-2 breakout">
       {
-        tag.parks.map((p, i) => (
+        ranked.map((p, i) => (
           <li data-reveal style={`--stagger:${Math.min(i, 7)}`}>
             <a href={p.href} class="sheet sheet-action block no-underline h-full group overflow-hidden">
               {p.photo && <CardPhoto {...p.photo} />}

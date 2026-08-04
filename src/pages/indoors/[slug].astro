@@ -1,0 +1,333 @@
+---
+/**
+ * One museum, nature center or library.
+ *
+ * HOURS LEAD. Everything else on this site describes a place that is open;
+ * these are places that are shut four days a week, or shut all winter, and
+ * arriving at a locked door ends the trip. So the hours block sits above the
+ * blurb, above the photo, above everything except the name.
+ */
+import type { GetStaticPaths } from "astro";
+
+import Layout from "../../layouts/Layout.astro";
+import FlagIcon from "../../components/FlagIcon.astro";
+import MapEmbed from "../../components/MapEmbed.astro";
+import MapLink from "../../components/MapLink.astro";
+import Photo from "../../components/Photo.astro";
+import Verdict from "../../components/Verdict.astro";
+import ReportBox from "../../components/ReportBox.astro";
+
+import indoorData from "../../data/indoor.json";
+import {
+  admissionAnswer,
+  asks as asksFor,
+  giftShopAnswer,
+  hoursAnswer,
+  restroomAnswer,
+  type IndoorPlace,
+} from "../../lib/indoor";
+import { isVerified, isPublishable, robotsFor, sourcedText, stampText, tierOf } from "../../lib/verification";
+import { formatStampDate } from "../../lib/dates";
+
+export const getStaticPaths = (() =>
+  (indoorData as unknown as IndoorPlace[]).map((place) => ({
+    params: { slug: place.slug },
+    props: { place },
+  }))) satisfies GetStaticPaths;
+
+const { place } = Astro.props as { place: IndoorPlace };
+const tier = tierOf(place);
+
+const hrs = hoursAnswer(place.hours);
+const adm = admissionAnswer(place.admission);
+const wc = restroomAnswer(place);
+const shop = giftShopAnswer(place);
+const asks = asksFor(place);
+
+const schema = isPublishable(place)
+  ? [{
+      "@context": "https://schema.org",
+      "@type": place.kind === "Library" ? "Library" : "Museum",
+      name: place.name,
+      description: place.blurb,
+      isAccessibleForFree: place.admission.free ?? undefined,
+      telephone: place.phone ?? undefined,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: place.address ?? undefined,
+        addressLocality: place.town,
+        addressRegion: "MD",
+      },
+    }]
+  : [];
+
+const title = [
+  `${place.name} — hours and admission`,
+  `${place.name} — hours`,
+  place.name,
+].find((t) => t.length <= 60) ?? place.name;
+
+const description =
+  `${place.name} in ${place.town}, Garrett County: opening hours, what admission costs, and what's actually inside. Dated and sourced, with the gaps marked.`.slice(0, 157);
+
+/* Rows for the facts table. Built here rather than inline so the "not
+   confirmed" styling is decided in one place for all of them. */
+const rows: { label: string; text: string; state: "yes" | "no" | "unknown" }[] = [
+  { label: "Admission", ...adm },
+  { label: "Restrooms", ...wc },
+  { label: "Gift shop", ...shop },
+  {
+    label: "Getting around",
+    text: place.accessibility ?? "Not confirmed",
+    state: place.accessibility ? "yes" : "unknown",
+  },
+  {
+    label: "Parking",
+    text: place.parking ?? "Not confirmed",
+    state: place.parking ? "yes" : "unknown",
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  robots={robotsFor(place)}
+  dateModified={place.verifiedDate ?? place.sourcedOn}
+  schema={schema}
+>
+  <article>
+    <div class="wrap pt-11 pb-5">
+      <p class="label m-0">
+        <a href="/indoors/" class="no-underline hover:underline">Indoors</a>
+        <span class="text-ink-soft"> · </span>{place.town}
+      </p>
+      <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[18ch] text-slate">{place.name}</h1>
+      <p class="stamp text-ink-soft mt-3 mb-0">{place.kind} · {place.operator}</p>
+    </div>
+
+    {/* HOURS FIRST. See the note at the top of this file. */}
+    <div class="wrap">
+      <aside
+        class={`sheet breakout px-4 sm:px-5 py-4 my-2 border-l-[9px] ${
+          hrs.state === "unknown" ? "border-l-flag-red" : "border-l-flag-green"
+        }`}
+      >
+        <p class="label m-0">When it's open</p>
+        {
+          place.hours.lines ? (
+            <dl class="grid sm:grid-cols-[13rem_1fr] gap-x-6 gap-y-1 mt-2.5 mb-0">
+              {place.hours.lines.map((l) => (
+                <>
+                  <dt class="font-display text-[1rem] font-semibold text-slate m-0">{l.days}</dt>
+                  <dd class="m-0 text-[1rem] leading-[1.5]">{l.text}</dd>
+                </>
+              ))}
+            </dl>
+          ) : (
+            <p class="font-display text-[1.15rem] font-semibold mt-2 mb-0 text-slate">
+              Not confirmed — call first
+            </p>
+          )
+        }
+        {
+          place.hours.season && (
+            <p class="mt-3 mb-0 text-[0.95rem] leading-snug flex gap-1.5">
+              <FlagIcon icon="alert" class="w-[1em] h-[1em] mt-1 shrink-0 text-flag-red" />
+              <span><strong>Season:</strong> {place.hours.season}</span>
+            </p>
+          )
+        }
+        {place.hours.note && <p class="stamp text-ink-soft mt-2.5 mb-0 max-w-[62ch]">{place.hours.note}</p>}
+        {
+          place.phone && (
+            <p class="mt-3 mb-0">
+              <a href={`tel:${place.phone.replace(/[^0-9+]/g, "")}`} class="tap stamp text-[1rem]">{place.phone}</a>
+            </p>
+          )
+        }
+      </aside>
+    </div>
+
+    <div class="wrap prose-field pt-4">
+      <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{place.blurb}</p>
+
+      {place.verdict && <Verdict verdict={place.verdict} />}
+
+      {place.photos && place.photos.length > 0 && <Photo {...place.photos[0]} hero />}
+
+      {
+        place.warnings.length > 0 && (
+          <ul class="list-none p-0 my-6 space-y-2">
+            {place.warnings.map((w) => (
+              <li class="text-[0.96rem] leading-[1.55] max-w-[60ch] flex gap-2">
+                <FlagIcon icon="alert" class="w-[1em] h-[1em] mt-1.5 shrink-0 text-flag-red" />
+                <span>{w}</span>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+
+      <h2>What's inside</h2>
+      <ul>
+        {place.inside.map((i) => <li>{i}</li>)}
+      </ul>
+
+      <h2>The details</h2>
+      <dl class="sheet breakout my-6 divide-y-2 divide-lake/25">
+        {
+          rows.map((r) => (
+            <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+              <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">{r.label}</dt>
+              <dd
+                class={`m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55] max-w-[52ch] ${
+                  r.state === "unknown" ? "text-ink-soft italic" : ""
+                }`}
+              >
+                {r.text}
+              </dd>
+            </div>
+          ))
+        }
+        <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+          <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Getting there</dt>
+          <dd class="m-0 mt-1 sm:mt-0">
+            <MapLink name={place.name} town={place.town} address={place.address ?? undefined} label="Open in Google Maps" />
+          </dd>
+        </div>
+        {
+          place.website && (
+            <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
+              <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">Website</dt>
+              <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem]">
+                <a href={place.website.url} rel="nofollow">{place.website.label}</a>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+
+      {
+        place.branches && place.branches.length > 0 && (
+          <>
+            <h2>Every branch, and when it's open</h2>
+            <p class="max-w-[58ch]">
+              All five keep different hours, and the differences are the whole
+              point of the table. Kitzmiller is shut both weekend days. Everywhere
+              else opens Saturday morning and three of them shut again at one.
+            </p>
+            <div class="sheet breakout overflow-x-auto my-6">
+              <table class="w-full border-collapse text-left min-w-[36rem]">
+                <thead>
+                  <tr class="border-b-2 border-contour">
+                    <th class="label px-4 py-3 font-normal">Branch</th>
+                    <th class="label px-4 py-3 font-normal">Hours</th>
+                    <th class="label px-4 py-3 font-normal whitespace-nowrap">Phone</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {place.branches.map((b) => (
+                    <tr class="border-b border-lake/25 align-top">
+                      <td class="px-4 py-3">
+                        <span class="text-[0.94rem] font-medium text-slate">{b.name}</span>
+                        <span class="stamp text-ink-soft block mt-0.5 max-w-[20rem]">{b.address}</span>
+                        {b.note && (
+                          <span class="block mt-1.5 text-[0.85rem] leading-snug text-flag-red-bearing max-w-[22rem]">
+                            {b.note}
+                          </span>
+                        )}
+                      </td>
+                      <td class="px-4 py-3 text-[0.88rem] leading-snug">
+                        {(b.hours.lines ?? []).map((l) => (
+                          <span class="block">
+                            <span class="text-ink-soft">{l.days}</span> {l.text}
+                          </span>
+                        ))}
+                        {b.hours.note && <span class="block mt-1 stamp text-ink-soft">{b.hours.note}</span>}
+                      </td>
+                      <td class="px-4 py-3 whitespace-nowrap">
+                        {b.phone ? (
+                          <a href={`tel:${b.phone.replace(/[^0-9+]/g, "")}`} class="tap stamp">{b.phone}</a>
+                        ) : (
+                          <span class="stamp text-ink-soft italic">—</span>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )
+      }
+
+      <h2>Where it is</h2>
+      <MapEmbed name={place.name} town={place.town} address={place.address ?? undefined} />
+
+      {
+        place.photos && place.photos.length > 1 && (
+          <>
+            <h2>More photographs</h2>
+            {place.photos.slice(1).map((ph) => <Photo {...ph} />)}
+          </>
+        )
+      }
+
+      {
+        place.reports && place.reports.length > 0 && (
+          <>
+            <h2 id="reports">From people who were there</h2>
+            <ul class="list-none p-0 m-0 space-y-4">
+              {place.reports.map((r) => (
+                <li class="sheet px-4 sm:px-5 py-4 border-l-[9px] border-l-lake">
+                  <p class="m-0 text-[0.96rem] leading-[1.55] max-w-[58ch]">{r.what}</p>
+                  <p class="stamp text-ink-soft mt-2.5 mb-0">
+                    {r.from} · reported {formatStampDate(r.receivedOn)}
+                    {r.visitedOn ? ` · visited ${formatStampDate(r.visitedOn)}` : " · visit date not given"}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+
+      <aside
+        class={`sheet breakout my-8 px-4 sm:px-5 py-5 border-l-[9px] ${
+          isVerified(place) ? "border-l-flag-green" : "border-l-contour"
+        }`}
+      >
+        {
+          isVerified(place)
+            ? <p class="m-0"><span class="stamp stamp-struck">{stampText(place)}</span></p>
+            : tier === "sourced"
+              ? (
+                <>
+                  <p class="label text-contour-deep m-0">Read from the source — not yet confirmed by phone</p>
+                  <p class="stamp text-ink-soft mt-1.5 mb-0">{sourcedText(place)}</p>
+                </>
+              )
+              : <p class="stamp text-ink-soft m-0">Not yet checked against a primary source.</p>
+        }
+        <ul class="list-none p-0 mt-4 mb-0 space-y-1.5">
+          {place.sources.map((s) => (
+            <li class="text-[0.88rem] leading-snug">
+              <a href={s.url} rel="nofollow">{s.label}</a>
+              {s.note && <span class="text-ink-soft"> — {s.note}</span>}
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      <ReportBox subject={place.name} path={`/indoors/${place.slug}/`} asks={asks} />
+
+      <h2>Related</h2>
+      <ul>
+        <li><a href="/indoors/">Everything indoors in the county</a></li>
+        <li><a href="/parks/">The state parks</a></li>
+        <li><a href="/events/">Fairs and events</a></li>
+      </ul>
+    </div>
+  </article>
+</Layout>
