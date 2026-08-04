@@ -9,7 +9,7 @@
     "county": "Preston County",
     "address": "291 Wagner Lane, Kingwood, WV 26537",
     "kind": "Private wildlife zoo",
-    "blurb": "A family-run zoo in rural Preston County with over thirty species, from chimpanzees and grizzlies to a walk-in room full of parakeets. You can feed some of the animals. There's a gift shop, a snack area, restrooms and somewhere to picnic.",
+    "blurb": "A family-run zoo in rural Preston County with over thirty species: chimpanzees, grizzlies, a giraffe, a herd of fallow deer that walks right up to the fence, and a walk-in room full of parakeets. You can feed some of the animals. There's a gift shop, a snack area, restrooms and somewhere to picnic.",
     "season": "Open seven days a week, 10am to 6pm, last admission 5pm. Open on all holidays. The 2026 season opened 11 April.",
     "admission": {
       "note": "Adults 13-64 $15.99. Seniors 65+ and military with ID $12.99. Children 3-12 $11.99. Two and under free. Season passes: $70 adult, $65 senior or military, $60 child.",
@@ -90,6 +90,46 @@
         "file": "hovatters-5933",
         "alt": "Two large rattlesnakes coiled together on straw bedding inside a reptile enclosure.",
         "caption": "Rattlesnakes in the reptile house. Behind glass, in case that needed saying.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-04",
+        "portrait": false
+      },
+      {
+        "file": "hovatters-5921",
+        "alt": "A giraffe standing on gravel in front of an open barn door, photographed through a wire fence.",
+        "caption": "There's a giraffe. I did not expect a giraffe.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-04",
+        "portrait": false
+      },
+      {
+        "file": "hovatters-5922",
+        "alt": "The giraffe enclosure seen from a grassy slope, with a split-rail fence in front and a tan barn behind.",
+        "caption": "The same enclosure from the path above it, which is where you get the better look.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-04",
+        "portrait": false
+      },
+      {
+        "file": "hovatters-5919",
+        "alt": "A herd of spotted fallow deer crowded around a round hay bale in a feeder, in a wooded dirt pen.",
+        "caption": "The fallow deer herd at their hay bale. There are more of them than the photo makes it look.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-04",
+        "portrait": false
+      },
+      {
+        "file": "hovatters-5920",
+        "alt": "A young spotted fallow deer with large ears looking directly through a wire fence at close range.",
+        "caption": "This one came over on its own. The fence is wire, so you end up nose to nose.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-04",
+        "portrait": false
+      },
+      {
+        "file": "hovatters-5929",
+        "alt": "A wooden climbing ramp signed Goat Mountain in a large dirt yard, with goats standing along the fence in the foreground.",
+        "caption": "Goat Mountain. The goats work the fence line, so they'll find you before you find them.",
         "credit": "Site maintainer",
         "takenOn": "2026-08-04",
         "portrait": false

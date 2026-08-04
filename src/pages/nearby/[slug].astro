@@ -123,6 +123,15 @@ const title = [`${place.name} — ${place.distance.split("—")[0].trim()}`, pla
       <h2>Where it's</h2>
       <MapEmbed name={place.name} town={place.town} address={place.address} region={place.state} />
 
+      {
+        place.photos && place.photos.length > 1 && (
+          <>
+            <h2>More photographs</h2>
+            {place.photos.slice(1).map((ph) => <Photo {...ph} />)}
+          </>
+        )
+      }
+
       {place.reports && place.reports.length > 0 && (
         <>
           <h2 id="reports">From people who were there</h2>
