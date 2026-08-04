@@ -12,6 +12,7 @@
       "swimming": false,
       "restrooms": true,
       "picnic": null,
+      "showers": null,
       "camping": true,
       "cabins": null,
       "trails": true,
@@ -155,6 +156,7 @@
       "swimming": true,
       "restrooms": true,
       "picnic": null,
+      "showers": true,
       "camping": true,
       "cabins": null,
       "trails": true,
@@ -162,7 +164,7 @@
       "boatRentals": null,
       "fishing": true,
       "winterUse": true,
-      "petsAllowed": null
+      "petsAllowed": true
     },
     "reservation": {
       "required": false,
@@ -188,7 +190,9 @@
       ],
       "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
-    "warnings": [],
+    "warnings": [
+      "Dogs are allowed, but not on the beach. The one part of this park most people drive here for is the part the dog can't come to."
+    ],
     "phone": null,
     "hours": null,
     "sources": [
@@ -216,7 +220,9 @@
       "Confirm beach season dates and whether lifeguards are posted — DNR says swimming is permitted 'when swim lines are installed' and never mentions guards.",
       "Confirm the day-use fee, and whether it differs in and out of season.",
       "Confirm boat launch fees and whether a separate launch permit is needed.",
-      "Confirm pet rules on the beach specifically."
+      "Confirm pet rules on the beach specifically.",
+      "Confirm who may use the showers — campers only, or anyone off the beach. A campground bathhouse usually means campers only, and that changes the answer completely.",
+      "Confirm exactly where the dog line falls — sand only, or the whole swimming area and the buildings too, as at Herrington Manor."
     ],
     "services": {
       "parkOffice": null,
@@ -247,6 +253,25 @@
           "beach",
           "swimming"
         ]
+      },
+      {
+        "receivedOn": "2026-08-04",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "There are showers at the park.",
+        "affects": [
+          "showers"
+        ]
+      },
+      {
+        "receivedOn": "2026-08-04",
+        "visitedOn": null,
+        "from": "Site maintainer, first-hand",
+        "what": "Dogs are allowed at the park, but not on the beach.",
+        "affects": [
+          "petsAllowed",
+          "beach"
+        ]
       }
     ],
     "fieldNotes": [
@@ -274,6 +299,7 @@
       "swimming": true,
       "restrooms": true,
       "picnic": null,
+      "showers": null,
       "camping": false,
       "cabins": true,
       "trails": true,
@@ -382,6 +408,7 @@
       "swimming": true,
       "restrooms": null,
       "picnic": null,
+      "showers": null,
       "camping": true,
       "cabins": true,
       "trails": true,
@@ -456,6 +483,7 @@
       "swimming": false,
       "restrooms": true,
       "picnic": true,
+      "showers": null,
       "camping": true,
       "cabins": false,
       "trails": true,
@@ -549,6 +577,7 @@
       "swimming": false,
       "restrooms": null,
       "picnic": null,
+      "showers": null,
       "camping": false,
       "cabins": false,
       "trails": null,
@@ -622,6 +651,7 @@
       "swimming": false,
       "restrooms": null,
       "picnic": null,
+      "showers": null,
       "camping": false,
       "cabins": false,
       "trails": null,
@@ -697,6 +727,7 @@
       "swimming": false,
       "restrooms": null,
       "picnic": null,
+      "showers": null,
       "camping": null,
       "cabins": false,
       "trails": true,
@@ -768,6 +799,7 @@
       "swimming": false,
       "restrooms": null,
       "picnic": null,
+      "showers": null,
       "camping": false,
       "cabins": false,
       "trails": true,
@@ -843,6 +875,7 @@
       "swimming": false,
       "restrooms": null,
       "picnic": null,
+      "showers": null,
       "camping": true,
       "cabins": false,
       "trails": true,
@@ -914,6 +947,7 @@
       "swimming": null,
       "restrooms": false,
       "picnic": null,
+      "showers": null,
       "camping": true,
       "cabins": null,
       "trails": true,

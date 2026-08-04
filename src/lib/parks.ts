@@ -155,6 +155,19 @@ export interface StateParkFeatures {
    * built from what agencies publish rather than from what people ask.
    */
   picnic: boolean | null;
+  /**
+   * Hot showers. Fourth schema gap a field report has found, and the same
+   * shape as the other three.
+   *
+   * This one matters more than it looks. A shower is usually a campground
+   * building, and campground buildings are usually for campers only — so
+   * "showers: true" and "you can rinse the lake off before the drive home"
+   * are not the same claim. The boolean only says they exist; who may use
+   * them goes in `warnings`, the same place Herrington Manor's dogs-but-not-
+   * on-the-sand rule lives. State parks have no `access` field — town parks
+   * grew one for the 4-H centre and this dataset never did.
+   */
+  showers: boolean | null;
   camping: boolean | null;
   cabins: boolean | null;
   trails: boolean | null;
@@ -313,6 +326,7 @@ export const STATE_FEATURE_LABELS: [keyof StateParkFeatures, string][] = [
   ["swimming", "Swimming"],
   ["restrooms", "Restrooms"],
   ["picnic", "Picnic areas"],
+  ["showers", "Showers"],
   ["camping", "Camping"],
   ["cabins", "Cabins"],
   ["trails", "Trails"],
@@ -406,6 +420,7 @@ const STATE_ASKS: [keyof StateParkFeatures, string][] = [
   ["restrooms", "Are there restrooms?"],
   ["petsAllowed", "Are dogs allowed?"],
   ["picnic", "Are there picnic tables?"],
+  ["showers", "Are there showers?"],
   ["beach", "Is there a beach?"],
   ["swimming", "Can you swim?"],
   ["camping", "Can you camp?"],
@@ -552,10 +567,10 @@ export function allGoodFor(state: StatePark[], regional: RegionalPark[]) {
     label,
     parks: [
       ...state.filter((p) => goodForState(p).some((t) => t.slug === slug)).map((p) => ({
-        name: p.name, href: `/parks/${p.slug}/`, kind: p.kind, town: p.town, verdict: p.verdict ?? null, photo: p.photos?.[0] ?? null,
+        name: p.name, href: `/parks/${p.slug}/`, kind: p.kind, town: p.town, verdict: p.verdict ?? null, photo: p.photos?.[0] ?? null, warnings: p.warnings ?? [],
       })),
       ...regional.filter((p) => goodForRegional(p).some((t) => t.slug === slug)).map((p) => ({
-        name: p.name, href: `/parks/regional/${p.slug}/`, kind: "Town park", town: p.town, verdict: p.verdict ?? null, photo: p.photos?.[0] ?? null,
+        name: p.name, href: `/parks/regional/${p.slug}/`, kind: "Town park", town: p.town, verdict: p.verdict ?? null, photo: p.photos?.[0] ?? null, warnings: p.warnings ?? [],
       })),
     ],
   })).filter((t) => t.parks.length > 0);
