@@ -1,0 +1,127 @@
+---
+/**
+ * Who writes this.
+ *
+ * The audit called this the single biggest humanising change available, and
+ * the reasoning holds: a site whose whole argument is "a person went and
+ * checked" needs the person to be findable. No stock photo, no invented
+ * credentials, no claim to be a local. What's here is checkable, which is the
+ * same standard the rest of the site is held to.
+ */
+import Layout from "../layouts/Layout.astro";
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    mainEntity: {
+      "@type": "Person",
+      name: "Matt Werth",
+      jobTitle: "Software engineer",
+      worksFor: { "@type": "Organization", name: "Werth Design", url: "https://werth.design" },
+      description:
+        "Writes and checks the Deep Creek Field Guide. Forty years going to Garrett County, first as a 4-H camper, later as a volunteer.",
+    },
+  },
+];
+---
+
+<Layout
+  title="Who writes this — Deep Creek Field Guide"
+  description="Matt Werth writes and checks this site. Forty years going out to Garrett County, a taste for tables and dates, and a habit of publishing the mistakes."
+  schema={schema}
+>
+  <div class="wrap pt-11 pb-2">
+    <p class="label m-0">About</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[14ch] text-slate">Who writes this</h1>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <p class="text-[1.2rem] leading-[1.5] font-medium max-w-[56ch]">
+      Matt Werth. One person, not a team, and not a content operation.
+    </p>
+
+    <p class="max-w-[58ch]">
+      I've been going to Garrett County for forty years. I started as a camper
+      at what everyone still calls Pleasant Valley, went back as a volunteer,
+      and I'm now the one driving out with kids in the back and a boot full of
+      their stuff. That's the honest description of my standing here. I'm not a
+      resident. I'm also not passing through.
+    </p>
+
+    <p class="max-w-[58ch]">
+      I write software for a living and run <a href="https://werth.design" rel="noopener">Werth
+      Design</a>, a studio in Wilmington, Delaware. Werth Design builds and pays
+      for this site. Nobody sponsors it and nothing on it is an affiliate link.
+    </p>
+
+    <h2>Why I built it</h2>
+
+    <p class="max-w-[58ch]">
+      I drove to a park with a car full of children and found the thing I'd read
+      about was wrong. That's the whole origin story. It isn't dramatic and it
+      happens to everyone.
+    </p>
+
+    <p class="max-w-[58ch]">
+      What annoyed me wasn't the wrong fact. It was that there was no way to
+      tell how old the answer was, or who'd said it. A page written in 2019 and
+      a page written last week look identical.
+    </p>
+
+    <p class="max-w-[58ch]">
+      So the rule here is that every fact carries a date and a source, and where
+      I haven't checked something it says so instead of guessing. It makes the
+      site look less complete than its competitors. That's the point.
+    </p>
+
+    <h2>How I work</h2>
+
+    <p class="max-w-[58ch]">
+      I ring the people who set the rule. Maryland DNR for a state park, the
+      town for a town park, the organiser for an event. I write down the date I
+      asked and who answered. If I only read it from an official page rather
+      than asking a person, the page says that too, because they aren't the same
+      claim.
+    </p>
+
+    <p class="max-w-[58ch]">
+      I'm an engineer, so this ends up being mostly tables. I don't trust my own
+      memory of a park I visited two summers ago and I don't expect you to.
+    </p>
+
+    <h2>I get things wrong in public</h2>
+
+    <p class="max-w-[58ch]">
+      Three so far, all still on the site with the date and what I used to say.
+      The Swallow Falls reservation rule. The 4-H centre's swimming, which I had
+      as open to anyone when it's for camp programmes. And three parks I'd
+      marked "believed free", which is a guess wearing a fact's clothes.
+    </p>
+
+    <p class="max-w-[58ch]">
+      <a href="/how-we-verify/">The method page has all three</a>. Leaving them
+      up is not modesty. A guide that promises checking and quietly rewrites its
+      errors is worth less than one that never promised.
+    </p>
+
+    <h2>Tell me when I'm wrong</h2>
+
+    <p class="max-w-[58ch]">
+      There's a report box at the bottom of every park page, and it takes about
+      ten seconds. People who live there know these places better than I do, and
+      a note from someone who stood in the car park yesterday beats another
+      phone call from me.
+    </p>
+
+    <p class="max-w-[58ch]">
+      Most of what's been fixed recently came in that way.
+    </p>
+
+    <h2>Related</h2>
+    <ul>
+      <li><a href="/how-we-verify/">How I check things, and what I've got wrong</a></li>
+      <li><a href="/verified/">Every fact on the site, with its source and age</a></li>
+    </ul>
+  </div>
+</Layout>
