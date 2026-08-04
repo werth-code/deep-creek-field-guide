@@ -40,6 +40,7 @@ export interface NearbyPlace {
   website: { label: string; url: string } | null;
   warnings: string[];
   photos?: Photo[];
+  verdict?: { text: string; on: string };
   sources: { label: string; url: string; note?: string | null; primary?: boolean }[];
   sourcedOn: string | null;
   verifiedDate: string | null;

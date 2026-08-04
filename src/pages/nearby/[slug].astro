@@ -9,6 +9,7 @@ import FlagIcon from "../../components/FlagIcon.astro";
 import MapEmbed from "../../components/MapEmbed.astro";
 import MapLink from "../../components/MapLink.astro";
 import Photo from "../../components/Photo.astro";
+import Verdict from "../../components/Verdict.astro";
 import ReportBox from "../../components/ReportBox.astro";
 
 import nearbyData from "../../data/nearby.json";
@@ -78,6 +79,8 @@ const title = [`${place.name} — ${place.distance.split("—")[0].trim()}`, pla
 
     <div class="wrap prose-field pt-4">
       <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{place.blurb}</p>
+
+      {(place as any).verdict && <Verdict verdict={(place as any).verdict} />}
 
       {place.photos && place.photos.length > 0 && <Photo {...place.photos[0]} hero />}
 

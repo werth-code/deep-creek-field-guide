@@ -3,17 +3,17 @@
     "slug": "hovatters-wildlife-zoo",
     "name": "Hovatter's Wildlife Zoo",
     "alsoKnownAs": "West Virginia Zoo",
-    "distance": "About 26 miles from Oakland — roughly 45 minutes, and over the state line",
+    "distance": "About 26 miles from Oakland, four miles between Kingwood and Reedsville. Roughly 45 minutes, and over the state line.",
     "town": "Kingwood",
     "state": "West Virginia",
     "county": "Preston County",
     "address": "291 Wagner Lane, Kingwood, WV 26537",
     "kind": "Private wildlife zoo",
-    "blurb": "A family-run zoo in rural Preston County with over thirty species, chimpanzees and grizzlies and giraffes among them. Reported to have a walk-in room full of parakeets, which is the bit people remember.",
-    "season": "Opens 11 April 2026 for its 34th season. Closing date and daily hours are not confirmed.",
+    "blurb": "A family-run zoo in rural Preston County with over thirty species, from chimpanzees and grizzlies to a walk-in room full of parakeets. You can feed some of the animals. There's a gift shop, a snack area, restrooms and somewhere to picnic.",
+    "season": "Open seven days a week, 10am to 6pm, last admission 5pm. Open on all holidays. The 2026 season opened 11 April.",
     "admission": {
-      "note": "Charged. The zoo does not publish prices on its front page and I have not confirmed them — ring ahead.",
-      "amount": null
+      "note": "Adults 13-64 $15.99. Seniors 65+ and military with ID $12.99. Children 3-12 $11.99. Two and under free. Season passes: $70 adult, $65 senior or military, $60 child.",
+      "amount": 15.99
     },
     "phone": "304-329-3122",
     "website": {
@@ -22,9 +22,14 @@
     },
     "warnings": [
       "This is in West Virginia, not Garrett County. Everything else on this site is Maryland.",
-      "A private business sets its own hours and prices and can change them without notice. Ring before driving 45 minutes."
+      "Last admission is 5pm, an hour before closing. Worth knowing on a 45-minute drive."
     ],
     "sources": [
+      {
+        "label": "Hovatter's Wildlife Zoo: the zoo's own brochure, collected on site",
+        "url": "https://www.westvirginiazoo.com/",
+        "note": "Printed brochure picked up at the gate on 4 August 2026. Gives park hours (7 days, 10am to 6pm, last admission 5pm, open all holidays), the address, phone, and the USDA licence. Admission and season pass prices are from the posted price list inside."
+      },
       {
         "label": "West Virginia Zoo: official site",
         "url": "https://www.westvirginiazoo.com/",
@@ -37,26 +42,58 @@
       }
     ],
     "sourcedOn": "2026-08-03",
-    "verifiedDate": null,
-    "verifiedSource": null,
+    "verifiedDate": "2026-08-04",
+    "verifiedSource": "Visited, and read off the zoo's own brochure on site",
     "reports": [
       {
-        "receivedOn": "2026-08-03",
-        "visitedOn": null,
+        "receivedOn": "2026-08-04",
+        "visitedOn": "2026-08-04",
         "from": "Site maintainer, first-hand",
-        "what": "A bit far out, but genuinely fun — and there's a room full of parakeets.",
+        "what": "Restrooms, a snack area and somewhere to picnic. You can feed some of the animals, and there's a gift shop. Prices and hours photographed on site.",
         "affects": [
-          "parakeet room",
-          "worth the drive"
+          "admission",
+          "hours",
+          "restrooms",
+          "gift shop",
+          "feeding"
         ]
       }
     ],
     "outstanding": [
-      "PRIORITY: get admission prices and daily hours from the zoo directly. Neither is published on the site and both are what someone needs before driving 45 minutes.",
-      "Confirm the parakeet room — the zoo's own site never mentions it, and it is the thing our reporter singled out.",
-      "Confirm the closing date of the season.",
-      "Confirm whether it is walk-through, drive-through or both, and roughly how long a visit takes.",
-      "Confirm whether the directions page really means west of Oakland rather than east."
+      "Confirm the closing date of the 2026 season.",
+      "Confirm whether it's walk-through throughout, and roughly how long a full visit takes.",
+      "Confirm what the animal feed costs and whether it's cash only.",
+      "Confirm whether the paths are passable with a stroller or wheelchair."
+    ],
+    "verdict": {
+      "text": "Better than it has any right to be for the price. Chimps, grizzlies, a tortoise the size of a coffee table, and a room of parakeets that lands on you. Bring cash for feed, and note last admission is 5pm even though the gate says six.",
+      "on": "2026-08-04"
+    },
+    "photos": [
+      {
+        "file": "hovatters-5930",
+        "alt": "A very large tortoise resting on bare earth beside a wire fence, with a paved path and trees behind it.",
+        "caption": "One of the tortoises, out by the path rather than behind glass.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-04",
+        "portrait": false
+      },
+      {
+        "file": "hovatters-5931",
+        "alt": "A dozen pink flamingos standing around a shallow muddy pool in a grassed enclosure under a blue sky.",
+        "caption": "The flamingo enclosure, mid-afternoon in early August.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-04",
+        "portrait": false
+      },
+      {
+        "file": "hovatters-5933",
+        "alt": "Two large rattlesnakes coiled together on straw bedding inside a reptile enclosure.",
+        "caption": "Rattlesnakes in the reptile house. Behind glass, in case that needed saying.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-04",
+        "portrait": false
+      }
     ]
   }
 ]
