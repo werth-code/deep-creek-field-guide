@@ -7,6 +7,7 @@
  * and say plainly that they are undated, rather than being quietly dropped.
  */
 import Layout from "../../layouts/Layout.astro";
+import Ethics from "../../components/Ethics.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 
 import eventsData from "../../data/events.json";
@@ -143,6 +144,8 @@ const STATE_CLASS = {
       Know one that belongs here? <a href="/how-we-verify/">Tell me</a>. A link
       to the organizer's own page is enough to start.
     </p>
+
+    <Ethics />
 
     <h2>Related</h2>
     <ul>

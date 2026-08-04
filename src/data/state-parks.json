@@ -80,7 +80,7 @@
       {
         "label": "Garrett County Government: day-use reservations at Swallow Falls",
         "url": "https://www.garrettcountymd.gov/news/2026-05/new-day-use-reservations-required-swallow-falls-state-park-beginning-memorial-day-weekend",
-        "note": "CONFLICTS with DNR. Says reservations are required every day. Recorded because it is why we had it wrong, and because it is still live."
+        "note": "CONFLICTS with DNR. Says reservations are required every day. Recorded because it is why I had it wrong, and because it is still live."
       },
       {
         "label": "Maryland DNR: park service charges",
@@ -104,7 +104,7 @@
       {
         "date": "2026-08-03",
         "was": "That a reservation was required every day from 23 May through Labor Day, not just weekends.",
-        "now": "Reservations are required on weekends and holidays only; weekdays are entry on arrival. Garrett County's May announcement said every day, but Maryland DNR runs the park and the reservation system, and three DNR sources — the park page, the 20 May statewide notice and the 25 June expansion release — all say weekends and holidays. We had followed the county."
+        "now": "Reservations are required on weekends and holidays only; weekdays are entry on arrival. Garrett County's May announcement said every day, but Maryland DNR runs the park and the reservation system, and three DNR sources — the park page, the 20 May statewide notice and the 25 June expansion release — all say weekends and holidays. I'd followed the county."
       }
     ],
     "services": {
@@ -136,7 +136,11 @@
         "author": "Matt",
         "body": "The ranger station, the restrooms and the store are all at the main parking area, not off at the campground the way Maryland's own listing implies. Trailheads start a few steps from the same lot, so you can park and be walking in under a minute."
       }
-    ]
+    ],
+    "verdict": {
+      "text": "The waterfall is genuinely worth the drive, and the hemlock stand behind it is the better half. Everything you need is at the main lot, so you can park and be walking in a minute. Just don't turn up on a Saturday without a booking, because that changed in May and most of the internet hasn't noticed.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "deep-creek-lake",
@@ -251,7 +255,11 @@
         "author": "Matt",
         "body": "The swim area is roped inside stone breakwaters, so it stays calm even when the rest of the lake is busy with boats. Plenty of sand, and shade at the back of the beach if you get there early enough to claim it."
       }
-    ]
+    ],
+    "verdict": {
+      "text": "The swim area sits inside stone breakwaters, so it stays flat even when the rest of the lake is full of boats. Plenty of sand. The shade at the back of the beach goes early, though.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "herrington-manor",
@@ -355,7 +363,11 @@
           "restrooms"
         ]
       }
-    ]
+    ],
+    "verdict": {
+      "text": "A quiet lake because gas motors aren't allowed on it, which is the whole appeal. You can rent a boat here, and there are twenty CCC cabins if you plan far enough ahead. Dogs are fine on the trails and not on the sand.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "new-germany",
@@ -518,7 +530,11 @@
           "camping"
         ]
       }
-    ]
+    ],
+    "verdict": {
+      "text": "Primitive camping where the Savage River meets the reservoir, wrapped on every side by state forest. There are restrooms and picnic areas, which for a site this rough is more than you'd expect.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "casselman-river-bridge",
@@ -1018,6 +1034,10 @@
         "author": "Matt",
         "body": "The trailhead is a small pull-in on Snaggy Mountain Road near Cranesville Road. No sign, so you are looking for the parking area rather than the trail. The walk in is open hardwood with fern up to your knees, and then the ground turns to boulders fairly suddenly. Some of the passages are barely shoulder-width and everything is mossy, which means slick long after it has stopped raining. Not one to do in a hurry."
       }
-    ]
+    ],
+    "verdict": {
+      "text": "House-sized boulders with passages between them narrow enough to turn sideways for, and no sign anywhere telling you it exists. The moss holds water for days, so it's slick long after the rain stops. Not one to rush, and not one to do in trainers.",
+      "on": "2026-08-03"
+    }
   }
 ]

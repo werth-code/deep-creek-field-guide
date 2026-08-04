@@ -68,6 +68,36 @@ export function tierOf(v: Verifiable): Tier {
   return "reported";
 }
 
+/* ------------------------------------------------------- confidence -- */
+
+/**
+ * The tier, said out loud.
+ *
+ * "confirmed / sourced / reported" is accurate and it is jargon. Nobody reading
+ * a park page knows what tier two means. These are the same three states named
+ * the way a person would say them, plus the fourth that never publishes.
+ *
+ * The rating is deliberately about CONFIDENCE rather than quality. Everyone
+ * else rates how good a place is, which is an opinion anyone can have. How
+ * sure I am, and why, is the thing this site can say that they can't.
+ */
+export const CONFIDENCE: Record<Tier, { label: string; means: string }> = {
+  confirmed: {
+    label: "Stood on it",
+    means: "I went, or I called and asked the people who set the rule. Dated, and it says who.",
+  },
+  sourced: {
+    label: "Off their page",
+    means: "Taken from the official source and linked, but I haven't confirmed it myself.",
+  },
+  reported: {
+    label: "Not checked",
+    means: "Listed so you know it exists. Don't plan around it.",
+  },
+};
+
+export const confidenceOf = (v: Verifiable) => CONFIDENCE[tierOf(v)];
+
 /** True only for first-party confirmation. Used where the strong claim matters. */
 export const isVerified = (v: Verifiable): boolean => tierOf(v) === "confirmed";
 

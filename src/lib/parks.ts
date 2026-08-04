@@ -102,6 +102,28 @@ export interface FieldNote {
   photo?: string | null;
 }
 
+/**
+ * The verdict.
+ *
+ * One or two sentences a database could not produce. A fact, then what I
+ * actually think about that fact.
+ *
+ * This is the thing the site was missing. It has the most rigorous data of any
+ * guide to this county and, until now, said nothing about anything. The
+ * facilities table tells you a park has restrooms. The verdict tells you the
+ * walk from the car is longer than it looks and the bugs are bad at six.
+ *
+ * Rules: no adjective stacks, no closing epigram, and it has to contain
+ * something only somebody who went could know. If it reads like it could have
+ * been written from the DNR page, delete it and write it again.
+ */
+export interface Verdict {
+  /** One or two sentences. Fact, then reaction. */
+  text: string;
+  /** ISO date. A verdict ages like everything else here. */
+  on: string;
+}
+
 export interface StateParkFeatures {
   waterfall: boolean | null;
   /** Sand you can sit on. Distinct from `swimming`, which is about the water. */
@@ -171,6 +193,7 @@ export interface StatePark {
   reports?: FieldReport[];
   photos?: Photo[];
   fieldNotes?: FieldNote[];
+  verdict?: Verdict;
 }
 
 export interface Restrooms {
@@ -244,6 +267,7 @@ export interface RegionalPark {
   corrections?: Correction[];
   reports?: FieldReport[];
   fieldNotes?: FieldNote[];
+  verdict?: Verdict;
 }
 
 /* ------------------------------------------------------------- rendering -- */

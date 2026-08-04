@@ -12,6 +12,7 @@
  * and almost nobody publishes it.
  */
 import Layout from "../../../layouts/Layout.astro";
+import Ethics from "../../../components/Ethics.astro";
 import FlagIcon from "../../../components/FlagIcon.astro";
 
 import parksData from "../../../data/regional-parks.json";
@@ -165,6 +166,8 @@ const ranked = [...parks].sort(
   </div>
 
   <div class="wrap prose-field pb-4">
+    <Ethics />
+
     <h2>Related</h2>
     <ul>
       <li><a href="/parks/">The ten state parks and forests</a></li>

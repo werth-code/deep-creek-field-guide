@@ -12,6 +12,7 @@ import FlagIcon from "../../components/FlagIcon.astro";
 import MapLink from "../../components/MapLink.astro";
 import MapEmbed from "../../components/MapEmbed.astro";
 import Photo from "../../components/Photo.astro";
+import Verdict from "../../components/Verdict.astro";
 import FieldNotes from "../../components/FieldNotes.astro";
 import ReportBox from "../../components/ReportBox.astro";
 
@@ -167,6 +168,8 @@ const title =
     <div class="wrap prose-field pt-4">
       <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{park.blurb}</p>
 
+      {park.verdict && <Verdict verdict={park.verdict} />}
+
       {park.photos && park.photos.length > 0 && <Photo {...park.photos[0]} hero />}
 
       <h2>What's there</h2>
@@ -249,7 +252,7 @@ const title =
                   const s = park.services!;
                   if (s.giftShop === true) return "Gift shop on site";
                   if (s.campStore === true)
-                    return "Park store on site — whether it stocks more than camp supplies is not confirmed";
+                    return "Park store on site — whether it stocks more than camp supplies isn't confirmed";
                   if (s.giftShop === false && s.campStore === false) return "No shop on site";
                   return <span class="text-ink-soft italic">Not confirmed</span>;
                 })()}
@@ -332,7 +335,7 @@ const title =
             </ul>
             <p class="text-[0.86rem] leading-snug text-ink-soft max-w-[58ch]">
               First-hand and useful, but not the same as the agency confirming it —
-              so it doesn't change the stamp below. It changes what we go and ask.
+              so it doesn't change the stamp below. It changes what I go and ask.
             </p>
           </>
         )
@@ -344,7 +347,7 @@ const title =
       {
         park.corrections && park.corrections.length > 0 && (
           <>
-            <h2 id="corrected">We got this wrong</h2>
+            <h2 id="corrected">I got this wrong</h2>
             <ul class="list-none p-0 m-0 space-y-4">
               {park.corrections.map((c) => (
                 <li class="sheet px-4 sm:px-5 py-4 border-l-[9px] border-l-contour-deep">
@@ -352,7 +355,7 @@ const title =
                     Corrected {formatStampDate(c.date)}
                   </p>
                   <p class="mt-2 mb-0 text-[0.94rem] leading-[1.55] max-w-[58ch]">
-                    <span class="font-medium">We had said:</span> {c.was}
+                    <span class="font-medium">I'd said:</span> {c.was}
                   </p>
                   <p class="mt-1.5 mb-0 text-[0.94rem] leading-[1.55] max-w-[58ch]">
                     <span class="font-medium">Actually:</span> {c.now}
@@ -390,7 +393,7 @@ const title =
 
         <p class="mt-4 mb-0 text-[0.85rem] text-ink-soft max-w-[56ch]">
           Rules change. If you find this wrong,{" "}
-          <a href="/how-we-verify/#corrections">tell us and we'll fix it and say we did</a>.
+          <a href="/how-we-verify/#corrections">tell me and I'll fix it and say I did</a>.
         </p>
       </aside>
 
@@ -403,7 +406,7 @@ const title =
           still reads "Not confirmed" where it sits, which is the honest signal
           that actually helps. */}
 
-      <h2>Where it is</h2>
+      <h2>Where it's</h2>
       <MapEmbed name={`${park.name} ${park.kind}`} town={park.town} address={null} />
 
       {park.fieldNotes && park.fieldNotes.length > 0 && <FieldNotes notes={park.fieldNotes} />}

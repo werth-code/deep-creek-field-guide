@@ -52,7 +52,7 @@ const schema = [
     <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
       Tell it what matters for the trip. It answers from the same checked data
       as the rest of the site — and tells you plainly when something hasn't been
-      checked, rather than guessing.
+      checked, instead of guessing.
     </p>
   </div>
 
@@ -109,12 +109,12 @@ const schema = [
     </p>
     <p class="max-w-[58ch]">
       Anything unchecked is shown separately and labelled, because a blank in
-      our data means nobody has asked yet, not that the park lacks it. Treating
+      my data means nobody has asked yet, not that the park lacks it. Treating
       those as "no" would be inventing facts at scale.
     </p>
     <p class="max-w-[58ch]">
-      There's an AI here, and it is kept on a short lead: it writes the summary
-      line and orders the results. It is never given the park data and cannot
+      There's an AI here, and it's kept on a short lead: it writes the summary
+      line and orders the results. It's never given the park data and can't
       state a fact about a park. Everything you see below the summary is
       rendered from the checked dataset, with the same source link the park page
       carries. <a href="/how-we-verify/">The full method is here</a>.
@@ -229,7 +229,7 @@ const schema = [
     const what = r.query.kind === "state" ? "state park" : r.query.kind === "town" ? "town park" : "park";
     if (r.empty) return "Tell me what you're after — a beach, restrooms, a playground, trails, somewhere you can turn up to without booking — and I'll show you what's confirmed.";
     if (!r.matches.length && !r.unconfirmed.length)
-      return `Nothing on the site matches${asked ? " " + asked : ""}${where}. That may mean it doesn't exist here, or that we haven't checked it yet.`;
+      return `Nothing on the site matches${asked ? " " + asked : ""}${where}. That may mean it doesn't exist here, or that I haven't checked it yet.`;
     // Gaps are a UNION across candidates — never phrase them as though every
     // candidate is missing every item.
     const gapsOf = rows => listOf([...new Set(rows.flatMap(s => s.unknown))].map(says));
@@ -305,7 +305,7 @@ const schema = [
    *
    * `filters` accumulates across turns — "somewhere to swim", then "with
    * restrooms", narrows rather than restarting. `messages` is the transcript
-   * sent to the worker: the visitor's own words and our own summary lines, and
+   * sent to the worker: the visitor's own words and my own summary lines, and
    * never any park data, so the model cannot launder a fact through history it
    * wrote earlier.
    */
@@ -400,7 +400,7 @@ const schema = [
         </div>` : ""}
       ${bare ? "" : result.matches.length ? `<p class="label mt-6 mb-0 text-flag-green-bearing">Confirmed</p>${grid(result.matches)}` : ""}
       ${!bare && result.unconfirmed.length ? `<p class="label mt-6 mb-0 text-contour-deep">Might match — not checked</p>
-         <p class="mt-1.5 mb-0 text-[0.88rem] leading-snug text-ink-soft max-w-[58ch]">A blank in our data means nobody has asked yet, not that the park lacks it.</p>
+         <p class="mt-1.5 mb-0 text-[0.88rem] leading-snug text-ink-soft max-w-[58ch]">A blank in my data means nobody has asked yet, not that the park lacks it.</p>
          ${grid(result.unconfirmed)}` : ""}
       ${!clarify && followUps.length ? `<div class="mt-6"><p class="label m-0">Ask next</p>
          <ul class="list-none p-0 m-0 mt-2 flex flex-wrap gap-1.5">${

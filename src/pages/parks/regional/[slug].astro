@@ -8,6 +8,7 @@ import type { GetStaticPaths } from "astro";
 import Layout from "../../../layouts/Layout.astro";
 import FlagIcon from "../../../components/FlagIcon.astro";
 import MapLink from "../../../components/MapLink.astro";
+import Verdict from "../../../components/Verdict.astro";
 import MapEmbed from "../../../components/MapEmbed.astro";
 import FieldNotes from "../../../components/FieldNotes.astro";
 import ReportBox from "../../../components/ReportBox.astro";
@@ -149,6 +150,8 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
     <div class="wrap prose-field pt-6">
       <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{park.blurb}</p>
 
+      {park.verdict && <Verdict verdict={park.verdict} />}
+
       <h2>What's there</h2>
       <div class="sheet breakout my-6 p-4 sm:p-5">
         <div class="flex items-baseline justify-between gap-4">
@@ -229,13 +232,13 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
       {
         park.corrections && park.corrections.length > 0 && (
           <>
-            <h2 id="corrected">We got this wrong</h2>
+            <h2 id="corrected">I got this wrong</h2>
             <ul class="list-none p-0 m-0 space-y-4">
               {park.corrections.map((c) => (
                 <li class="sheet px-4 sm:px-5 py-4 border-l-[9px] border-l-contour-deep">
                   <p class="label text-contour-deep m-0">Corrected {formatStampDate(c.date)}</p>
                   <p class="mt-2 mb-0 text-[0.94rem] leading-[1.55] max-w-[58ch]">
-                    <span class="font-medium">We had said:</span> {c.was}
+                    <span class="font-medium">I'd said:</span> {c.was}
                   </p>
                   <p class="mt-1.5 mb-0 text-[0.94rem] leading-[1.55] max-w-[58ch]">
                     <span class="font-medium">Actually:</span> {c.now}
@@ -289,7 +292,7 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
         </ul>
         <p class="mt-4 mb-0 text-[0.85rem] text-ink-soft max-w-[56ch]">
           Rules change. If you find this wrong,{" "}
-          <a href="/how-we-verify/#corrections">tell us and we'll fix it and say we did</a>.
+          <a href="/how-we-verify/#corrections">tell me and I'll fix it and say I did</a>.
         </p>
       </aside>
 
@@ -302,7 +305,7 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
           still reads "Not confirmed" where it sits, which is the honest signal
           that actually helps. */}
 
-      <h2>Where it is</h2>
+      <h2>Where it's</h2>
       <MapEmbed name={park.name} town={park.town} address={park.address} />
 
       {park.fieldNotes && park.fieldNotes.length > 0 && <FieldNotes notes={park.fieldNotes} />}

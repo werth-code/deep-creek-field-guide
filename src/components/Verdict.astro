@@ -1,0 +1,26 @@
+---
+/**
+ * The verdict. One or two sentences a database couldn't produce.
+ *
+ * Sits directly under the h1, above the facts, because it's the thing a person
+ * actually wants first. The facts table answers "does it have restrooms". This
+ * answers "is it worth the drive", which is the question they came with.
+ *
+ * Styled as prose, not as a card: it isn't data and shouldn't look like it.
+ */
+import type { Verdict } from "../lib/parks";
+interface Props { verdict: Verdict }
+const { verdict } = Astro.props;
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const [y, m, d] = verdict.on.split("-").map(Number);
+---
+
+<div class="border-l-[5px] border-l-contour-deep pl-4 sm:pl-5 my-6">
+  <p class="text-[1.15rem] leading-[1.55] font-medium m-0 max-w-[54ch] text-slate">
+    {verdict.text}
+  </p>
+  <p class="stamp text-ink-soft mt-2 mb-0">
+    Matt, {d} {MONTHS[m - 1]} {y}
+  </p>
+</div>

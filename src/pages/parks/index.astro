@@ -6,6 +6,7 @@
  * ruins a trip if you don't have it and almost nothing published has caught up.
  */
 import Layout from "../../layouts/Layout.astro";
+import Ethics from "../../components/Ethics.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 
 import parksData from "../../data/state-parks.json";
@@ -158,10 +159,12 @@ const schema = live.length
     <h2>How complete this is</h2>
     <p class="max-w-[58ch]">
       Every card shows how many of its nine facilities are confirmed. A field
-      reading <em>Not confirmed</em> means we haven't checked it — it does not
+      reading <em>Not confirmed</em> means I haven't checked it — it doesn't
       mean the park lacks the thing. Day-use fees and park office numbers are the
       biggest gap, and every one is on the call list.
     </p>
+
+    <Ethics />
 
     <h2>Related</h2>
     <ul>

@@ -54,7 +54,7 @@
     "verifiedDate": null,
     "verifiedSource": null,
     "outstanding": [
-      "PRIORITY: get the entry fee and season-pass prices from the Town of Oakland directly. Figures circulate online but the town's own site is unreachable and we will not publish a number we cannot read at source.",
+      "PRIORITY: get the entry fee and season-pass prices from the Town of Oakland directly. Figures circulate online but the town's own site is unreachable and I won't publish a number we cannot read at source.",
       "Confirm the season the beach is open and staffed, and whether the park is accessible outside it.",
       "Confirm whether the restrooms stay open outside the beach season.",
       "Confirm boat rental prices and what is available to rent."
@@ -63,7 +63,7 @@
       {
         "date": "2026-08-03",
         "was": "\"Believed to charge an entry or beach fee in season.\"",
-        "now": "We don't know, and \"believed\" is not something this site is allowed to publish. It was a guess with no source behind it, which is the one thing every page here promises not to do. The fee is now marked unconfirmed until the Town of Oakland confirms it."
+        "now": "I don't know, and \"believed\" is not something this site is allowed to publish. It was a guess with no source behind it, which is the one thing every page here promises not to do. The fee is now marked unconfirmed until the Town of Oakland confirms it."
       }
     ],
     "reports": [
@@ -91,7 +91,11 @@
           "pavilion"
         ]
       }
-    ]
+    ],
+    "verdict": {
+      "text": "Oakland's lake park, and the biggest municipal one in the county. Swimming beach, boat launch, boats and pavilions to rent. Nobody publishes what it costs to get in, including the town, so call before you load the car.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "accident-town-park-east",
@@ -213,7 +217,11 @@
           "pavilion"
         ]
       }
-    ]
+    ],
+    "verdict": {
+      "text": "Small, and the swing set has an accessible seat on it. That's rare out here and almost nobody publishes it. Free to use, and the pavilion books separately.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "friendsville-community-park",
@@ -281,7 +289,7 @@
       {
         "date": "2026-08-03",
         "was": "That there is no beach here.",
-        "now": "There is a small sand beach. The Chamber's own listing for the town says so, and we had it as a flat no — which is worse than leaving it blank, because a flat no stops the park appearing when someone searches for one. Whether it is a swimming beach or river access only is still not confirmed."
+        "now": "There is a small sand beach. The Chamber's own listing for the town says so, and I had it as a flat no — which is worse than leaving it blank, because a flat no stops the park appearing when someone searches for one. Whether it is a swimming beach or river access only is still not confirmed."
       }
     ],
     "reports": [
@@ -304,7 +312,11 @@
         "author": "Matt",
         "body": "Restrooms, a play area and ball fields. There is pickleball here too, though the town's own listing only mentions tennis, so I do not know yet whether it is dedicated courts or lines painted on the tennis."
       }
-    ]
+    ],
+    "verdict": {
+      "text": "A proper town park on the Youghiogheny: paved loop, river access, two ball fields, and a small sand beach the county's own listing forgets to mention. There's pickleball too, which nothing official mentions at all.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "pleasant-valley-4h-center",
@@ -374,7 +386,7 @@
       {
         "date": "2026-08-03",
         "was": "\"Thirteen hundred acres run by the University of Maryland, with a lake and beach open daily through the summer for swimming, fishing and canoeing.\" Swimming and the beach were listed as available.",
-        "now": "It is over 1,100 acres, and Extension — the operator — puts swimming, boating, the ranges, the challenge course and the cabins on the PRIVATE side, available through a camp program or by booking. Only the lake, trails, fishing, biking and wildlife viewing are described as public. Our version would have sent a family there to swim. It also came from a county tourism site rather than from Extension, which is the kind of source this site is not supposed to use at all — that is the root of it."
+        "now": "It is over 1,100 acres, and Extension — the operator — puts swimming, boating, the ranges, the challenge course and the cabins on the PRIVATE side, available through a camp program or by booking. Only the lake, trails, fishing, biking and wildlife viewing are described as public. My version would have sent a family there to swim. It also came from a county tourism site rather than from Extension, which is the kind of source this site is not supposed to use at all — that is the root of it."
       }
     ],
     "reports": [
@@ -392,7 +404,11 @@
           "ranges"
         ]
       }
-    ]
+    ],
+    "verdict": {
+      "text": "Over a thousand acres, and most of the good bits are for camp programs and booked groups rather than for turning up. The lake, trails and fishing are open. The beach and boats aren't.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "grantsville-town-park",
@@ -464,7 +480,11 @@
           "pavilion"
         ]
       }
-    ]
+    ],
+    "verdict": {
+      "text": "Right in the middle of town, a block from the library. Tennis, pickleball, basketball, sand volleyball and a softball diamond on one site, plus pavilions you can book. For a town this size that's a lot.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "the-glades-town-park",
@@ -532,7 +552,11 @@
           "playground"
         ]
       }
-    ]
+    ],
+    "verdict": {
+      "text": "Restrooms and a play area, and worth knowing Mountain Lake Park has more than one park. The stub this record replaced assumed one per town, which was wrong.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "kitzmiller-botanical-garden",
@@ -613,7 +637,11 @@
           "nearby trail"
         ]
       }
-    ]
+    ],
+    "verdict": {
+      "text": "Kitzmiller's town park is a botanical garden, which is not what you expect from a town of this size. Free, with a playground and restrooms. Worth the detour if you're already down that way.",
+      "on": "2026-08-03"
+    }
   },
   {
     "slug": "deer-park-town-park",
@@ -742,6 +770,10 @@
         "author": "Matt",
         "body": "Restrooms are on site but I have found them locked. Worth treating as a maybe rather than planning a stop around them."
       }
-    ]
+    ],
+    "verdict": {
+      "text": "A boardwalk through wetland rather than a park with a field in it, and a nice short walk. Restrooms are on site but I've found them locked, so treat them as a maybe.",
+      "on": "2026-08-03"
+    }
   }
 ]
