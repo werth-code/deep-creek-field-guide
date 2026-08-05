@@ -30,7 +30,7 @@
     "restrooms": true,
     "giftShop": true,
     "accessibility": "DNR describes the restrooms as ADA accessible. Nothing published about the entrance or the exhibit floor.",
-    "parking": null,
+    "parking": "Its own parking lot at the building. The park's FAQ board gives directions to headquarters and to the beach as turns out of the Discovery Center parking lot, so it is also the landmark everything else here is described from.",
     "inside": [
       "An aviary of nine non-releasable raptors: golden eagle, bald eagle, turkey vulture, peregrine falcon, red-tailed hawk and three species of owl",
       "Aquariums of native fish and aquatic life out of the lake",
@@ -90,10 +90,11 @@
         "receivedOn": "2026-08-05",
         "visitedOn": "2026-08-05",
         "from": "Site maintainer, first-hand",
-        "what": "Open Wednesday to Sunday, 10am to 4pm on the summer sign. No admission fee, per the park's FAQ board. Photographed the door sign and the board.",
+        "what": "Open Wednesday to Sunday, 10am to 4pm on the summer sign. No admission fee, per the park's FAQ board. There's a parking lot at the building. Photographed the door sign and the board.",
         "affects": [
           "hours",
-          "admission"
+          "admission",
+          "parking"
         ]
       }
     ]
