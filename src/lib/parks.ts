@@ -9,6 +9,19 @@
 export interface Reservation {
   /** null = we haven't established whether one is needed. */
   required: boolean | null;
+  /**
+   * WHEN the requirement bites, which is not the same question as whether
+   * one exists.
+   *
+   * Swallow Falls needs a reservation at weekends and on holidays, and lets
+   * you walk in on a Tuesday. The badge said "RESERVATION REQUIRED" flatly
+   * and the page opened "You can't just turn up" — true of two days in seven,
+   * and read as true of all of them. Someone reads that on a Wednesday
+   * morning and drives somewhere else for no reason.
+   *
+   * `null` means the scope isn't established, and the wording stays general.
+   */
+  scope?: "always" | "weekends" | null;
   window: string | null;
   days: string | null;
   bookAhead: string | null;
@@ -377,6 +390,27 @@ export function completenessRegional(p: RegionalPark) {
 }
 
 /** Reservation status, as a flag with a redundant texture channel. */
+/**
+ * The reservation rule as one sentence, built from the data.
+ *
+ * A helper rather than page markup because the index card and the park page
+ * both need to say this and must not be able to drift apart. The weekday
+ * clause is the whole point: it is the half of the rule that stops someone
+ * cancelling a Tuesday.
+ */
+export function reservationLine(r: Reservation): string | null {
+  if (r.required !== true) return null;
+  const bits: string[] = [];
+  bits.push(
+    r.scope === "weekends"
+      ? "Weekends and holidays need a day-use reservation. Weekdays you can turn up and pay at the gate"
+      : "A day-use reservation is needed",
+  );
+  if (r.window) bits.push(r.window);
+  if (r.bookAhead) bits.push(r.bookAhead.replace(/^Opens /, "Booking opens "));
+  return bits.join(". ").replace(/\.\.$/, ".") + ".";
+}
+
 export function reservationFlag(r: Reservation): {
   word: string;
   bar: "bar-solid" | "bar-dotted" | "bar-hatch";
@@ -385,7 +419,7 @@ export function reservationFlag(r: Reservation): {
 } {
   if (r.required === true)
     return {
-      word: "Reservation required",
+      word: r.scope === "weekends" ? "Reservation at weekends" : "Reservation required",
       bar: "bar-hatch",
       chip: "bg-flag-red-bearing text-white",
       icon: "alert",

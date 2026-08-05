@@ -22,6 +22,7 @@ import {
   asksForState,
   completenessState,
   reservationFlag,
+  reservationLine,
   tri,
   type StatePark,
 } from "../../lib/parks";
@@ -36,6 +37,7 @@ reportOutstanding(`parks/${park.slug}`, park);
 
 const { known, total } = completenessState(park);
 const flag = reservationFlag(park.reservation);
+const line = reservationLine(park.reservation);
 const tier = tierOf(park);
 const publishable = isPublishable(park);
 
@@ -56,7 +58,9 @@ const schema = publishable
 const base =
   `${park.name} ${park.kind} near Deep Creek Lake, Maryland. ` +
   (park.reservation.required === true
-    ? "Do you need a reservation? Yes, and here are the days. "
+    ? (park.reservation.scope === "weekends"
+        ? "Weekends need a reservation, weekdays don't. "
+        : "Do you need a reservation? Yes, and here are the days. ")
     : "Fees, restrooms, and what's actually there. ") +
   "Every fact dated, with the gaps marked.";
 const description = base.length < 118 ? `${base} Part of the Deep Creek Field Guide.` : base;
@@ -114,30 +118,14 @@ const title =
             {flag.word}
           </span>
 
-          {/* The parks index used to carry a red block warning that Swallow
-              Falls can't be turned up to. That block sat above ten cards and
-              shouted at nine readers it didn't apply to, so it's gone — which
-              means this banner is now the only place the warning lives, and it
-              has to say the thing rather than just colour-code it. */}
-          {park.reservation.required === true && (
-            <p class="font-display text-[1.25rem] sm:text-[1.5rem] font-semibold tracking-[-0.03em] mt-3.5 mb-0 text-slate max-w-[24ch]">
-              You can't just turn up.
-            </p>
-          )}
-
-          {park.reservation.required === true && (
-            <dl class="grid sm:grid-cols-3 gap-x-6 gap-y-0 mt-4 mb-0 border-t-2 border-contour">
-              {[
-                ["When", park.reservation.window],
-                ["Which days", park.reservation.days],
-                ["Booking opens", park.reservation.bookAhead],
-              ].map(([k, v]) => (
-                <div class="border-b border-lake/30 py-2.5">
-                  <dt class="label">{k}</dt>
-                  <dd class="m-0 mt-0.5 text-[0.95rem] leading-snug">{v ?? "Not confirmed"}</dd>
-                </div>
-              ))}
-            </dl>
+          {/* One sentence, built from the data by reservationLine().
+              This used to be a display-type headline reading "You can't just
+              turn up" over a three-column grid. Both were true of weekends
+              and read as true of every day — someone checking on a Wednesday
+              would have driven somewhere else for nothing. The badge now
+              carries the scope and this carries the detail. */}
+          {line && (
+            <p class="mt-3 mb-0 text-[0.95rem] leading-[1.55] max-w-[60ch]">{line}</p>
           )}
 
           {park.reservation.slots && park.reservation.slots.length > 0 && (

@@ -24,6 +24,7 @@
     },
     "reservation": {
       "required": true,
+      "scope": "weekends",
       "window": "Memorial Day weekend 2026 (23 May) – Labor Day 2026",
       "days": "Weekends and holidays only. Weekdays are entry on arrival.",
       "bookAhead": "Opens 7 days before the visit; changes or cancellations until 8am the day before",
