@@ -141,7 +141,26 @@
     "verdict": {
       "text": "The waterfall is genuinely worth the drive, and the hemlock stand behind it is the better half. Everything you need is at the main lot, so you can park and be walking in a minute. Just don't turn up on a Saturday without a booking, because that changed in May and most of the internet hasn't noticed.",
       "on": "2026-08-03"
-    }
+    },
+    "photos": [
+      {
+        "file": "swallow-falls-muddy-creek",
+        "alt": "A wide waterfall dropping over a layered rock ledge into a brown pool, framed by summer trees on both sides and a bare rock shelf at the top left.",
+        "caption": "Muddy Creek Falls from the overlook, in summer. The water is tea-coloured — that's tannin off the hemlocks, not silt.",
+        "credit": "Site maintainer",
+        "takenOn": null,
+        "portrait": true,
+        "focus": "50% 45%"
+      },
+      {
+        "file": "swallow-falls-swallow",
+        "alt": "A smaller falls seen from downstream across a broad shelf of flat wet rock, with rhododendron leaning in from both banks and a green canopy above.",
+        "caption": "Looking back upstream from the flat rock shelf below. Rhododendron on both banks, and the rock is slick where it looks dry.",
+        "credit": "Site maintainer",
+        "takenOn": null,
+        "portrait": false
+      }
+    ]
   },
   {
     "slug": "deep-creek-lake",
