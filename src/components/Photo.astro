@@ -29,7 +29,7 @@ export interface PhotoData {
   /** Who took it. */
   credit: string;
   /** ISO date it was taken. The whole point. */
-  takenOn: string;
+  takenOn: string | null;
   /** Portrait shots need a different aspect box from landscape. */
   portrait?: boolean;
 }
@@ -45,9 +45,29 @@ const {
   hero = false, class: klass = "",
 } = Astro.props;
 
-const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-const [y, m, d] = takenOn.split("-").map(Number);
-const when = `${d} ${MONTHS[m - 1]} ${y}`;
+const SHORT = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const LONG = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+/**
+ * THREE PRECISIONS, AND THE STAMP SHOWS WHICH ONE YOU'RE GETTING.
+ *
+ *   2026-08-04  →  "4 Aug 2026"     someone knows the day
+ *   2026-07     →  "July 2026"      someone remembers the month
+ *   null        →  "date not given" nobody knows
+ *
+ * Delaware grew this first, when an upload pipeline stripped EXIF off a batch
+ * of photos and the capture dates were simply gone. This file still assumed a
+ * full date and threw on the first null it met — mid-build, on the county's
+ * headline park. Padding a missing date to the first of the month would
+ * invent a day nobody claimed, and once rendered an invented day looks exactly
+ * like a checked one.
+ */
+const when = (() => {
+  if (!takenOn) return "date not given";
+  const [y, m, d] = takenOn.split("-").map(Number);
+  if (!d) return `${LONG[m - 1]} ${y}`;
+  return `${d} ${SHORT[m - 1]} ${y}`;
+})();
 
 const w = portrait ? 1400 : 1400;
 const h = portrait ? 1866 : 1050;

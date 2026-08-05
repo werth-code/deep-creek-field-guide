@@ -69,7 +69,11 @@ export interface Photo {
   alt: string;
   caption?: string | null;
   credit: string;
-  takenOn: string;
+  /**
+   * When it was taken: `YYYY-MM-DD`, `YYYY-MM`, or null when it isn't known.
+   * Renders as "4 Aug 2026", "July 2026" or "date not given" respectively.
+   */
+  takenOn: string | null;
   portrait?: boolean;
   /**
    * Where to anchor the crop on a listing thumbnail, as a CSS object-position.
