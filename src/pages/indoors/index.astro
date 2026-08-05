@@ -17,6 +17,7 @@ import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
 import Tag from "../../components/Tag.astro";
 import CardShare from "../../components/CardShare.astro";
+import Filters from "../../components/Filters.astro";
 
 import indoorData from "../../data/indoor.json";
 import { completeness, hoursAnswer, present, type IndoorPlace } from "../../lib/indoor";
@@ -35,6 +36,17 @@ const gate = {
 const free = places.filter((p) => p.admission.free === true).length;
 const unknownAdmission = places.filter((p) => p.admission.free === null).length;
 const seasonal = places.filter((p) => p.hours.season !== null).length;
+
+/* Filters derived from the records, so a chip can never be empty. */
+const tagCounts = new Map<string, { key: string; label: string; count: number }>();
+for (const r of places) {
+  for (const t of present(r)) {
+    const e = tagCounts.get(t.key) ?? { key: t.key, label: t.label, count: 0 };
+    e.count++;
+    tagCounts.set(t.key, e);
+  }
+}
+const filterTags = [...tagCounts.values()].sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
 const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completeness(a).known);
 ---
@@ -56,6 +68,10 @@ const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completenes
     </p>
   </div>
 
+  <div class="wrap pb-4">
+    <Filters tags={filterTags} noun="places" class="breakout" />
+  </div>
+
   <div class="wrap pb-8">
     <div class="grid gap-4 sm:grid-cols-2 breakout">
       {
@@ -64,7 +80,7 @@ const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completenes
           const hrs = hoursAnswer(place.hours);
           const has = present(place);
           return (
-            <article data-reveal class="sheet sheet-action relative group overflow-hidden">
+            <article data-reveal data-tags={has.map((t) => t.key).join(" ")} class="sheet sheet-action relative group overflow-hidden">
               <a href={`/indoors/${place.slug}/`} class="absolute inset-0 z-10 no-underline">
                 <span class="sr-only">{place.name}</span>
               </a>

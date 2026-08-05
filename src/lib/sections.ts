@@ -34,11 +34,6 @@ export const SECTIONS: Section[] = [
     nav: [{ href: "/indoors/", label: "Museums, science centers and libraries" }],
   },
   {
-    slug: "good-for",
-    label: "Good for",
-    nav: [{ href: "/good-for/", label: "Pick the afternoon" }],
-  },
-  {
     slug: "parks",
     label: "Parks",
     // Two entries, not twenty. The card grids do the drilling.

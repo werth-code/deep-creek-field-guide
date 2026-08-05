@@ -16,6 +16,7 @@ import FlagIcon from "../../../components/FlagIcon.astro";
 import CardPhoto from "../../../components/CardPhoto.astro";
 import Tag from "../../../components/Tag.astro";
 import CardShare from "../../../components/CardShare.astro";
+import Filters from "../../../components/Filters.astro";
 
 import parksData from "../../../data/regional-parks.json";
 import {
@@ -41,6 +42,17 @@ const unknownRestrooms = parks.filter((p) => p.restrooms.present === null).lengt
 
 /* Detailed records first, name-only stubs last — a reader shouldn't have to
    scroll past five placeholders to reach the park with a beach on it. */
+/* Filters derived from the records, so a chip can never be empty. */
+const tagCounts = new Map<string, { key: string; label: string; count: number }>();
+for (const r of parks) {
+  for (const t of presentRegional(r)) {
+    const e = tagCounts.get(t.key) ?? { key: t.key, label: t.label, count: 0 };
+    e.count++;
+    tagCounts.set(t.key, e);
+  }
+}
+const filterTags = [...tagCounts.values()].sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+
 const ranked = byPhotoThen(
   parks,
   (a, b) => completenessRegional(b).known - completenessRegional(a).known,
@@ -67,6 +79,10 @@ const ranked = byPhotoThen(
     </p>
   </div>
 
+  <div class="wrap pb-4">
+    <Filters tags={filterTags} noun="parks" class="breakout" />
+  </div>
+
   <div class="wrap pb-8">
     <div class="grid gap-4 sm:grid-cols-2 breakout">
       {
@@ -75,7 +91,7 @@ const ranked = byPhotoThen(
           const wc = restroomAnswer(park.restrooms);
           const has = presentRegional(park);
           return (
-            <article data-reveal class="sheet sheet-action relative group">
+            <article data-reveal data-tags={has.map((t) => t.key).join(" ")} class="sheet sheet-action relative group">
               <a href={`/parks/regional/${park.slug}/`} class="absolute inset-0 z-10 no-underline">
                 <span class="sr-only">{park.name}</span>
               </a>

@@ -1,0 +1,172 @@
+---
+/**
+ * Tag filters over a listing grid.
+ *
+ * REPLACES A SECTION. /good-for/ was ten pages of pre-baked lists — "Bring the
+ * dog", "Restrooms that exist" — sitting in the nav as its own thing. It was
+ * the right idea in the wrong place: a reader on the parks page who wants the
+ * ones with restrooms should narrow the parks page, not leave it, land on a
+ * different list, and lose the county grouping and every other fact on the way.
+ *
+ * SEMANTICS
+ * Multi-select AND. Tick restrooms and trails and you get parks with both,
+ * because "somewhere with a toilet AND a walk" is the actual question. OR
+ * would return everything and answer nothing.
+ *
+ * ONLY CONFIRMED TRUE FACTS ARE FILTERABLE. The tags come from present(),
+ * which returns what a record confirms it HAS. A park whose restrooms are
+ * unchecked drops out of a restrooms filter — it does not get the benefit of
+ * the doubt. That is the whole site in one behaviour: the filter is a claim,
+ * and an unchecked field can't back a claim.
+ *
+ * NOTHING IS HIDDEN BEHIND JAVASCRIPT
+ * Every card ships visible. The bar itself is hidden until the script runs, so
+ * a reader without JS gets the full list and no dead controls — the same rule
+ * the nav disclosure follows. Filtering is an enhancement, never the only way
+ * to reach a record.
+ */
+import FeatureIcon from "./FeatureIcon.astro";
+import { colorFor } from "../lib/feature-colors";
+
+interface Props {
+  /** Derived from the records on the page, so a filter can never be empty. */
+  tags: { key: string; label: string; count: number }[];
+  /** What the records are, for the count line: "parks", "places". */
+  noun: string;
+  class?: string;
+}
+const { tags, noun, class: className = "" } = Astro.props;
+---
+
+{
+  tags.length > 1 && (
+    <div
+      data-filters
+      data-noun={noun}
+      hidden
+      class={`sheet px-4 sm:px-5 py-3.5 ${className}`}
+    >
+      <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <p class="label m-0">Narrow it down</p>
+        <p class="stamp text-ink-soft m-0" data-filter-count />
+      </div>
+
+      <ul class="list-none p-0 m-0 mt-3 flex flex-wrap gap-1.5">
+        {tags.map((t) => (
+          <li>
+            <button
+              type="button"
+              data-filter-tag={t.key}
+              aria-pressed="false"
+              data-fc={colorFor(t.key)}
+              style={`color:${colorFor(t.key)};border-color:${colorFor(t.key)}`}
+              class="filter-chip tap inline-flex items-center gap-1.5 px-2.5 py-1.5 stamp text-[0.68rem] leading-none border rounded-[var(--radius-sheet)] bg-sheet cursor-pointer"
+            >
+              <FeatureIcon icon={t.key as any} class="w-[1.15em] h-[1.15em] shrink-0" />
+              {t.label}
+              <span class="opacity-60">{t.count}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <button
+        type="button"
+        data-filter-clear
+        hidden
+        class="tap stamp text-ink-soft underline mt-3 cursor-pointer"
+      >
+        Clear
+      </button>
+    </div>
+  )
+}
+
+<!--
+  NOT is:inline. An inline script executes at the point it appears in the
+  document, and this component renders ABOVE the grid it filters — so the
+  cards did not exist yet and every query came back empty. The bar rendered
+  and did nothing. A hoisted module is deferred until the document is parsed.
+-->
+<script>
+  (() => {
+    const root = document.querySelector("[data-filters]");
+    if (!root) return;
+
+    /* Cards carry their confirmed tags. Anything without the attribute is not
+       filterable and stays put — a group heading, a note, a spacer. */
+    const cards = [...document.querySelectorAll("[data-tags]")];
+    if (!cards.length) return;
+
+    root.hidden = false;
+    const chips = [...root.querySelectorAll("[data-filter-tag]")];
+    const countEl = root.querySelector("[data-filter-count]");
+    const clear = root.querySelector("[data-filter-clear]");
+    const noun = root.dataset.noun || "records";
+    const active = new Set();
+
+    /*
+     * Pressed chips fill with their own feature hue, set from JS rather than
+     * CSS.
+     *
+     * The colour is only known at runtime, so it arrives as an inline style —
+     * and an inline style beats any stylesheet rule. A scoped `[aria-pressed]`
+     * rule matched, sat in the stylesheet, and lost every time. Writing the
+     * pressed state inline too is the only version that can't be outranked.
+     *
+     * aria-pressed still carries the state for assistive tech.
+     */
+    function paint() {
+      for (const c of chips) {
+        const on = active.has(c.dataset.filterTag);
+        const fc = c.dataset.fc;
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+        c.style.background = on ? fc : "";
+        c.style.color = on ? "var(--color-snow)" : fc;
+        c.style.borderColor = fc;
+      }
+    }
+
+    function apply() {
+      let shown = 0;
+      for (const card of cards) {
+        const own = new Set((card.dataset.tags || "").split(" ").filter(Boolean));
+        /* AND, not OR. Every ticked tag must be present. */
+        const ok = [...active].every((t) => own.has(t));
+        const host = card.closest("li") || card;
+        host.hidden = !ok;
+        if (ok) shown++;
+      }
+
+      /* A county heading with nothing under it is noise. */
+      for (const group of document.querySelectorAll("[data-filter-group]")) {
+        const any = [...group.querySelectorAll("[data-tags]")].some(
+          (c) => !(c.closest("li") || c).hidden,
+        );
+        group.hidden = !any;
+      }
+
+      countEl.textContent = active.size
+        ? `${shown} of ${cards.length} ${noun}`
+        : `${cards.length} ${noun}`;
+      clear.hidden = active.size === 0;
+    }
+
+    for (const c of chips) {
+      c.addEventListener("click", () => {
+        const k = c.dataset.filterTag;
+        active.has(k) ? active.delete(k) : active.add(k);
+        paint();
+        apply();
+      });
+    }
+
+    clear.addEventListener("click", () => {
+      active.clear();
+      paint();
+      apply();
+    });
+
+    apply();
+  })();
+</script>
