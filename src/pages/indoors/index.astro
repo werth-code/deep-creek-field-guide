@@ -13,7 +13,6 @@
  * forty-minute drive.
  */
 import Layout from "../../layouts/Layout.astro";
-import Ethics from "../../components/Ethics.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
 
@@ -173,8 +172,6 @@ const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completenes
       branches all keep different hours, which is exactly the kind of thing
       that's a nuisance to look up five times, so they're in one table.
     </p>
-
-    <Ethics />
 
     <h2>Related</h2>
     <ul>
