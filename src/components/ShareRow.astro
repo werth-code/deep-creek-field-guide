@@ -1,0 +1,195 @@
+---
+/**
+ * Share.
+ *
+ * This site has no domain authority and no budget, so word of mouth is the
+ * distribution plan. The sharing that actually matters here is not a viral
+ * button — it's one person texting a link to the other person planning the
+ * trip, and it's someone answering a question in r/deepcreeklake with a
+ * link. Both are built for directly.
+ *
+ * Plain anchors, no SDKs, no tracking pixels, no third-party JavaScript. A
+ * Facebook or X widget would load a tracker onto a page that promises not to,
+ * and would be slower than the link it replaces.
+ *
+ * Progressive enhancement, in this order:
+ *   1. On a phone, the native share sheet replaces the whole row — it reaches
+ *      Messages, WhatsApp and everything else the visitor actually uses.
+ *   2. Copy-link is upgraded to the clipboard API.
+ *   3. With no JS at all, every target below is a working link.
+ */
+interface Props {
+  /** Page title — becomes the shared text. */
+  title: string;
+  /** One line of why it's worth opening. */
+  summary?: string;
+  /** Heading over the row. */
+  heading?: string;
+  /** One line telling the reader why to bother. Section-specific. */
+  pitch?: string;
+  class?: string;
+}
+
+const {
+  title,
+  summary = "",
+  heading = "Send this to someone",
+  pitch = "Most people find this out the hard way, standing at a locked gate. Save someone the drive.",
+  class: className = "",
+} = Astro.props;
+
+/* Unique per instance. The id was hardcoded, which is fine for one row on a
+   page and produces duplicate ids the moment there are two. */
+const hid = `share-${Math.random().toString(36).slice(2, 8)}`;
+
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const text = summary ? `${title} — ${summary}` : title;
+
+const enc = encodeURIComponent;
+
+const targets = [
+  {
+    key: "sms",
+    label: "Text",
+    // `?&body=` is the form that works on both iOS and Android.
+    href: `sms:?&body=${enc(`${text} ${url}`)}`,
+    hint: "Send it to whoever is driving",
+  },
+  {
+    key: "email",
+    label: "Email",
+    href: `mailto:?subject=${enc(title)}&body=${enc(`${text}\n\n${url}`)}`,
+    hint: null,
+  },
+  {
+    key: "facebook",
+    label: "Facebook",
+    href: `https://www.facebook.com/sharer/sharer.php?u=${enc(url)}`,
+    hint: null,
+  },
+  {
+    key: "reddit",
+    label: "Reddit",
+    href: `https://www.reddit.com/submit?url=${enc(url)}&title=${enc(title)}`,
+    hint: "r/deepcreeklake",
+  },
+  {
+    key: "x",
+    label: "X",
+    href: `https://x.com/intent/post?text=${enc(text)}&url=${enc(url)}`,
+    hint: null,
+  },
+];
+---
+
+<section class={`no-print ${className}`} aria-labelledby={hid}>
+  <div class="sheet px-4 sm:px-5 py-4">
+    <p id={hid} class="label m-0">{heading}</p>
+    <p class="mt-1.5 mb-3.5 text-[0.9rem] leading-snug text-ink-soft max-w-[52ch]">
+      {pitch}
+    </p>
+
+    <div
+      class="flex flex-wrap gap-2"
+      data-share
+      data-url={url}
+      data-title={title}
+      data-text={text}
+    >
+      {/* Replaced by the native share sheet where one exists. */}
+      <button
+        type="button"
+        data-share-native
+        hidden
+        class="tap sheet-quiet bg-slate text-snow border-slate px-4 gap-2 font-mono text-[0.72rem] font-medium uppercase tracking-[0.09em] cursor-pointer"
+      >
+        <svg viewBox="0 0 24 24" class="w-[1.05em] h-[1.05em]" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true">
+          <path d="M12 16V4" /><path d="M7 9l5-5 5 5" /><path d="M4 15v5h16v-5" />
+        </svg>
+        Share
+      </button>
+
+      <div class="contents" data-share-fallback>
+        {
+          targets.map((t) => (
+            <a
+              href={t.href}
+              class="tap sheet-quiet px-3.5 gap-2 no-underline font-mono text-[0.72rem] font-medium uppercase tracking-[0.09em] text-slate hover:bg-lake/10"
+              rel={t.key === "sms" || t.key === "email" ? undefined : "noopener nofollow"}
+              target={t.key === "sms" || t.key === "email" ? undefined : "_blank"}
+              title={t.hint ?? undefined}
+            >
+              {t.label}
+            </a>
+          ))
+        }
+
+        <button
+          type="button"
+          data-share-copy
+          class="tap sheet-quiet px-3.5 gap-2 font-mono text-[0.72rem] font-medium uppercase tracking-[0.09em] text-slate hover:bg-lake/10 cursor-pointer"
+        >
+          <span data-copy-label>Copy link</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    for (const root of document.querySelectorAll("[data-share]")) {
+      const url = root.dataset.url;
+      const title = root.dataset.title;
+      const text = root.dataset.text;
+
+      // 1. Native share sheet. On a phone this reaches Messages, WhatsApp and
+      //    everything else, which is where these links actually travel.
+      const native = root.querySelector("[data-share-native]");
+      const fallback = root.querySelector("[data-share-fallback]");
+      if (navigator.share && native && fallback) {
+        native.hidden = false;
+        fallback.hidden = true;
+        native.addEventListener("click", async () => {
+          try {
+            await navigator.share({ title, text, url });
+          } catch {
+            // Cancelled, or refused. Give the explicit targets back.
+            native.hidden = true;
+            fallback.hidden = false;
+          }
+        });
+      }
+
+      // 2. Copy link.
+      const copy = root.querySelector("[data-share-copy]");
+      const label = copy?.querySelector("[data-copy-label]");
+      copy?.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          label.textContent = "Copied";
+          copy.setAttribute("aria-live", "polite");
+          setTimeout(() => (label.textContent = "Copy link"), 2000);
+        } catch {
+          /* Clipboard refused — insecure context, or permission denied.
+             Putting the raw URL in the button label was the old fallback and
+             it stretched the row to the width of the link. Select it in an
+             off-screen field instead, so the keyboard shortcut works. */
+          const field = document.createElement("input");
+          field.value = url;
+          field.setAttribute("readonly", "");
+          field.style.cssText = "position:fixed;top:0;left:-9999px";
+          document.body.appendChild(field);
+          field.select();
+          field.setSelectionRange(0, url.length);
+          label.textContent = "Press \u2318C";
+          copy.setAttribute("aria-live", "polite");
+          setTimeout(() => {
+            field.remove();
+            label.textContent = "Copy link";
+          }, 4000);
+        }
+      });
+    }
+  })();
+</script>

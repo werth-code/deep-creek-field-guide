@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import ShareRow from "../components/ShareRow.astro";
 import { checkMeta } from "../lib/verification";
 
 interface Props {
@@ -12,6 +13,8 @@ interface Props {
   /** ISO date — should match the record's verification or sourcing date. */
   dateModified?: string | null;
   schema?: Record<string, unknown>[];
+  /** The front page sells the site; it doesn't need a share row under it. */
+  share?: boolean;
 }
 
 const {
@@ -20,6 +23,7 @@ const {
   robots = "index, follow, max-snippet:-1, max-image-preview:large",
   dateModified = null,
   schema = [],
+  share = true,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -64,7 +68,17 @@ checkMeta(Astro.url.pathname, title, description);
     </a>
 
     <Header />
-    <main id="main"><slot /></main>
+    <main id="main">
+      <slot />
+
+      {/* Every page but the front. The distribution plan here is one person
+          sending a link to the other person planning the trip. */}
+      {share && (
+        <div class="wrap pt-4 pb-2">
+          <ShareRow title={title} summary={description} />
+        </div>
+      )}
+    </main>
     <Footer />
   
 <script>
