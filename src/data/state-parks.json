@@ -167,14 +167,6 @@
     },
     "photos": [
       {
-        "file": "sf-crushed-path",
-        "alt": "A wide, level crushed-stone path running straight through tall hemlock woods, with needle-covered ground on both sides.",
-        "caption": "The main path in from the parking area — crushed stone, level, and wide. This is the stretch a sturdy stroller will manage.",
-        "credit": "Site maintainer",
-        "takenOn": "2026-08-05",
-        "portrait": false
-      },
-      {
         "file": "swallow-falls-muddy-creek",
         "alt": "A wide waterfall dropping over a layered rock ledge into a brown pool, framed by summer trees on both sides and a bare rock shelf at the top left.",
         "caption": "Muddy Creek Falls from the overlook, in summer. The water is tea-colored — that's tannin off the hemlocks, not silt.",
@@ -189,6 +181,14 @@
         "caption": "Looking back upstream from the flat rock shelf below. Rhododendron on both banks, and the rock is slick where it looks dry.",
         "credit": "Site maintainer",
         "takenOn": null,
+        "portrait": false
+      },
+      {
+        "file": "sf-crushed-path",
+        "alt": "A wide, level crushed-stone path running straight through tall hemlock woods, with needle-covered ground on both sides.",
+        "caption": "The main path in from the parking area — crushed stone, level, and wide. This is the stretch a sturdy stroller will manage.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
         "portrait": false
       },
       {
@@ -390,19 +390,19 @@
     },
     "photos": [
       {
-        "file": "deep-creek-lake-breakwater",
-        "alt": "A child in a sun hat crouched at the water's edge with a bucket, on a sand beach inside a long stone breakwater, with wooded hills across the lake and the sun flaring through a big tree.",
-        "caption": "Late afternoon at the beach, inside the breakwater. The shade at the back of the sand is already gone by this point in the day.",
-        "credit": "Site maintainer",
-        "takenOn": "2026-08-05",
-        "portrait": false
-      },
-      {
         "file": "deep-creek-lake-beach",
         "alt": "A wide sand beach curving to a lake, with stone breakwaters enclosing a swim area, people swimming and sitting on the sand, and forested hills along the far shore.",
         "caption": "The swim area, enclosed by stone breakwaters. DNR lists two sandy beaches here; this is the one people mean.",
         "credit": "Site maintainer",
         "takenOn": "2026-08-03",
+        "portrait": false
+      },
+      {
+        "file": "deep-creek-lake-breakwater",
+        "alt": "A child in a sun hat crouched at the water's edge with a bucket, on a sand beach inside a long stone breakwater, with wooded hills across the lake and the sun flaring through a big tree.",
+        "caption": "Late afternoon at the beach, inside the breakwater. The shade at the back of the sand is already gone by this point in the day.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
         "portrait": false
       }
     ],

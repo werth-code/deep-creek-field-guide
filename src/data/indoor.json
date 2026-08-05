@@ -337,6 +337,14 @@
         "credit": "Site maintainer",
         "takenOn": "2026-08-05",
         "portrait": false
+      },
+      {
+        "file": "bo-gazebo",
+        "alt": "A white and yellow Victorian gazebo with a shingled roof and turned balusters, on a brick apron beside a yellow clapboard building with a tall MUSEUM sign and a cupola.",
+        "caption": "The gazebo on the lawn beside the museum. The vertical MUSEUM sign is how you find the place from the street.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
       }
     ],
     "onSite": [
@@ -347,6 +355,10 @@
       {
         "label": "Engine 476",
         "note": "A 1920 Baldwin. It was built as number 40 for a railroad in Arkansas, ran most of its life as 76, and never worked for the B&O at all. The museum bought it in 2018 and renumbered it 476 because it closely matches the B&O's own E-39 class."
+      },
+      {
+        "label": "The gazebo",
+        "note": "A Victorian gazebo on the lawn beside the museum, on brick paving. Somewhere to sit that isn't the plaza, and it's out in the open like the trains."
       }
     ],
     "reports": [
