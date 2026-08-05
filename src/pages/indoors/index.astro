@@ -18,6 +18,7 @@ import CardPhoto from "../../components/CardPhoto.astro";
 import Tag from "../../components/Tag.astro";
 import CardShare from "../../components/CardShare.astro";
 import Filters from "../../components/Filters.astro";
+import CardGallery from "../../components/CardGallery.astro";
 
 import indoorData from "../../data/indoor.json";
 import { completeness, hoursAnswer, present, type IndoorPlace } from "../../lib/indoor";
@@ -86,7 +87,7 @@ const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completenes
               </a>
               <CardShare path={`/indoors/${place.slug}/`} title={place.name} />
 
-              {place.photos?.[0] && <CardPhoto {...place.photos[0]} />}
+              {place.photos?.length && <CardGallery photos={place.photos} />}
 
               <div class="p-4 sm:p-5">
                 <header class="flex items-start justify-between pr-12 gap-3">

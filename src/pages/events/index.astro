@@ -10,6 +10,7 @@ import Layout from "../../layouts/Layout.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
 import CardShare from "../../components/CardShare.astro";
+import CardGallery from "../../components/CardGallery.astro";
 
 import eventsData from "../../data/events.json";
 import { upcoming, datedCount, type FieldEvent } from "../../lib/events";
@@ -103,7 +104,7 @@ const STATE_CLASS = {
             </a>
             <CardShare path={`/events/${event.slug}/`} title={event.name} />
             <div class="sm:flex sm:items-stretch">
-            {event.photos?.[0] && <CardPhoto {...event.photos[0]} variant="side" />}
+            {event.photos?.length && <CardGallery photos={event.photos} variant="side" />}
 
             <div class="p-4 sm:p-5">
               <div class="flex flex-wrap items-baseline justify-between pr-12 gap-x-4 gap-y-1">

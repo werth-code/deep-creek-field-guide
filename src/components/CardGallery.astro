@@ -1,0 +1,166 @@
+---
+/**
+ * A swipeable strip of a record's photos, on the listing card.
+ *
+ * WHY
+ * A card showed one photo and you had to open the page to learn there were
+ * four. Swiping through them in place is the difference between browsing and
+ * committing to a page load on a phone with one bar.
+ *
+ * HOW IT SCROLLS
+ * CSS scroll-snap on an overflow-x strip. That is the whole mechanism —
+ * momentum, rubber-banding and the swipe itself are the browser's, not mine.
+ * A JavaScript carousel would reimplement all of that worse and break when the
+ * script fails.
+ *
+ * WITHOUT JAVASCRIPT it is still a scrollable strip you can swipe. The script
+ * only adds the dots and the arrows, and both are hidden until it runs, so
+ * nothing dead ships.
+ *
+ * THE STRETCHED-LINK PROBLEM, AGAIN
+ * The card is an <a> covering the whole box at z-10. A horizontal drag inside
+ * it would otherwise be read as a tap and navigate mid-swipe. The strip sits
+ * above at z-20, and the script suppresses the click that follows a drag —
+ * the CardShare button hit the same wall and the fix is the same shape.
+ *
+ * ONE IMAGE, NO STRIP. A single photo renders as a plain CardPhoto, because
+ * dots under one slide is furniture pretending to be a feature.
+ */
+import type { Photo } from "../lib/parks";
+import CardPhoto from "./CardPhoto.astro";
+import { colorFor } from "../lib/feature-colors";
+
+interface Props {
+  photos: Photo[];
+  variant?: "top" | "side";
+  class?: string;
+}
+const { photos, variant = "top", class: klass = "" } = Astro.props;
+const many = photos.length > 1;
+---
+
+{!many && photos[0] && <CardPhoto {...photos[0]} variant={variant} class={klass} />}
+
+{
+  many && (
+    <div
+      class={`card-gallery relative z-20 overflow-hidden bg-lake/10 border-b-2 border-contour ${klass}`}
+      data-gallery
+    >
+      <div
+        class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        data-gallery-strip
+      >
+        {photos.map((p, i) => (
+          <img
+            src={`/photos/${p.file}-700.jpg`}
+            alt={p.alt}
+            width={700}
+            height={394}
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
+            style={p.focus ? `object-position:${p.focus}` : undefined}
+            class="w-full shrink-0 snap-center block object-cover aspect-[16/9]"
+          />
+        ))}
+      </div>
+
+      {/* Dots. Hidden until the script runs — see the header. */}
+      <div
+        class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 px-2 py-1 rounded-full bg-slate/60 backdrop-blur-[2px]"
+        data-gallery-dots
+        hidden
+      >
+        {photos.map((_, i) => (
+          <span
+            class="block w-1.5 h-1.5 rounded-full bg-snow/45 transition-colors duration-150"
+            data-gallery-dot={i}
+          />
+        ))}
+      </div>
+
+      <span
+        class="absolute top-2 left-2 stamp text-[0.6rem] px-1.5 py-0.5 rounded-[var(--radius-sheet)] bg-slate/60 text-snow"
+        style={`border-left:3px solid ${colorFor("beach")}`}
+        data-gallery-count
+        hidden
+      />
+    </div>
+  )
+}
+
+<script>
+  (() => {
+    for (const root of document.querySelectorAll("[data-gallery]")) {
+      if (root.dataset.bound) continue;
+      root.dataset.bound = "1";
+
+      const strip = root.querySelector("[data-gallery-strip]");
+      const dots = [...root.querySelectorAll("[data-gallery-dot]")];
+      const dotWrap = root.querySelector("[data-gallery-dots]");
+      const count = root.querySelector("[data-gallery-count]");
+      const slides = strip.children.length;
+      if (!slides) continue;
+
+      dotWrap.hidden = false;
+      count.hidden = false;
+
+      let index = 0;
+      const paint = () => {
+        dots.forEach((d, i) => {
+          d.classList.toggle("bg-snow", i === index);
+          d.classList.toggle("bg-snow/45", i !== index);
+        });
+        count.textContent = `${index + 1}/${slides}`;
+      };
+      paint();
+
+      strip.addEventListener(
+        "scroll",
+        () => {
+          const i = Math.round(strip.scrollLeft / strip.clientWidth);
+          if (i !== index && i >= 0 && i < slides) {
+            index = i;
+            paint();
+          }
+        },
+        { passive: true },
+      );
+
+      /*
+       * THE STRIP SITS ABOVE THE CARD'S STRETCHED LINK, so it has to do both
+       * jobs itself.
+       *
+       * A swipe must not navigate: the drag ends in a click and the browser
+       * would follow the link the moment you let go. A plain tap MUST
+       * navigate, because before this component the photo was part of the
+       * link and tapping it opened the record — a photo you can swipe but not
+       * tap is worse than the thing it replaced. The first version only did
+       * the first half, and tapping a photo did nothing at all.
+       */
+      const card = root.closest("article") || root.parentElement;
+      const link = card && card.querySelector("a[href]");
+
+      let startX = 0;
+      let dragged = false;
+      strip.addEventListener("pointerdown", (e) => {
+        startX = e.clientX;
+        dragged = false;
+      });
+      strip.addEventListener("pointermove", (e) => {
+        if (Math.abs(e.clientX - startX) > 6) dragged = true;
+      });
+      strip.addEventListener("click", (e) => {
+        if (dragged) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        if (link) {
+          e.preventDefault();
+          link.click();
+        }
+      });
+    }
+  })();
+</script>

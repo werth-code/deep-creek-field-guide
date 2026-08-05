@@ -11,6 +11,7 @@ import CardPhoto from "../../components/CardPhoto.astro";
 import Tag from "../../components/Tag.astro";
 import CardShare from "../../components/CardShare.astro";
 import Filters from "../../components/Filters.astro";
+import CardGallery from "../../components/CardGallery.astro";
 
 import parksData from "../../data/state-parks.json";
 import {
@@ -99,7 +100,7 @@ const schema = live.length
 
               <div class={`${flag.bar} h-1.5 w-full`} />
 
-              {park.photos?.[0] && <CardPhoto {...park.photos[0]} />}
+              {park.photos?.length && <CardGallery photos={park.photos} />}
 
               <div class="p-4 sm:p-5">
                 <header class="flex items-start justify-between pr-12 gap-3">

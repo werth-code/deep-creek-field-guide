@@ -17,6 +17,7 @@ import CardPhoto from "../../../components/CardPhoto.astro";
 import Tag from "../../../components/Tag.astro";
 import CardShare from "../../../components/CardShare.astro";
 import Filters from "../../../components/Filters.astro";
+import CardGallery from "../../../components/CardGallery.astro";
 
 import parksData from "../../../data/regional-parks.json";
 import {
@@ -97,7 +98,7 @@ const ranked = byPhotoThen(
               </a>
               <CardShare path={`/parks/regional/${park.slug}/`} title={park.name} />
 
-              {park.photos?.[0] && <CardPhoto {...park.photos[0]} />}
+              {park.photos?.length && <CardGallery photos={park.photos} />}
 
               <div class="p-4 sm:p-5">
                 <header class="flex items-start justify-between pr-12 gap-3">
