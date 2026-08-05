@@ -86,7 +86,10 @@ const BRITISH = [
   [/\bat weekends\b/i, "at weekends → on weekends"],
   [/\bat the weekend\b/i, "at the weekend → on the weekend"],
   [/\bcentres?\b/i, "centre → center"],
-  [/\bcolou?rs?\b/i, "colour → color"],
+  /* NOT /colou?rs?/ — the optional u makes it match the correct American
+     "color" too, and it did: it failed a build over the word "tea-colored".
+     A guard that fires on the right spelling trains you to ignore it. */
+  [/\bcolours?\b/i, "colour → color"],
   [/\bcoloured\b/i, "coloured → colored"],
   [/\borganis(e|ed|ing|ation)\b/i, "organise → organize"],
   [/\bmodelled\b/i, "modelled → modeled"],

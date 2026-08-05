@@ -149,6 +149,16 @@
         "date": "2026-08-05",
         "author": "Site maintainer, from the 2026 printed guide",
         "body": "Muddy Creek Falls is 53 feet, the highest free-falling waterfall in Maryland. Some of the hemlock and white pine along the trail is over 330 years old."
+      },
+      {
+        "date": "2026-08-05",
+        "author": "Site maintainer",
+        "body": "Walked the trail out to Tolliver Falls. The junction sign gives Canyon Loop both ways, Muddy Creek left and Tolliver right. Tolliver is low and wide and much quieter than Muddy Creek — most people stop at the big one and turn back."
+      },
+      {
+        "date": "2026-08-05",
+        "author": "Site maintainer",
+        "body": "The path in is crushed rock and flat enough for a rugged stroller. Worth knowing before you decide whether to carry a toddler — but only the first stretch. Past the junction it turns into steps and roots."
       }
     ],
     "verdict": {
@@ -156,6 +166,14 @@
       "on": "2026-08-03"
     },
     "photos": [
+      {
+        "file": "sf-crushed-path",
+        "alt": "A wide, level crushed-stone path running straight through tall hemlock woods, with needle-covered ground on both sides.",
+        "caption": "The main path in from the parking area — crushed stone, level, and wide. This is the stretch a sturdy stroller will manage.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
       {
         "file": "swallow-falls-muddy-creek",
         "alt": "A wide waterfall dropping over a layered rock ledge into a brown pool, framed by summer trees on both sides and a bare rock shelf at the top left.",
@@ -172,9 +190,77 @@
         "credit": "Site maintainer",
         "takenOn": null,
         "portrait": false
+      },
+      {
+        "file": "sf-tolliver-falls",
+        "alt": "A wide, low waterfall stepping over dark stacked ledges into a shallow pool, with moss and rhododendron on the bank above.",
+        "caption": "Tolliver Falls. Low and wide rather than tall — the opposite of Muddy Creek, and usually much quieter.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "sf-tolliver-a",
+        "alt": "The same falls from downstream across a broad tea-colored pool, framed by tall hemlock and rhododendron with layered rock shelves on the right bank.",
+        "caption": "Tolliver from the far side of the pool. The water is that color from hemlock tannin.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "sf-path-e",
+        "alt": "A wooden trail sign with three arms reading Canyon Loop with arrows both ways, Muddy Creek Falls to the left and Tolliver Falls to the right, in open hemlock woods.",
+        "caption": "The junction that decides your walk. Muddy Creek left, Tolliver right — and note the park spells it Tolliver.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": true
+      },
+      {
+        "file": "sf-path-b",
+        "alt": "A narrow dirt trail with rock steps running beside a layered rock ledge hung with rhododendron, under a canopy of hemlock and birch.",
+        "caption": "The path along the ledge on the way to Tolliver. Rock steps, roots, and rhododendron the whole way.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": true
+      },
+      {
+        "file": "sf-path-ledge",
+        "alt": "A close view of a mossy layered rock overhang with rhododendron growing out of the cracks and a leaf-covered path at its base.",
+        "caption": "The ledges the trail runs under. Wet most of the year, and slick where it looks dry.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": true
+      },
+      {
+        "file": "sf-path-c",
+        "alt": "A small stream running through a jumble of moss-covered boulders below a steep wooded bank of hemlock and rhododendron.",
+        "caption": "One of the side runs coming down into the gorge.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": true
+      },
+      {
+        "file": "sf-tolliver-c",
+        "alt": "A tall layered rock face with rhododendron on its ledges, and a scree of fallen slabs at its foot beside a sandy path.",
+        "caption": "The rock wall above the path near Tolliver. Those slabs came off the face.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "sf-pool",
+        "alt": "A wide rocky river running between hemlock banks under a cloudy sky, with flat stone shelves and boulders across the near bank.",
+        "caption": "The Youghiogheny at the bottom of the park. This is the river the Canyon Loop follows.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
       }
     ],
     "onSite": [
+      {
+        "label": "Underfoot",
+        "note": "The main path from the parking area is crushed stone, level and wide — doable with a rugged stroller. It does not stay that way: the trail out to Tolliver is rock steps, roots and ledges."
+      },
       {
         "label": "The campground",
         "note": "65 sites with modern bath houses, fire rings, lantern posts and stabilized pads. Three sites have sewer, water and electric; three more have water and electric."
@@ -303,6 +389,14 @@
       "note": "The Deep Creek Discovery Center has a Nature Shop selling field guides and souvenirs. Open year-round."
     },
     "photos": [
+      {
+        "file": "deep-creek-lake-breakwater",
+        "alt": "A child in a sun hat crouched at the water's edge with a bucket, on a sand beach inside a long stone breakwater, with wooded hills across the lake and the sun flaring through a big tree.",
+        "caption": "Late afternoon at the beach, inside the breakwater. The shade at the back of the sand is already gone by this point in the day.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
       {
         "file": "deep-creek-lake-beach",
         "alt": "A wide sand beach curving to a lake, with stone breakwaters enclosing a swim area, people swimming and sitting on the sand, and forested hills along the far shore.",
