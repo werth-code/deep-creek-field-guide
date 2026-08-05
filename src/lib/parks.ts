@@ -369,11 +369,30 @@ export const REGIONAL_FACILITY_LABELS: [keyof RegionalFacilities, string][] = [
   ["winterUse", "Winter use"],
 ];
 
-export const presentState = (p: StatePark) =>
-  STATE_FEATURE_LABELS.filter(([k]) => p.features[k] === true).map(([, l]) => l);
+/**
+ * The three that decide whether an outing works, and the reason this site
+ * leads with restrooms everywhere. Marked in the data rather than at each
+ * render site, so a chip can't be emphasised on one page and not another.
+ */
+const EMPHASIS = new Set(["restrooms", "water", "showers"]);
 
-export const presentRegional = (p: RegionalPark) =>
-  REGIONAL_FACILITY_LABELS.filter(([k]) => p.facilities[k] === true).map(([, l]) => l);
+export interface Tag {
+  key: string;
+  label: string;
+  emphasis: boolean;
+}
+
+const tag = ([key, label]: [string, string]): Tag => ({
+  key,
+  label,
+  emphasis: EMPHASIS.has(key),
+});
+
+export const presentState = (p: StatePark): Tag[] =>
+  STATE_FEATURE_LABELS.filter(([k]) => p.features[k] === true).map((e) => tag(e as [string, string]));
+
+export const presentRegional = (p: RegionalPark): Tag[] =>
+  REGIONAL_FACILITY_LABELS.filter(([k]) => p.facilities[k] === true).map((e) => tag(e as [string, string]));
 
 export function completenessState(p: StatePark) {
   const v = STATE_FEATURE_LABELS.map(([k]) => p.features[k]);

@@ -1,0 +1,104 @@
+---
+/**
+ * One glyph per feature.
+ *
+ * WHY ICONS CARRY IDENTITY AND COLOR DOESN'T
+ *
+ * The obvious move is a color per feature — blue for water, green for camping,
+ * and so on. It doesn't work here, for two reasons.
+ *
+ * The first is that this site has already spent its color budget on something
+ * more important. Green, amber and red mean confirmed, unknown and warning,
+ * everywhere, on every page. That convention is the reason a reader can trust
+ * a glance. Handing those same hues a second job — "green now also means
+ * camping" — would spend the one thing the design has that's worth having.
+ *
+ * The second is that nobody memorises twelve colors. Four or five, maybe. Past
+ * that a legend becomes a lookup table, and a lookup table at 11px on a phone
+ * in the sun is decoration. A tent, though, is a tent. Shapes are recognised
+ * pre-attentively and they survive grayscale, low contrast, and a cracked
+ * screen — which is where these pages actually get read.
+ *
+ * So: the glyph says WHICH, and color stays reserved for HOW SURE.
+ *
+ * The one concession is `emphasis`. Restrooms, drinking water and showers get
+ * a heavier chip, because the whole site is organised around the fact that
+ * those three decide whether a trip works with a four-year-old or an older
+ * dog. That's still color meaning "this is the load-bearing one" rather than
+ * color meaning "this is plumbing".
+ *
+ * Blunt geometry and a heavy stroke, matching FlagIcon. Thin lines disappear
+ * at the size these render.
+ */
+export type FeatureKey =
+  | "waterfall" | "beach" | "swimming" | "restrooms" | "picnic" | "showers"
+  | "camping" | "cabins" | "trails" | "boatLaunch" | "boatRentals" | "fishing"
+  | "winterUse" | "petsAllowed" | "playground" | "water" | "shade" | "pavilion"
+  | "grills" | "sports" | "pavedPath" | "discGolf" | "skate" | "dogPark"
+  | "pier" | "guardedSwimming" | "surfFishing"
+  | "free" | "giftShop" | "accessible" | "branches";
+
+interface Props {
+  icon: FeatureKey;
+  class?: string;
+}
+const { icon, class: className = "" } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.2"
+  stroke-linecap="square"
+  stroke-linejoin="miter"
+  aria-hidden="true"
+  focusable="false"
+>
+  {/* Water — a fall over a lip, then the pool. */}
+  {icon === "waterfall" && (<><path d="M5 4h6" /><path d="M8 4v10" /><path d="M14 4h5" /><path d="M16.5 4v10" /><path d="M3 18h18" /><path d="M3 21h18" /></>)}
+  {icon === "beach" && (<><path d="M3 11a9 7 0 0 1 18 0Z" /><path d="M12 11v7" /><path d="M3 21c3-2 5 2 8 0s5-2 8 0" /></>)}
+  {icon === "swimming" && (<><path d="M3 15c3-2 5 2 8 0s5-2 8 0" /><path d="M3 20c3-2 5 2 8 0s5-2 8 0" /><circle cx="16" cy="6" r="2.2" /><path d="M5 11l6-2 4 2" /></>)}
+  {icon === "guardedSwimming" && (<><path d="M3 17c3-2 5 2 8 0s5-2 8 0" /><path d="M3 21h18" /><path d="M12 3v8" /><path d="M8 6h8" /></>)}
+  {icon === "fishing" && (<><path d="M4 6l10 10" /><path d="M4 6v4" /><path d="M14 16c3 0 5-2 6-4-1-2-3-4-6-4-3 2-3 6 0 8Z" /><path d="M17 11h.01" stroke-width="2.6" /></>)}
+  {icon === "surfFishing" && (<><path d="M4 5l9 11" /><path d="M3 20c3-2 5 2 8 0s5-2 8 0" /><path d="M13 16h7" /></>)}
+  {icon === "boatLaunch" && (<><path d="M3 17h18l-3 4H6l-3-4Z" /><path d="M12 4v13" /><path d="M12 6l6 4-6 3" /></>)}
+  {icon === "boatRentals" && (<><path d="M3 16h18l-3 5H6l-3-5Z" /><path d="M6 16V9h12v7" /><path d="M9 9V5h6v4" /></>)}
+  {icon === "pier" && (<><path d="M3 10h18" /><path d="M6 10v8" /><path d="M12 10v8" /><path d="M18 10v8" /><path d="M3 21h18" /></>)}
+
+  {/* Comfort — the ones that decide whether the trip works. */}
+  {icon === "restrooms" && (<><path d="M7 4v16" /><path d="M4 8h6" /><path d="M17 4v16" /><path d="M14 20h6" /><path d="M12 3v18" /></>)}
+  {icon === "water" && (<><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11Z" /></>)}
+  {icon === "showers" && (<><path d="M4 6h10a6 6 0 0 1 6 6H4Z" /><path d="M7 16v3" /><path d="M12 16v3" /><path d="M17 16v3" /></>)}
+  {icon === "picnic" && (<><path d="M3 6h18" /><path d="M6 6l-2 15" /><path d="M18 6l2 15" /><path d="M5 14h14" /></>)}
+  {icon === "shade" && (<><circle cx="12" cy="9" r="6.5" /><path d="M12 15.5V21" /><path d="M8 21h8" /></>)}
+  {icon === "pavilion" && (<><path d="M2 10 12 3l10 7" /><path d="M5 10v11" /><path d="M19 10v11" /><path d="M5 21h14" /></>)}
+  {icon === "grills" && (<><path d="M4 10a8 6 0 0 1 16 0Z" /><path d="M5 12h14l-3 5H8l-3-5Z" /><path d="M9 17l-2 4" /><path d="M15 17l2 4" /></>)}
+
+  {/* Stay. */}
+  {icon === "camping" && (<><path d="M12 4 3 20h18L12 4Z" /><path d="M12 12l-4 8" /><path d="M12 12l4 8" /></>)}
+  {icon === "cabins" && (<><path d="M3 11 12 4l9 7" /><path d="M5 11v10h14V11" /><path d="M10 21v-6h4v6" /></>)}
+
+  {/* Do. */}
+  {/* A signpost, not a winding line. A curve reads as a ">" at 13px, which is
+      the size these actually render — the whole point of the set is that the
+      shape survives being small. */}
+  {icon === "trails" && (<><path d="M12 3v18" /><path d="M12 6h8v3.5h-8" /><path d="M12 12H4v3.5h8" /></>)}
+  {icon === "pavedPath" && (<><path d="M7 21 10 3" /><path d="M17 21 14 3" /><path d="M11 6h2" /><path d="M10 12h4" /><path d="M9 18h6" /></>)}
+  {icon === "playground" && (<><path d="M6 21V7" /><path d="M10 21V7" /><path d="M6 11h4" /><path d="M6 15h4" /><path d="M10 7c6 1 8 7 8 14" /><path d="M4 21h16" /></>)}
+  {icon === "sports" && (<><circle cx="12" cy="12" r="8.5" /><path d="M12 3.5v17" /><path d="M3.5 12h17" /></>)}
+  {icon === "discGolf" && (<><ellipse cx="12" cy="8" rx="8" ry="3.5" /><path d="M12 11.5V21" /><path d="M7 21h10" /></>)}
+  {icon === "skate" && (<><path d="M3 13h18" /><path d="M5 13v3" /><path d="M19 13v3" /><circle cx="7.5" cy="18" r="2" /><circle cx="16.5" cy="18" r="2" /></>)}
+  {icon === "winterUse" && (<><path d="M12 3v18" /><path d="M4 7.5l16 9" /><path d="M20 7.5l-16 9" /></>)}
+
+  {/* Indoors. */}
+  {icon === "free" && (<><circle cx="12" cy="12" r="8.5" /><path d="M9 8.5h6" /><path d="M9 12h5" /><path d="M11 8.5v8" /></>)}
+  {icon === "giftShop" && (<><path d="M3 9h18v12H3z" /><path d="M3 9l2-5h14l2 5" /><path d="M12 9v12" /></>)}
+  {icon === "accessible" && (<><circle cx="12" cy="5" r="2.2" /><path d="M12 9v5h5" /><path d="M8 12a5 5 0 1 0 7 6" /></>)}
+  {icon === "branches" && (<><path d="M12 3v8" /><path d="M5 21v-6a7 7 0 0 1 14 0v6" /><path d="M12 15v6" /></>)}
+
+  {/* Dogs. */}
+  {icon === "petsAllowed" && (<><ellipse cx="12" cy="16" rx="5" ry="4" /><circle cx="6" cy="9" r="2.2" /><circle cx="11" cy="6" r="2.2" /><circle cx="17" cy="9" r="2.2" /></>)}
+  {icon === "dogPark" && (<><ellipse cx="12" cy="15" rx="4.5" ry="3.5" /><circle cx="6.5" cy="9" r="2" /><circle cx="17.5" cy="9" r="2" /><path d="M3 21h18" /></>)}
+</svg>

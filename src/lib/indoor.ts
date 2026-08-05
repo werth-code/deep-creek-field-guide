@@ -169,13 +169,26 @@ export function completeness(p: IndoorPlace): { known: number; total: number } {
 }
 
 /** Feature chips for a card. Only true things appear — never "no restrooms". */
-export function present(p: IndoorPlace): string[] {
-  const out: string[] = [];
-  if (p.admission.free === true) out.push("Free");
-  if (p.restrooms === true) out.push("Restrooms");
-  if (p.giftShop === true) out.push("Gift shop");
-  if (p.accessibility) out.push("Accessibility noted");
-  if (p.branches && p.branches.length > 1) out.push(`${p.branches.length} branches`);
+export interface Tag {
+  key: string;
+  label: string;
+  emphasis: boolean;
+}
+
+/**
+ * Same shape the park datasets return, so one <Tag> renders all of them and a
+ * chip means the same thing whichever section a reader is in. Restrooms is the
+ * emphasised one here too — indoors or out, it's the question that decides
+ * whether a trip works.
+ */
+export function present(p: IndoorPlace): Tag[] {
+  const out: Tag[] = [];
+  const t = (key: string, label: string, emphasis = false) => out.push({ key, label, emphasis });
+  if (p.admission.free === true) t("free", "Free");
+  if (p.restrooms === true) t("restrooms", "Restrooms", true);
+  if (p.giftShop === true) t("giftShop", "Gift shop");
+  if (p.accessibility) t("accessible", "Accessibility noted");
+  if (p.branches && p.branches.length > 1) t("branches", `${p.branches.length} branches`);
   return out;
 }
 

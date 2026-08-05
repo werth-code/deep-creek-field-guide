@@ -1,0 +1,38 @@
+---
+/**
+ * A feature chip: glyph, then label.
+ *
+ * One component so a tag looks identical on a park card, a town park card, a
+ * museum card and in a chatbot answer. That was the point of doing this —
+ * recognition only works if the thing is the same everywhere, and until now
+ * these were four separate inline `<li class="…">{label}</li>` in four files
+ * that had already drifted apart in size.
+ *
+ * `emphasis` is set by the data layer, not passed by hand, so it can't be
+ * applied inconsistently. See FeatureIcon for why it's the only color here.
+ */
+import FeatureIcon, { type FeatureKey } from "./FeatureIcon.astro";
+
+interface Props {
+  icon: FeatureKey;
+  label: string;
+  /** The three that decide whether the trip works. */
+  emphasis?: boolean;
+  class?: string;
+}
+const { icon, label, emphasis = false, class: className = "" } = Astro.props;
+---
+
+<li
+  class={`inline-flex items-center gap-1.5 px-2 py-1 stamp text-[0.68rem] leading-none ${
+    /* Both variants carry the same 1px border as .sheet-quiet. The emphasised
+       chip used border-2, which made it 2px taller than the plain ones sitting
+       beside it in the same wrapped row. */
+    emphasis
+      ? "bg-slate text-snow border border-slate rounded-[var(--radius-sheet)]"
+      : "sheet-quiet text-slate"
+  } ${className}`}
+>
+  <FeatureIcon icon={icon} class="w-[1.15em] h-[1.15em] shrink-0" />
+  {label}
+</li>
