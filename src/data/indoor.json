@@ -8,12 +8,17 @@
     "address": "Deep Creek Lake State Park, 898 State Park Road, Swanton, MD 21561",
     "blurb": "A 6,000 square foot nature center inside Deep Creek Lake State Park. Aquariums of fish out of the lake, an aviary of nine raptors that can't be released, a walk-through replica coal mine, and reptiles. It costs nothing to walk in, though you pay to get into the park.",
     "hours": {
-      "lines": null,
-      "season": null,
-      "note": "DNR publishes a phone number instead of hours for this building. Call 301-387-7067 before you drive out."
+      "lines": [
+        {
+          "days": "Wednesday – Sunday",
+          "text": "10:00am – 4:00pm"
+        }
+      ],
+      "season": "These are the summer hours. The sign on the door is headed \"Welcome Summer\", so treat them as seasonal until the winter ones are confirmed.",
+      "note": "DNR publishes no hours for this building anywhere online. These came off the door."
     },
     "admission": {
-      "note": "Free to enter, and DNR asks for donations toward animal care. Getting into the park is not free: $3 per person for Maryland residents and $5 out-of-state in summer, per vehicle the rest of the year.",
+      "note": "Free. The park's own FAQ board says plainly: \"The Discovery Center has no admission fee.\" You still pay to get into the park — $3 per person in-state and $5 out-of-state from Memorial Day to Labor Day, and $3 and $5 per vehicle the rest of the year.",
       "free": true,
       "amount": 0
     },
@@ -27,35 +32,71 @@
     "accessibility": "DNR describes the restrooms as ADA accessible. Nothing published about the entrance or the exhibit floor.",
     "parking": null,
     "inside": [
-      "Aquariums of native fish and aquatic life taken from the lake",
-      "An aviary of nine non-releasable raptors, including hawks, owls and golden eagles",
-      "Reptile and amphibian displays",
+      "An aviary of nine non-releasable raptors: golden eagle, bald eagle, turkey vulture, peregrine falcon, red-tailed hawk and three species of owl",
+      "Aquariums of native fish and aquatic life out of the lake",
+      "Reptiles and amphibians, including eastern box turtles in an outdoor enclosure",
       "A replica coal mine you walk through indoors",
-      "An indoor classroom and conference room with AV",
-      "The Nature Shop: field guides, books, toys and regional souvenirs"
+      "Exhibits on the hemlocks, the monarchs and how the forest filters the lake",
+      "A separate room given over to hands-on science",
+      "6,000 square feet in total, plus the Nature Shop"
     ],
     "branches": null,
     "warnings": [
       "The center is free but the park gate is not. Budget the day-use fee on top.",
-      "DNR does not publish opening hours for this building. Call before driving out."
+      "Closed Monday and Tuesday in summer."
     ],
     "sources": [
       {
         "label": "Maryland DNR: Deep Creek Lake State Park",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/deepcreek.aspx",
         "note": "The operator. Describes the Discovery Center, its size, the aviary of nine raptors, the aquariums, the replica coal mine, the ADA restrooms and the Nature Shop, and states that admission is free with donations encouraged. Gives 301-387-7067 for hours rather than publishing them."
+      },
+      {
+        "label": "Deep Creek Lake State Park: the Discovery Center door sign and visitor FAQ board",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/deepcreek.aspx",
+        "note": "Photographed on site on 5 August 2026. The door sign gives Wednesday to Sunday, 10am to 4pm under the heading Welcome Summer. The FAQ board inside states that the Discovery Center has no admission fee, gives the park's peak and off-season entry rates, and lists the camp office, Discovery Center and duty ranger numbers."
       }
     ],
     "sourcedOn": "2026-08-04",
-    "verifiedDate": null,
-    "verifiedSource": null,
+    "verifiedDate": "2026-08-05",
+    "verifiedSource": "Visited. Hours read off the door, admission and the rest off the park's own FAQ board",
     "outstanding": [
-      "Get the actual opening days and hours, and whether they change off-season.",
-      "Confirm whether the day-use fee is charged year round for someone visiting only the Discovery Center.",
-      "Confirm whether the entrance and exhibit floor are step-free, not just the restrooms.",
-      "Confirm where you park for the center specifically."
+      "Get the winter hours. The door sign is explicitly the summer one.",
+      "Confirm whether the aviary is open in all weather.",
+      "Confirm whether the day-use fee is charged year round for someone visiting only the Discovery Center."
     ],
-    "verdict": null
+    "verdict": null,
+    "photos": [
+      {
+        "file": "discovery-center-hall",
+        "alt": "The main hall of a timber-framed nature center, with exposed beams, a pale wood floor, teal exhibit panels on hemlocks and forests, mounted fish and a turkey on the stone piers, and windows onto the trees.",
+        "caption": "The main hall. Bigger inside than it looks from the parking lot, and quiet on a Thursday morning.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "discovery-center-box-turtle",
+        "alt": "An eastern box turtle with a yellow-patterned shell and orange head, on wood chips beside a shallow purple water dish.",
+        "caption": "One of the box turtles, out by its water dish. The reptiles are the easiest thing here to actually see.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false,
+        "focus": "50% 45%"
+      }
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-05",
+        "visitedOn": "2026-08-05",
+        "from": "Site maintainer, first-hand",
+        "what": "Open Wednesday to Sunday, 10am to 4pm on the summer sign. No admission fee, per the park's FAQ board. Photographed the door sign and the board.",
+        "affects": [
+          "hours",
+          "admission"
+        ]
+      }
+    ]
   },
   {
     "slug": "garrett-county-history-museum",
@@ -66,7 +107,12 @@
     "address": "107 South Second Street, Oakland, MD 21550",
     "blurb": "The county historical society's main museum, in downtown Oakland. Two hundred years of Garrett County in one building: the B&O Railroad, the Oakland and Deer Park hotels, the schools, the opera house, the coal mines.",
     "hours": {
-      "lines": [{ "days": "Wednesday – Saturday", "text": "10:00am – 3:00pm" }],
+      "lines": [
+        {
+          "days": "Wednesday – Saturday",
+          "text": "10:00am – 3:00pm"
+        }
+      ],
       "season": null,
       "note": "The society doesn't say whether these hours hold through the winter."
     },
@@ -127,7 +173,12 @@
     "address": "112 East Liberty Street, Oakland, MD 21550",
     "blurb": "Two floors of how people and things moved around this county: carriages, sleighs, automobiles, boats, fire equipment. The upstairs gallery is given over to the history of Deep Creek Lake itself. Open for the warm half of the year only.",
     "hours": {
-      "lines": [{ "days": "Wednesday – Saturday", "text": "10:00am – 3:00pm" }],
+      "lines": [
+        {
+          "days": "Wednesday – Saturday",
+          "text": "10:00am – 3:00pm"
+        }
+      ],
       "season": "6 May 2026 through the Autumn Glory Festival. Shut for the winter.",
       "note": "Autumn Glory is the second full weekend in October, so the season ends around then."
     },
@@ -189,7 +240,12 @@
     "address": "117 East Liberty Street, Oakland, MD 21550",
     "blurb": "The 1884 B&O depot in the middle of Oakland, restored and run as a railroad museum. Model trains, telegraph equipment and station fittings inside; a Baldwin steam locomotive and a caboose parked outside. Open every day, which almost nothing else here is.",
     "hours": {
-      "lines": [{ "days": "Every day", "text": "10:00am – 3:00pm" }],
+      "lines": [
+        {
+          "days": "Every day",
+          "text": "10:00am – 3:00pm"
+        }
+      ],
       "season": null,
       "note": "The museum is volunteer-staffed, so the published hours depend on someone turning up. Call ahead if the trip is long."
     },
@@ -246,9 +302,18 @@
     "blurb": "The county library, five branches, free to walk into. On a wet afternoon it's the most reliable indoor room in Garrett County: warm, quiet, has a bathroom, and nobody minds how long you sit there. Every branch keeps different hours, and three of the five shut at lunchtime on Saturday.",
     "hours": {
       "lines": [
-        { "days": "Monday & Wednesday", "text": "9:15am – 8:00pm" },
-        { "days": "Tuesday, Thursday, Friday", "text": "9:15am – 5:30pm" },
-        { "days": "Saturday", "text": "9:00am – 4:00pm" }
+        {
+          "days": "Monday & Wednesday",
+          "text": "9:15am – 8:00pm"
+        },
+        {
+          "days": "Tuesday, Thursday, Friday",
+          "text": "9:15am – 5:30pm"
+        },
+        {
+          "days": "Saturday",
+          "text": "9:00am – 4:00pm"
+        }
       ],
       "season": null,
       "note": "These are the Oakland hours. The other four branches all differ — see the branch table."
@@ -279,9 +344,18 @@
         "phone": "301-334-3996",
         "hours": {
           "lines": [
-            { "days": "Mon & Wed", "text": "9:15am – 8:00pm" },
-            { "days": "Tue, Thu, Fri", "text": "9:15am – 5:30pm" },
-            { "days": "Sat", "text": "9:00am – 4:00pm" }
+            {
+              "days": "Mon & Wed",
+              "text": "9:15am – 8:00pm"
+            },
+            {
+              "days": "Tue, Thu, Fri",
+              "text": "9:15am – 5:30pm"
+            },
+            {
+              "days": "Sat",
+              "text": "9:00am – 4:00pm"
+            }
           ],
           "season": null,
           "note": null
@@ -295,9 +369,18 @@
         "phone": "301-746-8792",
         "hours": {
           "lines": [
-            { "days": "Mon, Tue, Thu, Fri", "text": "11:00am – 5:30pm" },
-            { "days": "Wed", "text": "11:00am – 7:00pm" },
-            { "days": "Sat", "text": "9:00am – 1:00pm" }
+            {
+              "days": "Mon, Tue, Thu, Fri",
+              "text": "11:00am – 5:30pm"
+            },
+            {
+              "days": "Wed",
+              "text": "11:00am – 7:00pm"
+            },
+            {
+              "days": "Sat",
+              "text": "9:00am – 1:00pm"
+            }
           ],
           "season": null,
           "note": null
@@ -311,9 +394,18 @@
         "phone": "301-746-5663",
         "hours": {
           "lines": [
-            { "days": "Mon & Wed", "text": "2:00pm – 8:00pm" },
-            { "days": "Tue & Thu", "text": "1:30pm – 5:30pm" },
-            { "days": "Sat", "text": "9:00am – 2:00pm" }
+            {
+              "days": "Mon & Wed",
+              "text": "2:00pm – 8:00pm"
+            },
+            {
+              "days": "Tue & Thu",
+              "text": "1:30pm – 5:30pm"
+            },
+            {
+              "days": "Sat",
+              "text": "9:00am – 2:00pm"
+            }
           ],
           "season": null,
           "note": "Closed Friday."
@@ -327,9 +419,18 @@
         "phone": "301-895-5298",
         "hours": {
           "lines": [
-            { "days": "Mon", "text": "11:00am – 8:00pm" },
-            { "days": "Tue – Fri", "text": "11:00am – 5:30pm" },
-            { "days": "Sat", "text": "9:00am – 1:00pm" }
+            {
+              "days": "Mon",
+              "text": "11:00am – 8:00pm"
+            },
+            {
+              "days": "Tue – Fri",
+              "text": "11:00am – 5:30pm"
+            },
+            {
+              "days": "Sat",
+              "text": "9:00am – 1:00pm"
+            }
           ],
           "season": null,
           "note": null
@@ -343,9 +444,18 @@
         "phone": "301-334-8091",
         "hours": {
           "lines": [
-            { "days": "Mon & Wed", "text": "2:00pm – 7:00pm" },
-            { "days": "Tue, Thu, Fri", "text": "10:00am – 3:00pm" },
-            { "days": "Sat & Sun", "text": "Closed" }
+            {
+              "days": "Mon & Wed",
+              "text": "2:00pm – 7:00pm"
+            },
+            {
+              "days": "Tue, Thu, Fri",
+              "text": "10:00am – 3:00pm"
+            },
+            {
+              "days": "Sat & Sun",
+              "text": "Closed"
+            }
           ],
           "season": null,
           "note": "The only branch shut all weekend."

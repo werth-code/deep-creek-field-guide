@@ -247,7 +247,8 @@
     "warnings": [
       "Dogs are allowed, but not on the beach. The one part of this park most people drive here for is the part the dog can't come to.",
       "Jet skis and other personal watercraft cannot run 11am to 4pm on Saturdays, Sundays and holidays from 1 July to Labor Day.",
-      "There is a service charge to launch a boat. It covers launching and removal in one 24-hour period."
+      "There is a service charge to launch a boat. It covers launching and removal in one 24-hour period.",
+      "This is a trash-free park. There are no bins and no recycling. Whatever you bring in, you carry out."
     ],
     "phone": null,
     "hours": null,
@@ -271,6 +272,11 @@
         "label": "Explore 2026 Garrett County State Parks (printed guide)",
         "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
         "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
+      },
+      {
+        "label": "Deep Creek Lake State Park: visitor FAQ board at the Discovery Center",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/deepcreek.aspx",
+        "note": "Photographed on site on 5 August 2026. Confirms the peak and off-season entry fees, states the park is trash-free with no bins or recycling, gives directions to headquarters and the beach parking, names Beckmans as the most recommended trail, and lists the camp office, Discovery Center and duty ranger numbers plus the 844-369-2485 boat tour booking line."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -347,6 +353,11 @@
         "date": "2026-08-05",
         "author": "Site maintainer, from the 2026 printed guide",
         "body": "Facts about the lake, from the park's own guide: 65 miles of shoreline, 3,900 acres, average depth 26.5 feet, surface 73F in summer and 49F on the bottom. Meadow Mountain tops out at 3,022 feet."
+      },
+      {
+        "date": "2026-08-05",
+        "author": "Site maintainer",
+        "body": "The visitor FAQ board at the Discovery Center confirms the entry fees this page already listed, and adds the thing nobody publishes: no bins anywhere in the park. It also names the duty ranger's number, which is the one to use when the office is shut."
       }
     ],
     "verdict": {
@@ -381,6 +392,26 @@
       {
         "label": "Trails",
         "note": "The Meadow Mountain system is over 20 miles, from level to steep. Maps at park headquarters or the Discovery Center."
+      },
+      {
+        "label": "Getting to headquarters",
+        "note": "Turn right out of the Discovery Center parking lot and take the next left. If you cross the bridge you've gone too far."
+      },
+      {
+        "label": "Beach parking",
+        "note": "Turn left out of the Discovery Center parking lot, next left, and stop at the contact station."
+      },
+      {
+        "label": "Best trail",
+        "note": "The park's own FAQ board names Beckmans as the most recommended trail here. Check the map for length and difficulty."
+      },
+      {
+        "label": "Boat tours",
+        "note": "Run by Wisp but launched from the Discovery Center dock. Book ahead on 844-369-2485."
+      },
+      {
+        "label": "Numbers",
+        "note": "Camp office 301-387-5563. Discovery Center 301-387-7067. Duty ranger 240-405-9827."
       }
     ]
   },
