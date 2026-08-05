@@ -11,10 +11,10 @@
       "beach": null,
       "swimming": false,
       "restrooms": true,
-      "picnic": null,
-      "showers": null,
+      "picnic": true,
+      "showers": true,
       "camping": true,
-      "cabins": null,
+      "cabins": true,
       "trails": true,
       "boatLaunch": false,
       "boatRentals": null,
@@ -53,7 +53,9 @@
       "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [
-      "Pets are not permitted in the day-use area, including the Canyon Trail, from 23 May to 7 September 2026."
+      "Pets are not permitted in the day-use area, including the Canyon Trail, from 23 May to 7 September 2026.",
+      "Alcohol is prohibited everywhere in the park except with a permit for a reserved pavilion, or inside a motor home.",
+      "Two camping units and up to six people per site, and someone in the party has to be 18 or over."
     ],
     "phone": null,
     "hours": null,
@@ -142,6 +144,11 @@
         "date": "2026-08-03",
         "author": "Matt",
         "body": "The ranger station, the restrooms and the store are all at the main parking area, not off at the campground the way Maryland's own listing implies. Trailheads start a few steps from the same lot, so you can park and be walking in under a minute."
+      },
+      {
+        "date": "2026-08-05",
+        "author": "Site maintainer, from the 2026 printed guide",
+        "body": "Muddy Creek Falls is 53 feet, the highest free-falling waterfall in Maryland. Some of the hemlock and white pine along the trail is over 330 years old."
       }
     ],
     "verdict": {
@@ -166,6 +173,28 @@
         "takenOn": null,
         "portrait": false
       }
+    ],
+    "onSite": [
+      {
+        "label": "The campground",
+        "note": "65 sites with modern bath houses, fire rings, lantern posts and stabilized pads. Three sites have sewer, water and electric; three more have water and electric."
+      },
+      {
+        "label": "Camper cabins",
+        "note": "Three, each with a double bed and a bunk bed, a mini-fridge and a microwave."
+      },
+      {
+        "label": "Picnicking",
+        "note": "Tables and grills past the main parking area, on the hill. The pavilion beside the main lot can be rented."
+      },
+      {
+        "label": "The walk",
+        "note": "A mile and a quarter loop past Muddy Creek, Swallow, and Upper and Lower Tolliver Falls. A separate 5.5-mile trail connects the park to Herrington Manor."
+      },
+      {
+        "label": "Booking",
+        "note": "888-432-2267 Monday to Friday, or parkreservations.maryland.gov. The park itself is reachable year round on 301-334-9180."
+      }
     ]
   },
   {
@@ -180,10 +209,10 @@
       "beach": true,
       "swimming": true,
       "restrooms": true,
-      "picnic": null,
+      "picnic": true,
       "showers": true,
       "camping": true,
-      "cabins": null,
+      "cabins": true,
       "trails": true,
       "boatLaunch": true,
       "boatRentals": null,
@@ -216,7 +245,9 @@
       "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [
-      "Dogs are allowed, but not on the beach. The one part of this park most people drive here for is the part the dog can't come to."
+      "Dogs are allowed, but not on the beach. The one part of this park most people drive here for is the part the dog can't come to.",
+      "Jet skis and other personal watercraft cannot run 11am to 4pm on Saturdays, Sundays and holidays from 1 July to Labor Day.",
+      "There is a service charge to launch a boat. It covers launching and removal in one 24-hour period."
     ],
     "phone": null,
     "hours": null,
@@ -252,7 +283,9 @@
       "Confirm boat launch fees and whether a separate launch permit is needed.",
       "Confirm pet rules on the beach specifically.",
       "Confirm who may use the showers — campers only, or anyone off the beach. A campground bathhouse usually means campers only, and that changes the answer completely.",
-      "Confirm exactly where the dog line falls — sand only, or the whole swimming area and the buildings too, as at Herrington Manor."
+      "Confirm exactly where the dog line falls — sand only, or the whole swimming area and the buildings too, as at Herrington Manor.",
+      "Get the boat launch service charge.",
+      "Confirm which campground loops prohibit pets — the map stars several."
     ],
     "services": {
       "parkOffice": null,
@@ -309,12 +342,47 @@
         "date": "2026-08-03",
         "author": "Matt",
         "body": "The swim area is roped inside stone breakwaters, so it stays calm even when the rest of the lake is busy with boats. Plenty of sand, and shade at the back of the beach if you get there early enough to claim it."
+      },
+      {
+        "date": "2026-08-05",
+        "author": "Site maintainer, from the 2026 printed guide",
+        "body": "Facts about the lake, from the park's own guide: 65 miles of shoreline, 3,900 acres, average depth 26.5 feet, surface 73F in summer and 49F on the bottom. Meadow Mountain tops out at 3,022 feet."
       }
     ],
     "verdict": {
       "text": "The swim area sits inside stone breakwaters, so it stays flat even when the rest of the lake is full of boats. Plenty of sand. The shade at the back of the beach goes early, though.",
       "on": "2026-08-03"
-    }
+    },
+    "onSite": [
+      {
+        "label": "Ranger station",
+        "note": "At the junction of Brant and State Park Roads. Hunting and fishing licenses are sold here."
+      },
+      {
+        "label": "The campground",
+        "note": "Meadow Mountain: 112 sites, open 15 April to 15 December. Heated restrooms with hot water showers. Twenty-six sites have 30-amp electric and water. Dump station at the entrance."
+      },
+      {
+        "label": "Sleeping without a tent",
+        "note": "A yurt, two mini camper-cabins, and the Bear Den, which is an Adirondack-style shelter."
+      },
+      {
+        "label": "Booking",
+        "note": "parkreservations.maryland.gov or 888-432-2267. Two weeks is the longest stay."
+      },
+      {
+        "label": "The beach",
+        "note": "The only guarded public swimming beach on the lake, guarded Memorial Day weekend through Labor Day weekend."
+      },
+      {
+        "label": "Boat launch",
+        "note": "Outside the day-use area on State Park Road. The canoe and kayak launch is inside the day-use area. Open 24 hours except when ice or weather closes it."
+      },
+      {
+        "label": "Trails",
+        "note": "The Meadow Mountain system is over 20 miles, from level to steep. Maps at park headquarters or the Discovery Center."
+      }
+    ]
   },
   {
     "slug": "herrington-manor",
@@ -441,9 +509,9 @@
       "waterfall": false,
       "beach": null,
       "swimming": true,
-      "restrooms": null,
-      "picnic": null,
-      "showers": null,
+      "restrooms": true,
+      "picnic": true,
+      "showers": true,
       "camping": true,
       "cabins": true,
       "trails": true,
@@ -466,7 +534,9 @@
       "schedule": null,
       "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
-    "warnings": [],
+    "warnings": [
+      "New Germany is replacing its water and waste water treatment plant in 2026-2027. Cabins, campsites and pavilions will close at various times during construction and the park says closures are subject to change. Ring 301-895-5453 before booking."
+    ],
     "phone": null,
     "hours": null,
     "sources": [
@@ -498,7 +568,9 @@
       "Confirm the cross-country trail network is still groomed and by whom.",
       "Confirm cabin season — whether all eleven are winterised.",
       "Confirm boat rental availability and season.",
-      "Confirm the day-use fee."
+      "Confirm the day-use fee.",
+      "Get the 2026-2027 construction closure dates as they are published.",
+      "Confirm the fishing license requirement — the guide says none is needed under 16."
     ],
     "services": {
       "parkOffice": null,
@@ -508,7 +580,41 @@
       "campStore": null,
       "passesSoldHere": null,
       "note": null
-    }
+    },
+    "onSite": [
+      {
+        "label": "Cabins",
+        "note": "Twelve log cabins, bookable year round, each with electric heat, a wood stove, a full kitchen and a bathroom. Pets are allowed in cabins 3 to 7 only."
+      },
+      {
+        "label": "The campground",
+        "note": "Forty sites. Site 34 has 30-amp electric. The Alpine Lodge (site 40) is an Adirondack-style shelter sleeping ten. Sites 3 and 31 are safari-style glamping tents on raised platforms."
+      },
+      {
+        "label": "Showers",
+        "note": "The White Oak Loop shower house is heated and open year round. It's pet friendly."
+      },
+      {
+        "label": "The lake",
+        "note": "Thirteen acres, with a designated swimming area and a free swim beach. Kayaks, canoes and paddle boards to rent at the Lake House or Ranger Station. Gasoline motors are prohibited."
+      },
+      {
+        "label": "Trails",
+        "note": "More than ten miles, easy to moderate, well signed and intersecting often so you can shorten a route."
+      },
+      {
+        "label": "Shelters",
+        "note": "Two picnic pavilions. Tall Oaks takes 75 and has a wood-burning fireplace; Tamarack takes 40 and sits by the playground."
+      },
+      {
+        "label": "Indoors",
+        "note": "The Black Forest Room in the Lake House holds 60 and can be reserved. The gift shop in the Ranger Station sells firewood, licenses and clothing, 8am to 4pm daily, year round."
+      },
+      {
+        "label": "Winter",
+        "note": "Trails are tracked and groomed for skiing. Skis and snowshoes to rent. Ice fishing is allowed on the lake. They call the sledding hills the Maryland Alps."
+      }
+    ]
   },
   {
     "slug": "big-run",
@@ -547,7 +653,11 @@
       "passes": "Maryland State Park and Trail Passport — $75 a year, $100 for non-residents. Covers day-use entry statewide. Where it can be bought in the county is not confirmed."
     },
     "warnings": [
-      "Whitewater here depends on scheduled dam releases from the Savage River Reservoir. Without a release there may be no runnable water at all."
+      "Whitewater here depends on scheduled dam releases from the Savage River Reservoir. Without a release there may be no runnable water at all.",
+      "No potable water and no trash service. Bring water in and carry rubbish out.",
+      "Big Run does NOT have cell service.",
+      "Swimming and gas-powered boats are prohibited in the Savage River Reservoir.",
+      "Pets must be leashed and with their owner."
     ],
     "phone": null,
     "hours": null,
@@ -607,7 +717,29 @@
     "verdict": {
       "text": "Primitive camping where the Savage River meets the reservoir, wrapped on every side by state forest. There are restrooms and picnic areas, which for a site this rough is more than you'd expect.",
       "on": "2026-08-03"
-    }
+    },
+    "onSite": [
+      {
+        "label": "Camping",
+        "note": "27 primitive sites, open and bookable year round. Walk-in camping for one night only is taken at the self-registration area."
+      },
+      {
+        "label": "Restrooms",
+        "note": "Waterless, and available year round."
+      },
+      {
+        "label": "Groups",
+        "note": "Two group camping areas and a large picnic pavilion for day use."
+      },
+      {
+        "label": "Boat launch",
+        "note": "For small craft — kayaks, canoes, rowboats. Trailered boats can find it challenging."
+      },
+      {
+        "label": "Trails",
+        "note": "The 4.6-mile Monroe Run Hiking Trail in Savage River State Forest starts from here. Backpackers need a backcountry permit from the forest."
+      }
+    ]
   },
   {
     "slug": "casselman-river-bridge",
@@ -700,15 +832,15 @@
       "beach": null,
       "swimming": false,
       "restrooms": null,
-      "picnic": null,
+      "picnic": true,
       "showers": null,
       "camping": false,
       "cabins": false,
-      "trails": null,
+      "trails": true,
       "boatLaunch": true,
       "boatRentals": null,
       "fishing": true,
-      "winterUse": null,
+      "winterUse": true,
       "petsAllowed": null
     },
     "reservation": {
@@ -767,7 +899,32 @@
       "campStore": null,
       "passesSoldHere": null,
       "note": null
-    }
+    },
+    "onSite": [
+      {
+        "label": "The buildings",
+        "note": "The Friends Store and the Election House were the center of the Sang Run community until the 1970s. The Friend family farmed here from the early 1800s until the state bought it in 2008."
+      },
+      {
+        "label": "Walking",
+        "note": "The Bluebird Trail, and demonstration gardens around the park."
+      },
+      {
+        "label": "Picnic shelter",
+        "note": "Rentable for larger gatherings."
+      },
+      {
+        "label": "Winter",
+        "note": "The newest cross-country ski trail in the county."
+      }
+    ],
+    "fieldNotes": [
+      {
+        "date": "2026-08-05",
+        "author": "Site maintainer, from the 2026 printed guide",
+        "body": "The Election House ties to the campaign for the 19th Amendment — the guide says Garrett County helped propel the suffrage movement, and the house is where that is told."
+      }
+    ]
   },
   {
     "slug": "wolf-den-run",
@@ -1142,6 +1299,85 @@
     "verdict": {
       "text": "House-sized boulders with passages between them narrow enough to turn sideways for, and no sign anywhere telling you it exists. The moss holds water for days, so it's slick long after the rain stops. Not one to rush, and not one to do in trainers.",
       "on": "2026-08-03"
+    }
+  },
+  {
+    "slug": "jennings-randolph-lake",
+    "name": "Jennings Randolph Lake",
+    "kind": "lake",
+    "town": "Swanton",
+    "acres": null,
+    "blurb": "A five-mile reservoir on the North Branch of the Potomac, holding back water for Washington DC since 1981 and forming the Maryland-West Virginia line. Over a hundred feet deep, and it holds the state walleye record. Run jointly by Swallow Falls and Herrington Manor with the Army Corps of Engineers.",
+    "features": {
+      "waterfall": false,
+      "beach": null,
+      "swimming": null,
+      "restrooms": null,
+      "picnic": null,
+      "showers": null,
+      "camping": null,
+      "cabins": null,
+      "trails": null,
+      "boatLaunch": true,
+      "boatRentals": null,
+      "fishing": true,
+      "winterUse": null,
+      "petsAllowed": null
+    },
+    "reservation": {
+      "required": false,
+      "scope": null,
+      "window": null,
+      "days": null,
+      "bookAhead": null,
+      "note": null,
+      "slots": null
+    },
+    "fee": {
+      "note": "Not confirmed. The guide names no fee for the boat ramp.",
+      "amount": null,
+      "schedule": null,
+      "passes": null
+    },
+    "warnings": [
+      "The boat ramp is open April through October, weather permitting. It is not a year-round launch.",
+      "The lake is the state line. Which side you fish from decides whose license you need — unconfirmed which applies where."
+    ],
+    "phone": "301-334-9180",
+    "hours": null,
+    "onSite": [
+      {
+        "label": "Boat ramp",
+        "note": "Open April through October, weather permitting. A floating dock, and parking for 50 boat trailers."
+      },
+      {
+        "label": "Fishing",
+        "note": "State record walleye, caught here in 1998. Over 100 feet deep, so bring enough rope for your anchor line."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Primary: published by the operator."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm whether a Maryland or West Virginia fishing license is needed, and where the line falls.",
+      "Confirm the ramp's exact opening and closing dates for 2026.",
+      "Confirm whether there are restrooms at the ramp."
+    ],
+    "services": {
+      "parkOffice": "Swallow Falls / Herrington Manor",
+      "officePhone": "301-334-9180",
+      "officeAddress": "Mt. Zion Road, Swanton, MD 21561",
+      "giftShop": null,
+      "campStore": null,
+      "passesSoldHere": null,
+      "note": "Managed jointly with the US Army Corps of Engineers."
     }
   }
 ]

@@ -146,5 +146,65 @@
         "portrait": false
       }
     ]
+  },
+  {
+    "slug": "dans-mountain",
+    "name": "Dans Mountain State Park",
+    "alsoKnownAs": null,
+    "distance": "Over the Allegany County line at Lonaconing, about an hour from Oakland.",
+    "town": "Lonaconing",
+    "state": "Maryland",
+    "county": "Allegany County",
+    "address": "17410 Recreation Area Road SW, Lonaconing, MD 21539",
+    "kind": "State park with a public pool",
+    "blurb": "481 acres on a sixteen-mile ridge, and the reason to drive out is the pool: heated, with a water slide, staffed by certified lifeguards and fully accessible. Also a fishing pond, a recycled-tire playground, pavilions and trails.",
+    "season": "The pool runs Memorial Day weekend through Labor Day, 11am to 6pm.",
+    "admission": {
+      "note": "Not confirmed. The guide describes the pool and names no price.",
+      "amount": null
+    },
+    "onSite": [
+      {
+        "label": "The pool",
+        "note": "Heated, with a water slide, renovated in 2023. Refreshments sold at the entrance to the pool building."
+      },
+      {
+        "label": "Group camping",
+        "note": "The Hill Run Group Campsite takes up to 40 people, reservable May through September. A large pavilion with a fireplace and electric outlets. Showers and potable water are NOT available; there is a portable bathroom."
+      },
+      {
+        "label": "Pavilions",
+        "note": "Three: Mountain Top, Pythian, and Water Station Run, the last with a view over the fishing pond. April to October, 888-432-2267 or parkreservations.maryland.gov."
+      },
+      {
+        "label": "Trails",
+        "note": "The 4.5-mile Lonacona Loop, built 2023, gains 650 feet over rocky ground. The Dye School Trail makes a one-mile option and passes the foundation of a one-room schoolhouse from the late 1800s."
+      }
+    ],
+    "phone": "301-895-5453",
+    "website": {
+      "label": "Maryland DNR: Garrett County state parks",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx"
+    },
+    "warnings": [
+      "This is Allegany County, not Garrett. It appears in the county's own parks guide anyway, which is why it's here.",
+      "Pool hours change with weather, staffing and maintenance. Ring 301-895-5453 before driving.",
+      "The group campsite has no showers and no drinking water."
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Primary: published by the operator."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Get the pool admission price.",
+      "Confirm the 2026 pool opening and closing dates.",
+      "Confirm whether the park itself charges entry outside the pool."
+    ]
   }
 ]

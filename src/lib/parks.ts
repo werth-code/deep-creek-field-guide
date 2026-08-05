@@ -205,6 +205,15 @@ export interface StatePark {
   blurb: string;
   features: StateParkFeatures;
   reservation: Reservation;
+  /**
+   * Located facts — the ones whose answer is a place or a caveat, not a yes.
+   *
+   * The feature grid says a park has camping. It cannot say the campground is
+   * 112 sites, opens 15 April, and has hot showers in a heated block, which is
+   * what somebody actually needs before booking. Same shape the town parks and
+   * the Delaware records use.
+   */
+  onSite?: { label: string; note: string }[] | null;
   fee: {
     note: string;
     amount: number | null;
