@@ -23,18 +23,32 @@
  * measurement don't go out of date.
  *
  * DRAWING NOTES
- * Checked at 220/72/40/22px. The innermost contour and the station triangle
- * are the only things that must survive at 22px, so everything else is set
- * lighter and gets out of their way. Stroke widths are absolute against a
- * 100-unit box, not scaled, so the mark thickens rather than vanishes as it
- * shrinks.
+ *
+ * Stroke widths are absolute against a 100-unit box, so the rendered width is
+ * (stroke / 100) x displayed size. That arithmetic is the whole problem with
+ * the full mark at small sizes, and the note that used to sit here — "checked
+ * at 220/72/40/22px, the innermost contour and the triangle survive at 22" —
+ * was wrong. At 22px the inner contour renders 0.79px and EVERY stroke in the
+ * mark is sub-pixel. The browser fades them rather than drawing them, so what
+ * you actually get is a dark disc with a pale smudge.
+ *
+ * Worse, 22px was never a size this is used at. It renders at 15.2px in the
+ * home page eyebrow, 17.6px in the footer and 33.6px in the masthead. Two of
+ * those three are below the point where any of it resolves.
+ *
+ * Hence `compact`. Below about 24px it drops the two outer contours and the
+ * light waterline — detail that is only noise at that scale — and thickens
+ * what is left so it clears a pixel. Same silhouette, same idea, fewer lines.
+ * This is what the favicon uses too.
  */
 interface Props {
   class?: string;
   /** Draw the contours in on first paint. Off inside dense nav rows. */
   animate?: boolean;
+  /** For anything under ~24px. Fewer lines, thicker, so it still reads. */
+  compact?: boolean;
 }
-const { class: className = "", animate = false } = Astro.props;
+const { class: className = "", animate = false, compact = false } = Astro.props;
 ---
 
 <svg
@@ -47,33 +61,43 @@ const { class: className = "", animate = false } = Astro.props;
   <circle cx="50" cy="50" r="49" fill="var(--color-slate)" />
 
   <g fill="none" stroke-linejoin="round" stroke-linecap="round">
-    <!-- Outer contours. Irregular on purpose: a symmetrical ring reads as a
-         target, an uneven one reads as ground. -->
-    <path
-      d="M14 62c4-11 9-17 17-22s14-13 24-13 17 7 21 14 9 12 9 21"
-      stroke="var(--color-contour)"
-      stroke-width="3"
-      opacity="0.55"
-    />
-    <path
-      d="M23 63c3-9 8-14 14-18s12-10 18-9 13 7 16 13 6 10 6 17"
-      stroke="var(--color-contour)"
-      stroke-width="3"
-      opacity="0.8"
-    />
-    <!-- Innermost contour. Must hold at 22px, so it is the heaviest line. -->
+    {/* The two outer contours carry texture, not meaning. They are the first
+        thing to go when there aren't enough pixels to draw them. */}
+    {!compact && (
+      <>
+        <path
+          d="M14 62c4-11 9-17 17-22s14-13 24-13 17 7 21 14 9 12 9 21"
+          stroke="var(--color-contour)"
+          stroke-width="3"
+          opacity="0.55"
+        />
+        <path
+          d="M23 63c3-9 8-14 14-18s12-10 18-9 13 7 16 13 6 10 6 17"
+          stroke="var(--color-contour)"
+          stroke-width="3"
+          opacity="0.8"
+        />
+      </>
+    )}
+    {/* Innermost contour: the line that has to survive whatever the size. */}
     <path
       d="M33 64c2-7 6-11 10-14s8-7 12-6 9 6 11 10 4 7 4 12"
       stroke="var(--color-paper)"
-      stroke-width="3.6"
+      stroke-width={compact ? 7 : 3.6}
     />
   </g>
 
-  <!-- Survey station triangle on the summit — the element that says measured. -->
-  <path d="M50 26 L59 43 L41 43 Z" fill="var(--color-paper)" />
-  <circle cx="50" cy="38.5" r="2.6" fill="var(--color-slate)" />
+  {/* Survey station triangle on the summit — the element that says measured.
+      Grown in compact, because at 16px the full-size one is under 3px wide. */}
+  {compact
+    ? <path d="M50 20 L62 41 L38 41 Z" fill="var(--color-paper)" />
+    : <path d="M50 26 L59 43 L41 43 Z" fill="var(--color-paper)" />}
+  {!compact && <circle cx="50" cy="38.5" r="2.6" fill="var(--color-slate)" />}
 
-  <!-- Waterline: the lake the county is named for, as a single flat band. -->
-  <path d="M11 72h78" stroke="var(--color-lake)" stroke-width="4.5" stroke-linecap="round" />
-  <path d="M20 80h60" stroke="var(--color-lake)" stroke-width="3" stroke-linecap="round" opacity="0.6" />
+  {/* Waterline: the lake the county is named for. One band in compact — two
+      thin ones at 16px are a single grey blur. */}
+  <path d="M11 72h78" stroke="var(--color-lake)" stroke-width={compact ? 9 : 4.5} stroke-linecap="round" />
+  {!compact && (
+    <path d="M20 80h60" stroke="var(--color-lake)" stroke-width="3" stroke-linecap="round" opacity="0.6" />
+  )}
 </svg>
