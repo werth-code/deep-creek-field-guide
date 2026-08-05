@@ -96,5 +96,357 @@
       "Confirm which individual events charge admission.",
       "Confirm whether dogs are welcome along the parade route."
     ]
+  },
+  {
+    "slug": "new-germany-eggstreme-egg-hunt",
+    "name": "Eggstreme Egg Hunt",
+    "edition": null,
+    "town": "Grantsville",
+    "venue": "New Germany State Park",
+    "address": null,
+    "blurb": "The park's egg hunt, on the Saturday before Easter.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Early April, announced a year at a time"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-04-04",
+        "end": "2026-04-04"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The guide lists the date and no price. The park's day-use fee may still apply.",
+      "amount": null
+    },
+    "website": {
+      "label": "Maryland DNR: Garrett County state parks",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx"
+    },
+    "warnings": [
+      "The guide says events are subject to change. Ring the park before travelling."
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide), 2026 calendar",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide, photographed. Its calendar page lists these dates and states that events are subject to change, giving 301-271-7574 for details."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the start and finish times.",
+      "Confirm whether the park day-use fee applies on the day."
+    ]
+  },
+  {
+    "slug": "deep-creek-natural-egg-dying",
+    "name": "Natural Egg Dying",
+    "edition": null,
+    "town": "Swanton",
+    "venue": "Deep Creek Lake State Park",
+    "address": null,
+    "blurb": "Dyeing eggs with onion skins, beets and whatever else the naturalists bring. At the Discovery Center.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Early April, announced a year at a time"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-04-04",
+        "end": "2026-04-04"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The guide lists the date and no price. The park's day-use fee may still apply.",
+      "amount": null
+    },
+    "website": {
+      "label": "Maryland DNR: Garrett County state parks",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx"
+    },
+    "warnings": [
+      "The guide says events are subject to change. Ring the park before travelling."
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide), 2026 calendar",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide, photographed. Its calendar page lists these dates and states that events are subject to change, giving 301-271-7574 for details."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the start and finish times.",
+      "Confirm whether the park day-use fee applies on the day."
+    ]
+  },
+  {
+    "slug": "deep-creek-ramp-cook-off",
+    "name": "Ramp Cook Off",
+    "edition": null,
+    "town": "Swanton",
+    "venue": "Deep Creek Lake State Park",
+    "address": null,
+    "blurb": "Ramps are the wild leek that comes up in these woods in April, and the county takes them seriously. Cooks compete.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Late April, announced a year at a time"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-04-25",
+        "end": "2026-04-25"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The guide lists the date and no price. The park's day-use fee may still apply.",
+      "amount": null
+    },
+    "website": {
+      "label": "Maryland DNR: Garrett County state parks",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx"
+    },
+    "warnings": [
+      "The guide says events are subject to change. Ring the park before travelling."
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide), 2026 calendar",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide, photographed. Its calendar page lists these dates and states that events are subject to change, giving 301-271-7574 for details."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the start and finish times.",
+      "Confirm whether the park day-use fee applies on the day."
+    ]
+  },
+  {
+    "slug": "new-germany-native-plant-festival",
+    "name": "Mountain Maryland Native Plant Festival",
+    "edition": null,
+    "town": "Grantsville",
+    "venue": "New Germany State Park",
+    "address": null,
+    "blurb": "Native plants for sale and the people who grow them, in the park.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Early May, announced a year at a time"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-05-09",
+        "end": "2026-05-09"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The guide lists the date and no price. The park's day-use fee may still apply.",
+      "amount": null
+    },
+    "website": {
+      "label": "Maryland DNR: Garrett County state parks",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx"
+    },
+    "warnings": [
+      "The guide says events are subject to change. Ring the park before travelling."
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide), 2026 calendar",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide, photographed. Its calendar page lists these dates and states that events are subject to change, giving 301-271-7574 for details."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the start and finish times.",
+      "Confirm whether the park day-use fee applies on the day."
+    ]
+  },
+  {
+    "slug": "deep-creek-art-in-the-park",
+    "name": "Art in the Park",
+    "edition": null,
+    "town": "Swanton",
+    "venue": "Deep Creek Lake State Park",
+    "address": null,
+    "blurb": "Two days of artists and makers by the lake. The 2026 edition is the 24th.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Mid July, announced a year at a time"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-07-11",
+        "end": "2026-07-12"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The guide lists the date and no price. The park's day-use fee may still apply.",
+      "amount": null
+    },
+    "website": {
+      "label": "Maryland DNR: Garrett County state parks",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx"
+    },
+    "warnings": [
+      "The guide says events are subject to change. Ring the park before travelling."
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide), 2026 calendar",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide, photographed. Its calendar page lists these dates and states that events are subject to change, giving 301-271-7574 for details."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the start and finish times.",
+      "Confirm whether the park day-use fee applies on the day."
+    ]
+  },
+  {
+    "slug": "sang-run-fallfest",
+    "name": "Sang Run Fallfest",
+    "edition": null,
+    "town": "McHenry",
+    "venue": "Sang Run State Park",
+    "address": null,
+    "blurb": "Pumpkin painting, apple cider pressing and the Friends Store open. The last Saturday in September.",
+    "rule": {
+      "kind": "announced",
+      "hint": "The last Saturday in September, per the park's own description"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-09-26",
+        "end": "2026-09-26"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The guide lists the date and no price. The park's day-use fee may still apply.",
+      "amount": null
+    },
+    "website": {
+      "label": "Maryland DNR: Garrett County state parks",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx"
+    },
+    "warnings": [
+      "The guide says events are subject to change. Ring the park before travelling."
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide), 2026 calendar",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide, photographed. Its calendar page lists these dates and states that events are subject to change, giving 301-271-7574 for details."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the start and finish times.",
+      "Confirm whether the park day-use fee applies on the day."
+    ]
+  },
+  {
+    "slug": "deep-creek-discovery-after-dark",
+    "name": "Discovery Center After Dark",
+    "edition": null,
+    "town": "Swanton",
+    "venue": "Deep Creek Lake State Park",
+    "address": null,
+    "blurb": "The Discovery Center open in the evening, with the aviary and the nocturnal end of the collection.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Mid October, announced a year at a time"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-10-17",
+        "end": "2026-10-17"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The guide lists the date and no price. The park's day-use fee may still apply.",
+      "amount": null
+    },
+    "website": {
+      "label": "Maryland DNR: Garrett County state parks",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx"
+    },
+    "warnings": [
+      "The guide says events are subject to change. Ring the park before travelling."
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide), 2026 calendar",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide, photographed. Its calendar page lists these dates and states that events are subject to change, giving 301-271-7574 for details."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the start and finish times.",
+      "Confirm whether the park day-use fee applies on the day."
+    ]
+  },
+  {
+    "slug": "deep-creek-holiday-open-house",
+    "name": "Holiday Open House",
+    "edition": null,
+    "town": "Swanton",
+    "venue": "Deep Creek Lake State Park",
+    "address": null,
+    "blurb": "The Discovery Center's December open house.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Early December, announced a year at a time"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-12-05",
+        "end": "2026-12-05"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The guide lists the date and no price. The park's day-use fee may still apply.",
+      "amount": null
+    },
+    "website": {
+      "label": "Maryland DNR: Garrett County state parks",
+      "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx"
+    },
+    "warnings": [
+      "The guide says events are subject to change. Ring the park before travelling."
+    ],
+    "sources": [
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide), 2026 calendar",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide, photographed. Its calendar page lists these dates and states that events are subject to change, giving 301-271-7574 for details."
+      }
+    ],
+    "sourcedOn": "2026-08-05",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm the start and finish times.",
+      "Confirm whether the park day-use fee applies on the day."
+    ]
   }
 ]

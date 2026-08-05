@@ -87,6 +87,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -99,7 +104,8 @@
       "Confirm what the Park Store stocks and whether it opens outside camping season.",
       "Resolve the county-vs-DNR conflict on whether weekdays ever need a reservation.",
       "Confirm which dates count as 'holidays' for the reservation requirement.",
-      "Confirm winter access and whether the road to the falls is maintained."
+      "Confirm winter access and whether the road to the falls is maintained.",
+      "TWO SOURCES DISAGREE on the dog dates. This page says pets are barred from the day-use area 23 May to 7 September 2026. The 2026 printed guide says pets are only permitted there from 3 September through 24 May. Those are the same rule with different edges, and a day either way decides someone's trip. Ring the park and settle it before changing anything."
     ],
     "corrections": [
       {
@@ -229,6 +235,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -245,8 +256,8 @@
     ],
     "services": {
       "parkOffice": null,
-      "officePhone": null,
-      "officeAddress": null,
+      "officePhone": "301-387-5563",
+      "officeAddress": "898 State Park Road, Swanton, MD 21561",
       "giftShop": true,
       "campStore": null,
       "passesSoldHere": null,
@@ -377,6 +388,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -468,6 +484,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -481,8 +502,8 @@
     ],
     "services": {
       "parkOffice": null,
-      "officePhone": null,
-      "officeAddress": null,
+      "officePhone": "301-895-5453",
+      "officeAddress": "349 Headquarters Lane, Grantsville, MD 21536",
       "giftShop": null,
       "campStore": null,
       "passesSoldHere": null,
@@ -545,6 +566,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -558,8 +584,8 @@
     ],
     "services": {
       "parkOffice": null,
-      "officePhone": null,
-      "officeAddress": null,
+      "officePhone": "301-895-5453",
+      "officeAddress": "10368 Savage River Road, Swanton, MD 21561",
       "giftShop": null,
       "campStore": null,
       "passesSoldHere": null,
@@ -637,6 +663,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -649,8 +680,8 @@
     ],
     "services": {
       "parkOffice": null,
-      "officePhone": null,
-      "officeAddress": null,
+      "officePhone": "301-895-5453",
+      "officeAddress": "10240 National Pike, Grantsville, MD 21536",
       "giftShop": null,
       "campStore": null,
       "passesSoldHere": null,
@@ -713,6 +744,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -725,8 +761,8 @@
     ],
     "services": {
       "parkOffice": null,
-      "officePhone": null,
-      "officeAddress": null,
+      "officePhone": "301-387-5563",
+      "officeAddress": "3735 Sang Run Road, McHenry, MD 21541",
       "giftShop": null,
       "campStore": null,
       "passesSoldHere": null,
@@ -784,6 +820,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -797,8 +838,8 @@
     ],
     "services": {
       "parkOffice": null,
-      "officePhone": null,
-      "officeAddress": null,
+      "officePhone": "301-334-1272",
+      "officeAddress": "1699 Upperman Road, Oakland, MD 21550",
       "giftShop": null,
       "campStore": null,
       "passesSoldHere": null,
@@ -861,6 +902,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -873,8 +919,8 @@
     ],
     "services": {
       "parkOffice": null,
-      "officePhone": null,
-      "officeAddress": null,
+      "officePhone": "301-387-5563",
+      "officeAddress": "3735 Sang Run Road, McHenry, MD 21541",
       "giftShop": null,
       "campStore": null,
       "passesSoldHere": null,
@@ -932,6 +978,11 @@
         "label": "Maryland DNR: park service charges",
         "url": "https://dnr.maryland.gov/publiclands/Pages/oc.aspx",
         "note": "The official fee schedule. Charges are per PERSON in summer and per VEHICLE off-season at the parks that charge."
+      },
+      {
+        "label": "Explore 2026 Garrett County State Parks (printed guide)",
+        "url": "https://dnr.maryland.gov/publiclands/pages/western/garrettparks.aspx",
+        "note": "The Maryland Park Service's own 2026 printed guide to the Garrett County parks, photographed page by page. Gives each park's mailing address and office phone, the facility detail below, and the 2026 events calendar. Primary: published by the operator."
       }
     ],
     "sourcedOn": "2026-08-03",
@@ -945,8 +996,8 @@
     ],
     "services": {
       "parkOffice": null,
-      "officePhone": null,
-      "officeAddress": null,
+      "officePhone": "301-895-5759",
+      "officeAddress": "127 Headquarters Lane, Grantsville, MD 21536",
       "giftShop": null,
       "campStore": null,
       "passesSoldHere": null,
