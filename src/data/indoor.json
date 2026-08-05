@@ -268,8 +268,8 @@
       "The restored 1884 depot, by the Baltimore architects Baldwin & Pennington",
       "Model trains",
       "Telegraph equipment and station artifacts",
-      "A Baldwin steam locomotive, boxcars and cabooses outside",
-      "A gift shop of train-themed things"
+      "A gift shop of train-themed things",
+      "Outside: the 1920 Baldwin locomotive 476, B&O caboose C-2884, and interpretive plaques"
     ],
     "branches": null,
     "warnings": [
@@ -280,6 +280,11 @@
         "label": "Oakland, Maryland B&O Museum: visit us",
         "url": "https://www.oaklandbandomuseum.org/visit-us",
         "note": "The operator. Gives \"Open Every Day, 10 am to 3 pm\", the East Liberty Street address, the gift shop, the volunteer-led tours, and the indoor and outdoor exhibits. Publishes no admission price and no phone number."
+      },
+      {
+        "label": "Oakland B&O Museum: the 1920 Baldwin Steam Locomotive plaque",
+        "url": "https://www.oaklandbandomuseum.org/visit-us",
+        "note": "Interpretive plaque on the plaza, photographed 5 August 2026. Gives the engine's full history: built 1920 by Baldwin as number 40 for the Jonesboro, Lake City and Eastern Railroad, renumbered 76 in 1925, sold to the Mississippian Railway in 1947, then to a Pennsylvania scenic railway in 1967 and the Gettysburg line, then to the Steam Railroading Institute in 2005. Bought by the museum in 2017 with a donation from the Daniel E. Offutt III Charitable Trust, moved to Oakland in July 2018 and restored for display by Diversified Rail Services. Renumbered 476 because it resembles the B&O E-39 class."
       }
     ],
     "sourcedOn": "2026-08-04",
@@ -291,7 +296,71 @@
       "Ask whether the every-day hours hold through the winter.",
       "Ask about restrooms and step-free access into an 1884 depot."
     ],
-    "verdict": null
+    "verdict": null,
+    "photos": [
+      {
+        "file": "bo-476",
+        "alt": "A black steam locomotive numbered 476 with white-rimmed driving wheels, standing on brick paving beside the museum with a red caboose behind it and storm cloud overhead.",
+        "caption": "Engine 476 outside the 1884 depot. It's on brick in the open, so you can walk round it whether the museum is open or not.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "bo-b",
+        "alt": "The same locomotive side-on, showing the cab, boiler and running gear, with a viewing platform and steps alongside.",
+        "caption": "Side on. There are steps up to a platform so you can look into the cab.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "bo-c",
+        "alt": "A bright red Baltimore and Ohio caboose lettered B&O C-2884, with white window frames and a yellow handrail, on brick paving.",
+        "caption": "Caboose C-2884, coupled up behind the engine.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "bo-plaque",
+        "alt": "An interpretive plaque headed 1920 Baldwin Steam Locomotive, with several paragraphs of text and a black and white photograph of the engine in service on the Mississippian Railway.",
+        "caption": "The plaque tells you the engine never actually ran for the B&O — the museum adopted it and renumbered it.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "bo-d",
+        "alt": "A wider view of the museum plaza with the locomotive, the caboose and the depot buildings under heavy cloud.",
+        "caption": "The whole display from the far end of the plaza.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      }
+    ],
+    "onSite": [
+      {
+        "label": "Outside, always",
+        "note": "The locomotive, the caboose and the plaques stand on open brick paving in the middle of town. You can walk round them when the museum itself is shut, which matters given it is volunteer-staffed."
+      },
+      {
+        "label": "Engine 476",
+        "note": "A 1920 Baldwin. It was built as number 40 for a railroad in Arkansas, ran most of its life as 76, and never worked for the B&O at all. The museum bought it in 2018 and renumbered it 476 because it closely matches the B&O's own E-39 class."
+      }
+    ],
+    "reports": [
+      {
+        "receivedOn": "2026-08-05",
+        "visitedOn": "2026-08-05",
+        "from": "Site maintainer, first-hand",
+        "what": "The locomotive and caboose are on open brick paving outside the depot, walk-round any time. Photographed the engine, the caboose and the interpretive plaque.",
+        "affects": [
+          "what's inside",
+          "outdoor display"
+        ]
+      }
+    ]
   },
   {
     "slug": "ruth-enlow-library",
