@@ -12,6 +12,7 @@
  * applied inconsistently. See FeatureIcon for why it's the only color here.
  */
 import FeatureIcon, { type FeatureKey } from "./FeatureIcon.astro";
+import { colorFor } from "../lib/feature-colors";
 
 interface Props {
   icon: FeatureKey;
@@ -21,17 +22,22 @@ interface Props {
   class?: string;
 }
 const { icon, label, emphasis = false, class: className = "" } = Astro.props;
+
+/* Inline style rather than a Tailwind class, because 31 arbitrary hex values
+   would each need a class Tailwind can only generate if it sees the literal
+   string in a file. A colour built at runtime never gets generated, and the
+   chip renders with no fill at all. */
+const c = colorFor(icon);
+const style = emphasis
+  ? `background:${c};border-color:${c};color:var(--color-snow)`
+  : `color:${c};border-color:${c}`;
 ---
 
 <li
-  class={`inline-flex items-center gap-1.5 px-2 py-1 stamp text-[0.68rem] leading-none ${
-    /* Both variants carry the same 1px border as .sheet-quiet. The emphasised
-       chip used border-2, which made it 2px taller than the plain ones sitting
-       beside it in the same wrapped row. */
-    emphasis
-      ? "bg-slate text-snow border border-slate rounded-[var(--radius-sheet)]"
-      : "sheet-quiet text-slate"
+  class={`inline-flex items-center gap-1.5 px-2 py-1 stamp text-[0.68rem] leading-none border rounded-[var(--radius-sheet)] ${
+    emphasis ? "" : "bg-sheet"
   } ${className}`}
+  style={style}
 >
   <FeatureIcon icon={icon} class="w-[1.15em] h-[1.15em] shrink-0" />
   {label}

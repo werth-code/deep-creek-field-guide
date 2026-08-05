@@ -15,6 +15,7 @@ import Photo from "../../components/Photo.astro";
 import Verdict from "../../components/Verdict.astro";
 import FieldNotes from "../../components/FieldNotes.astro";
 import ReportBox from "../../components/ReportBox.astro";
+import FeatureIcon from "../../components/FeatureIcon.astro";
 
 import parksData from "../../data/state-parks.json";
 import {
@@ -28,6 +29,7 @@ import {
 } from "../../lib/parks";
 import { isPublishable, isVerified, reportOutstanding, robotsFor, sourcedText, stampText, tierOf } from "../../lib/verification";
 import { formatStampDate } from "../../lib/dates";
+import { colorFor } from "../../lib/feature-colors";
 
 export const getStaticPaths = (() =>
   (parksData as StatePark[]).map((park) => ({ params: { slug: park.slug }, props: { park } }))) satisfies GetStaticPaths;
@@ -183,7 +185,24 @@ const title =
               const v = tri(park.features[key]);
               return (
                 <div class="border-b border-lake/30 py-2.5">
-                  <dt class="label">{label}</dt>
+                  {/* Colour ONLY on a confirmed yes. A feature that is
+                      confirmed ABSENT was getting its full identity colour
+                      here, so "Surf fishing — No" looked at a glance exactly
+                      like a yes. The word said no and the colour said yes.
+
+                      Same glyph and same colour the chip uses on the index.
+                      A reader who learnt "blue slide = playground" from a card
+                      should meet it again here rather than a bare word. Dimmed
+                      when the field is unconfirmed, so the row still reads as
+                      an unknown at a glance. */}
+                  <dt class="label flex items-center gap-1.5">
+                    <FeatureIcon
+                      icon={key as any}
+                      class="w-[1.15em] h-[1.15em] shrink-0"
+                      style={v.state === "yes" ? `color:${colorFor(key)}` : "color:var(--color-ink-soft);opacity:.4"}
+                    />
+                    {label}
+                  </dt>
                   <dd
                     class={`m-0 mt-0.5 text-[0.93rem] ${v.state === "unknown" ? "text-ink-soft italic" : "text-ink"}`}
                   >

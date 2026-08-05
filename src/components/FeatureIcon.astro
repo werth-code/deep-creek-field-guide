@@ -41,12 +41,14 @@ export type FeatureKey =
 interface Props {
   icon: FeatureKey;
   class?: string;
+  style?: string;
 }
-const { icon, class: className = "" } = Astro.props;
+const { icon, class: className = "", style } = Astro.props;
 ---
 
 <svg
   class={className}
+  style={style}
   viewBox="0 0 24 24"
   fill="none"
   stroke="currentColor"
