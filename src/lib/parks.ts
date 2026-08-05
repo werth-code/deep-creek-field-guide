@@ -13,7 +13,7 @@ export interface Reservation {
    * WHEN the requirement bites, which is not the same question as whether
    * one exists.
    *
-   * Swallow Falls needs a reservation at weekends and on holidays, and lets
+   * Swallow Falls needs a reservation on weekends and on holidays, and lets
    * you walk in on a Tuesday. The badge said "RESERVATION REQUIRED" flatly
    * and the page opened "You can't just turn up" — true of two days in seven,
    * and read as true of all of them. Someone reads that on a Wednesday
@@ -90,10 +90,10 @@ export interface Photo {
   portrait?: boolean;
   /**
    * Where to anchor the crop on a listing thumbnail, as a CSS object-position.
-   * Defaults to centre.
+   * Defaults to center.
    *
    * Thumbnails are a fixed 16:9 box and most of these photos are 4:3, so a
-   * centre crop throws away the top and bottom eighth. That is usually sky and
+   * center crop throws away the top and bottom eighth. That is usually sky and
    * gravel, and occasionally it is the animal — the first card built here
    * cropped a tortoise's shell off and left a fence. Only set this when the
    * default actually loses the subject.
@@ -182,7 +182,7 @@ export interface StateParkFeatures {
    * are not the same claim. The boolean only says they exist; who may use
    * them goes in `warnings`, the same place Herrington Manor's dogs-but-not-
    * on-the-sand rule lives. State parks have no `access` field — town parks
-   * grew one for the 4-H centre and this dataset never did.
+   * grew one for the 4-H center and this dataset never did.
    */
   showers: boolean | null;
   camping: boolean | null;
@@ -438,7 +438,7 @@ export function reservationFlag(r: Reservation): {
 } {
   if (r.required === true)
     return {
-      word: r.scope === "weekends" ? "Reservation at weekends" : "Reservation required",
+      word: r.scope === "weekends" ? "Reservation on weekends" : "Reservation required",
       bar: "bar-hatch",
       chip: "bg-flag-red-bearing text-white",
       icon: "alert",
@@ -605,7 +605,7 @@ const TAGS: { slug: string; label: string; state?: (p: StatePark) => boolean; re
     regional: (p) => p.facilities.winterUse === true,
   },
   {
-    slug: "pushchair-friendly",
+    slug: "stroller-friendly",
     label: "Stroller-friendly",
     regional: (p) => p.facilities.pavedPath === true,
   },

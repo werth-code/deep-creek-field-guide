@@ -14,7 +14,7 @@
  * site that computed the date from the rule will confidently print the wrong
  * one. That is exactly the failure this whole project exists to avoid.
  *
- * So a computed date is labelled as computed, and a date we have actually
+ * So a computed date is labeled as computed, and a date we have actually
  * confirmed for a given year is stored per-year and always wins. The reader is
  * shown the rule and the date together, so a local who knows better can see
  * immediately which one we got wrong.

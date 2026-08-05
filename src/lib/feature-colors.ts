@@ -1,10 +1,10 @@
 /**
- * One colour per feature, used everywhere that feature is referred to.
+ * One color per feature, used everywhere that feature is referred to.
  *
  * WHAT THIS IS FOR
  *
- * A reader who has seen the blue playground glyph twice should recognise it on
- * the third page without reading the word. That only works if the colour is
+ * A reader who has seen the blue playground glyph twice should recognize it on
+ * the third page without reading the word. That only works if the color is
  * identical everywhere, which means it lives here and nowhere else — never a
  * Tailwind class typed at a render site, because those drift and nobody
  * notices until two pages disagree.
@@ -14,9 +14,9 @@
  * Every one is dark. That isn't an aesthetic preference, it's the constraint
  * that made the set possible at all:
  *
- *   - Filled chips put pale text on the colour, so each needs 7:1 against the
+ *   - Filled chips put pale text on the color, so each needs 7:1 against the
  *     lighter of the two site backgrounds. That rules out mid-tones entirely.
- *   - The same colour is used for the icon stroke on a pale page, where it
+ *   - The same color is used for the icon stroke on a pale page, where it
  *     needs to stay legible against the darkest page ground.
  *
  * Both were solved numerically rather than by eye: each hue was darkened in
@@ -28,7 +28,7 @@
  * HOW THEY'RE GROUPED
  *
  * Related things sit in the same part of the wheel, so the palette reads as a
- * system rather than a bag of colours: water is blue-teal, growing things are
+ * system rather than a bag of colors: water is blue-teal, growing things are
  * green, built things are brown-rust, and restrooms is near-black because it
  * is the one people look for first.
  *

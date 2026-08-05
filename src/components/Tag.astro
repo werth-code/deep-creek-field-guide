@@ -25,7 +25,7 @@ const { icon, label, emphasis = false, class: className = "" } = Astro.props;
 
 /* Inline style rather than a Tailwind class, because 31 arbitrary hex values
    would each need a class Tailwind can only generate if it sees the literal
-   string in a file. A colour built at runtime never gets generated, and the
+   string in a file. A color built at runtime never gets generated, and the
    chip renders with no fill at all. */
 const c = colorFor(icon);
 const style = emphasis

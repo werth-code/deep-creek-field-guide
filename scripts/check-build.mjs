@@ -69,6 +69,57 @@ const indexable = files.filter(
   (f) => f.endsWith(".html") && !/content="noindex/.test(readFileSync(f, "utf8")),
 ).length;
 
+/* ---------------------------------------------------------- US English -- */
+
+/*
+ * British spellings and idioms, caught in the rendered HTML.
+ *
+ * This has now shipped three separate times: "at weekends" on a badge,
+ * "pushchair" in a URL slug, "car park" in the share pitch. Each time it was
+ * found by a reader rather than by me, and each time I fixed the instances and
+ * not the cause. A guard is the cause.
+ *
+ * It reads the built pages, not the source, so it catches the string a visitor
+ * would actually see regardless of which file it came from.
+ */
+const BRITISH = [
+  [/\bat weekends\b/i, "at weekends → on weekends"],
+  [/\bat the weekend\b/i, "at the weekend → on the weekend"],
+  [/\bcentres?\b/i, "centre → center"],
+  [/\bcolou?rs?\b/i, "colour → color"],
+  [/\bcoloured\b/i, "coloured → colored"],
+  [/\borganis(e|ed|ing|ation)\b/i, "organise → organize"],
+  [/\bmodelled\b/i, "modelled → modeled"],
+  [/\bcar parks?\b/i, "car park → parking lot"],
+  [/\bpushchairs?\b/i, "pushchair → stroller"],
+  [/\blicences?\b/i, "licence → license"],
+  [/\bgrey\b/i, "grey → gray"],
+  [/\bstoreys?\b/i, "storey → story"],
+  [/\blabelled\b/i, "labelled → labeled"],
+  [/\bbehaviours?\b/i, "behaviour → behavior"],
+  [/\bneighbours?\b/i, "neighbour → neighbor"],
+  [/\bdefences?\b/i, "defence → defense"],
+  [/\boffences?\b/i, "offence → offense"],
+  [/\brecognis(e|ed|able)\b/i, "recognise → recognize"],
+  [/\bwhilst\b/i, "whilst → while"],
+  [/\bamongst\b/i, "amongst → among"],
+  [/\bfavourite\b/i, "favourite → favorite"],
+  [/\btravelled\b/i, "travelled → traveled"],
+  [/\bcancelled\b/i, "cancelled → canceled"],
+];
+
+for (const f of files.filter((x) => x.endsWith(".html"))) {
+  /* Strip tags first: aria-labelledby is correct HTML and must not trip the
+     `labelled` rule, and class names carry colour tokens. */
+  const text = readFileSync(f, "utf8")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ");
+  for (const [re, fix] of BRITISH) {
+    if (re.test(text)) problems.push(`${relative(DIST, f)}: ${fix}`);
+  }
+}
+
 if (problems.length) {
   console.error(`\n  ✗ Build check failed:\n${problems.map((p) => `      ${p}`).join("\n")}\n`);
   process.exit(1);
