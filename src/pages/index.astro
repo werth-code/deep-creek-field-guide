@@ -8,10 +8,13 @@
 import Layout from "../layouts/Layout.astro";
 import Logo from "../components/Logo.astro";
 import FlagIcon from "../components/FlagIcon.astro";
+import StateMap from "../components/StateMap.astro";
 
 import stateParksData from "../data/state-parks.json";
 import regionalParksData from "../data/regional-parks.json";
 import type { StatePark, RegionalPark } from "../lib/parks";
+import indoorData from "../data/indoor.json";
+import { colorFor } from "../lib/feature-colors";
 
 const stateParks = stateParksData as StatePark[];
 const regional = regionalParksData as RegionalPark[];
@@ -22,6 +25,27 @@ const facts = [
   { n: String(regional.length), label: "town parks" },
   { n: "3,360", label: "feet at the highest point" },
   { n: "8", label: "towns with their own parks" },
+];
+
+/* Everything with coordinates, on one map. Kinds are the section a record
+   belongs to, so the filter chips read the way the nav does. */
+type Geo = { slug: string; name: string; coords?: { lat: number; lon: number; precision: "site" | "town" } };
+const pin = (rows: unknown[], kind: string, href: (r: any) => string) =>
+  (rows as Geo[])
+    .filter((r) => r.coords)
+    .map((r) => ({ slug: r.slug, name: r.name, href: href(r), kind,
+                   lat: r.coords!.lat, lon: r.coords!.lon, precision: r.coords!.precision }));
+
+const mapPoints = [
+  ...pin(stateParks as unknown[], "trails", (r) => `/parks/${r.slug}/`),
+  ...pin(regional as unknown[], "playground", (r) => `/parks/regional/${r.slug}/`),
+  ...pin(indoorData as unknown[], "free", (r) => `/indoors/${r.slug}/`),
+];
+
+const mapKinds = [
+  { key: "trails", label: "State parks", color: colorFor("trails") },
+  { key: "playground", label: "Town parks", color: colorFor("playground") },
+  { key: "free", label: "Museums & libraries", color: colorFor("free") },
 ];
 
 const schema = [
@@ -118,6 +142,10 @@ const schema = [
         ))
       }
     </dl>
+  </div>
+
+  <div class="wrap pb-9">
+    <StateMap points={mapPoints} kinds={mapKinds} />
   </div>
 
   <div class="wrap pb-9 grid gap-5 sm:grid-cols-2">

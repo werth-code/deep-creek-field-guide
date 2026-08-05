@@ -97,7 +97,12 @@
           "parking"
         ]
       }
-    ]
+    ],
+    "coords": {
+      "lat": 39.514,
+      "lon": -79.305,
+      "precision": "site"
+    }
   },
   {
     "slug": "garrett-county-history-museum",
@@ -163,7 +168,12 @@
       "Ask about restrooms, parking and step-free access.",
       "Confirm whether one ticket or donation covers both this and the transportation museum."
     ],
-    "verdict": null
+    "verdict": null,
+    "coords": {
+      "lat": 39.409,
+      "lon": -79.406,
+      "precision": "site"
+    }
   },
   {
     "slug": "garrett-county-transportation-museum",
@@ -230,7 +240,12 @@
       "Ask about restrooms, parking and whether the second floor is reachable without stairs.",
       "Confirm whether one admission covers this and the history museum."
     ],
-    "verdict": null
+    "verdict": null,
+    "coords": {
+      "lat": 39.41,
+      "lon": -79.403,
+      "precision": "site"
+    }
   },
   {
     "slug": "oakland-b-and-o-museum",
@@ -372,7 +387,12 @@
           "outdoor display"
         ]
       }
-    ]
+    ],
+    "coords": {
+      "lat": 39.4098,
+      "lon": -79.4045,
+      "precision": "site"
+    }
   },
   {
     "slug": "ruth-enlow-library",
@@ -566,6 +586,11 @@
       "Confirm public restrooms and wifi at each branch.",
       "Confirm when Friendsville moves back to Chestnut Street."
     ],
-    "verdict": null
+    "verdict": null,
+    "coords": {
+      "lat": 39.41,
+      "lon": -79.407,
+      "precision": "site"
+    }
   }
 ]

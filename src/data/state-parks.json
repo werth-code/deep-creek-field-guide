@@ -281,7 +281,12 @@
         "label": "Booking",
         "note": "888-432-2267 Monday to Friday, or parkreservations.maryland.gov. The park itself is reachable year round on 301-334-9180."
       }
-    ]
+    ],
+    "coords": {
+      "lat": 39.499,
+      "lon": -79.418,
+      "precision": "site"
+    }
   },
   {
     "slug": "deep-creek-lake",
@@ -404,6 +409,31 @@
         "credit": "Site maintainer",
         "takenOn": "2026-08-05",
         "portrait": false
+      },
+      {
+        "file": "dcl-d",
+        "alt": "The swimming beach seen along the shore, with a long stone breakwater running out to the left, wooded hills across the lake and pines along the sand.",
+        "caption": "The whole swim area in one frame. The breakwater is the low stone wall running out on the left — that's what keeps this water flat.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "dcl-c",
+        "alt": "The beach and lake from further along the sand, low sun breaking through heavy cloud over the far hills.",
+        "caption": "Same beach from the other end, late afternoon.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false
+      },
+      {
+        "file": "dcl-breakwater-wide",
+        "alt": "A wide view across the lake from inside the breakwater, with stone piled along both sides of the swim area and a long wooded ridge on the far shore.",
+        "caption": "From in the water, looking out. Stone on both sides — the gap in the middle is the only way the chop gets in.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-05",
+        "portrait": false,
+        "focus": "50% 60%"
       }
     ],
     "reports": [
@@ -507,7 +537,12 @@
         "label": "Numbers",
         "note": "Camp office 301-387-5563. Discovery Center 301-387-7067. Duty ranger 240-405-9827."
       }
-    ]
+    ],
+    "coords": {
+      "lat": 39.514,
+      "lon": -79.305,
+      "precision": "site"
+    }
   },
   {
     "slug": "herrington-manor",
@@ -621,6 +656,11 @@
     "verdict": {
       "text": "A quiet lake because gas motors aren't allowed on it, which is the whole appeal. You can rent a boat here, and there are twenty CCC cabins if you plan far enough ahead. Dogs are fine on the trails and not on the sand.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.481,
+      "lon": -79.42,
+      "precision": "site"
     }
   },
   {
@@ -739,7 +779,12 @@
         "label": "Winter",
         "note": "Trails are tracked and groomed for skiing. Skis and snowshoes to rent. Ice fishing is allowed on the lake. They call the sledding hills the Maryland Alps."
       }
-    ]
+    ],
+    "coords": {
+      "lat": 39.628,
+      "lon": -79.123,
+      "precision": "site"
+    }
   },
   {
     "slug": "big-run",
@@ -864,7 +909,12 @@
         "label": "Trails",
         "note": "The 4.6-mile Monroe Run Hiking Trail in Savage River State Forest starts from here. Backpackers need a backcountry permit from the forest."
       }
-    ]
+    ],
+    "coords": {
+      "lat": 39.539,
+      "lon": -79.133,
+      "precision": "site"
+    }
   },
   {
     "slug": "casselman-river-bridge",
@@ -943,6 +993,11 @@
       "campStore": null,
       "passesSoldHere": null,
       "note": null
+    },
+    "coords": {
+      "lat": 39.693,
+      "lon": -79.137,
+      "precision": "site"
     }
   },
   {
@@ -1049,7 +1104,12 @@
         "author": "Site maintainer, from the 2026 printed guide",
         "body": "The Election House ties to the campaign for the 19th Amendment — the guide says Garrett County helped propel the suffrage movement, and the house is where that is told."
       }
-    ]
+    ],
+    "coords": {
+      "lat": 39.556,
+      "lon": -79.409,
+      "precision": "site"
+    }
   },
   {
     "slug": "wolf-den-run",
@@ -1126,6 +1186,11 @@
       "campStore": null,
       "passesSoldHere": null,
       "note": null
+    },
+    "coords": {
+      "lat": 39.354,
+      "lon": -79.133,
+      "precision": "town"
     }
   },
   {
@@ -1207,6 +1272,11 @@
       "campStore": null,
       "passesSoldHere": null,
       "note": null
+    },
+    "coords": {
+      "lat": 39.59,
+      "lon": -79.4,
+      "precision": "site"
     }
   },
   {
@@ -1284,6 +1354,11 @@
       "campStore": null,
       "passesSoldHere": null,
       "note": null
+    },
+    "coords": {
+      "lat": 39.57,
+      "lon": -79.12,
+      "precision": "site"
     }
   },
   {
@@ -1424,6 +1499,11 @@
     "verdict": {
       "text": "House-sized boulders with passages between them narrow enough to turn sideways for, and no sign anywhere telling you it exists. The moss holds water for days, so it's slick long after the rain stops. Not one to rush, and not one to do in trainers.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.546,
+      "lon": -79.477,
+      "precision": "site"
     }
   },
   {
@@ -1503,6 +1583,11 @@
       "campStore": null,
       "passesSoldHere": null,
       "note": "Managed jointly with the US Army Corps of Engineers."
+    },
+    "coords": {
+      "lat": 39.426,
+      "lon": -79.13,
+      "precision": "site"
     }
   }
 ]

@@ -1,0 +1,185 @@
+---
+/**
+ * Garrett County, with everything on it.
+ *
+ * WHY IT IS AN SVG AND NOT A MAP LIBRARY
+ * Leaflet or Mapbox would mean third-party JavaScript and tile requests to
+ * somebody else's server on every page view, on a site whose method page
+ * promises no trackers. The county is close enough to a rectangle to draw,
+ * and the only thing that has to be accurate is where the dots sit on it.
+ *
+ * THE OUTLINE is traced from real coordinates: the Mason-Dixon line along the
+ * top, the Allegany County line down the east side, and the North Branch of
+ * the Potomac — which is the West Virginia border — round the south and west.
+ * Its bounds match the county's actual extents.
+ *
+ * THE PROJECTION is equirectangular with longitude scaled by cos(latitude).
+ * Over one county that is accurate to well under a pixel, and it needs no
+ * library at all.
+ *
+ * HOW PRECISE THE DOTS ARE, honestly: `site` means the place itself, `town`
+ * means the town center because I could not pin the building. At this scale a
+ * mile is about six pixels, so a town-centre dot is right to within the size
+ * of the dot. Each record carries which it is, and the key says so.
+ */
+import { colorFor } from "../lib/feature-colors";
+import FeatureIcon from "./FeatureIcon.astro";
+
+export interface MapPoint {
+  slug: string;
+  name: string;
+  href: string;
+  kind: string;
+  lat: number;
+  lon: number;
+  precision: "site" | "town";
+}
+
+interface Props {
+  points: MapPoint[];
+  /** Filter groups: the kind values, in the order they should appear. */
+  kinds: { key: string; label: string; color: string }[];
+  class?: string;
+}
+const { points, kinds, class: klass = "" } = Astro.props;
+
+/* Traced from real coordinates — see the header. */
+const OUTLINE: [number, number][] = [[-79.4867, 39.7222], [-79.07, 39.7222], [-79.067, 39.64], [-79.06, 39.52], [-79.05, 39.42], [-79.048, 39.32], [-79.11, 39.23], [-79.2, 39.205], [-79.29, 39.21], [-79.37, 39.235], [-79.43, 39.29], [-79.475, 39.36], [-79.4867, 39.48]];
+
+const LATS = OUTLINE.map((p) => p[1]);
+const LONS = OUTLINE.map((p) => p[0]);
+const PAD = 0.04;
+const minLat = Math.min(...LATS) - PAD, maxLat = Math.max(...LATS) + PAD;
+const minLon = Math.min(...LONS) - PAD, maxLon = Math.max(...LONS) + PAD;
+
+/* Longitude compresses as you go north; without this Delaware comes out fat. */
+const K = Math.cos((((minLat + maxLat) / 2) * Math.PI) / 180);
+const W = (maxLon - minLon) * K;
+const H = maxLat - minLat;
+const SCALE = 1000 / H;
+
+const x = (lon: number) => (lon - minLon) * K * SCALE;
+const y = (lat: number) => (maxLat - lat) * SCALE;
+
+const path = OUTLINE.map((p, i) => `${i ? "L" : "M"}${x(p[0]).toFixed(1)} ${y(p[1]).toFixed(1)}`).join(" ") + " Z";
+const vw = Math.ceil(W * SCALE);
+---
+
+<figure class={`sheet breakout m-0 ${klass}`} data-statemap>
+  <div class="px-4 sm:px-5 pt-4 pb-2 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+    <p class="label m-0">Everything, on the county</p>
+    <p class="stamp text-ink-soft m-0" data-map-count />
+  </div>
+
+  {/* Filters. Hidden until the script runs — the map itself works without. */}
+  <ul class="list-none px-4 sm:px-5 pb-3 m-0 flex flex-wrap gap-1.5" data-map-filters hidden>
+    {kinds.map((k) => (
+      <li>
+        <button
+          type="button"
+          data-map-kind={k.key}
+          data-fc={k.color}
+          aria-pressed="true"
+          class="map-chip tap inline-flex items-center gap-1.5 px-2.5 py-1.5 stamp text-[0.68rem] leading-none border rounded-[var(--radius-sheet)] cursor-pointer"
+        >
+          <FeatureIcon icon={k.key as any} class="w-[1.15em] h-[1.15em] shrink-0" />
+          {k.label}
+        </button>
+      </li>
+    ))}
+  </ul>
+
+  <div class="px-3 sm:px-4 pb-4">
+    <svg
+      viewBox={`0 0 ${vw} 1000`}
+      class="w-full h-auto max-w-[27rem] mx-auto block"
+      role="img"
+      aria-label={`Map of Garrett County showing ${points.length} places`}
+    >
+      <path d={path} fill="var(--color-sheet)" stroke="var(--color-slate)" stroke-width="4" stroke-linejoin="round" />
+
+
+      {/* Each marker is the section's own glyph knocked out of a disc in the
+          section's own colour — the same pairing the listing chips use, so a
+          reader who learnt "blue slide = playground" on a card meets it again
+          here. Colour alone needs a legend; a glyph doesn't. */}
+      {points.map((p) => {
+        const cx = x(p.lon);
+        const cy = y(p.lat);
+        const R = 13;
+        return (
+          <a href={p.href} data-map-point data-kind={p.kind}>
+            <title>{p.name}{p.precision === "town" ? " (town center)" : ""}</title>
+            <circle
+              cx={cx.toFixed(1)}
+              cy={cy.toFixed(1)}
+              r={R}
+              fill={colorFor(p.kind)}
+              stroke="var(--color-sheet)"
+              stroke-width="3"
+              opacity={p.precision === "town" ? 0.82 : 1}
+            />
+            <svg
+              x={(cx - R * 0.62).toFixed(1)}
+              y={(cy - R * 0.62).toFixed(1)}
+              width={(R * 1.24).toFixed(1)}
+              height={(R * 1.24).toFixed(1)}
+              viewBox="0 0 24 24"
+            >
+              <FeatureIcon icon={p.kind as any} style="color:var(--color-sheet)" />
+            </svg>
+          </a>
+        );
+      })}
+    </svg>
+  </div>
+
+  <figcaption class="px-4 sm:px-5 pb-4 stamp text-ink-soft">
+    Solid dots are the place itself. Paler dots are the town center, where I
+    couldn't pin the building — about the width of the dot, at this scale.
+  </figcaption>
+</figure>
+
+<script>
+  (() => {
+    const root = document.querySelector("[data-statemap]");
+    if (!root) return;
+    const chips = [...root.querySelectorAll("[data-map-kind]")];
+    const pts = [...root.querySelectorAll("[data-map-point]")];
+    const bar = root.querySelector("[data-map-filters]");
+    const count = root.querySelector("[data-map-count]");
+    if (!chips.length || !pts.length) return;
+
+    bar.hidden = false;
+    const off = new Set();
+
+    /* Inline, for the same reason the listing filters are: the colour is only
+       known at runtime and an inline style outranks any sheet. */
+    const paint = () => {
+      for (const c of chips) {
+        const on = !off.has(c.dataset.mapKind);
+        const fc = c.dataset.fc;
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+        c.style.background = on ? fc : "";
+        c.style.color = on ? "var(--color-snow)" : fc;
+        c.style.borderColor = fc;
+      }
+      let shown = 0;
+      for (const p of pts) {
+        const hide = off.has(p.dataset.kind);
+        p.style.display = hide ? "none" : "";
+        if (!hide) shown++;
+      }
+      count.textContent = `${shown} of ${pts.length} places`;
+    };
+
+    for (const c of chips) {
+      c.addEventListener("click", () => {
+        const k = c.dataset.mapKind;
+        off.has(k) ? off.delete(k) : off.add(k);
+        paint();
+      });
+    }
+    paint();
+  })();
+</script>

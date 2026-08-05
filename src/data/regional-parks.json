@@ -95,6 +95,11 @@
     "verdict": {
       "text": "Oakland's lake park, and the biggest municipal one in the county. Swimming beach, boat launch, boats and pavilions to rent. Nobody publishes what it costs to get in, including the town, so call before you load the car.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.401,
+      "lon": -79.348,
+      "precision": "site"
     }
   },
   {
@@ -149,7 +154,12 @@
       "Confirm the walking loop surface — a quarter mile is useful for a stroller or a wheelchair only if it's paved.",
       "Confirm it is free and has no gate hours.",
       "Get the Town of Accident number."
-    ]
+    ],
+    "coords": {
+      "lat": 39.628,
+      "lon": -79.316,
+      "precision": "town"
+    }
   },
   {
     "slug": "accident-town-park-west",
@@ -221,6 +231,11 @@
     "verdict": {
       "text": "Small, and the swing set has an accessible seat on it. That's rare out here and almost nobody publishes it. Free to use, and the pavilion books separately.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.629,
+      "lon": -79.319,
+      "precision": "town"
     }
   },
   {
@@ -316,6 +331,11 @@
     "verdict": {
       "text": "A proper town park on the Youghiogheny: paved loop, river access, two ball fields, and a small sand beach the county's own listing forgets to mention. There's pickleball too, which nothing official mentions at all.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.662,
+      "lon": -79.406,
+      "precision": "town"
     }
   },
   {
@@ -408,6 +428,11 @@
     "verdict": {
       "text": "Over a thousand acres, and most of the good bits are for camp programs and booked groups rather than for turning up. The lake, trails and fishing are open. The beach and boats aren't.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.532,
+      "lon": -79.335,
+      "precision": "site"
     }
   },
   {
@@ -484,6 +509,11 @@
     "verdict": {
       "text": "Right in the middle of town, a block from the library. Tennis, pickleball, basketball, sand volleyball and a softball diamond on one site, plus pavilions you can book. For a town this size that's a lot.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.694,
+      "lon": -79.158,
+      "precision": "town"
     }
   },
   {
@@ -556,6 +586,11 @@
     "verdict": {
       "text": "Restrooms and a play area, and worth knowing Mountain Lake Park has more than one park. The stub this record replaced assumed one per town, which was wrong.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.394,
+      "lon": -79.369,
+      "precision": "town"
     }
   },
   {
@@ -641,6 +676,11 @@
     "verdict": {
       "text": "Kitzmiller's town park is a botanical garden, which is not what you expect from a town of this size. Free, with a playground and restrooms. Worth the detour if you're already down that way.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.391,
+      "lon": -79.179,
+      "precision": "town"
     }
   },
   {
@@ -693,7 +733,12 @@
     "verifiedSource": null,
     "outstanding": [
       "Everything. Call the town, get park names, addresses and facilities — or drop this record."
-    ]
+    ],
+    "coords": {
+      "lat": 39.429,
+      "lon": -79.323,
+      "precision": "town"
+    }
   },
   {
     "slug": "loch-lynn-heights-wetlands-trail",
@@ -774,6 +819,11 @@
     "verdict": {
       "text": "A boardwalk through wetland rather than a park with a field in it, and a nice short walk. Restrooms are on site but I've found them locked, so treat them as a maybe.",
       "on": "2026-08-03"
+    },
+    "coords": {
+      "lat": 39.393,
+      "lon": -79.38,
+      "precision": "town"
     }
   }
 ]
