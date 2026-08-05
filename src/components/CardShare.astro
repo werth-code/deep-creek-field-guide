@@ -48,12 +48,22 @@ const url = new URL(path, Astro.site).href;
   <span data-card-share-done hidden class="absolute inset-0 flex items-center justify-center bg-slate text-snow stamp text-[0.6rem]">Copied</span>
 </button>
 
-<script is:inline>
+<!--
+  NOT is:inline. An inline script inside a component is emitted once per
+  INSTANCE — seventeen cards meant seventeen copies of this, each binding a
+  listener to every button on the page. One tap fired seventeen handlers and
+  seventeen prompts stacked up. A hoisted module runs exactly once however
+  many cards there are, and the per-button flag below is the belt to that
+  brace.
+-->
+<script>
   (() => {
     const buttons = document.querySelectorAll("[data-card-share]");
     if (!buttons.length) return;
 
     for (const b of buttons) {
+      if (b.dataset.bound) continue;
+      b.dataset.bound = "1";
       b.hidden = false;
       b.addEventListener("click", async (e) => {
         /* The card is a stretched link. Without both of these the browser
@@ -80,7 +90,25 @@ const url = new URL(path, Astro.site).href;
             setTimeout(() => (done.hidden = true), 1600);
           }
         } catch {
-          window.prompt("Copy this link", url);
+          /* Clipboard refused. A window.prompt here is a jarring modal for a
+             tap on a small icon, so select the URL in an off-screen field
+             instead and let the keyboard shortcut do it. */
+          const field = document.createElement("input");
+          field.value = url;
+          field.setAttribute("readonly", "");
+          field.style.cssText = "position:fixed;top:0;left:-9999px";
+          document.body.appendChild(field);
+          field.select();
+          field.setSelectionRange(0, url.length);
+          if (done) {
+            done.textContent = "Press \u2318C";
+            done.hidden = false;
+            setTimeout(() => {
+              field.remove();
+              done.hidden = true;
+              done.textContent = "Copied";
+            }, 3000);
+          }
         }
       });
     }
