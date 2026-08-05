@@ -1,0 +1,88 @@
+---
+/**
+ * A share control on a single listing card.
+ *
+ * WHY THIS IS FIDDLY, AND WHY IT'S WORTH IT
+ *
+ * Every card on this site is a stretched link: an <a> with `absolute inset-0
+ * z-10` covering the whole box, so the entire card is one tap target. Drop a
+ * button inside that and the anchor swallows the tap — you get navigation, not
+ * a share sheet. So this sits at z-20, and its handler calls stopPropagation
+ * and preventDefault before doing anything.
+ *
+ * I argued against per-card sharing on the grounds that eleven buttons clutter
+ * a grid built for scanning. That was a design opinion answering a growth
+ * question, and the growth question wins: the thing people actually send is
+ * one park, not a list of seventeen. The clutter is answered by making it a
+ * 32px icon in the corner rather than a labelled bar.
+ *
+ * PROGRESSIVE ENHANCEMENT
+ * Hidden until the script runs, because a button that does nothing is worse
+ * than no button. The card itself is a working link either way, so nothing is
+ * lost without JS — which is the site's rule.
+ */
+interface Props {
+  /** Absolute path of the thing being shared, e.g. /parks/lums-pond/. */
+  path: string;
+  /** Used as the share sheet's title and the fallback text. */
+  title: string;
+  class?: string;
+}
+const { path, title, class: className = "" } = Astro.props;
+const url = new URL(path, Astro.site).href;
+---
+
+<button
+  type="button"
+  data-card-share
+  data-url={url}
+  data-title={title}
+  hidden
+  aria-label={`Share ${title}`}
+  title={`Share ${title}`}
+  class={`card-share absolute top-2 right-2 z-20 inline-flex items-center justify-center w-11 h-11 rounded-[var(--radius-sheet)] text-slate bg-sheet/85 backdrop-blur-[2px] border border-lake/30 hover:bg-sheet hover:border-slate cursor-pointer ${className}`}
+>
+  <svg viewBox="0 0 24 24" class="w-[1.15rem] h-[1.15rem]" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true">
+    <path d="M12 16V4" /><path d="M7 9l5-5 5 5" /><path d="M4 15v5h16v-5" />
+  </svg>
+  <span data-card-share-done hidden class="absolute inset-0 flex items-center justify-center bg-slate text-snow stamp text-[0.6rem]">Copied</span>
+</button>
+
+<script is:inline>
+  (() => {
+    const buttons = document.querySelectorAll("[data-card-share]");
+    if (!buttons.length) return;
+
+    for (const b of buttons) {
+      b.hidden = false;
+      b.addEventListener("click", async (e) => {
+        /* The card is a stretched link. Without both of these the browser
+           follows it and the share never happens. */
+        e.preventDefault();
+        e.stopPropagation();
+
+        const url = b.dataset.url;
+        const title = b.dataset.title;
+        const done = b.querySelector("[data-card-share-done]");
+
+        if (navigator.share) {
+          try {
+            await navigator.share({ title, url });
+            return;
+          } catch {
+            /* Cancelled or refused — fall through to copying. */
+          }
+        }
+        try {
+          await navigator.clipboard.writeText(url);
+          if (done) {
+            done.hidden = false;
+            setTimeout(() => (done.hidden = true), 1600);
+          }
+        } catch {
+          window.prompt("Copy this link", url);
+        }
+      });
+    }
+  })();
+</script>

@@ -9,6 +9,7 @@
 import Layout from "../../layouts/Layout.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
+import CardShare from "../../components/CardShare.astro";
 
 import eventsData from "../../data/events.json";
 import { upcoming, datedCount, type FieldEvent } from "../../lib/events";
@@ -100,11 +101,12 @@ const STATE_CLASS = {
             <a href={`/events/${event.slug}/`} class="absolute inset-0 z-10 no-underline">
               <span class="sr-only">{event.name}</span>
             </a>
+            <CardShare path={`/events/${event.slug}/`} title={event.name} />
             <div class="sm:flex sm:items-stretch">
             {event.photos?.[0] && <CardPhoto {...event.photos[0]} variant="side" />}
 
             <div class="p-4 sm:p-5">
-              <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+              <div class="flex flex-wrap items-baseline justify-between pr-12 gap-x-4 gap-y-1">
                 <h2 class="font-display text-[1.25rem] font-semibold tracking-[-0.03em] m-0 text-slate underline decoration-contour decoration-2 underline-offset-[0.16em] group-hover:decoration-slate">
                   {event.name}
                 </h2>

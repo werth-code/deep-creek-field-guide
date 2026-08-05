@@ -8,6 +8,7 @@
 import Layout from "../../layouts/Layout.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
+import CardShare from "../../components/CardShare.astro";
 
 import nearbyData from "../../data/nearby.json";
 import type { NearbyPlace } from "../../lib/nearby";
@@ -48,6 +49,7 @@ const gate = {
             <a href={`/nearby/${p.slug}/`} class="absolute inset-0 z-10 no-underline">
               <span class="sr-only">{p.name}</span>
             </a>
+            <CardShare path={`/nearby/${p.slug}/`} title={p.name} />
             <div class="sm:flex sm:items-stretch">
             {p.photos?.[0] && <CardPhoto {...p.photos[0]} variant="side" />}
             <div class="p-4 sm:p-5">

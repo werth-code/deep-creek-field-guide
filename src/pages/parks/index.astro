@@ -9,6 +9,7 @@ import Layout from "../../layouts/Layout.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
 import Tag from "../../components/Tag.astro";
+import CardShare from "../../components/CardShare.astro";
 
 import parksData from "../../data/state-parks.json";
 import {
@@ -78,13 +79,14 @@ const schema = live.length
               <a href={`/parks/${park.slug}/`} class="absolute inset-0 z-10 no-underline">
                 <span class="sr-only">{park.name}</span>
               </a>
+              <CardShare path={`/parks/${park.slug}/`} title={park.name} />
 
               <div class={`${flag.bar} h-1.5 w-full`} />
 
               {park.photos?.[0] && <CardPhoto {...park.photos[0]} />}
 
               <div class="p-4 sm:p-5">
-                <header class="flex items-start justify-between gap-3">
+                <header class="flex items-start justify-between pr-12 gap-3">
                   <div>
                     <h2 class="font-display text-[1.15rem] font-semibold tracking-[-0.03em] m-0 text-slate underline decoration-contour decoration-2 underline-offset-[0.16em] group-hover:decoration-slate">
                       {park.name}
