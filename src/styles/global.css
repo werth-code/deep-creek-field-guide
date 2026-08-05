@@ -551,3 +551,31 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     animation: none !important;
   }
 }
+
+/* ------------------------------------------------------ masthead nav -- */
+
+/*
+ * The phone masthead is a <details> disclosure; the wide one is a plain row.
+ * They render the same NavLinks component and exactly one is displayed at any
+ * width — see NavLinks.astro for why it is two copies and not one.
+ *
+ * No script in any of it. A nav that needs JavaScript to open can fail shut.
+ */
+.nav-disclosure > summary {
+  list-style: none;
+}
+.nav-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+.nav-disclosure[open] > summary .nav-chevron {
+  transform: rotate(180deg);
+}
+.nav-chevron {
+  transition: transform 0.15s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-chevron {
+    transition: none;
+  }
+}

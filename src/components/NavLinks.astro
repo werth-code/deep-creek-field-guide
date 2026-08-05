@@ -1,0 +1,51 @@
+---
+/**
+ * The masthead link list, rendered twice: once inside the mobile disclosure
+ * and once in the desktop row.
+ *
+ * WHY TWICE
+ *
+ * The first attempt kept one copy inside a <details> and forced it visible
+ * from `sm` up with CSS. The links painted — but a closed <details> takes its
+ * children out of its own layout box, so the masthead collapsed to 27px with
+ * the nav overhanging it. Setting `display` on the child is not enough; the
+ * parent still measures as closed.
+ *
+ * So: two copies, exactly one of them `display:none` at any width. Hidden
+ * elements are out of the accessibility tree too, so nothing is announced
+ * twice. The list itself lives here so the two can never drift.
+ */
+import { SECTIONS, sectionFor } from "../lib/sections";
+
+const { pathname } = Astro.url;
+const current = sectionFor(pathname);
+const here = (p: string) => pathname === p;
+---
+
+{
+    SECTIONS.map((s) => (
+      <a
+        href={`/${s.slug}/`}
+        class={`tap label no-underline ${current?.slug === s.slug ? "text-snow" : "text-snow-soft hover:text-snow"}`}
+        aria-current={current?.slug === s.slug ? "page" : undefined}
+        style={current?.slug === s.slug ? "box-shadow: inset 0 -3px 0 var(--color-contour);" : ""}
+      >
+        {s.label}
+      </a>
+    ))
+  }
+  {
+    [
+      ["/ask/", "Ask"],
+      ["/verified/", "Verified"],
+    ].map(([href, label]) => (
+      <a
+        href={href}
+        class={`tap label no-underline ${here(href) ? "text-snow" : "text-snow-soft hover:text-snow"}`}
+        aria-current={here(href) ? "page" : undefined}
+        style={here(href) ? "box-shadow: inset 0 -3px 0 var(--color-contour);" : ""}
+      >
+        {label}
+      </a>
+    ))
+  }
