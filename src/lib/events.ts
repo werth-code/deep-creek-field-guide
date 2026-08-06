@@ -1,10 +1,10 @@
 /**
  * Annual fairs and events.
  *
- * The reason this is its own section rather than a page of listings: an events
- * page is the fastest-rotting thing on any local site. It is written once in
- * March, it is wrong by September, and nobody notices because a date in the
- * past still looks like content.
+ * The reason this is its own section rather than a page of listings: an
+ * out-of-date event listing doesn't look broken. A stale date reads exactly
+ * like a live one, so nobody goes back and checks it, and the reader finds out
+ * at the gate.
  *
  * Two decisions keep this one honest, both inherited from recurrence.ts:
  *
