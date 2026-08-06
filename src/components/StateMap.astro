@@ -45,15 +45,21 @@ export interface MapPoint {
   focus?: string | null;
   /** Where it is, in words. */
   where?: string;
+  /** Which county, for the county filter. */
+  county?: string;
 }
 
 interface Props {
   points: MapPoint[];
   /** Filter groups: the kind values, in the order they should appear. */
   kinds: { key: string; label: string; color: string }[];
+  /** County filter. Omit on a one-county map. */
+  counties?: { key: string; label: string; color: string }[];
+  /** Which counties start switched on. Defaults to all of them. */
+  startWith?: string[];
   class?: string;
 }
-const { points, kinds, class: klass = "" } = Astro.props;
+const { points, kinds, counties = [], startWith, class: klass = "" } = Astro.props;
 
 /* Traced from real coordinates — see the header. */
 const OUTLINE: [number, number][] = [[-79.4867, 39.7222], [-79.07, 39.7222], [-79.067, 39.64], [-79.06, 39.52], [-79.05, 39.42], [-79.048, 39.32], [-79.11, 39.23], [-79.2, 39.205], [-79.29, 39.21], [-79.37, 39.235], [-79.43, 39.29], [-79.475, 39.36], [-79.4867, 39.48]];
@@ -83,6 +89,32 @@ const vw = Math.ceil(W * SCALE);
     <p class="stamp text-ink-soft m-0" data-map-count />
   </div>
 
+  {/* County first, because it's the coarser cut and it's how people think
+      about where they are. Hidden until the script runs — the map itself
+      works without either row. */}
+  {counties.length > 1 && (
+    <ul
+      class="list-none px-4 sm:px-5 pb-2 m-0 flex flex-wrap gap-1.5"
+      data-map-counties
+      data-start={JSON.stringify(startWith ?? counties.map((c) => c.key))}
+      hidden
+    >
+      {counties.map((c) => (
+        <li>
+          <button
+            type="button"
+            data-map-county={c.key}
+            data-fc={c.color}
+            aria-pressed="false"
+            class="map-chip tap inline-flex items-center px-3 py-2 stamp text-[0.7rem] leading-none border-2 rounded-[var(--radius-sheet)] cursor-pointer"
+          >
+            {c.label}
+          </button>
+        </li>
+      ))}
+    </ul>
+  )}
+
   {/* Filters. Hidden until the script runs — the map itself works without. */}
   <ul class="list-none px-4 sm:px-5 pb-3 m-0 flex flex-wrap gap-1.5" data-map-filters hidden>
     {kinds.map((k) => (
@@ -101,7 +133,7 @@ const vw = Math.ceil(W * SCALE);
     ))}
   </ul>
 
-  <div class="px-3 sm:px-4 pb-4">
+  <div class="relative px-3 sm:px-4 pb-4">
     <svg
       viewBox={`0 0 ${vw} 1000`}
       class="w-full h-auto max-w-[27rem] mx-auto block"
@@ -128,7 +160,9 @@ const vw = Math.ceil(W * SCALE);
             data-where={p.where ?? ""}
             data-blurb={p.blurb ?? ""}
             data-photo={p.photo ?? ""}
-       data-focus={p.focus ?? ""}
+            data-focus={p.focus ?? ""}
+            data-county={p.county ?? ""}
+            data-cy={cy.toFixed(0)}
             data-label={kinds.find((k) => k.key === p.kind)?.label ?? ""}
             data-color={colorFor(p.kind)}
           >
@@ -155,48 +189,61 @@ const vw = Math.ceil(W * SCALE);
         );
       })}
     </svg>
-  </div>
 
-  {/*
-    THE CARD.
-    Tapping a marker used to leave the page immediately, which is a poor trade
-    on a map: you go to find out what somewhere IS, and you can only find out
-    by leaving the thing that showed you where it was. Now the first tap fills
-    this in, and the link inside it is the one that navigates.
+    {/*
+      THE CARD, over the map rather than under it.
+      Tapping a marker used to leave the page immediately, which is a poor
+      trade on a map: you go to find out what somewhere IS, and you can only
+      find out by leaving the thing that showed you where it was.
 
-    Without JavaScript every marker is still a plain link straight to the
-    record — nothing here is the only route to anything.
-  */}
-  <div class="px-3 sm:px-4 pb-4" data-map-card hidden>
-    <div class="sheet-quiet p-3 sm:p-4 flex gap-3 items-start" style="border-left-width:5px">
-      <img
-        data-card-photo
-        alt=""
-        width="120"
-        height="68"
-        hidden
-        class="w-[6.5rem] shrink-0 aspect-[16/9] object-cover block border border-lake/40"
-      />
-      <div class="min-w-0 flex-1">
-        <p class="label m-0" data-card-label />
-        <p class="font-display text-[1.15rem] font-bold tracking-[-0.02em] mt-1 mb-0 text-slate" data-card-name />
-        <p class="stamp text-ink-soft mt-1 mb-0" data-card-where />
-        <p class="mt-2 mb-0 text-[0.9rem] leading-snug" data-card-blurb />
-        <a href="#" class="tap stamp mt-3 inline-block" data-card-link>Open the page →</a>
+      It sat below the map first, and that was worse than useless on a phone —
+      the county map runs tall, so the map runs most of a screen high and
+      the card opened somewhere you couldn't see. A marker that visibly does
+      nothing is the most confusing outcome available. So it floats on top
+      instead, and flips to whichever half of the map the marker isn't in.
+
+      Without JavaScript every marker is still a plain link straight to the
+      record — nothing here is the only route to anything.
+    */}
+    <div
+      class="absolute left-3 right-3 sm:left-4 sm:right-4 max-w-[27rem] mx-auto z-20"
+      data-map-card
+      aria-live="polite"
+      hidden
+    >
+      <div
+        class="sheet-quiet p-3 flex gap-3 items-start border-2 border-slate shadow-[5px_5px_0_0_var(--color-slate)]"
+        style="border-left-width:6px"
+      >
+        <img
+          data-card-photo
+          alt=""
+          width="120"
+          height="68"
+          hidden
+          class="w-[5.5rem] sm:w-[6.5rem] shrink-0 aspect-[16/9] object-cover block border border-slate/30"
+        />
+        <div class="min-w-0 flex-1">
+          <p class="label m-0" data-card-label />
+          <p class="font-display text-[1.1rem] font-bold tracking-[-0.02em] mt-1 mb-0 text-slate" data-card-name />
+          <p class="stamp text-ink-soft mt-1 mb-0" data-card-where />
+          <p class="mt-1.5 mb-0 text-[0.85rem] leading-snug" data-card-blurb />
+          <a href="#" class="tap stamp mt-2.5 inline-block" data-card-link>Open the page →</a>
+        </div>
+        <button
+          type="button"
+          data-card-close
+          aria-label="Close"
+          class="tap shrink-0 stamp text-ink-soft leading-none px-2 py-1 cursor-pointer"
+        >✕</button>
       </div>
-      <button
-        type="button"
-        data-card-close
-        aria-label="Close"
-        class="tap shrink-0 stamp text-ink-soft leading-none px-2 py-1 cursor-pointer"
-      >✕</button>
     </div>
   </div>
 
   <figcaption class="px-4 sm:px-5 pb-4 stamp text-ink-soft">
-    Tap a marker to see what it is. Solid markers are the place itself; paler
-    ones are the town center, where I couldn't pin the building — about the
-    width of the marker, at this scale.
+    Tap a marker to see what it is, and again to open it. Solid markers are the
+    place itself; paler ones are the town center, where I couldn't pin the
+    building — about the width of the marker, at this scale.
   </figcaption>
 </figure>
 
@@ -205,13 +252,21 @@ const vw = Math.ceil(W * SCALE);
     const root = document.querySelector("[data-statemap]");
     if (!root) return;
     const chips = [...root.querySelectorAll("[data-map-kind]")];
+    const countyChips = [...root.querySelectorAll("[data-map-county]")];
     const pts = [...root.querySelectorAll("[data-map-point]")];
     const bar = root.querySelector("[data-map-filters]");
+    const countyBar = root.querySelector("[data-map-counties]");
     const count = root.querySelector("[data-map-count]");
     if (!chips.length || !pts.length) return;
 
     bar.hidden = false;
     const off = new Set();
+
+    /* Counties are opt-IN, kinds are opt-OUT. The asymmetry is deliberate:
+       there are three counties and eleven kinds, so "which county" is a
+       choice you make and "which kinds" is a list you prune. */
+    const onCounties = new Set(JSON.parse(countyBar?.dataset.start || "[]"));
+    if (countyBar) countyBar.hidden = false;
 
     /* Inline, for the same reason the listing filters are: the colour is only
        known at runtime and an inline style outranks any sheet. */
@@ -224,13 +279,26 @@ const vw = Math.ceil(W * SCALE);
         c.style.color = on ? "var(--color-snow)" : fc;
         c.style.borderColor = fc;
       }
+      for (const c of countyChips) {
+        const on = onCounties.has(c.dataset.mapCounty);
+        const fc = c.dataset.fc;
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+        c.style.background = on ? fc : "";
+        c.style.color = on ? "var(--color-snow)" : fc;
+        c.style.borderColor = fc;
+      }
       let shown = 0;
       for (const p of pts) {
-        const hide = off.has(p.dataset.kind);
+        const hide =
+          off.has(p.dataset.kind) ||
+          (countyChips.length > 0 && !onCounties.has(p.dataset.county));
         p.style.display = hide ? "none" : "";
         if (!hide) shown++;
       }
       count.textContent = `${shown} of ${pts.length} places`;
+      /* A filtered-away marker can't stay selected — the card would be
+         describing something that is no longer on the map. */
+      if (selected && selected.style.display === "none") deselect();
     };
 
     for (const c of chips) {
@@ -240,7 +308,16 @@ const vw = Math.ceil(W * SCALE);
         paint();
       });
     }
-    paint();
+    for (const c of countyChips) {
+      c.addEventListener("click", () => {
+        const k = c.dataset.mapCounty;
+        onCounties.has(k) ? onCounties.delete(k) : onCounties.add(k);
+        /* Turning the last one off leaves an empty map and no way to read it
+           as anything but broken. Put it straight back on. */
+        if (!onCounties.size) onCounties.add(k);
+        paint();
+      });
+    }
 
     /* ---- the card ------------------------------------------------------ */
 
@@ -287,6 +364,15 @@ const vw = Math.ceil(W * SCALE);
           fields.photo.hidden = true;
           fields.photo.removeAttribute("src");
         }
+
+        /* Open on the opposite half from the marker, so the card never covers
+           the thing you just tapped. The viewBox is 1000 tall and the marker
+           carries its own y, so this needs no layout measurement and behaves
+           the same at every screen width. */
+        const lower = Number(d.cy) > 500;
+        card.style.top = lower ? "0.5rem" : "";
+        card.style.bottom = lower ? "" : "1.5rem";
+
         card.hidden = false;
       });
     }
@@ -295,5 +381,13 @@ const vw = Math.ceil(W * SCALE);
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") deselect();
     });
+
+    /* Tapping the county itself dismisses. Markers stop the event first, so
+       this only ever fires on empty water or land. */
+    root.querySelector("svg").addEventListener("click", (e) => {
+      if (!e.target.closest("[data-map-point]")) deselect();
+    });
+
+    paint();
   })();
 </script>

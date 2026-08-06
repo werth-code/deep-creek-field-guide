@@ -7,8 +7,18 @@
  * Every card on this site is a stretched link: an <a> with `absolute inset-0
  * z-10` covering the whole box, so the entire card is one tap target. Drop a
  * button inside that and the anchor swallows the tap — you get navigation, not
- * a share sheet. So this sits at z-20, and its handler calls stopPropagation
- * and preventDefault before doing anything.
+ * a share sheet. So this sits above the link, and its handler calls
+ * stopPropagation and preventDefault before doing anything.
+ *
+ * THE CARD'S LAYER ORDER, because this has bitten twice now:
+ *   z-10  the stretched link
+ *   z-20  the photo gallery strip, which needs to beat the link to be swiped
+ *   z-30  this button
+ * It was z-20 too, and since the gallery comes after it in the DOM the gallery
+ * won the tie and painted straight over it. Eight cards across the site — the
+ * ones with more than one photo, so the best-photographed ones — silently had
+ * no share button at all. Anything added here later goes above 30 or it
+ * disappears behind the strip.
  *
  * I argued against per-card sharing on the grounds that eleven buttons clutter
  * a grid built for scanning. That was a design opinion answering a growth
@@ -40,7 +50,7 @@ const url = new URL(path, Astro.site).href;
   hidden
   aria-label={`Share ${title}`}
   title={`Share ${title}`}
-  class={`card-share absolute top-2 right-2 z-20 inline-flex items-center justify-center w-11 h-11 rounded-[var(--radius-sheet)] text-slate bg-sheet/85 backdrop-blur-[2px] border border-lake/30 hover:bg-sheet hover:border-slate cursor-pointer ${className}`}
+  class={`card-share absolute top-2 right-2 z-30 inline-flex items-center justify-center w-11 h-11 rounded-[var(--radius-sheet)] text-slate bg-sheet/85 backdrop-blur-[2px] border border-lake/30 hover:bg-sheet hover:border-slate cursor-pointer ${className}`}
 >
   <svg viewBox="0 0 24 24" class="w-[1.15rem] h-[1.15rem]" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" aria-hidden="true">
     <path d="M12 16V4" /><path d="M7 9l5-5 5 5" /><path d="M4 15v5h16v-5" />

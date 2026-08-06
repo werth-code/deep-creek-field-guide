@@ -10,7 +10,13 @@
  *
  * Plain anchors, no SDKs, no tracking pixels, no third-party JavaScript. A
  * Facebook or X widget would load a tracker onto a page that promises not to,
- * and would be slower than the link it replaces.
+ * and would be slower than the link it replaces. Every target below is a URL
+ * the network publishes for exactly this, so the whole row costs nothing until
+ * someone taps it.
+ *
+ * The labels are words rather than brand logos, which is the same reason the
+ * rest of the site is set in stamped type: nine little corporate glyphs is the
+ * one place a page like this starts to look like everybody else's.
  *
  * Progressive enhancement, in this order:
  *   1. On a phone, the native share sheet replaces the whole row — it reaches
@@ -68,6 +74,12 @@ const targets = [
     hint: null,
   },
   {
+    key: "whatsapp",
+    label: "WhatsApp",
+    href: `https://wa.me/?text=${enc(`${text} ${url}`)}`,
+    hint: "The family group chat planning the trip",
+  },
+  {
     key: "reddit",
     label: "Reddit",
     href: `https://www.reddit.com/submit?url=${enc(url)}&title=${enc(title)}`,
@@ -78,6 +90,28 @@ const targets = [
     label: "X",
     href: `https://x.com/intent/post?text=${enc(text)}&url=${enc(url)}`,
     hint: null,
+  },
+  {
+    key: "bluesky",
+    // Bluesky takes one text field, so the URL rides inside it.
+    label: "Bluesky",
+    href: `https://bsky.app/intent/compose?text=${enc(`${text} ${url}`)}`,
+    hint: null,
+  },
+  {
+    key: "threads",
+    label: "Threads",
+    href: `https://www.threads.net/intent/post?text=${enc(`${text} ${url}`)}`,
+    hint: null,
+  },
+  {
+    key: "pinterest",
+    /* No `media`: Pinterest scrapes the page and lets the pinner choose. Every
+       record page carries og:image, so it has something to find. Hardcoding one
+       photo here would pin the wrong one on the records with a gallery. */
+    label: "Pinterest",
+    href: `https://pinterest.com/pin/create/button/?url=${enc(url)}&description=${enc(text)}`,
+    hint: "Trip boards — how a lot of this gets planned",
   },
 ];
 ---
