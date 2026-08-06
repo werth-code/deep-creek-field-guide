@@ -448,5 +448,274 @@
       "Confirm the start and finish times.",
       "Confirm whether the park day-use fee applies on the day."
     ]
+  },
+  {
+    "slug": "friendsville-makers-market",
+    "name": "Friendsville's Makers Market",
+    "edition": "Last market of the year",
+    "town": "Friendsville",
+    "venue": "Downtown Friendsville",
+    "address": null,
+    "blurb": "Artisans and growers along the main street of a very small town, on the last Saturday market of the year. The ad calls it the last one, which means there are earlier ones and I don't have their dates.",
+    "rule": {
+      "kind": "announced",
+      "hint": "The ad names one date and no recurring rule"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-09-19",
+        "end": "2026-09-19"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The ad names no admission price, which for a street market usually means free to walk in — but usually is not a source.",
+      "amount": null
+    },
+    "website": null,
+    "warnings": [
+      "This is billed as the LAST market of the year, so earlier dates exist and aren't listed here yet."
+    ],
+    "sources": [
+      {
+        "label": "The Lakefront Magazine, August 2026, page 85",
+        "url": "https://thelakefrontmagazine.com/",
+        "note": "A full-page advertisement placed by the organizer and photographed. Not a website I can link you to the exact page of — the ad carries QR codes and no printed URL, so the citation is the page it appeared on. States \"Saturday, September 19th, 10:00 AM – 3:00 PM\", \"Downtown Friendsville\", and \"Artisans · Growers · Local\". Names no organizer."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Who runs it? The ad names no organizer. The Winter Market on the facing page is the Greater Friendsville Business Association, which is the obvious guess and is not a source.",
+      "The dates of the earlier markets this year.",
+      "Is it free to walk in?",
+      "Where exactly downtown, and where do you park?"
+    ]
+  },
+  {
+    "slug": "friendsville-winter-market",
+    "name": "Winter Market",
+    "edition": null,
+    "town": "Friendsville",
+    "venue": "Throughout Friendsville",
+    "address": null,
+    "blurb": "An evening holiday market spread through the town rather than held in one hall — handmade goods, gifts and food, from four until eight on the first Friday of December.",
+    "rule": {
+      "kind": "announced",
+      "hint": "The ad names one date and no recurring rule"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-12-04",
+        "end": "2026-12-04"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. The ad names no admission price.",
+      "amount": null
+    },
+    "website": null,
+    "warnings": [
+      "It runs 4pm to 8pm in December, so most of it is after dark in a town with little street lighting."
+    ],
+    "sources": [
+      {
+        "label": "The Lakefront Magazine, August 2026, page 85",
+        "url": "https://thelakefrontmagazine.com/",
+        "note": "A full-page advertisement placed by the organizer and photographed. Not a website I can link you to the exact page of — the ad carries QR codes and no printed URL, so the citation is the page it appeared on. States \"Greater Friendsville Business Association\", \"Winter Market\", \"Throughout Friendsville\", \"Friday December 4th, 4–8PM\", and lists unique gifts, handmade goods and treats."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "\"Throughout Friendsville\" is not an address. Which streets, and where do you park?",
+      "Is it free?",
+      "A contact number for the Greater Friendsville Business Association."
+    ]
+  },
+  {
+    "slug": "wisp-free-concert-series",
+    "name": "Stage Wisp free concert series",
+    "edition": null,
+    "town": "McHenry",
+    "venue": "Wisp Resort",
+    "address": null,
+    "blurb": "Free live music outdoors at the resort every Wednesday evening through July and August, with an artisan market opening an hour before the band. Nine acts, all named a season ahead.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Wednesdays through July and August, 6pm to 8.30pm"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-07-01",
+        "end": "2026-08-26"
+      }
+    },
+    "admission": {
+      "note": "Free. The ad says so in the title, and the resort placed the ad.",
+      "amount": 0
+    },
+    "website": {
+      "label": "Wisp Resort",
+      "url": "https://www.wispresort.com/"
+    },
+    "warnings": [
+      "The artisan market opens at 5pm, an hour before the music.",
+      "This is a season, not one date. As of publication the remaining 2026 Wednesdays are 12, 19 and 26 August."
+    ],
+    "sources": [
+      {
+        "label": "The Lakefront Magazine, August 2026, page None",
+        "url": "https://thelakefrontmagazine.com/",
+        "note": "A full-page advertisement placed by the organizer, photographed. The ad carries no printed URL for itself, so the citation is the page it ran on. States \"Free Concert Series\", \"Wednesdays | July + August | 6 - 8:30 PM\", the artisan market at 5pm, and the full lineup: Tom Batchelor Band, Hillbilly Biscuits, Jason Shaw Band, Silver Springs, Surrender Dorothy, 80s Enough, Part Time Cowboys, Butterscotch Blonde, Dead All Along. Gives 855-480-6596 and wispresort.com."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm it is free to park as well as free to attend.",
+      "Where on the resort does it happen, and what happens if it rains?",
+      "Does the series run every year, or is this a one-season lineup?"
+    ]
+  },
+  {
+    "slug": "mountain-maryland-dragon-boat-festival",
+    "name": "Mountain Maryland Dragon Boat Festival",
+    "edition": "5th Annual",
+    "town": "Oakland",
+    "venue": "Broadford Lake",
+    "address": "120 Recreation Lane, Oakland, MD 21550",
+    "blurb": "Dragon boat racing on Broadford Lake, with craft and food vendors on the bank. Racing needs a team and pre-registration; watching costs five dollars a car, which is one of the few prices anybody in this county actually publishes.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Late August, announced a year at a time"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-08-22",
+        "end": "2026-08-22"
+      }
+    },
+    "admission": {
+      "note": "$5 per car to spectate. Racing is by team registration: $1,300 for a 20-person boat, $1,000 for a 10-person boat, both pre-registered.",
+      "amount": 5
+    },
+    "website": {
+      "label": "Dove Center: Mountain Maryland Dragon Boat Festival",
+      "url": "https://dovecenter.betterworld.org/events/5th-annual-mountain-maryland-dra"
+    },
+    "warnings": [
+      "Spectator admission is charged per car, not per person.",
+      "You cannot turn up and race. A team and pre-registration are required."
+    ],
+    "sources": [
+      {
+        "label": "The Lakefront Magazine, August 2026, page 59",
+        "url": "https://thelakefrontmagazine.com/",
+        "note": "A full-page advertisement placed by the organizer, photographed. The ad carries no printed URL for itself, so the citation is the page it ran on. States \"August 22, 2026 9-3\", Broadford Lake at 120 Recreation Lane, Oakland MD 21550, \"$5/CAR\" spectator admission, team registration at $1,300 for a 20-person boat and $1,000 for a 10-person boat, and that racing is managed by Dynamic Dragon Boat Racing of Tennessee."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "The ad gives Broadford Lake's address as 120 Recreation Lane; the park record says Broadford Road. Ask the Town of Oakland which is right.",
+      "Does the park's own entry fee apply on top of the $5 a car?",
+      "Confirm who runs it locally. The registration link is the Dove Center's."
+    ]
+  },
+  {
+    "slug": "mountain-fresh-farmers-market",
+    "name": "Mountain Fresh Farmers Market",
+    "edition": "Established 1987",
+    "town": "Oakland",
+    "venue": "Mountain Fresh Pavilion, downtown Oakland",
+    "address": null,
+    "blurb": "Oakland's farmers market, running since 1987, under its own pavilion in the middle of town. Twice a week through the summer, and mornings only.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Wednesdays and Saturdays, 10am to 1pm — the ad states August only"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-08-01",
+        "end": "2026-08-31"
+      }
+    },
+    "admission": {
+      "note": "Not confirmed. No admission price is stated, which for a farmers market usually means none — but usually is not a source.",
+      "amount": null
+    },
+    "website": {
+      "label": "Mountain Fresh Farmers Market",
+      "url": "https://mountainfresh.org/"
+    },
+    "warnings": [
+      "It closes at 1pm. This is a morning market.",
+      "The ad covers August only. The season almost certainly runs longer and I don't have its start or end."
+    ],
+    "sources": [
+      {
+        "label": "The Lakefront Magazine, August 2026, page 40",
+        "url": "https://thelakefrontmagazine.com/",
+        "note": "A full-page advertisement placed by the organizer, photographed. The ad carries no printed URL for itself, so the citation is the page it ran on. States \"EVERY WEDNESDAY & SATURDAY IN AUGUST, FROM 10 AM TO 1 PM\", the Mountain Fresh Pavilion in downtown Oakland, mountainfresh.org, and \"EST. 1987\"."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "The full season: what month it opens and what month it closes.",
+      "The pavilion's street address.",
+      "Is it cash only?"
+    ]
+  },
+  {
+    "slug": "deep-creek-art-wine-spirits-festival",
+    "name": "Deep Creek Lake Art, Wine & Spirits Festival",
+    "edition": null,
+    "town": "McHenry",
+    "venue": "Garrett County Fairgrounds",
+    "address": null,
+    "blurb": "Two days at the fairgrounds: a premium spirits tasting on the Friday evening and the main art and wine festival on the Saturday, with 200 wines, local artisans and live music. Proceeds go to HART for Animals.",
+    "rule": {
+      "kind": "announced",
+      "hint": "Second weekend of September, announced a year at a time"
+    },
+    "confirmed": {
+      "2026": {
+        "start": "2026-09-11",
+        "end": "2026-09-12"
+      }
+    },
+    "admission": {
+      "note": "Ticketed, and the price is not stated in the ad. Every adult ticket carries a coupon for the Wine & Spirits store — $25 with a Friday ticket, $15 with a Saturday one — and a combined Friday-and-Saturday ticket is cheaper bought in advance.",
+      "amount": null
+    },
+    "website": {
+      "label": "Deep Creek Wine Fest",
+      "url": "https://www.deepcreekwinefest.com/"
+    },
+    "warnings": [
+      "Two different events on two days. The Friday premium tasting and the Saturday festival are ticketed separately.",
+      "The fairgrounds also host the Agriculture Fair and the Autumn Glory craft sale. Check which event you are buying for."
+    ],
+    "sources": [
+      {
+        "label": "The Lakefront Magazine, August 2026, page 33",
+        "url": "https://thelakefrontmagazine.com/",
+        "note": "A full-page advertisement placed by the organizer, photographed. The ad carries no printed URL for itself, so the citation is the page it ran on. States \"Friday, September 11 — Premium Wine & Spirits Tasting\" and \"Saturday, September 12 — Art, Wine & Spirits Festival\" at the Garrett County Fairgrounds, 200 wines, six premium spirit tables on the Friday, the $25 and $15 store coupons, proceeds to HART for Animals, promoted by Little Mountain Promotions, deepcreekwinefest.com."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "The actual ticket prices, for each day and for the combo.",
+      "Start and finish times for both days.",
+      "Is it 21+ only, and can children come to the Saturday art side?"
+    ]
   }
 ]

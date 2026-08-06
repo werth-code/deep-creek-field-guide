@@ -28,7 +28,8 @@
       "fishing": true,
       "pavedPath": null,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": null,
     "hours": null,
@@ -130,7 +131,8 @@
       "fishing": null,
       "pavedPath": null,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": null,
     "hours": null,
@@ -192,7 +194,8 @@
       "fishing": false,
       "pavedPath": null,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": "Swing set includes a handicap accessible seat, per the town's own listing.",
     "hours": null,
@@ -270,7 +273,8 @@
       "fishing": true,
       "pavedPath": true,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": null,
     "hours": null,
@@ -371,7 +375,8 @@
       "fishing": true,
       "pavedPath": null,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": null,
     "hours": null,
@@ -469,7 +474,8 @@
       "fishing": null,
       "pavedPath": null,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": null,
     "hours": null,
@@ -551,7 +557,8 @@
       "fishing": null,
       "pavedPath": null,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": null,
     "hours": null,
@@ -629,7 +636,8 @@
       "fishing": null,
       "pavedPath": null,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": null,
     "hours": null,
@@ -718,7 +726,8 @@
       "fishing": null,
       "pavedPath": null,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": null,
     "hours": null,
@@ -779,7 +788,8 @@
       "fishing": null,
       "pavedPath": null,
       "winterUse": null,
-      "splashPad": null
+      "splashPad": null,
+      "dogPark": null
     },
     "accessibility": null,
     "hours": null,
@@ -865,7 +875,8 @@
       "boatLaunch": null,
       "fishing": null,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "dogPark": null
     },
     "accessibility": null,
     "access": null,
@@ -926,5 +937,144 @@
       "lon": -79.3831,
       "precision": "town"
     }
+  },
+  {
+    "slug": "oakland-dog-park",
+    "name": "Oakland Dog Park",
+    "operator": "Town of Oakland",
+    "town": "Oakland",
+    "address": "27 Oakland Rosedale Road, Oakland, MD 21550",
+    "acres": null,
+    "blurb": "A fenced off-leash dog park on the town walking trail, free to use. The town's own words are \"a clean, safe environment\" for \"well-behaved canine citizens\" and not much else — most of what's known about the inside of it comes from a magazine rather than from the town.",
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "The Lakefront Magazine reported in August 2026 that there are no restroom facilities here. That is a magazine and not the town, so it stays unconfirmed — but plan for none.",
+      "confirmedOn": null,
+      "confirmedBy": null
+    },
+    "facilities": {
+      "playground": null,
+      "splashPad": null,
+      "dogPark": true,
+      "swimming": null,
+      "beach": null,
+      "picnic": null,
+      "pavilion": null,
+      "grills": null,
+      "trails": true,
+      "sports": null,
+      "boatLaunch": null,
+      "fishing": null,
+      "pavedPath": null,
+      "winterUse": null
+    },
+    "accessibility": null,
+    "access": null,
+    "hours": null,
+    "hoursNote": "The town publishes no hours. The magazine says the county's dog parks are open during daylight hours.",
+    "phone": "301-334-2691",
+    "fee": {
+      "note": "Free. The Town of Oakland says so on its own dog park page.",
+      "amount": 0
+    },
+    "warnings": [
+      "The town publishes almost nothing about this park beyond that it exists and is free. Everything about what's inside the fence is second-hand."
+    ],
+    "sources": [
+      {
+        "label": "Town of Oakland: Dog Park",
+        "url": "http://www.oaklandmd.gov/dog-park",
+        "primary": true,
+        "note": "The operator. \"A fenced-in, off-leash dog park conveniently located along the town walking trail where well-behaved canine citizens can exercise in a clean, safe environment.\" Gives the 27 Oakland Rosedale Road address and states \"Free to use.\" Publishes no hours, no amenities and no rules."
+      },
+      {
+        "label": "The Lakefront Magazine, August 2026: \"How Dogs Can Beat the Dog Days of Summer\" by Evan Byrne, pages 18-22",
+        "url": "https://thelakefrontmagazine.com/",
+        "primary": false,
+        "note": "A magazine feature, not the operator — so it cannot carry a fact on its own here, and the booleans it alone supports stay unconfirmed. It quotes Oakland Town Administrator Valerie Stemac and Deep Creek Lions Club president Tom Wenzel, and reports that both parks are free, open daylight hours, double-gated, separately fenced for large and small dogs, with water, waste bags and benches."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Confirm there really are no restrooms — the magazine says none, the town says nothing.",
+      "Are there genuinely separate enclosures for large and small dogs?",
+      "Is water on site, and is it turned off in winter?",
+      "The magazine describes agility equipment and covered shelters for owners. Confirm both.",
+      "What hours, exactly? \"Daylight\" is a magazine's word, not the town's."
+    ]
+  },
+  {
+    "slug": "garrett-county-dog-park",
+    "name": "Garrett County Dog Park",
+    "operator": "Deep Creek Lions Club",
+    "town": "McHenry",
+    "address": "1249 Bumble Bee Road, Accident, MD 21520",
+    "acres": null,
+    "blurb": "The county's other off-leash park, inside the Lions Club's McHenry Community Park — which is the reason to pick this one over Oakland's: restrooms, pavilions, a trail system and a disc golf course are all a short walk away.",
+    "restrooms": {
+      "present": null,
+      "type": null,
+      "seasonal": null,
+      "note": "The Lakefront Magazine reported restrooms a few steps from the dog park, in the surrounding community park. Not confirmed by the Lions Club, who publish nothing about the facilities.",
+      "confirmedOn": null,
+      "confirmedBy": null
+    },
+    "facilities": {
+      "playground": null,
+      "splashPad": null,
+      "dogPark": true,
+      "swimming": null,
+      "beach": null,
+      "picnic": null,
+      "pavilion": null,
+      "grills": null,
+      "trails": null,
+      "sports": null,
+      "boatLaunch": null,
+      "fishing": null,
+      "pavedPath": null,
+      "winterUse": null
+    },
+    "accessibility": null,
+    "access": null,
+    "hours": null,
+    "hoursNote": "No hours published by the operator. The magazine says daylight hours.",
+    "phone": null,
+    "fee": {
+      "note": "Not confirmed by the operator. The magazine says the county's dog parks are free to use.",
+      "amount": null
+    },
+    "warnings": [
+      "The address is the disagreement worth knowing about. The Lions Club's own site gives 1249 Bumble Bee Road as Accident, MD 21520; the magazine prints McHenry, MD 21541. The operator wins here, but check your map before you drive.",
+      "The Lions Club publishes the address and a contact and nothing else. Everything about the park itself is second-hand."
+    ],
+    "sources": [
+      {
+        "label": "Deep Creek Lions Club",
+        "url": "https://deepcreeklions.org/",
+        "primary": true,
+        "note": "The operator. Gives 1249 Bumble Bee Rd, Accident MD 21520 and DCLLIONS@gmail.com. It publishes nothing about the dog park's hours, fencing, water or facilities."
+      },
+      {
+        "label": "The Lakefront Magazine, August 2026: \"How Dogs Can Beat the Dog Days of Summer\" by Evan Byrne, pages 18-22",
+        "url": "https://thelakefrontmagazine.com/",
+        "primary": false,
+        "note": "A magazine feature, not the operator — so it cannot carry a fact on its own here, and the booleans it alone supports stay unconfirmed. It quotes Oakland Town Administrator Valerie Stemac and Deep Creek Lions Club president Tom Wenzel, and reports that both parks are free, open daylight hours, double-gated, separately fenced for large and small dogs, with water, waste bags and benches."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Settle the address: Accident 21520 per the Lions Club, McHenry 21541 per the magazine.",
+      "Confirm it is free.",
+      "Confirm the restrooms in the community park, and whether they are open out of season.",
+      "A phone number. The Lions Club publishes only an email.",
+      "Confirm the separate large and small enclosures, water and benches."
+    ]
   }
 ]

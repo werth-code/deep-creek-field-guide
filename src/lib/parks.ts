@@ -275,6 +275,13 @@ export interface RegionalFacilities {
    * buried in a blurb where no filter can reach it.
    */
   splashPad: boolean | null;
+  /**
+   * A fenced off-leash area, which is not the same claim as "dogs allowed".
+   * Garrett County has two and neither was in this dataset, because the
+   * dataset was built from town-park listings and these are run by a town and
+   * a Lions Club.
+   */
+  dogPark: boolean | null;
   swimming: boolean | null;
   beach: boolean | null;
   picnic: boolean | null;
@@ -373,6 +380,7 @@ export const STATE_FEATURE_LABELS: [keyof StateParkFeatures, string][] = [
 export const REGIONAL_FACILITY_LABELS: [keyof RegionalFacilities, string][] = [
   ["playground", "Playground"],
   ["splashPad", "Splash pad"],
+  ["dogPark", "Dog park"],
   ["swimming", "Swimming"],
   ["beach", "Beach"],
   ["picnic", "Picnic tables"],
