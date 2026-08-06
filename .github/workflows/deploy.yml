@@ -33,3 +33,13 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # The action gives up after 10 minutes by default. On 6 August 2026
+          # both of these sites failed three deploys in a row, every one of
+          # them sitting in deployment_queued or deployment_in_progress until
+          # that timeout — while GitHub reported Pages fully operational and
+          # the artifact was an unremarkable 19MB. Nothing was wrong with the
+          # build; the deploy was just slower than the default allows, and a
+          # timeout here means the commit is pushed but the site is not live,
+          # which is the worst of both. Thirty minutes.
+          timeout: 1800000
