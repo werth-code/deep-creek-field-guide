@@ -825,7 +825,7 @@
       "boatRentals": null,
       "fishing": true,
       "winterUse": null,
-      "petsAllowed": null
+      "petsAllowed": true
     },
     "reservation": {
       "required": false,
@@ -932,7 +932,14 @@
       "lat": 39.539,
       "lon": -79.133,
       "precision": "site"
-    }
+    },
+    "fieldNotes": [
+      {
+        "date": "2026-08-06",
+        "author": "Site maintainer",
+        "body": "Pets were unconfirmed here while the park's own warning said \"pets must be leashed and with their owner\" — a rule about how to keep a dog is Maryland DNR saying you may bring one. Read as yes. The new dogs page is what put the two side by side; on the park page they sat in different blocks and nobody noticed."
+      }
+    ]
   },
   {
     "slug": "casselman-river-bridge",

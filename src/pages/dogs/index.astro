@@ -1,0 +1,151 @@
+---
+/**
+ * Dogs.
+ *
+ * WHY THIS IS ITS OWN SECTION
+ *
+ * The county's two off-leash parks were filed under town parks, because that
+ * is where the dataset put them, and "is there anywhere my dog can run" is not
+ * a question anybody answers by browsing town parks. Meanwhile the thing that
+ * actually ruins a trip — Swallow Falls barring pets from the day-use area and
+ * the Canyon Trail for the whole summer — was a warning on one park page and
+ * nowhere else.
+ *
+ * DERIVED, ALL OF IT. The dog parks come from `facilities.dogPark`, the yes/no
+ * column from `features.petsAllowed`, and the caveats from each park's own
+ * warnings, matched on the words dog and pet. Nothing here is written twice,
+ * so a correction on a park page corrects this page in the same commit.
+ *
+ * THE CAVEATS ARE THE POINT. Two of the three parks that allow dogs bar them
+ * from the beach, which is the part most people drive there for. A column
+ * saying "Yes" and nothing else would be true and would still send someone to
+ * the wrong place.
+ */
+import Layout from "../../layouts/Layout.astro";
+import FeatureIcon from "../../components/FeatureIcon.astro";
+import { colorFor } from "../../lib/feature-colors";
+import { isPublishable } from "../../lib/verification";
+import { tri, type RegionalPark, type StatePark } from "../../lib/parks";
+
+import stateParksData from "../../data/state-parks.json";
+import regionalData from "../../data/regional-parks.json";
+
+const dogParks = (regionalData as unknown as RegionalPark[])
+  .filter(isPublishable)
+  .filter((p) => p.facilities.dogPark === true);
+
+/* The dog-relevant warning off each park's own list, matched on the words.
+   Written once on the park page, shown here too. */
+const dogNote = (warnings: string[]) =>
+  warnings.find((w) => /\b(dog|dogs|pet|pets)\b/i.test(w)) ?? null;
+
+const parks = (stateParksData as unknown as StatePark[])
+  .filter(isPublishable)
+  .map((p) => ({
+    name: p.name,
+    slug: p.slug,
+    town: p.town,
+    pets: p.features.petsAllowed,
+    note: dogNote(p.warnings ?? []),
+  }))
+  /* Confirmed answers first — a page of "not confirmed" buries the three
+     facts that exist. */
+  .sort((a, b) => Number(b.pets !== null) - Number(a.pets !== null) || a.name.localeCompare(b.name));
+
+const known = parks.filter((p) => p.pets !== null).length;
+---
+
+<Layout
+  title="Dogs in Garrett County — off-leash parks and which parks allow pets"
+  description="Garrett County's two off-leash dog parks, and which state parks take dogs — including the summer ban at Swallow Falls and the beaches dogs are kept off."
+>
+  <div class="wrap pt-11 pb-6">
+    <p class="label m-0 flex items-center gap-2">
+      <FeatureIcon icon="petsAllowed" class="w-[1em] h-[1em]" style={`color:${colorFor("petsAllowed")}`} />
+      Dogs
+    </p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[16ch] text-slate">
+      Where the dog can come
+    </h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      Two off-leash parks in the county, and a straight answer per state park —
+      including the one that bars dogs all summer and the two that allow them
+      everywhere except the bit you came for.
+    </p>
+  </div>
+
+  <div class="wrap pb-8">
+    <h2 class="font-display text-[1.5rem] font-bold text-slate border-b-[3px] border-contour pb-2 mb-4 flex items-center gap-2">
+      <FeatureIcon icon="dogPark" class="w-[0.9em] h-[0.9em]" style={`color:${colorFor("dogPark")}`} />
+      Off-leash parks
+      <span class="stamp text-ink-soft ms-1">{dogParks.length}</span>
+    </h2>
+
+    <div class="grid gap-4 sm:grid-cols-2 breakout">
+      {
+        dogParks.map((p) => (
+          <article class="sheet sheet-action relative group p-5">
+            <a href={`/parks/regional/${p.slug}/`} class="absolute inset-0 z-10 no-underline">
+              <span class="sr-only">{p.name}</span>
+            </a>
+            <p class="label m-0">{p.operator}</p>
+            <p class="font-display text-[1.35rem] font-semibold mt-1.5 mb-0 tracking-[-0.03em] text-slate underline decoration-contour decoration-[3px] underline-offset-[0.14em] group-hover:decoration-slate">
+              {p.name}
+            </p>
+            <p class="stamp text-ink-soft mt-1 mb-0">{p.address}</p>
+            <p class="mt-2.5 mb-0 text-[0.95rem] leading-[1.5]">{p.blurb}</p>
+            <p class="stamp text-ink-soft mt-3 mb-0">
+              {p.fee.amount === 0 ? "Free" : "Cost not confirmed"}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="wrap pb-8">
+    <h2 class="font-display text-[1.5rem] font-bold text-slate border-b-[3px] border-contour pb-2 mb-4 flex items-center gap-2">
+      <FeatureIcon icon="petsAllowed" class="w-[0.9em] h-[0.9em]" style={`color:${colorFor("petsAllowed")}`} />
+      Dogs in the state parks
+      <span class="stamp text-ink-soft ms-1">{known}/{parks.length} answered</span>
+    </h2>
+
+    <dl class="sheet breakout divide-y-2 divide-lake/25">
+      {
+        parks.map((p) => {
+          const v = tri(p.pets);
+          return (
+            <div class="px-4 sm:px-5 py-3.5 sm:flex sm:gap-5 sm:items-baseline">
+              <dt class="sm:w-[13rem] sm:shrink-0">
+                <a href={`/parks/${p.slug}/`} class="text-[1rem] font-medium">{p.name}</a>
+                <span class="stamp text-ink-soft block mt-0.5">{p.town}</span>
+              </dt>
+              <dd class="m-0 mt-1.5 sm:mt-0 flex-1">
+                <span
+                  class={`stamp ${v.state === "unknown" ? "text-ink-soft italic" : ""}`}
+                  style={v.state === "yes" ? `color:${colorFor("petsAllowed")}` : undefined}
+                >
+                  {v.text}
+                </span>
+                {p.note && (
+                  <span class="block mt-1 text-[0.9rem] leading-snug">{p.note}</span>
+                )}
+              </dd>
+            </div>
+          );
+        })
+      }
+    </dl>
+  </div>
+
+  <div class="wrap prose-field pb-4">
+    <h2>What isn't here</h2>
+    <p class="max-w-[58ch]">
+      Nine of the twelve state parks have no published pet rule I can find, so
+      this page says so rather than assuming leashed-and-fine. Neither dog park
+      publishes its hours, and only one of them publishes a price. If you've
+      stood in either of them, <a href="/report/">that's the fastest way to fix
+      this page</a>.
+    </p>
+  </div>
+</Layout>
