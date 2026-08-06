@@ -54,6 +54,7 @@ export const FEATURE_COLOR: Record<string, string> = {
   waterfall: "#0e5877",
   beach: "#0a5a72",
   swimming: "#0d5973",
+  splashPad: "#1c3e78",
   guardedSwimming: "#0a5b72",
   fishing: "#1d4f6b",
   surfFishing: "#195975",

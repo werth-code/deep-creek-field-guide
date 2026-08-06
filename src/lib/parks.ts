@@ -268,6 +268,13 @@ export interface Restrooms {
 
 export interface RegionalFacilities {
   playground: boolean | null;
+  /**
+   * A splash pad is not swimming and not a playground, and calling it either
+   * sends the wrong family on the wrong day. It is the whole reason to drive
+   * to some of these in August, so it gets its own field rather than being
+   * buried in a blurb where no filter can reach it.
+   */
+  splashPad: boolean | null;
   swimming: boolean | null;
   beach: boolean | null;
   picnic: boolean | null;
@@ -365,6 +372,7 @@ export const STATE_FEATURE_LABELS: [keyof StateParkFeatures, string][] = [
 
 export const REGIONAL_FACILITY_LABELS: [keyof RegionalFacilities, string][] = [
   ["playground", "Playground"],
+  ["splashPad", "Splash pad"],
   ["swimming", "Swimming"],
   ["beach", "Beach"],
   ["picnic", "Picnic tables"],

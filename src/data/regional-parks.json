@@ -27,7 +27,8 @@
       "boatLaunch": true,
       "fishing": true,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": null,
     "hours": null,
@@ -128,7 +129,8 @@
       "boatLaunch": false,
       "fishing": null,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": null,
     "hours": null,
@@ -189,7 +191,8 @@
       "boatLaunch": false,
       "fishing": false,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": "Swing set includes a handicap accessible seat, per the town's own listing.",
     "hours": null,
@@ -266,7 +269,8 @@
       "boatLaunch": true,
       "fishing": true,
       "pavedPath": true,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": null,
     "hours": null,
@@ -366,7 +370,8 @@
       "boatLaunch": false,
       "fishing": true,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": null,
     "hours": null,
@@ -463,7 +468,8 @@
       "boatLaunch": false,
       "fishing": null,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": null,
     "hours": null,
@@ -544,7 +550,8 @@
       "boatLaunch": null,
       "fishing": null,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": null,
     "hours": null,
@@ -621,7 +628,8 @@
       "boatLaunch": false,
       "fishing": null,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": null,
     "hours": null,
@@ -709,7 +717,8 @@
       "boatLaunch": null,
       "fishing": null,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": null,
     "hours": null,
@@ -769,7 +778,8 @@
       "boatLaunch": false,
       "fishing": null,
       "pavedPath": null,
-      "winterUse": null
+      "winterUse": null,
+      "splashPad": null
     },
     "accessibility": null,
     "hours": null,
@@ -823,6 +833,97 @@
     "coords": {
       "lat": 39.393,
       "lon": -79.38,
+      "precision": "town"
+    }
+  },
+  {
+    "slug": "leo-martin-memorial-park",
+    "name": "Leo Martin Memorial Park",
+    "operator": "Town of Mountain Lake Park",
+    "town": "Mountain Lake Park",
+    "address": "Mountain Lake Park, MD 21550",
+    "acres": null,
+    "blurb": "The Mountain Lake Park splash pad — a blue pad with three spray hoops, a tipping-bucket tower, a mushroom shower and a fire hydrant, with a pavilion right beside it to sit in the shade. It is the answer to a hot afternoon with small children, and there isn't another one like it in the county.",
+    "restrooms": {
+      "present": true,
+      "type": null,
+      "seasonal": null,
+      "note": "Reported first-hand on the same visit as the photographs. Which building they're in and whether they're open outside splash-pad season is not confirmed.",
+      "confirmedOn": "2026-08-06",
+      "confirmedBy": "Site maintainer, first-hand"
+    },
+    "facilities": {
+      "playground": null,
+      "splashPad": true,
+      "swimming": false,
+      "beach": null,
+      "picnic": null,
+      "pavilion": true,
+      "grills": null,
+      "trails": null,
+      "sports": null,
+      "boatLaunch": null,
+      "fishing": null,
+      "pavedPath": null,
+      "winterUse": null
+    },
+    "accessibility": null,
+    "access": null,
+    "hours": null,
+    "hoursNote": "The town publishes nothing about this park. The county Chamber's visitor listing says the splash pad runs daily 11am to 7:30pm in summer, weather permitting — that's a visitor listing rather than the town, so treat it as a starting point and ring 301-334-2250 before driving out for a specific time.",
+    "phone": "301-334-2250",
+    "fee": {
+      "note": "Not confirmed. Nobody publishes a price and none was reported on the visit, which is not the same as free.",
+      "amount": null
+    },
+    "warnings": [
+      "Splash pads run on a season and a switch. Photographed running in August; nothing published says when it's turned on in spring or off in autumn."
+    ],
+    "photos": [
+      {
+        "file": "leo-martin-splash-pavilion",
+        "alt": "A blue splash pad seen from under a pavilion roof, with a green-and-white mushroom shower, a red fire hydrant spray, three spray hoops in blue, white and red, and two children in sun hats walking through the water.",
+        "caption": "From under the pavilion, which is the point — you can sit in the shade and still see everything. The hoops, the mushroom and the hydrant all run at once.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-06",
+        "portrait": false
+      },
+      {
+        "file": "leo-martin-splash-arches",
+        "alt": "The same splash pad from pad level, with three spray hoops, ground jets, and a tower of yellow tipping buckets, a stone retaining wall and an event tent behind.",
+        "caption": "Pad level. The yellow buckets at the back fill and tip; the ground jets come up out of the surface, so there is nothing to climb and nothing to fall off.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-06",
+        "portrait": false
+      }
+    ],
+    "sources": [
+      {
+        "label": "Town of Mountain Lake Park",
+        "url": "http://mtnlakepark.org/",
+        "note": "The operator. Gives the town office phone (301-334-2250) and Town Hall at 1007 Allegheny Drive. It publishes nothing at all about its parks — no address, hours, season or fee for this one."
+      },
+      {
+        "label": "Garrett County Chamber of Commerce: Town of Mountain Lake Park",
+        "url": "https://www.visitdeepcreek.com/mountainlakepark/",
+        "note": "A visitor listing, NOT the operator. Only source naming the park as Leo Martin Memorial Park and giving daily 11am-7:30pm summer hours. Both are carried here as unconfirmed for that reason."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": "2026-08-06",
+    "verifiedSource": "Site maintainer, first-hand, with photographs",
+    "outstanding": [
+      "Confirm the park's actual name with the town. Only a Chamber listing ties \"Leo Martin Memorial Park\" to the splash pad photographed here.",
+      "Get a street address. The town publishes none.",
+      "Get the season: what date the pad is switched on and off.",
+      "Confirm the daily hours with the town rather than the Chamber.",
+      "Is it free?",
+      "Where are the restrooms, and are they open out of season?",
+      "Is there a playground here too, and can the pavilion be reserved?"
+    ],
+    "coords": {
+      "lat": 39.3987,
+      "lon": -79.3831,
       "precision": "town"
     }
   }

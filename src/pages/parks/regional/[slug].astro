@@ -9,6 +9,7 @@ import Layout from "../../../layouts/Layout.astro";
 import FlagIcon from "../../../components/FlagIcon.astro";
 import MapLink from "../../../components/MapLink.astro";
 import Verdict from "../../../components/Verdict.astro";
+import Photo from "../../../components/Photo.astro";
 import MapEmbed from "../../../components/MapEmbed.astro";
 import FieldNotes from "../../../components/FieldNotes.astro";
 import ReportBox from "../../../components/ReportBox.astro";
@@ -152,6 +153,8 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
 
       {park.verdict && <Verdict verdict={park.verdict} />}
 
+      {park.photos && park.photos.length > 0 && <Photo {...park.photos[0]} hero />}
+
       <h2>What's there</h2>
       <div class="sheet breakout my-6 p-4 sm:p-5">
         <div class="flex items-baseline justify-between gap-4">
@@ -188,6 +191,15 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
           <>
             <h2>Getting around</h2>
             <p class="max-w-[58ch]">{park.accessibility}</p>
+          </>
+        )
+      }
+
+      {
+        park.photos && park.photos.length > 1 && (
+          <>
+            <h2>More photographs</h2>
+            {park.photos.slice(1).map((ph) => <Photo {...ph} />)}
           </>
         )
       }

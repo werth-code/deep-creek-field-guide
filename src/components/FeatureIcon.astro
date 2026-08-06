@@ -61,6 +61,7 @@ const { icon, class: className = "", style } = Astro.props;
   {/* Water — a fall over a lip, then the pool. */}
   {icon === "waterfall" && (<><path d="M5 4h6" /><path d="M8 4v10" /><path d="M14 4h5" /><path d="M16.5 4v10" /><path d="M3 18h18" /><path d="M3 21h18" /></>)}
   {icon === "beach" && (<><path d="M3 11a9 7 0 0 1 18 0Z" /><path d="M12 11v7" /><path d="M3 21c3-2 5 2 8 0s5-2 8 0" /></>)}
+  {icon === "splashPad" && (<><path d="M3 21h18" /><path d="M5.5 21a6.5 6.5 0 0 1 13 0" /><path d="M12 21v-4" /><path d="M8.5 21v-2" /><path d="M15.5 21v-2" /></>)}
   {icon === "swimming" && (<><path d="M3 15c3-2 5 2 8 0s5-2 8 0" /><path d="M3 20c3-2 5 2 8 0s5-2 8 0" /><circle cx="16" cy="6" r="2.2" /><path d="M5 11l6-2 4 2" /></>)}
   {icon === "guardedSwimming" && (<><path d="M3 17c3-2 5 2 8 0s5-2 8 0" /><path d="M3 21h18" /><path d="M12 3v8" /><path d="M8 6h8" /></>)}
   {icon === "fishing" && (<><path d="M4 6l10 10" /><path d="M4 6v4" /><path d="M14 16c3 0 5-2 6-4-1-2-3-4-6-4-3 2-3 6 0 8Z" /><path d="M17 11h.01" stroke-width="2.6" /></>)}
