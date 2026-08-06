@@ -36,7 +36,14 @@ export default defineConfig({
   site: 'https://deepcreekfieldguide.com',
   build: { format: 'directory' },   // trailing-slash directory URLs
   integrations: [
-    sitemap({ filter: (page) => !unverified.some((path) => page.endsWith(path)) }),
+    sitemap({
+      filter: (page) =>
+        !unverified.some((path) => page.endsWith(path)) &&
+        /* Submission outcome pages. They exist so a no-JavaScript form post
+           has somewhere to land, and they are noindex, so listing them would
+           be the same contradiction the build check exists to catch. */
+        !/\/report\/(thanks|problem)\/$/.test(page),
+    }),
   ],
   vite: { plugins: [tailwindcss()] },
 });

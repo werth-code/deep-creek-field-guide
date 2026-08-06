@@ -1,0 +1,16 @@
+---
+/* The no-JavaScript failure page. It says what to do next rather than what
+   went wrong, because the reader can't act on a status code. */
+import Layout from "../../layouts/Layout.astro";
+---
+<Layout title="That report didn't send — Deep Creek Field Guide" description="The field report could not be received." robots="noindex, nofollow">
+  <div class="wrap pt-11 pb-8">
+    <p class="label m-0">Didn't send</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[16ch] text-slate">That didn't go through</h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      Usually it's a photo too large, or more than four of them. Try again with
+      fewer, or email it and I'll take it that way.
+    </p>
+    <p class="mt-4 mb-0"><a href="/report/">Back to the form</a></p>
+  </div>
+</Layout>

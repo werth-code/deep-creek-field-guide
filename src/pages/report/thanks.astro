@@ -1,0 +1,17 @@
+---
+/* Where a no-JavaScript submission lands. The scripted path never gets here —
+   it swaps the form out in place — but the plain form post needs somewhere to
+   go, and a redirect to nowhere is how you lose a report you already have. */
+import Layout from "../../layouts/Layout.astro";
+---
+<Layout title="Report sent — Deep Creek Field Guide" description="Your field report was received." robots="noindex, nofollow">
+  <div class="wrap pt-11 pb-8">
+    <p class="label m-0 text-flag-green-bearing">Sent</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[15ch] text-slate">Thank you</h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      That goes in front of a person, not onto the site. If it changes a fact,
+      you'll see the date on the record change.
+    </p>
+    <p class="mt-4 mb-0"><a href="/parks/">Back to the parks</a></p>
+  </div>
+</Layout>

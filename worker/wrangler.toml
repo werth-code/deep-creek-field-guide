@@ -1,0 +1,19 @@
+name = "field-guide-reports"
+main = "src/index.js"
+compatibility_date = "2026-08-06"
+
+# One bucket behind both sites. Submissions are keyed by site underneath
+# pending/, so deepcreek and delaware never collide and one moderation pass
+# covers both.
+[[r2_buckets]]
+binding = "REPORTS"
+bucket_name = "field-guide-reports"
+
+# Per-IP daily cap. Optional — the Worker checks for the binding and runs
+# without it, because a missing rate limiter must not take the form offline.
+# Create it with:
+#   npx wrangler kv namespace create RATE
+# then paste the id it prints here and uncomment.
+# [[kv_namespaces]]
+# binding = "RATE"
+# id = "PASTE_THE_ID_WRANGLER_PRINTS"
