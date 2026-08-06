@@ -17,6 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # A build stamp, so "did this actually deploy" has an answer that isn't
+      # the workflow badge. Written before the build so it lands in dist/.
+      - run: echo "$GITHUB_SHA" > public/build-stamp.txt
+
       - uses: withastro/action@v3
         with:
           node-version: 22   # the action defaults to 20; Astro 7 needs >=22.12
@@ -32,6 +37,7 @@ jobs:
     environment: { name: github-pages, url: '${{ steps.deployment.outputs.page_url }}' }
     steps:
       - id: deployment
+        continue-on-error: true
         uses: actions/deploy-pages@v4
         with:
           # 600000 ms IS the maximum this action accepts — passing more is
@@ -44,3 +50,27 @@ jobs:
           # so a red badge on this step does NOT mean the site is stale, and a
           # green one is not the thing to check. Check the live URL.
           timeout: 600000
+
+      # THE ONLY FAILURE WORTH AN EMAIL.
+      #
+      # actions/deploy-pages gives up after ten minutes — a hard ceiling you
+      # cannot raise — and reports failure. On a slow day the deployment
+      # completes server-side anyway, so that failure was arriving as mail
+      # about a site that had in fact updated. Mail you can't act on trains you
+      # to ignore mail you can.
+      #
+      # So the deploy step no longer decides. This does: it asks the live site
+      # which commit it is serving. Green means the bytes are actually there.
+      - name: Did it actually go live
+        run: |
+          for i in $(seq 1 20); do
+            live=$(curl -fsS --max-time 15 "https://deepcreekfieldguide.com/build-stamp.txt" 2>/dev/null | tr -d '[:space:]' || true)
+            if [ "$live" = "$GITHUB_SHA" ]; then
+              echo "Live and serving $GITHUB_SHA"
+              exit 0
+            fi
+            echo "attempt $i: live=${live:-none} want=$GITHUB_SHA"
+            sleep 30
+          done
+          echo "::error::The site is still not serving $GITHUB_SHA after ten minutes."
+          exit 1
