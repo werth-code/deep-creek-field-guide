@@ -80,6 +80,9 @@ export const FEATURE_COLOR: Record<string, string> = {
   dogPark: "#734b1a",
 
   /* Indoors. */
+  /* Turn up without booking. Not a facility, but it is a thing people filter
+     on and the ask page offers it, so it gets a colour like everything else. */
+  walkIn: "#78062a",
   free: "#205e48",
   giftShop: "#7a3f5c",
   accessible: "#24577c",
@@ -88,3 +91,48 @@ export const FEATURE_COLOR: Record<string, string> = {
 
 /** Falls back to body ink, so an unmapped key is dull rather than broken. */
 export const colorFor = (key: string): string => FEATURE_COLOR[key] ?? "#10201c";
+
+/**
+ * Guess the feature a free-text label is talking about.
+ *
+ * The `onSite` blocks — "Cabins", "The campground", "Showers" — are written as
+ * prose, not as keys, so they had no colour while every other list on the site
+ * had one. This maps the words back onto the palette so the same green means
+ * trails there as it does on the card, the chip and the map.
+ *
+ * DETERMINISTIC AND DUMB, on purpose. Longest phrase first so "boat rentals"
+ * doesn't get taken by "boat", and an unrecognised label returns null and
+ * renders with no colour at all rather than being assigned a plausible-looking
+ * wrong one. It decides an icon, never a fact.
+ */
+const LABEL_KEYS: [string[], string][] = [
+  [["boat rental", "kayak rental", "canoe rental", "paddle rental"], "boatRentals"],
+  [["boat launch", "boat ramp", "launch"], "boatLaunch"],
+  [["disc golf", "frisbee golf"], "discGolf"],
+  [["nature center", "discovery center", "visitor center", "museum", "trading post", "gift shop", "store"], "giftShop"],
+  [["playground", "play area"], "playground"],
+  [["campground", "camping", "campsite", "tent", "glamping", "yurt"], "camping"],
+  [["cabin", "lodge", "lodging", "shelter"], "cabins"],
+  [["shower", "bathhouse"], "showers"],
+  [["restroom", "toilet", "bathroom", "portable"], "restrooms"],
+  [["pavilion", "gazebo"], "pavilion"],
+  [["picnic"], "picnic"],
+  [["waterfall", "falls"], "waterfall"],
+  [["swim", "swimming"], "swimming"],
+  [["beach", "sand"], "beach"],
+  [["fishing", "angler"], "fishing"],
+  [["trail", "boardwalk", "path", "overlook", "walk", "hike"], "trails"],
+  [["sled", "ski", "snow", "winter"], "winterUse"],
+  [["grill", "fire pit", "fire ring"], "grills"],
+  [["drinking water", "water fountain", "spigot"], "water"],
+  [["dog", "pet"], "petsAllowed"],
+  [["court", "field", "ball"], "sports"],
+];
+
+export function featureKeyForLabel(label: string): string | null {
+  const t = label.toLowerCase();
+  for (const [words, key] of LABEL_KEYS) {
+    if (words.some((w) => t.includes(w))) return key;
+  }
+  return null;
+}

@@ -29,7 +29,7 @@ import {
 } from "../../lib/parks";
 import { isPublishable, isVerified, reportOutstanding, robotsFor, sourcedText, stampText, tierOf } from "../../lib/verification";
 import { formatStampDate } from "../../lib/dates";
-import { colorFor } from "../../lib/feature-colors";
+import { colorFor, featureKeyForLabel } from "../../lib/feature-colors";
 
 export const getStaticPaths = (() =>
   (parksData as StatePark[]).map((park) => ({ params: { slug: park.slug }, props: { park } }))) satisfies GetStaticPaths;
@@ -222,7 +222,19 @@ const title =
             <dl class="sheet breakout my-6 divide-y-2 divide-lake/25">
               {park.onSite.map((r) => (
                 <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
-                  <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">{r.label}</dt>
+                  {/* The label is prose, so the key is matched from its words
+                      — see featureKeyForLabel. No match means no icon and no
+                      colour, rather than a plausible-looking wrong one. */}
+                  <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1 flex items-center gap-1.5">
+                    {featureKeyForLabel(r.label) && (
+                      <FeatureIcon
+                        icon={featureKeyForLabel(r.label) as any}
+                        class="w-[1.15em] h-[1.15em] shrink-0"
+                        style={`color:${colorFor(featureKeyForLabel(r.label)!)}`}
+                      />
+                    )}
+                    {r.label}
+                  </dt>
                   <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55] max-w-[54ch]">{r.note}</dd>
                 </div>
               ))}

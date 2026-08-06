@@ -13,16 +13,27 @@
 import Layout from "../layouts/Layout.astro";
 import FlagIcon from "../components/FlagIcon.astro";
 import { CHAT_INDEX } from "../lib/chat/index";
+import { colorFor } from "../lib/feature-colors";
+import FeatureIcon from "../components/FeatureIcon.astro";
 
 const endpoint = import.meta.env.PUBLIC_CHAT_ENDPOINT ?? "";
 
-const examples = [
-  "Swimming and a playground",
-  "Somewhere with restrooms",
-  "Waterfall hike",
-  "Can I go today without booking?",
-  "Boat launch for a kayak",
-  "Sledding in winter",
+/*
+ * The examples wear the colour of the thing they ask for.
+ *
+ * Six identical grey buttons made you read all six to find the one you
+ * wanted. These are the same feature colours and the same glyphs the filter
+ * chips use on every listing page, so "the blue one with the slide" is
+ * already learnable by the time you get here — which is the entire argument
+ * for having a fixed palette in the first place.
+ */
+const examples: { text: string; key: string }[] = [
+  { text: "Swimming and a playground", key: "swimming" },
+  { text: "Somewhere with restrooms", key: "restrooms" },
+  { text: "Waterfall hike", key: "waterfall" },
+  { text: "Can I go today without booking?", key: "walkIn" },
+  { text: "Boat launch for a kayak", key: "boatLaunch" },
+  { text: "Sledding in winter", key: "winterUse" },
 ];
 
 const schema = [
@@ -83,10 +94,12 @@ const schema = [
             <li>
               <button
                 type="button"
-                data-example={e}
-                class="tap sheet-quiet px-2.5 py-1 stamp text-slate hover:bg-slate hover:text-snow border-0"
+                data-example={e.text}
+                style={`--fc:${colorFor(e.key)}`}
+                class="example-chip tap inline-flex items-center gap-1.5 px-2.5 py-1.5 stamp text-[0.68rem] leading-none border rounded-[var(--radius-sheet)] bg-sheet cursor-pointer"
               >
-                {e}
+                <FeatureIcon icon={e.key as any} class="w-[1.15em] h-[1.15em] shrink-0" />
+                {e.text}
               </button>
             </li>
           ))
@@ -117,6 +130,25 @@ const schema = [
     </p>
   </div>
 </Layout>
+
+<style>
+  /*
+   * The hue arrives inline as --fc rather than as `color`, so hover can fill
+   * with it AND set a readable label at the same time. Writing
+   * `background: currentColor` was the earlier attempt and it painted the chip
+   * in exactly the colour of its own text.
+   */
+  .example-chip {
+    color: var(--fc);
+    border-color: var(--fc);
+    transition: background-color 110ms var(--ease-sheet, ease), color 110ms var(--ease-sheet, ease);
+  }
+  .example-chip:hover,
+  .example-chip:focus-visible {
+    background: var(--fc);
+    color: var(--color-sheet);
+  }
+</style>
 
 <script define:vars={{ INDEX: CHAT_INDEX, ENDPOINT: endpoint }}>
   // The matcher is duplicated here in plain JS rather than imported, because

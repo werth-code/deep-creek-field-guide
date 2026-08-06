@@ -5,6 +5,8 @@
 import type { GetStaticPaths } from "astro";
 
 import Layout from "../../layouts/Layout.astro";
+import FeatureIcon from "../../components/FeatureIcon.astro";
+import { colorFor, featureKeyForLabel } from "../../lib/feature-colors";
 import FlagIcon from "../../components/FlagIcon.astro";
 import MapEmbed from "../../components/MapEmbed.astro";
 import MapLink from "../../components/MapLink.astro";
@@ -98,7 +100,17 @@ const title = [`${place.name} — ${place.distance.split("—")[0].trim()}`, pla
         </div>
         {(place.onSite ?? []).map((row) => (
           <div class="px-4 sm:px-5 py-3 sm:flex sm:gap-6">
-            <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1">{row.label}</dt>
+            {/* Prose label, key matched from its words — no match, no colour. */}
+            <dt class="label sm:w-[9rem] sm:shrink-0 sm:pt-1 flex items-center gap-1.5">
+              {featureKeyForLabel(row.label) && (
+                <FeatureIcon
+                  icon={featureKeyForLabel(row.label) as any}
+                  class="w-[1.15em] h-[1.15em] shrink-0"
+                  style={`color:${colorFor(featureKeyForLabel(row.label)!)}`}
+                />
+              )}
+              {row.label}
+            </dt>
             <dd class="m-0 mt-1 sm:mt-0 text-[0.95rem] leading-[1.55] max-w-[52ch]">{row.note}</dd>
           </div>
         ))}

@@ -69,48 +69,68 @@ const schema = [
     </p>
 
     <p class="max-w-[58ch]">
-      My name is Matt Werth. I'm a software engineer and a photographer, and I
-      travel the US to see parks. I don't live in Garrett County. I drive out
-      there from Delaware, usually with kids in the car, which is the honest
-      version of my standing here and the reason this site runs on phone calls
-      instead of on what I reckon.
+      I'm Matt Werth — an engineer and a photographer who drives out to Garrett
+      County from Delaware, usually with kids in the car. I don't live there,
+      which is exactly why this site runs on phone calls rather than on what I
+      remember about a park I saw two summers ago.
     </p>
-
-    <p class="max-w-[58ch]">
-      I'm an engineer by trade. It shows. This site is mostly tables and dates,
-      because I don't trust my own memory of a park I visited two summers ago
-      and I don't expect you to trust it either.
-    </p>
-
-    <h2>Why any of this is necessary</h2>
 
     <p class="max-w-[58ch]">
       Swallow Falls started requiring a day-use reservation in May. Months on,
-      plenty of what you'll find still tells you to turn up and park. Nobody is
-      being careless. It's that no one re-checks a page they wrote three years
-      ago, and almost nobody wrote down where the fact came from in the first
-      place.
+      plenty of pages still tell you to turn up and park. From Baltimore that
+      mistake costs you three hours.
     </p>
 
-    <p class="max-w-[58ch]">
-      From Baltimore that mistake costs you three hours.
-    </p>
+    <h2>The checklist</h2>
 
-    <h2>The rules</h2>
+    <ol class="list-none p-0 m-0 my-6 sheet breakout divide-y-2 divide-lake/25">
+      <li class="px-4 sm:px-5 py-3.5">
+        <p class="label m-0">The source is whoever sets the rule</p>
+        <p class="m-0 mt-1 text-[0.95rem] leading-[1.5] max-w-[58ch]">
+          The agency that runs the park, the town that sets the hours, whoever
+          takes the money. Never another guide, even when it's probably right.
+        </p>
+      </li>
+      <li class="px-4 sm:px-5 py-3.5">
+        <p class="label m-0">Every fact says how solid it is</p>
+        <p class="m-0 mt-1 text-[0.95rem] leading-[1.5] max-w-[58ch]">
+          Confirmed, or read from the source. The two are labeled separately
+          rather than blurred into one word — see below.
+        </p>
+      </li>
+      <li class="px-4 sm:px-5 py-3.5">
+        <p class="label m-0">Guides and review sites never publish here</p>
+        <p class="m-0 mt-1 text-[0.95rem] leading-[1.5] max-w-[58ch]">
+          A fact whose only origin is a write-up stays out of search until
+          someone checks it. The build enforces that, not my memory.
+        </p>
+      </li>
+      <li class="px-4 sm:px-5 py-3.5">
+        <p class="label m-0">"Not confirmed" is a real answer</p>
+        <p class="m-0 mt-1 text-[0.95rem] leading-[1.5] max-w-[58ch]">
+          A blank means I haven't checked it. It does not mean the park lacks
+          the thing, and rendering it as "No" would invent facts ten at a time.
+        </p>
+      </li>
+      <li class="px-4 sm:px-5 py-3.5">
+        <p class="label m-0">When sources disagree, whoever sets the rule wins</p>
+        <p class="m-0 mt-1 text-[0.95rem] leading-[1.5] max-w-[58ch]">
+          No averaging. Garrett County says Swallow Falls needs a reservation
+          every day; Maryland DNR says weekends and holidays. DNR runs the park,
+          so DNR wins and the county's version sits on the page as a recorded
+          conflict.
+        </p>
+      </li>
+      <li class="px-4 sm:px-5 py-3.5" id="corrections">
+        <p class="label m-0">I publish the mistakes</p>
+        <p class="m-0 mt-1 text-[0.95rem] leading-[1.5] max-w-[58ch]">
+          Fixed, dated, with the old claim left on the page saying what it used
+          to say.
+        </p>
+      </li>
+    </ol>
 
-    <h3>1. The source is whoever sets the rule</h3>
-    <p class="max-w-[58ch]">
-      A park rule comes from the park or the agency running it. A town park's
-      hours come from the town. A fee comes from whoever takes the money. I
-      don't take facts from other guides, including when they're probably
-      right.
-    </p>
-
-    <h3>2. Every page says how solid the fact is</h3>
-    <p class="max-w-[58ch]">
-      There are two honest answers to "how do you know that", so they're
-      labeled separately instead of blurred into one word.
-    </p>
+    <h2>The two labels</h2>
 
     <dl class="sheet breakout my-6 divide-y-2 divide-lake/25">
       <div class="px-4 sm:px-5 py-4">
@@ -123,115 +143,55 @@ const schema = [
       <div class="px-4 sm:px-5 py-4">
         <dt class="label text-contour-deep">Read from the source</dt>
         <dd class="m-0 mt-1.5 text-[0.95rem] leading-[1.55] max-w-[58ch]">
-          Taken from a named primary source, linked so you can check it
-          yourself. Maryland DNR's park page, the county's own notice, a town's
-          own listing. Accurate as far as it goes, and not the same as having
+          Taken from a named primary source and linked, so you can check it
+          yourself. Accurate as far as it goes, and not the same as having
           asked.
         </dd>
       </div>
     </dl>
 
     <p class="max-w-[58ch]">
-      Both publish. The difference is stated because "DNR publishes this" and "I
-      rang DNR and asked" are different claims, and you're entitled to know
-      which one you're reading. Most of this site is currently the second kind.
-    </p>
-
-    <h3>3. What never goes in</h3>
-    <p class="max-w-[58ch]">
-      A fact whose only origin is another guide, a review site or a tourism
-      write-up. It gets marked <code class="stamp">noindex</code> and stays out
-      of the sitemap until someone has actually checked it.
-    </p>
-    <p class="max-w-[58ch]">
-      That's enforced by the build instead of by me remembering. I'll come back
-      to why that distinction matters, because for a while it wasn't true.
-    </p>
-
-    <h3>4. "Not confirmed" is a real answer</h3>
-    <p class="max-w-[58ch]">
-      Where I don't know something the page says so. An empty field means I
-      haven't checked it. It doesn't mean the park lacks the thing, and
-      rendering it as "No" would invent facts ten at a time.
-    </p>
-
-    <h3>5. When sources disagree, whoever sets the rule wins</h3>
-    <p class="max-w-[58ch]">
-      I don't average two sources or split the difference. There's a live
-      example. Garrett County's May announcement says Swallow Falls needs a
-      reservation every day; Maryland DNR says weekends and holidays, in three
-      separate places. DNR runs the park and takes the bookings, so DNR wins and
-      the county's version sits on the page as a recorded conflict.
-    </p>
-
-    <h3 id="corrections">6. I publish the mistakes</h3>
-    <p class="max-w-[58ch]">
-      When I get something wrong I fix it, date it, and leave the old claim on
-      the page saying what it used to say. A site that promises verification and
-      quietly rewrites its errors is worth less than one that never promised.
-    </p>
-
-    <h2>How this gets written</h2>
-
-    <p class="max-w-[58ch]">
-      I don't take free admission, tell a place I'm coming, or run paid
-      listings. I call the town, not the blog. I pay my own park fees. Every
-      fact here was checked by a person and says who and when. If I haven't
-      checked it, it says that too.
-    </p>
-
-    <p class="max-w-[58ch]">
-      That's all conduct rather than a promise about money, on purpose. An
-      earlier version of this promised there'd never be affiliate links, which
-      was a promise about revenue rather than about how the work gets done —
-      and one the site's own lodging data already contradicted. What's above
-      stays true whatever this ever earns.
+      Most of this site is currently the second kind. I don't take free
+      admission, tell a place I'm coming, or run paid listings, and I pay my own
+      park fees.
     </p>
 
     <h2>Three I've already got wrong</h2>
 
     <p class="max-w-[58ch]">
-      This is the part I'd want to read first if I landed here, so it isn't
-      buried.
-    </p>
-
-    <p class="max-w-[58ch]">
-      <strong>Swallow Falls reservations.</strong> I published "every day,
-      weekends included" on the strength of the county's announcement. DNR runs
-      the park and says weekends and holidays. A reader caught it.
+      <strong>Swallow Falls reservations.</strong> I published "every day" on
+      the county's announcement. DNR runs the park and says weekends and
+      holidays. A reader caught it.
       <a href="/parks/swallow-falls/#corrected">The correction is on the page</a>.
     </p>
 
     <p class="max-w-[58ch]">
-      <strong>The 4-H center.</strong> I had it as a lake and beach open daily
-      through the summer for swimming and canoeing. University of Maryland
-      Extension, who run it, put swimming and boating on the private side:
-      program participants and booked groups only. My version would have sent
-      a family out there to swim in water they couldn't reach.
+      <strong>The 4-H center.</strong> I had it as a lake open daily for
+      swimming and canoeing. The people who run it put both on the private side,
+      for booked groups only. My version would have sent a family out there to
+      swim in water they couldn't reach.
     </p>
 
     <p class="max-w-[58ch]">
       <strong>Three parks marked "believed free".</strong> Believed by whom? I
-      hadn't checked. I'd written a guess in a soft enough voice that it looked
-      like a fact, which is exactly the thing this site is supposed to refuse.
-      They now say nobody has checked.
+      hadn't checked. That's a guess written in a soft enough voice to look like
+      a fact, which is the exact thing this site exists to refuse.
     </p>
 
     <p class="max-w-[58ch]">
-      The 4-H error had a cause worth naming. Its only source was a county
+      The 4-H error is the one worth naming a cause for. Its only source was a
       tourism website, and the build gate at the time checked that <em>some</em>
-      source existed rather than a primary one. So the promise in rule 3 was
-      decoration for about a week. The gate now requires a primary source and
-      three thin records dropped out of search the moment I fixed it.
+      source existed rather than a primary one — so rule three was decoration
+      for about a week. The gate requires a primary source now, and three thin
+      records dropped out of search the moment I fixed it.
     </p>
 
     <h2>Found something wrong?</h2>
     <p class="max-w-[58ch]">
-      Tell me. Locals know these places better than I do, and a note from
-      someone who stood there yesterday beats another phone call. There's a
-      report box at the bottom of every park page. Or reach me through
-      <a href="https://werth.design" rel="noopener">Werth Design</a>, which is
-      my studio and which builds and pays for this.
+      Tell me. A note from someone who stood there yesterday beats another phone
+      call, and there's a report box at the bottom of every park page. Or reach
+      me through <a href="https://werth.design" rel="noopener">Werth Design</a>,
+      my studio, which builds and pays for this.
     </p>
 
     <h2>Related</h2>

@@ -96,6 +96,7 @@ const { icon, class: className = "", style } = Astro.props;
   {icon === "winterUse" && (<><path d="M12 3v18" /><path d="M4 7.5l16 9" /><path d="M20 7.5l-16 9" /></>)}
 
   {/* Indoors. */}
+  {icon === "walkIn" && (<><path d="M13.5 3.5H20v17h-6.5" /><path d="M3.5 12h9" /><path d="M9 8l4 4-4 4" /></>)}
   {icon === "free" && (<><circle cx="12" cy="12" r="8.5" /><path d="M9 8.5h6" /><path d="M9 12h5" /><path d="M11 8.5v8" /></>)}
   {icon === "giftShop" && (<><path d="M3 9h18v12H3z" /><path d="M3 9l2-5h14l2 5" /><path d="M12 9v12" /></>)}
   {icon === "accessible" && (<><circle cx="12" cy="5" r="2.2" /><path d="M12 9v5h5" /><path d="M8 12a5 5 0 1 0 7 6" /></>)}
