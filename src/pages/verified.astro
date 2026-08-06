@@ -113,11 +113,11 @@ const TIER_CLASS: Record<Tier, string> = {
   <div class="wrap pt-11 pb-6">
     <p class="label m-0">Audit</p>
     <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[17ch] text-slate">
-      Every fact, and where it came from
+      Every page, and where it came from
     </h1>
     <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
-      Generated from the data the pages render from, sorted oldest first. If
-      something here has gone stale, this is where it shows.
+      One row per page on this site, and every name is a link to it. Oldest
+      check first, so whatever is going stale is at the top.
     </p>
   </div>
 
@@ -153,36 +153,50 @@ const TIER_CLASS: Record<Tier, string> = {
   </div>
 
   <div class="wrap pb-9">
-    <div class="sheet breakout overflow-x-auto">
-      <table class="w-full border-collapse text-left min-w-[38rem]">
-        <thead>
+    {/*
+      Five columns will not fit a phone, and the answer is not a sideways
+      scrollbar — a table you have to drag is a table nobody reads the right
+      half of, and the right half here is the source and the date, which is the
+      entire point of the page.
+
+      So each row becomes a block below `sm`, with the column headings carried
+      down as inline labels. Same markup, same cells, no duplicate DOM: the
+      header row hides and the labels appear. Delaware's copy of this page has
+      worked this way for a while; this brings the two into line.
+    */}
+    <div class="sheet breakout overflow-hidden">
+      <table class="w-full border-collapse text-left">
+        <thead class="hidden sm:table-header-group">
           <tr class="border-b-2 border-contour">
-            <th class="label px-4 py-3 font-normal">Record</th>
-            <th class="label px-4 py-3 font-normal">How</th>
-            <th class="label px-4 py-3 font-normal">Source</th>
-            <th class="label px-4 py-3 font-normal whitespace-nowrap">Checked</th>
-            <th class="label px-4 py-3 font-normal whitespace-nowrap">Fields</th>
+            <th scope="col" class="label px-4 py-3 font-normal">Record</th>
+            <th scope="col" class="label px-4 py-3 font-normal">How</th>
+            <th scope="col" class="label px-4 py-3 font-normal">Source</th>
+            <th scope="col" class="label px-4 py-3 font-normal whitespace-nowrap">Checked</th>
+            <th scope="col" class="label px-4 py-3 font-normal whitespace-nowrap">Fields</th>
           </tr>
         </thead>
         <tbody>
           {
             ordered.map((r) => (
-              <tr class="border-b border-lake/25 align-top">
-                <td class="px-4 py-3">
+              <tr class="block sm:table-row border-b border-lake/25 last:border-b-0 align-top">
+                <th scope="row" class="block sm:table-cell px-4 pt-3.5 sm:py-3 text-left font-normal">
                   <a href={r.href} class="text-[0.94rem] font-medium">{r.name}</a>
                   <span class="stamp text-ink-soft block mt-0.5">{r.section}</span>
-                </td>
-                <td class={`px-4 py-3 stamp whitespace-nowrap ${TIER_CLASS[r.tier]}`}>
+                </th>
+                <td class={`block sm:table-cell px-4 pt-2 sm:py-3 stamp sm:whitespace-nowrap ${TIER_CLASS[r.tier]}`}>
                   {TIER_LABEL[r.tier]}
                 </td>
-                <td class="px-4 py-3 text-[0.86rem] leading-snug max-w-[16rem]">
+                <td class="block sm:table-cell px-4 pt-2 sm:py-3 text-[0.86rem] leading-snug sm:max-w-[16rem]">
+                  <span class="label sm:hidden block mb-0.5">Source</span>
                   {r.url ? <a href={r.url} rel="nofollow">{r.source}</a> : r.source}
                 </td>
-                <td class="px-4 py-3 stamp text-ink-soft whitespace-nowrap">
+                <td class="block sm:table-cell px-4 pt-2 sm:py-3 stamp text-ink-soft sm:whitespace-nowrap">
+                  <span class="label sm:hidden me-2">Checked</span>
                   {r.date ? formatStampDate(r.date) : "—"}
-                  {r.age !== null && <span class="block mt-0.5">{r.age}d ago</span>}
+                  {r.age !== null && <span class="sm:block sm:mt-0.5 ms-1 sm:ms-0">({r.age}d ago)</span>}
                 </td>
-                <td class="px-4 py-3 stamp text-ink-soft whitespace-nowrap">
+                <td class="block sm:table-cell px-4 pt-2 pb-3.5 sm:py-3 stamp text-ink-soft sm:whitespace-nowrap">
+                  <span class="label sm:hidden me-2">Fields confirmed</span>
                   {r.total === 0 ? "—" : `${r.known}/${r.total}`}
                 </td>
               </tr>

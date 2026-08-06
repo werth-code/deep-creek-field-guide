@@ -129,6 +129,7 @@ const schema = [
   const VOCAB = [
     [["restroom","restrooms","toilet","toilets","bathroom","bathrooms","washroom","wc","porta potty"],"restrooms"],
     [["playground","play ground","swings","swing set","slide","play area"],"playground"],
+    [["splash pad","splashpad","splash park","spray park","sprayground","water play","spray ground"],"splashPad"],
     [["swim","swimming","swimmable","wade","wading"],"swimming"],
     [["beach","sand","sandy"],"beach"],
     [["trail","trails","hike","hiking","walk","walking","hikes"],"trails"],
@@ -151,9 +152,11 @@ const schema = [
   const KIND_WORDS = [
     [["state park","state parks","state forest","dnr","big park","big parks"],"state"],
     [["town park","town parks","local park","local parks","municipal","community park","community parks"],"town"],
+    [["museum","museums","library","libraries","nature center","nature centre","indoors","inside","rainy day","rainy","when it rains","out of the rain"],"indoor"],
+    [["nearby","near by","over the line","out of county","outside the county","west virginia","wv","allegany","further afield","day trip"],"nearby"],
   ];
   const SAYS = {
-    restrooms:"restrooms", playground:"a playground", swimming:"swimming", beach:"a beach",
+    restrooms:"restrooms", playground:"a playground", splashPad:"a splash pad", indoors:"somewhere indoors", giftShop:"a gift shop", swimming:"swimming", beach:"a beach",
     trails:"trails", camping:"camping", cabins:"cabins", boatLaunch:"a boat launch", boatRentals:"boat rentals",
     fishing:"fishing", picnic:"picnic tables", pavilion:"a pavilion", sports:"courts or fields",
     pavedPath:"a paved path", winterUse:"winter use", waterfall:"a waterfall",
@@ -162,7 +165,18 @@ const schema = [
   const NEGATORS = ["no ","without ","not ","don't ","dont ","doesn't ","avoid ","except "];
 
   const TOWNS = [...new Set(INDEX.map(e => e.town.toLowerCase()))].sort((a,b)=>b.length-a.length);
-  const NAMES = INDEX.map(e => [e.name.toLowerCase(), e.slug]).sort((a,b)=>b[0].length-a[0].length);
+  function aliases(name) {
+    const full = name.toLowerCase();
+    const out = new Set([full]);
+    const cut = full.split(/ at | of /)[0].trim();
+    const trimmed = cut.replace(/\s+(state park|state forest|memorial park|community park|town park|park)$/,"").trim();
+    for (const a of [cut, trimmed]) if (a.length >= 6) out.add(a);
+    return [...out];
+  }
+  const ALIAS_USES = new Map();
+  for (const e of INDEX) for (const a of aliases(e.name)) ALIAS_USES.set(a,(ALIAS_USES.get(a)??0)+1);
+  const NAMES = INDEX.flatMap(e => aliases(e.name).filter(a => ALIAS_USES.get(a)===1).map(a => [a, e.slug]))
+    .sort((a,b)=>b[0].length-a[0].length);
 
   const norm = s => s.toLowerCase().replace(/[^a-z0-9\s'-]/g," ").replace(/\s+/g," ").trim();
   function has(hay, needle) {
@@ -188,7 +202,13 @@ const schema = [
     let kind = null;
     for (const [ws,k] of KIND_WORDS) if (ws.some(w => has(` ${q} `, w))) { kind = k; break; }
     const town = TOWNS.find(t => has(` ${q} `, t)) ?? null;
-    const named = (NAMES.find(([n]) => has(` ${q} `, n)) ?? [])[1] ?? null;
+    const q1 = ` ${q} `;
+    let named = (NAMES.find(([n]) => has(q1, n)) ?? [])[1] ?? null;
+    if (!named && q.length >= 6) {
+      const bare = t => t.toLowerCase().replace(/'/g,"");
+      const starts = INDEX.filter(e => bare(e.name).startsWith(bare(q)));
+      if (starts.length === 1) named = starts[0].slug;
+    }
     return { raw, wants, excludes, kind, town, named };
   }
 
@@ -210,10 +230,13 @@ const schema = [
     }
     scored.sort((a,b) => b.score - a.score || a.entry.name.localeCompare(b.entry.name));
     const empty = !query.wants.length && !query.excludes.length && !query.kind && !query.town && !query.named;
+    /* A named record leads, whatever bucket it fell in — see match.ts. */
+    const lead = query.named ? scored.find(s => s.entry.slug === query.named) ?? null : null;
+    const rest = lead ? scored.filter(s => s !== lead) : scored;
     return {
       query,
-      matches: scored.filter(s => !s.unknown.length),
-      unconfirmed: scored.filter(s => s.unknown.length),
+      matches: [...(lead ? [lead] : []), ...rest.filter(s => !s.unknown.length)],
+      unconfirmed: rest.filter(s => s.unknown.length),
       empty,
     };
   }
@@ -226,7 +249,7 @@ const schema = [
   function deterministicLead(r) {
     const asked = listOf(r.query.wants.map(says));
     const where = r.query.town ? ` in ${cap(r.query.town)}` : "";
-    const what = r.query.kind === "state" ? "state park" : r.query.kind === "town" ? "town park" : "park";
+    const what = ({state:"state park",town:"town park",indoor:"museum or library",nearby:"place over the line"})[r.query.kind] || "place";
     if (r.empty) return "Tell me what you're after — a beach, restrooms, a playground, trails, somewhere you can turn up to without booking — and I'll show you what's confirmed.";
     if (!r.matches.length && !r.unconfirmed.length)
       return `Nothing on the site matches${asked ? " " + asked : ""}${where}. That may mean it doesn't exist here, or that I haven't checked it yet.`;
@@ -318,7 +341,7 @@ const schema = [
 
   const VOCAB_KEYS = new Set(Object.keys(SAYS));
   const TOWN_LIST = [...new Set(INDEX.map(e => e.town))];
-  const KIND_LIST = ["state", "town"];
+  const KIND_LIST = ["state", "town", "indoor", "nearby"];
 
   const validFilters = f => ({
     wants: [...new Set((f?.wants ?? []).filter(k => VOCAB_KEYS.has(k)))],
@@ -367,7 +390,7 @@ const schema = [
       ...filters.wants.map(k => ({ t: says(k), kind: "wants", v: k })),
       ...filters.excludes.map(k => ({ t: `not ${says(k)}`, kind: "excludes", v: k })),
       ...(filters.town ? [{ t: filters.town, kind: "town", v: filters.town }] : []),
-      ...(filters.kind ? [{ t: filters.kind === "state" ? "State parks" : "Town parks", kind: "kind", v: filters.kind }] : []),
+      ...(filters.kind ? [{ t: { state: "State parks", town: "Town parks", indoor: "Museums & libraries", nearby: "Just over the line" }[filters.kind], kind: "kind", v: filters.kind }] : []),
     ];
     if (!bits.length) return "";
     return `<div class="flex flex-wrap items-center gap-1.5 mb-4">

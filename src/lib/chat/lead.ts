@@ -17,6 +17,9 @@ import type { MatchResult } from "./match";
 const SAYS: Record<AttrKey, string> = {
   restrooms: "restrooms",
   playground: "a playground",
+  splashPad: "a splash pad",
+  indoors: "somewhere indoors",
+  giftShop: "a gift shop",
   swimming: "swimming",
   beach: "a beach",
   trails: "trails",
@@ -39,6 +42,13 @@ const SAYS: Record<AttrKey, string> = {
 export const saysFor = (k: AttrKey): string => SAYS[k] ?? k;
 
 /** "a beach and restrooms" / "a beach, restrooms and a playground" */
+const KIND_NOUN: Record<string, string> = {
+  state: "state park",
+  town: "town park",
+  indoor: "museum or library",
+  nearby: "place over the line",
+};
+
 export function list(items: string[]): string {
   if (items.length === 0) return "";
   if (items.length === 1) return items[0];
@@ -53,7 +63,7 @@ export function deterministicLead(r: MatchResult): string {
   const where = query.town
     ? ` in ${query.town.replace(/\b[a-z]/g, (c) => c.toUpperCase())}`
     : "";
-  const what = query.kind === "state" ? "state park" : query.kind === "town" ? "town park" : "park";
+  const what = KIND_NOUN[query.kind ?? ""] ?? "place";
 
   if (r.empty) {
     return "Tell me what you're after — a beach, restrooms, a playground, trails, somewhere you can turn up to without booking — and I'll show you what's confirmed.";

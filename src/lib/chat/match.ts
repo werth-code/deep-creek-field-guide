@@ -18,6 +18,7 @@ export type AttrKey = keyof ChatAttrs;
 const VOCAB: [string[], AttrKey][] = [
   [["restroom", "restrooms", "toilet", "toilets", "bathroom", "bathrooms", "washroom", "wc", "porta potty", "portaloo"], "restrooms"],
   [["playground", "play ground", "swings", "swing set", "slide", "play area"], "playground"],
+  [["splash pad", "splashpad", "splash park", "spray park", "sprayground", "water play", "spray ground"], "splashPad"],
   [["swim", "swimming", "swimmable", "wade", "wading"], "swimming"],
   [["beach", "sand", "sandy"], "beach"],
   [["trail", "trails", "hike", "hiking", "walk", "walking", "hikes"], "trails"],
@@ -42,9 +43,13 @@ const PHRASES: [string, AttrKey][] = VOCAB
   .flatMap(([words, key]) => words.map((w) => [w, key] as [string, AttrKey]))
   .sort((a, b) => b[0].length - a[0].length);
 
-const KIND_WORDS: [string[], "state" | "town"][] = [
+export type Kind = "state" | "town" | "indoor" | "nearby";
+
+const KIND_WORDS: [string[], Kind][] = [
   [["state park", "state parks", "state forest", "dnr", "big park", "big parks"], "state"],
   [["town park", "town parks", "local park", "local parks", "municipal", "playground park", "community park", "community parks"], "town"],
+  [["museum", "museums", "library", "libraries", "nature center", "nature centre", "indoors", "inside", "rainy day", "rainy", "when it rains", "out of the rain"], "indoor"],
+  [["nearby", "near by", "over the line", "out of county", "outside the county", "west virginia", "wv", "allegany", "further afield", "day trip"], "nearby"],
 ];
 
 /** Towns worth matching by name. Derived from the data at module load. */
@@ -52,9 +57,39 @@ const TOWNS = [...new Set(CHAT_INDEX.map((e) => e.town.toLowerCase()))].sort(
   (a, b) => b.length - a.length,
 );
 
-const NAMES = CHAT_INDEX.map((e) => [e.name.toLowerCase(), e.slug] as const).sort(
-  (a, b) => b[0].length - a[0].length,
-);
+/**
+ * Names, plus a short form of each.
+ *
+ * The index matched only the FULL name, and nobody types "Discovery Center at
+ * Deep Creek Lake State Park" or "Blackwater Falls State Park" — they type the
+ * first two words. Searching either by name returned nothing at all, which on
+ * a site that has a page for both reads as "we don't have it".
+ *
+ * An alias that would match two records is dropped rather than guessed at:
+ * "Town Park" belongs to Accident twice over, and picking one would be
+ * inventing an answer.
+ */
+function aliases(name: string): string[] {
+  const full = name.toLowerCase();
+  const out = new Set<string>([full]);
+  const cut = full.split(/ at | of /)[0].trim();
+  const trimmed = cut
+    .replace(/\s+(state park|state forest|memorial park|community park|town park|park)$/, "")
+    .trim();
+  for (const a of [cut, trimmed]) if (a.length >= 6) out.add(a);
+  return [...out];
+}
+
+const ALIAS_USES = new Map<string, number>();
+for (const e of CHAT_INDEX) {
+  for (const a of aliases(e.name)) ALIAS_USES.set(a, (ALIAS_USES.get(a) ?? 0) + 1);
+}
+
+const NAMES = CHAT_INDEX.flatMap((e) =>
+  aliases(e.name)
+    .filter((a) => ALIAS_USES.get(a) === 1)
+    .map((a) => [a, e.slug] as const),
+).sort((a, b) => b[0].length - a[0].length);
 
 /** Words that flip a requirement to "must NOT have". */
 const NEGATORS = ["no ", "without ", "not ", "don't ", "dont ", "doesn't ", "avoid ", "except "];
@@ -65,7 +100,7 @@ export interface Query {
   wants: AttrKey[];
   /** Attributes the answer must NOT have. */
   excludes: AttrKey[];
-  kind: "state" | "town" | null;
+  kind: Kind | null;
   town: string | null;
   /** A specific park asked about by name. */
   named: string | null;
@@ -101,13 +136,30 @@ export function parse(raw: string): Query {
     rest = rest.replace(phrase, " ");
   }
 
-  let kind: "state" | "town" | null = null;
+  let kind: Kind | null = null;
   for (const [words, k] of KIND_WORDS) {
     if (words.some((w) => has(` ${q} `, w))) { kind = k; break; }
   }
 
   const town = TOWNS.find((t) => has(` ${q} `, t)) ?? null;
-  const named = NAMES.find(([n]) => has(` ${q} `, n))?.[1] ?? null;
+  /*
+   * Naming a place is a LOOKUP, not a filter.
+   *
+   * Two ways in, because people type both. Either the question contains a
+   * known alias ("...at blackwater falls state park"), or the question IS the
+   * start of a name — "ruth enlow", "oakland b". The second is how anyone
+   * actually searches, and without it a question that is nothing but a name
+   * scored below every park in the county.
+   */
+  const q1 = ` ${q} `;
+  let named = NAMES.find(([n]) => has(q1, n))?.[1] ?? null;
+  if (!named && q.length >= 6) {
+    /* Apostrophes are the difference between "hovatters" and "Hovatter's",
+       and nobody reaches for the apostrophe key mid-search. */
+    const bare = (t: string) => t.toLowerCase().replace(/'/g, "");
+    const starts = CHAT_INDEX.filter((e) => bare(e.name).startsWith(bare(q)));
+    if (starts.length === 1) named = starts[0].slug;
+  }
 
   return { raw, wants, excludes, kind, town, named };
 }
@@ -169,10 +221,23 @@ export function match(raw: string, index: ChatEntry[] = CHAT_INDEX): MatchResult
 
   const empty = wants.length === 0 && excludes.length === 0 && !kind && !town && !named;
 
+  /*
+   * The named record leads, even when a requirement it has never had checked
+   * would otherwise drop it into the "might match" bucket. Asking for
+   * Blackwater Falls by name and being shown Swallow Falls first, because the
+   * word "falls" read as a waterfall requirement and the nearby dataset has no
+   * waterfall field, is the assistant answering a question nobody asked.
+   */
+  const lead = named ? scored.find((s) => s.entry.slug === named) ?? null : null;
+  const rest = lead ? scored.filter((s) => s !== lead) : scored;
+
   return {
     query,
-    matches: scored.filter((s) => s.unknown.length === 0),
-    unconfirmed: scored.filter((s) => s.unknown.length > 0),
+    matches: [
+      ...(lead ? [lead] : []),
+      ...rest.filter((s) => s.unknown.length === 0),
+    ],
+    unconfirmed: rest.filter((s) => s.unknown.length > 0),
     empty,
   };
 }

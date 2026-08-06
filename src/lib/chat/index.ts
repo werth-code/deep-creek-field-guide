@@ -1,7 +1,7 @@
 /**
  * The chat index.
  *
- * One flat shape covering both datasets, carrying only what the matcher needs
+ * One flat shape covering every dataset, carrying only what the matcher needs
  * plus the canonical facts and the source link. Built from the same JSON the
  * pages render from, so the assistant and the page can never disagree.
  *
@@ -17,6 +17,12 @@
  * all. A model that can phrase "Swallow Falls doesn't need a reservation" is
  * an existential risk to the only asset the site has.
  *
+ * IT HAS TO COVER EVERYTHING THE SITE COVERS. This indexed state parks and
+ * town parks and nothing else, so asking it about the Discovery Center or
+ * Blackwater Falls got you "nothing matches" — from an assistant sitting on a
+ * site with pages for both. A search that silently knows less than the site it
+ * answers for is worse than no search, because it reads as an answer.
+ *
  * UNKNOWN IS NOT NO. Most regional facilities are unconfirmed. A matcher that
  * read null as false would return almost nothing and silently assert a pile of
  * facts nobody checked, so results come back in two buckets: matches, and
@@ -24,6 +30,8 @@
  */
 import stateParksData from "../../data/state-parks.json";
 import regionalParksData from "../../data/regional-parks.json";
+import indoorData from "../../data/indoor.json";
+import nearbyData from "../../data/nearby.json";
 import {
   REGIONAL_FACILITY_LABELS,
   STATE_FEATURE_LABELS,
@@ -31,6 +39,8 @@ import {
   type RegionalPark,
   type StatePark,
 } from "../parks";
+import type { IndoorPlace } from "../indoor";
+import type { NearbyPlace } from "../nearby";
 import { isPublishable, tierOf, type Tier } from "../verification";
 
 /** Tri-state. `null` means unconfirmed and must never render as "no". */
@@ -50,11 +60,15 @@ export interface ChatAttrs {
   fishing: Tri;
   picnic: Tri;
   pavilion: Tri;
+  splashPad: Tri;
   sports: Tri;
   pavedPath: Tri;
   winterUse: Tri;
   waterfall: Tri;
   petsAllowed: Tri;
+  /** Somewhere to go when it rains. */
+  indoors: Tri;
+  giftShop: Tri;
   /** True when you can turn up without booking. null = unestablished. */
   walkIn: Tri;
   free: Tri;
@@ -64,7 +78,7 @@ export interface ChatEntry {
   slug: string;
   url: string;
   name: string;
-  kind: "state" | "town";
+  kind: "state" | "town" | "indoor" | "nearby";
   kindLabel: string;
   town: string;
   operator: string;
@@ -87,7 +101,8 @@ export interface ChatEntry {
 const ATTR_KEYS: (keyof ChatAttrs)[] = [
   "restrooms", "playground", "swimming", "beach", "trails", "camping",
   "cabins", "boatLaunch", "boatRentals", "fishing", "picnic", "pavilion",
-  "sports", "pavedPath", "winterUse", "waterfall", "petsAllowed", "walkIn", "free",
+  "splashPad", "sports", "pavedPath", "winterUse", "waterfall", "petsAllowed",
+  "indoors", "giftShop", "walkIn", "free",
 ];
 
 const EMPTY: ChatAttrs = Object.fromEntries(ATTR_KEYS.map((k) => [k, null])) as ChatAttrs;
@@ -183,6 +198,7 @@ function regionalEntry(p: RegionalPark): ChatEntry {
       fishing: f.fishing,
       picnic: f.picnic,
       pavilion: f.pavilion,
+      splashPad: f.splashPad,
       sports: f.sports,
       pavedPath: f.pavedPath,
       winterUse: f.winterUse,
@@ -204,6 +220,108 @@ function regionalEntry(p: RegionalPark): ChatEntry {
 }
 
 /**
+ * Museums, libraries and nature centres.
+ *
+ * `indoors: true` is the whole point of the section and the thing people
+ * actually ask for — "somewhere out of the rain" is a question the park
+ * datasets cannot answer.
+ */
+function indoorEntry(p: IndoorPlace): ChatEntry {
+  const facts = [
+    {
+      label: "Restrooms",
+      value: p.restrooms === null || p.restrooms === undefined ? "Not confirmed" : p.restrooms ? "Yes" : "No",
+      state: (p.restrooms === null || p.restrooms === undefined ? "unknown" : p.restrooms ? "yes" : "no") as
+        "yes" | "no" | "unknown",
+    },
+    {
+      label: "Admission",
+      value: p.admission.free === true ? "Free" : p.admission.note,
+      state: (p.admission.free === null ? "unknown" : p.admission.free ? "yes" : "no") as
+        "yes" | "no" | "unknown",
+    },
+    ...(p.accessibility ? [{ label: "Accessibility", value: p.accessibility, state: "yes" as const }] : []),
+    ...(p.parking ? [{ label: "Parking", value: p.parking, state: "yes" as const }] : []),
+  ];
+
+  return {
+    slug: p.slug,
+    url: `/indoors/${p.slug}/`,
+    name: p.name,
+    kind: "indoor",
+    kindLabel: p.kind,
+    town: p.town,
+    operator: p.operator,
+    blurb: p.blurb,
+    attrs: {
+      ...EMPTY,
+      indoors: true,
+      restrooms: p.restrooms,
+      giftShop: p.giftShop,
+      free: p.admission.free,
+      /* No museum here takes a booking to walk in. */
+      walkIn: true,
+    },
+    facts,
+    reservation: null,
+    feeNote: p.admission.note,
+    warnings: p.warnings,
+    phone: p.phone,
+    tier: tierOf(p),
+    sourcedOn: p.sourcedOn,
+    verifiedDate: p.verifiedDate,
+    source: p.sources[0] ? { label: p.sources[0].label, url: p.sources[0].url } : null,
+    haystack: "",
+  };
+}
+
+/**
+ * Just over the line.
+ *
+ * These are the answer to "is there anything else within an hour", which is a
+ * question people ask constantly and the county datasets refuse by
+ * construction. The distance line rides in the haystack so "West Virginia" or
+ * "Allegany" finds them.
+ */
+function nearbyEntry(p: NearbyPlace): ChatEntry {
+  const facts = [
+    { label: "Where", value: `${p.town}, ${p.state}`, state: "yes" as const },
+    { label: "Getting there", value: p.distance, state: "yes" as const },
+    ...(p.season ? [{ label: "Season", value: p.season, state: "yes" as const }] : []),
+    {
+      label: "Admission",
+      value: p.admission.amount === 0 ? "Free" : p.admission.note,
+      state: (p.admission.amount === null ? "unknown" : "yes") as "yes" | "no" | "unknown",
+    },
+  ];
+
+  return {
+    slug: p.slug,
+    url: `/nearby/${p.slug}/`,
+    name: p.name,
+    kind: "nearby",
+    kindLabel: p.kind,
+    town: p.town,
+    operator: p.state,
+    blurb: p.blurb,
+    attrs: {
+      ...EMPTY,
+      free: p.admission.amount === 0 ? true : null,
+    },
+    facts,
+    reservation: null,
+    feeNote: p.admission.note,
+    warnings: p.warnings,
+    phone: p.phone,
+    tier: tierOf(p),
+    sourcedOn: p.sourcedOn,
+    verifiedDate: p.verifiedDate,
+    source: p.sources[0] ? { label: p.sources[0].label, url: p.sources[0].url } : null,
+    haystack: "",
+  };
+}
+
+/**
  * The published index.
  *
  * Filtered by isPublishable for the same reason the sitemap is: a record we
@@ -213,9 +331,21 @@ function regionalEntry(p: RegionalPark): ChatEntry {
 export const CHAT_INDEX: ChatEntry[] = [
   ...(stateParksData as StatePark[]).filter(isPublishable).map(stateEntry),
   ...(regionalParksData as RegionalPark[]).filter(isPublishable).map(regionalEntry),
+  ...(indoorData as unknown as IndoorPlace[]).filter(isPublishable).map(indoorEntry),
+  ...(nearbyData as unknown as NearbyPlace[]).filter(isPublishable).map(nearbyEntry),
 ].map((e) => ({
   ...e,
-  haystack: [e.name, e.town, e.kindLabel, e.operator, e.blurb, ...e.warnings]
+  haystack: [
+    e.name,
+    e.town,
+    e.kindLabel,
+    e.operator,
+    e.blurb,
+    /* The nearby records live in other counties and states, and that is
+       exactly what people search on. */
+    e.kind === "nearby" ? e.facts.map((f) => f.value).join(" ") : "",
+    ...e.warnings,
+  ]
     .join(" ")
     .toLowerCase(),
 }));
