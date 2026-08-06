@@ -8,7 +8,7 @@
     "blurb": "Muddy Creek Falls is the tallest free-falling waterfall in Maryland at 53 feet. The mile-long loop past it runs through old-growth hemlock and white pine, some of it over 300 years old and the last of its kind in the state. It's the most visited park in Garrett County, and the reason the reservation system exists.",
     "features": {
       "waterfall": true,
-      "beach": null,
+      "beach": false,
       "swimming": false,
       "restrooms": true,
       "picnic": true,
@@ -159,6 +159,12 @@
         "date": "2026-08-05",
         "author": "Site maintainer",
         "body": "The path in is crushed rock and flat enough for a rugged stroller. Worth knowing before you decide whether to carry a toddler — but only the first stretch. Past the junction it turns into steps and roots."
+      },
+      {
+        "date": "2026-08-06",
+        "author": "Site maintainer",
+        "body": "There is no beach at Swallow Falls, and the record now says no rather than leaving it unchecked. What there is: a small crescent of sand below Tolliver Falls, on the near bank of the pool. Worth knowing before you promise a child a beach, and worth knowing it exists at all.",
+        "photo": "sf-tolliver-sand"
       }
     ],
     "verdict": {
@@ -254,6 +260,14 @@
         "credit": "Site maintainer",
         "takenOn": "2026-08-05",
         "portrait": false
+      },
+      {
+        "file": "sf-tolliver-sand",
+        "alt": "A tea-colored pool below a low wide waterfall, with a crescent of pale sand along the near bank and mossy rock and ferns in the foreground.",
+        "caption": "The sand below Tolliver Falls. This is the whole of it — a few strides along one bank, and the water is shallow at that edge.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-06",
+        "portrait": false
       }
     ],
     "onSite": [
@@ -272,6 +286,10 @@
       {
         "label": "Picnicking",
         "note": "Tables and grills past the main parking area, on the hill. The pavilion beside the main lot can be rented."
+      },
+      {
+        "label": "Tolliver Falls",
+        "note": "A low, wide falls at the far end of the trail with a crescent of sand on the near bank — a few strides of it, not a beach. Enough for small children to stand in the shallows at the edge. The park has no swimming beach and the record says so; this is the thing people mean when they ask."
       },
       {
         "label": "The walk",

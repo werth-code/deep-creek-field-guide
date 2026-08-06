@@ -1,0 +1,171 @@
+---
+/**
+ * Every phone number on the site, in one place.
+ *
+ * WHY THIS PAGE EXISTS
+ *
+ * Half of what this site says ends in "ring first" — hours that aren't
+ * published, a fee nobody states, whether the restroom block is open before
+ * Memorial Day. That advice is useless if the number is three taps away on
+ * another page, and it is worse than useless in a parking lot with one bar.
+ * So: one page, every number, tap to call.
+ *
+ * DERIVED, NOT MAINTAINED. Built from the same JSON the record pages render
+ * from. A number corrected on a park page is corrected here in the same
+ * commit, because there is no second copy to forget about.
+ *
+ * IT SHOWS THE HOLES. Most records have no number yet — 2 of the 12 state
+ * parks do. Listing only the ones I have would make this page look finished
+ * and make the dataset look better than it is, which is the exact failure the
+ * rest of the site is built to avoid. Everything appears; what's missing says
+ * so and links to the record so you can tell me if you know it.
+ */
+import Layout from "../layouts/Layout.astro";
+import FeatureIcon from "../components/FeatureIcon.astro";
+import { colorFor } from "../lib/feature-colors";
+
+import stateParksData from "../data/state-parks.json";
+import regionalData from "../data/regional-parks.json";
+import indoorData from "../data/indoor.json";
+import nearbyData from "../data/nearby.json";
+import { isPublishable } from "../lib/verification";
+
+type Row = {
+  name: string;
+  href: string;
+  phone: string | null;
+  address: string | null;
+  website: { label: string; url: string } | null;
+  where: string | null;
+};
+
+const rows = (data: unknown[], href: (r: any) => string): Row[] =>
+  (data as any[])
+    .filter(isPublishable)
+    .map((r) => ({
+      name: r.name,
+      href: href(r),
+      phone: r.phone ?? null,
+      address: r.address ?? null,
+      website: r.website ?? null,
+      where: r.town ?? null,
+    }))
+    /* Numbers first. This page is for calling; a record with nothing to call
+       is reference, and reference goes underneath. */
+    .sort((a, b) => Number(Boolean(b.phone)) - Number(Boolean(a.phone)) || a.name.localeCompare(b.name));
+
+const groups = [
+  { key: "trails", title: "State parks and forests", rows: rows(stateParksData, (r) => `/parks/${r.slug}/`) },
+  { key: "playground", title: "Town parks", rows: rows(regionalData, (r) => `/parks/regional/${r.slug}/`) },
+  { key: "free", title: "Museums and libraries", rows: rows(indoorData, (r) => `/indoors/${r.slug}/`) },
+  { key: "petsAllowed", title: "Just over the line", rows: rows(nearbyData, (r) => `/nearby/${r.slug}/`) },
+].filter((g) => g.rows.length);
+
+const all = groups.flatMap((g) => g.rows);
+const withPhone = all.filter((r) => r.phone).length;
+
+/** tel: wants digits. Everything here is a US number. */
+const tel = (p: string) => `tel:+1${p.replace(/\D/g, "")}`;
+---
+
+<Layout
+  title="Park and county phone numbers — Garrett County, Maryland"
+  description="Every phone number on this site in one place: state parks, town parks, museums and the places just over the line. Tap to call."
+>
+  <div class="wrap pt-11 pb-6">
+    <p class="label m-0">Contacts</p>
+    <h1 class="text-[2.2rem] sm:text-[2.9rem] mt-3.5 mb-0 max-w-[15ch] text-slate">
+      Who to call
+    </h1>
+    <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
+      Half the answers on this site end in "ring first" — a fee nobody
+      publishes, hours that move, whether the restroom block is open yet. Here
+      is every number I have, on one page, so you can call from the car.
+    </p>
+  </div>
+
+  <div class="wrap pb-6">
+    <dl class="sheet breakout grid grid-cols-2 sm:grid-cols-3 divide-x divide-y sm:divide-y-0 divide-lake/30">
+      {
+        [
+          { n: String(withPhone), label: "numbers" },
+          { n: String(all.length - withPhone), label: "places with none yet" },
+          { n: String(groups.length), label: "sections" },
+        ].map((s) => (
+          <div class="px-4 py-4">
+            <dt class="font-display text-[1.9rem] font-semibold text-slate leading-none tracking-[-0.04em]">
+              {s.n}
+            </dt>
+            <dd class="m-0 mt-1.5 stamp text-ink-soft">{s.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  {
+    groups.map((g) => (
+      <div class="wrap pb-8">
+        <h2 class="font-display text-[1.5rem] font-bold text-slate border-b-[3px] border-contour pb-2 mb-4 mt-6 flex items-center gap-2">
+          <FeatureIcon
+            icon={g.key as any}
+            class="w-[0.9em] h-[0.9em] shrink-0"
+            style={`color:${colorFor(g.key)}`}
+          />
+          {g.title}
+          <span class="stamp text-ink-soft ms-1">
+            {g.rows.filter((r) => r.phone).length}/{g.rows.length}
+          </span>
+        </h2>
+
+        <dl class="sheet breakout divide-y-2 divide-lake/25">
+          {g.rows.map((r) => (
+            <div class="px-4 sm:px-5 py-3.5 sm:flex sm:items-baseline sm:gap-5">
+              <dt class="sm:w-[14rem] sm:shrink-0">
+                <a href={r.href} class="text-[1rem] font-medium">{r.name}</a>
+                {r.where && <span class="stamp text-ink-soft block mt-0.5">{r.where}</span>}
+              </dt>
+              <dd class="m-0 mt-1.5 sm:mt-0 flex-1">
+                {r.phone ? (
+                  <a href={tel(r.phone)} class="font-mono text-[1.05rem] font-medium tracking-[0.01em]">
+                    {r.phone}
+                  </a>
+                ) : (
+                  <span class="text-[0.92rem] text-ink-soft italic">
+                    No number yet —{" "}
+                    <a href="/report/">tell me if you have it</a>
+                  </span>
+                )}
+                {r.address && (
+                  <span class="stamp text-ink-soft block mt-1">{r.address}</span>
+                )}
+                {r.website && (
+                  <span class="block mt-1">
+                    <a href={r.website.url} rel="noopener nofollow" class="stamp">
+                      {r.website.label}
+                    </a>
+                  </span>
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    ))
+  }
+
+  <div class="wrap prose-field pb-4">
+    <h2>Why so many are blank</h2>
+    <p class="max-w-[58ch]">
+      Maryland DNR runs its Garrett County parks from a small number of offices
+      rather than publishing a line per park, and most of the towns publish no
+      number for their parks at all. Where I have one it came from the operator
+      and it's on the record page with its date. Where I don't, this says so
+      rather than printing a switchboard and calling it an answer.
+    </p>
+    <p class="max-w-[58ch]">
+      If you know one — or ring one and find it's changed —
+      <a href="/report/">that's the single most useful thing you can send me</a>.
+    </p>
+  </div>
+</Layout>
