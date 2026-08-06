@@ -29,12 +29,29 @@ const facts = [
 
 /* Everything with coordinates, on one map. Kinds are the section a record
    belongs to, so the filter chips read the way the nav does. */
-type Geo = { slug: string; name: string; coords?: { lat: number; lon: number; precision: "site" | "town" } };
+type Geo = {
+  slug: string; name: string; town?: string; kind?: string; operator?: string;
+  blurb?: string; photos?: { file: string; focus?: string | null }[];
+  coords?: { lat: number; lon: number; precision: "site" | "town" };
+};
+/* One line each, trimmed at a sentence so the card stays a card. */
+const oneLine = (t: string | undefined) => {
+  if (!t) return "";
+  const stop = t.indexOf(". ");
+  const line = stop > 40 ? t.slice(0, stop + 1) : t;
+  return line.length > 160 ? line.slice(0, 157).trimEnd() + "…" : line;
+};
 const pin = (rows: unknown[], kind: string, href: (r: any) => string) =>
   (rows as Geo[])
     .filter((r) => r.coords)
-    .map((r) => ({ slug: r.slug, name: r.name, href: href(r), kind,
-                   lat: r.coords!.lat, lon: r.coords!.lon, precision: r.coords!.precision }));
+    .map((r) => ({
+      slug: r.slug, name: r.name, href: href(r), kind,
+      lat: r.coords!.lat, lon: r.coords!.lon, precision: r.coords!.precision,
+      blurb: oneLine(r.blurb),
+      where: [r.town, r.operator].filter(Boolean).join(" · "),
+      photo: r.photos?.[0]?.file ?? null,
+      focus: r.photos?.[0]?.focus ?? null,
+    }));
 
 const mapPoints = [
   ...pin(stateParks as unknown[], "trails", (r) => `/parks/${r.slug}/`),

@@ -33,6 +33,18 @@ export interface MapPoint {
   lat: number;
   lon: number;
   precision: "site" | "town";
+  /** One line, so the card can say what the place is before you commit. */
+  blurb?: string;
+  /** Photo basename, if the record has one. */
+  photo?: string | null;
+  /**
+   * The photo's focal point. The card thumb crops to 16:9, and a lot of these
+   * are portrait shots of waterfalls — without this the crop takes the middle
+   * and loses the thing the photo is of.
+   */
+  focus?: string | null;
+  /** Where it is, in words. */
+  where?: string;
 }
 
 interface Props {
@@ -108,7 +120,18 @@ const vw = Math.ceil(W * SCALE);
         const cy = y(p.lat);
         const R = 13;
         return (
-          <a href={p.href} data-map-point data-kind={p.kind}>
+          <a
+            href={p.href}
+            data-map-point
+            data-kind={p.kind}
+            data-name={p.name}
+            data-where={p.where ?? ""}
+            data-blurb={p.blurb ?? ""}
+            data-photo={p.photo ?? ""}
+       data-focus={p.focus ?? ""}
+            data-label={kinds.find((k) => k.key === p.kind)?.label ?? ""}
+            data-color={colorFor(p.kind)}
+          >
             <title>{p.name}{p.precision === "town" ? " (town center)" : ""}</title>
             <circle
               cx={cx.toFixed(1)}
@@ -134,9 +157,46 @@ const vw = Math.ceil(W * SCALE);
     </svg>
   </div>
 
+  {/*
+    THE CARD.
+    Tapping a marker used to leave the page immediately, which is a poor trade
+    on a map: you go to find out what somewhere IS, and you can only find out
+    by leaving the thing that showed you where it was. Now the first tap fills
+    this in, and the link inside it is the one that navigates.
+
+    Without JavaScript every marker is still a plain link straight to the
+    record — nothing here is the only route to anything.
+  */}
+  <div class="px-3 sm:px-4 pb-4" data-map-card hidden>
+    <div class="sheet-quiet p-3 sm:p-4 flex gap-3 items-start" style="border-left-width:5px">
+      <img
+        data-card-photo
+        alt=""
+        width="120"
+        height="68"
+        hidden
+        class="w-[6.5rem] shrink-0 aspect-[16/9] object-cover block border border-lake/40"
+      />
+      <div class="min-w-0 flex-1">
+        <p class="label m-0" data-card-label />
+        <p class="font-display text-[1.15rem] font-bold tracking-[-0.02em] mt-1 mb-0 text-slate" data-card-name />
+        <p class="stamp text-ink-soft mt-1 mb-0" data-card-where />
+        <p class="mt-2 mb-0 text-[0.9rem] leading-snug" data-card-blurb />
+        <a href="#" class="tap stamp mt-3 inline-block" data-card-link>Open the page →</a>
+      </div>
+      <button
+        type="button"
+        data-card-close
+        aria-label="Close"
+        class="tap shrink-0 stamp text-ink-soft leading-none px-2 py-1 cursor-pointer"
+      >✕</button>
+    </div>
+  </div>
+
   <figcaption class="px-4 sm:px-5 pb-4 stamp text-ink-soft">
-    Solid dots are the place itself. Paler dots are the town center, where I
-    couldn't pin the building — about the width of the dot, at this scale.
+    Tap a marker to see what it is. Solid markers are the place itself; paler
+    ones are the town center, where I couldn't pin the building — about the
+    width of the marker, at this scale.
   </figcaption>
 </figure>
 
@@ -181,5 +241,59 @@ const vw = Math.ceil(W * SCALE);
       });
     }
     paint();
+
+    /* ---- the card ------------------------------------------------------ */
+
+    const card = root.querySelector("[data-map-card]");
+    const fields = {
+      label: card.querySelector("[data-card-label]"),
+      name: card.querySelector("[data-card-name]"),
+      where: card.querySelector("[data-card-where]"),
+      blurb: card.querySelector("[data-card-blurb]"),
+      link: card.querySelector("[data-card-link]"),
+      photo: card.querySelector("[data-card-photo]"),
+    };
+    let selected = null;
+
+    const deselect = () => {
+      if (selected) selected.querySelector("circle").setAttribute("stroke-width", "3");
+      selected = null;
+      card.hidden = true;
+    };
+
+    for (const a of pts) {
+      a.addEventListener("click", (e) => {
+        /* Second tap on the same marker follows the link, so the map never
+           becomes a thing you can't get out of. */
+        if (selected === a) return;
+        e.preventDefault();
+        deselect();
+        selected = a;
+        a.querySelector("circle").setAttribute("stroke-width", "7");
+
+        const d = a.dataset;
+        fields.label.textContent = d.label || "";
+        fields.name.textContent = d.name || "";
+        fields.where.textContent = d.where || "";
+        fields.blurb.textContent = d.blurb || "";
+        fields.link.setAttribute("href", a.getAttribute("href"));
+        card.querySelector("div").style.borderLeftColor = d.color || "";
+
+        if (d.photo) {
+          fields.photo.src = `/photos/${d.photo}-700.jpg`;
+          fields.photo.style.objectPosition = d.focus || "50% 50%";
+          fields.photo.hidden = false;
+        } else {
+          fields.photo.hidden = true;
+          fields.photo.removeAttribute("src");
+        }
+        card.hidden = false;
+      });
+    }
+
+    card.querySelector("[data-card-close]").addEventListener("click", deselect);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") deselect();
+    });
   })();
 </script>
