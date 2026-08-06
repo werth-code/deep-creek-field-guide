@@ -592,5 +592,100 @@
       "lon": -79.407,
       "precision": "site"
     }
+  },
+  {
+    "slug": "miner-hickory-farm",
+    "name": "Miner Hickory Farm",
+    "kind": "Riding stable",
+    "operator": "Miner Hickory Farm",
+    "town": "Grantsville",
+    "address": "160 Miner Hickory Rd, Grantsville, MD 21536",
+    "blurb": "A 300-acre farm with a heated indoor arena, which makes it the one place around here a small child can sit on a horse in February. Pony rides are $25 and run inside; trail riding, farm tours by off-road buggy, cabins and a pavilion are the rest of it.",
+    "hours": {
+      "lines": null,
+      "season": "Riding lessons and pony rides run year-round in the indoor arena. Trail riding is April to November.",
+      "note": "No opening hours are published anywhere. Everything here is booked — ring or text 240-727-9087."
+    },
+    "admission": {
+      "note": "Nothing to pay to arrive; you pay per activity, and the farm publishes every price. Pony ride $25 a guest, indoors. Barn tour alone $20. Barn tour with a 30-minute lesson or pony ride $45 a person. Trail ride $50 a guest. Off-road farm tour $50 a guest, ages 4 up. Lessons in the indoor arena, ages 3 to adult: $50 an hour, $40 for 45 minutes, $30 for 30. Group lessons 90 minutes $65 or 60 minutes $50, ages 8 up, four to a group. Private lessons 90 minutes $75, 60 minutes $65.",
+      "free": false,
+      "amount": null
+    },
+    "phone": "240-727-9087",
+    "website": {
+      "label": "Miner Hickory Farm",
+      "url": "https://minerhickoryfarm.com/"
+    },
+    "restrooms": null,
+    "giftShop": null,
+    "accessibility": null,
+    "parking": null,
+    "inside": [
+      "A temperature-controlled indoor arena — the reason this is here rather than under parks.",
+      "Pony rides, indoors, $25 a guest and 30 minutes in winter.",
+      "Riding lessons year-round, English and Western, from age 3.",
+      "Barn tours, from $20.",
+      "Stables you walk through to get to the arena."
+    ],
+    "branches": null,
+    "warnings": [
+      "Everything is booked ahead. There are no drop-in hours published and no opening times at all.",
+      "Trail riding is April to November only. In winter the indoor programmes are what's left.",
+      "Group lessons are ages 8 and up. Only private lessons and pony rides go down to age 3."
+    ],
+    "sources": [
+      {
+        "label": "Miner Hickory Farm",
+        "url": "https://minerhickoryfarm.com/",
+        "primary": true,
+        "note": "The operator's site. Gives the street address at 160 Miner Hickory Rd, Grantsville, the phone number, the temperature-controlled indoor arena, cabin rentals and a picnic pavilion with a kitchen. Publishes no opening hours."
+      },
+      {
+        "label": "Miner Hickory Farm: printed programme card",
+        "url": "https://minerhickoryfarm.com/",
+        "primary": true,
+        "note": "The farm's own printed card, photographed. Gives every price quoted here, both seasons of programmes, the ages, and the phone and email. States \"a 300 acre farm with beautiful scenic views in Western MD\" and \"20 minutes from Deep Creek\"."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": "2026-08-06",
+    "verifiedSource": "Site maintainer, first-hand, with photographs",
+    "outstanding": [
+      "Are there public restrooms, or only the cabin bathhouses?",
+      "What are the actual booking lead times, and can you turn up on spec in winter?",
+      "Any weight limit for adult riders?",
+      "Is the arena genuinely heated in deep winter, or just enclosed?"
+    ],
+    "photos": [
+      {
+        "file": "mhf-indoor-arena",
+        "alt": "A large indoor riding arena with a sand floor, steel walls, clerestory windows and ceiling fans, with a child in a helmet sitting on a black horse beside a mounting block.",
+        "caption": "The indoor arena. Sand floor, fans, daylight down both long walls — this is where the pony rides happen, which is why the weather doesn't decide the day.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-06",
+        "portrait": false
+      },
+      {
+        "file": "mhf-grooming",
+        "alt": "A black horse in a red halter standing on rubber matting in a pine-lined barn aisle, being brushed, with stalls receding behind.",
+        "caption": "The barn aisle. Grooming and tacking up are part of the longer lessons, and they happen in here rather than out in the weather.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-06",
+        "portrait": true
+      },
+      {
+        "file": "mhf-barn",
+        "alt": "The outside of a long stable block with a brown metal roof, timber dutch doors, a gravel yard and white paddock fencing running up a green hillside.",
+        "caption": "Outside. Gravel yard, level from the parking area to the barn.",
+        "credit": "Site maintainer",
+        "takenOn": "2026-08-06",
+        "portrait": false
+      }
+    ],
+    "coords": {
+      "lat": 39.6706,
+      "lon": -79.1214,
+      "precision": "town"
+    }
   }
 ]

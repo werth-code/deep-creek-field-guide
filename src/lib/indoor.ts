@@ -30,6 +30,10 @@ import type { Correction, FieldNote, FieldReport, Photo, Verdict } from "./parks
 
 /** What kind of thing it is. Shown to the reader, so it reads as English. */
 export type IndoorKind =
+  /* A working farm with a heated indoor arena is not a museum and not a
+     nature center, and it is the only place in the county where a small child
+     can ride under a roof in February. It earns its own word. */
+  | "Riding stable"
   | "Museum"
   | "Nature center"
   | "Library"
