@@ -84,43 +84,45 @@ const schema = [
   description="Deep Creek Lake and Garrett County parks: what each costs, whether there is a restroom, and which need a reservation now. Every fact carries a date."
   schema={schema}
 >
-  <div class="wrap pt-12 sm:pt-16 pb-9">
+  {/*
+    A FRONT DOOR, NOT AN ESSAY.
+    This opened with three paragraphs about Garrett County and who I am before
+    it offered anywhere to go. That is a piece of writing, and it was the first
+    thing between a visitor and the answer they came for. The argument for the
+    site now lives on /about/ and /how-we-verify/, where someone who wants it
+    will look for it. What's left here is the shortest true description and the
+    two ways in.
+  */}
+  <div class="wrap pt-12 sm:pt-14 pb-8">
     <p class="label m-0 flex items-center gap-2">
       <Logo animate compact class="w-[0.95rem] h-[0.95rem] shrink-0" />
       A reference for Garrett County, Maryland
     </p>
 
-    <h1 class="text-[2.4rem] sm:text-[3.3rem] mt-4 mb-0 max-w-[17ch] text-slate">
-      The part of Maryland Maryland forgets
+    <h1 class="text-[2.4rem] sm:text-[3.3rem] mt-4 mb-0 max-w-[15ch] text-slate">
+      Deep Creek Lake, checked and dated
     </h1>
 
-    <p class="mt-6 mb-0 text-[1.2rem] leading-[1.5] max-w-[52ch]">
-      Deep Creek Lake sits up in Garrett County, which is the highest ground in
-      Maryland and gets the deepest snow. It's three hours from Baltimore. And
-      it doesn't feel like the same state when you get there.
+    <p class="mt-5 mb-0 text-[1.2rem] leading-[1.5] max-w-[52ch]">
+      What a park costs, whether there's a restroom, and which one you can't
+      just turn up to any more. Every fact carries the date I checked it and
+      where it came from.
     </p>
 
-    <p class="mt-4 mb-0 text-[1.05rem] leading-[1.55] max-w-[52ch]">
-      I'm an engineer and a photographer and I travel the US looking at parks. I
-      drive out here from Delaware, usually with kids in the car, and I've done
-      it long enough to know the answer to "is it open" changes more often than
-      anyone publishes it.
-    </p>
-
-    <p class="mt-4 mb-0 text-[1.05rem] leading-[1.55] max-w-[52ch]">
-      So this is what a park costs, whether there's a toilet, and which one you
-      can't just turn up to any more. Every fact carries the date I checked it.
-      <a href="/how-we-verify/">Here's the method</a>.
-    </p>
-
-    <p class="mt-7 mb-0">
+    <div class="mt-7 flex flex-wrap gap-3">
       <a
         href="/ask/"
         class="tap no-underline bg-slate text-snow border-2 border-slate px-5 py-3 font-mono text-[0.78rem] uppercase tracking-[0.1em] font-medium hover:bg-ink"
       >
-        Find a park by what you need →
+        Find the right park →
       </a>
-    </p>
+      <a
+        href="/parks/"
+        class="tap no-underline sheet-quiet border-2 border-slate text-slate px-5 py-3 font-mono text-[0.78rem] uppercase tracking-[0.1em] font-medium"
+      >
+        Browse all {stateParks.length + regional.length}
+      </a>
+    </div>
   </div>
 
   {
@@ -201,28 +203,15 @@ const schema = [
     }
   </div>
 
+  {/* The corrections and the gap list used to be retold here in full. They
+      already live on the method page, told better, and repeating them made the
+      front page longer than the thing it was pointing at. */}
   <div class="wrap prose-field pb-6">
-    <h2>I got the Swallow Falls rule wrong</h2>
     <p class="max-w-[58ch]">
-      I published it as a reservation every day of the summer, because that's
-      what Garrett County's announcement said. Maryland DNR runs the park and
-      says weekends and holidays. A reader caught it.
-    </p>
-    <p class="max-w-[58ch]">
-      <a href="/parks/swallow-falls/#corrected">The correction sits on the park
-      page</a> with the date and what I used to say. That's the deal here. When
-      I'm wrong you get to see it, because a site that promises checking and
-      quietly rewrites its errors isn't worth much.
-    </p>
-    <p class="max-w-[58ch]">
-      Everything I haven't checked says so instead of guessing.
-      <a href="/verified/">Here's the whole list, with sources and ages</a>.
-    </p>
-
-    <h2>Not done yet</h2>
-    <p class="max-w-[58ch]">
-      Dogs. The lake itself. Winter, which out here is a season with its own
-      rules. I'd rather name the gaps than let you hunt for them.
+      Where I haven't checked something it says so rather than guessing, and
+      when I get something wrong the old claim stays on the page.
+      <a href="/how-we-verify/">The method, and the three I've already got
+      wrong</a>. <a href="/verified/">Every page with its source and age</a>.
     </p>
   </div>
 </Layout>

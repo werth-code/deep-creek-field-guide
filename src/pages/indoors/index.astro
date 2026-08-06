@@ -71,8 +71,11 @@ const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completenes
   </div>
 
   <div class="wrap pb-4">
-    <Filters tags={filterTags} noun="places" class="breakout" />
-    <NearMe noun="places" class="breakout mt-3" />
+    <Filters tags={filterTags} noun="places" class="breakout">
+
+      <NearMe noun="places" flat />
+
+    </Filters>
   </div>
 
   <div class="wrap pb-8">

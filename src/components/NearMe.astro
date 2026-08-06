@@ -35,13 +35,15 @@
 interface Props {
   /** Plural noun for the count line: "parks", "places". */
   noun?: string;
+  /** Nested inside the filter box, so it drops its own panel chrome. */
+  flat?: boolean;
   class?: string;
 }
-const { noun = "places", class: klass = "" } = Astro.props;
+const { noun = "places", flat = false, class: klass = "" } = Astro.props;
 ---
 
 <div class={`near-me ${klass}`} data-near-me data-noun={noun} hidden>
-  <div class="sheet-quiet px-3 sm:px-4 py-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+  <div class={`${flat ? "" : "sheet-quiet px-3 sm:px-4 py-3"} flex flex-wrap items-center gap-x-3 gap-y-2`}>
     <p class="label m-0 shrink-0">Sort by distance</p>
 
     <button

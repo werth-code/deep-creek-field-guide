@@ -51,7 +51,7 @@ const { tags, noun, class: className = "" } = Astro.props;
         <p class="stamp text-ink-soft m-0" data-filter-count />
       </div>
 
-      <ul class="list-none p-0 m-0 mt-3 flex flex-wrap gap-1.5">
+      <ul class="list-none p-0 m-0 mt-3 flex flex-wrap gap-1.5" data-filter-chips>
         {tags.map((t) => (
           <li>
             <button
@@ -78,7 +78,13 @@ const { tags, noun, class: className = "" } = Astro.props;
       >
         Clear
       </button>
-    </div>
+      {/* The distance sort nests here rather than sitting in a second box below.
+      Two panels stacked read as two unrelated tools; they are the same tool —
+      one narrows the list, the other orders it. */}
+  <div class="mt-3 pt-3 border-t-2 border-lake/25">
+    <slot />
+  </div>
+</div>
   )
 }
 
@@ -95,10 +101,12 @@ const { tags, noun, class: className = "" } = Astro.props;
 
     /* Cards carry their confirmed tags. Anything without the attribute is not
        filterable and stays put — a group heading, a note, a spacer. */
-    const cards = [...document.querySelectorAll("[data-tags]")];
-    if (!cards.length) return;
-
     root.hidden = false;
+
+    const cards = [...document.querySelectorAll("[data-tags]")];
+    /* Unhidden FIRST: the sort controls nest inside this box, and an early
+       return here used to take them down with it. */
+    if (!cards.length) return;
     const chips = [...root.querySelectorAll("[data-filter-tag]")];
     const countEl = root.querySelector("[data-filter-count]");
     const clear = root.querySelector("[data-filter-clear]");

@@ -82,8 +82,11 @@ const schema = live.length
   </div>
 
   <div class="wrap pb-4">
-    <Filters tags={filterTags} noun="parks" class="breakout" />
-    <NearMe noun="parks" class="breakout mt-3" />
+    <Filters tags={filterTags} noun="parks" class="breakout">
+
+      <NearMe noun="parks" flat />
+
+    </Filters>
   </div>
 
   <div class="wrap py-8">
