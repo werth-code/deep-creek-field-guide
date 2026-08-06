@@ -50,9 +50,8 @@ const schema = [
       Ask for what you need
     </h1>
     <p class="mt-5 mb-0 text-[1.15rem] leading-[1.5] max-w-[54ch]">
-      Tell it what matters for the trip. It answers from the same checked data
-      as the rest of the site — and tells you plainly when something hasn't been
-      checked, instead of guessing.
+      Say what you need and I'll show you what has it. Where I haven't checked
+      something, I'll tell you rather than guess.
     </p>
   </div>
 
@@ -101,23 +100,20 @@ const schema = [
   </div>
 
   <div class="wrap prose-field pb-4">
-    <h2>How this answers</h2>
+    <h2>How this works</h2>
     <p class="max-w-[58ch]">
-      Your question is turned into a checklist — restrooms, a beach, no booking
-      — and matched against the data by plain comparison. A park only appears as
-      a match when the thing you asked for is <em>confirmed</em> for it.
+      I turn your question into a checklist and compare it against the data. A
+      place only counts as a match when the thing you asked for has actually
+      been checked for it. Anything unchecked is listed separately and
+      labeled, because a blank means nobody has asked yet, not that the answer
+      is no.
     </p>
     <p class="max-w-[58ch]">
-      Anything unchecked is shown separately and labeled, because a blank in
-      my data means nobody has asked yet, not that the park lacks it. Treating
-      those as "no" would be inventing facts at scale.
-    </p>
-    <p class="max-w-[58ch]">
-      There's an AI here, and it's kept on a short lead: it writes the summary
-      line and orders the results. It's never given the park data and can't
-      state a fact about a park. Everything you see below the summary is
-      rendered from the checked dataset, with the same source link the park page
-      carries. <a href="/how-we-verify/">The full method is here</a>.
+      There's an AI here and it's kept on a short lead. It writes the summary
+      line and puts the results in order. It never sees the park data and can't
+      state a fact about a place. Everything below the summary comes from the
+      checked dataset, with the same source link the page itself carries.
+      <a href="/how-we-verify/">The full method is here</a>.
     </p>
   </div>
 </Layout>
