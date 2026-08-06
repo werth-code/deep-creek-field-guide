@@ -13,6 +13,7 @@
  * forty-minute drive.
  */
 import Layout from "../../layouts/Layout.astro";
+import NearMe from "../../components/NearMe.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
 import Tag from "../../components/Tag.astro";
@@ -71,6 +72,7 @@ const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completenes
 
   <div class="wrap pb-4">
     <Filters tags={filterTags} noun="places" class="breakout" />
+    <NearMe noun="places" class="breakout mt-3" />
   </div>
 
   <div class="wrap pb-8">
@@ -81,7 +83,7 @@ const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completenes
           const hrs = hoursAnswer(place.hours);
           const has = present(place);
           return (
-            <article data-reveal data-tags={has.map((t) => t.key).join(" ")} class="sheet sheet-action relative group overflow-hidden">
+            <article data-reveal data-lat={place.coords?.lat} data-lon={place.coords?.lon} data-tags={has.map((t) => t.key).join(" ")} class="sheet sheet-action relative group overflow-hidden">
               <a href={`/indoors/${place.slug}/`} class="absolute inset-0 z-10 no-underline">
                 <span class="sr-only">{place.name}</span>
               </a>

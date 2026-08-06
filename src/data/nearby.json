@@ -145,7 +145,12 @@
         "takenOn": "2026-08-04",
         "portrait": false
       }
-    ]
+    ],
+    "coords": {
+      "lat": 39.4881,
+      "lon": -79.7099,
+      "precision": "town"
+    }
   },
   {
     "slug": "dans-mountain",
@@ -205,6 +210,96 @@
       "Get the pool admission price.",
       "Confirm the 2026 pool opening and closing dates.",
       "Confirm whether the park itself charges entry outside the pool."
-    ]
+    ],
+    "coords": {
+      "lat": 39.5613,
+      "lon": -78.9697,
+      "precision": "town"
+    }
+  },
+  {
+    "slug": "blackwater-falls",
+    "name": "Blackwater Falls State Park",
+    "alsoKnownAs": null,
+    "distance": "Over the West Virginia line at Davis, in Tucker County.",
+    "town": "Davis",
+    "state": "West Virginia",
+    "county": "Tucker County",
+    "address": "1584 Blackwater Lodge Rd, Davis, WV 26260",
+    "kind": "State park with a lodge, cabins and a waterfall",
+    "blurb": "A 57-foot waterfall the color of strong tea — the park says that's tannic acid off fallen hemlock and red spruce needles, not silt. There are two ways to see it: more than 200 steps down a boardwalk, or a quarter-mile of pavement to a second overlook. Same falls, very different walk.",
+    "season": "The park is open 6am to 10pm. The campground runs 28 April to 31 October.",
+    "admission": {
+      "note": "Not confirmed. West Virginia State Parks doesn't state an entrance fee on this park's page, and doesn't state that there isn't one either. Ring 304-259-5216 before you budget for it.",
+      "amount": null
+    },
+    "onSite": [
+      {
+        "label": "Blackwater Falls Boardwalk Trail",
+        "note": "A quarter of a mile from the Trading Post parking area to a stone patio, then a boardwalk of more than 200 steps down to an observation deck beside the falls. Down is the easy half."
+      },
+      {
+        "label": "Gentle Trail",
+        "note": "A quarter of a mile, paved, from the parking area across from the maintenance area to an observation deck overlooking the falls. The park calls it a short paved path and does not call it wheelchair accessible — those aren't the same claim, so ring first if that's what decides your trip."
+      },
+      {
+        "label": "The sled run",
+        "note": "The park calls it the longest of its kind on the East Coast, with a Magic Carpet conveyor that carries you and the sled back up. Dates and prices aren't published on the park page."
+      },
+      {
+        "label": "Trails, twenty-odd of them",
+        "note": "Easy ones include Balanced Rock (1 mi), Balsam Fir (1.5 mi) and Red Spruce (1.25 mi). Moderate: Elakala (0.5 mi), Yellow Birch (1 mi), Allegheny (1.2 mi). Hardest are Lindy Point (0.3 mi) and Cherry Lane (1 mi)."
+      },
+      {
+        "label": "Lodging",
+        "note": "A lodge, cabins and a campground. The campground season is the only one of the three with published dates."
+      }
+    ],
+    "phone": "304-259-5216",
+    "website": {
+      "label": "West Virginia State Parks: Blackwater Falls",
+      "url": "https://wvstateparks.com/park/blackwater-falls-state-park/"
+    },
+    "warnings": [
+      "This is West Virginia, not Maryland. Different state park system, different rules, and a Maryland park pass is no good here.",
+      "More than 200 steps down to the falls overlook, and the same 200 back up. If that's a problem, the Gentle Trail goes to a different overlook without them.",
+      "No entrance fee is published either way. Ring 304-259-5216 rather than assuming."
+    ],
+    "sources": [
+      {
+        "label": "West Virginia State Parks: Blackwater Falls State Park",
+        "url": "https://wvstateparks.com/park/blackwater-falls-state-park/",
+        "primary": true,
+        "note": "The operator. Gives the Blackwater Lodge Rd address, the phone number, 6am-10pm hours, the campground season of 28 April to 31 October, the lodge and cabins, and the description of the falls as a 57-foot cascade tinted by tannic acid from hemlock and red spruce. Publishes no entrance fee, no restroom detail and no pet policy of its own."
+      },
+      {
+        "label": "West Virginia State Parks: Blackwater Falls trails",
+        "url": "https://wvstateparks.com/parks/blackwater-falls-state-park/trails/",
+        "primary": true,
+        "note": "The operator. Gives the boardwalk trail at 0.25 miles from the Trading Post parking area with more than 200 steps to the observation deck, the Gentle Trail at 0.25 miles paved from the parking area across from the maintenance area, and the full trail list with lengths and difficulty grades."
+      },
+      {
+        "label": "West Virginia State Parks: rules and regulations",
+        "url": "https://wvstateparks.com/rules-and-regulations/",
+        "primary": true,
+        "note": "The operator, statewide. \"Dogs and cats are the only pets permitted in state parks and forests.\" and pets must be leashed and restrained. It does not say where in a park they're prohibited."
+      }
+    ],
+    "sourcedOn": "2026-08-06",
+    "verifiedDate": null,
+    "verifiedSource": null,
+    "outstanding": [
+      "Is there an entrance fee? The park page names none and denies none.",
+      "Ring for the dog rules that matter on the ground: whether dogs are allowed on the boardwalk and the falls decks, and what the pet-friendly cabin costs. The statewide rule only says leashed dogs and cats.",
+      "Confirm the Gentle Trail is genuinely wheelchair accessible, and whether the overlook itself is.",
+      "Restrooms — where, and whether they are open out of campground season.",
+      "Sled run dates and prices.",
+      "Whether there is a nature center or gift shop, and the Trading Post's hours."
+    ],
+    "coords": {
+      "lat": 39.1128,
+      "lon": -79.4966,
+      "precision": "site"
+    }
   }
 ]

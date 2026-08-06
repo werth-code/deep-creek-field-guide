@@ -1,0 +1,275 @@
+---
+/**
+ * Sort a listing by how far away things are.
+ *
+ * WHY IT'S WORTH THE COMPLICATION
+ * These lists are ordered the way an agency files things, not the way anyone
+ * chooses where to go on a Saturday. "Which of these is
+ * nearest" is the question, and until now the only way to answer it was to
+ * open every record and read the address.
+ *
+ * TWO WAYS IN, because neither one covers everybody. The location button is
+ * one tap but needs a permission grant people reasonably refuse. A ZIP is
+ * typing, but it also answers "what's near my parents' place" — which is a
+ * question the button can't ask at all.
+ *
+ * NOTHING LEAVES THE BROWSER. There is no geocoding service here and no
+ * request carrying a location anywhere. ZIPs resolve against a table of
+ * Census ZCTA centroids served from this domain, fetched only if someone
+ * actually types one, and the arithmetic is a haversine in ten lines. A
+ * geocoding API would have been less code and would have meant posting the
+ * reader's location to a third party from a site that promises it doesn't do
+ * that.
+ *
+ * IT REMEMBERS FOR THE TAB, not for good — sessionStorage, so sorting
+ * /parks/ carries to /indoors/ and evaporates when the tab closes. Nothing to
+ * clear later, nothing that follows anyone back.
+ *
+ * GROUPED LISTS HAVE TO COLLAPSE. You cannot sort by distance inside
+ * buckets — "nearest" doesn't respect whatever line drew them. So sorting
+ * lifts every card into one grid and puts the headings back when you undo it.
+ *
+ * WITHOUT JAVASCRIPT none of this renders and the list stays in its county
+ * order, which is a real order rather than a broken one.
+ */
+interface Props {
+  /** Plural noun for the count line: "parks", "places". */
+  noun?: string;
+  class?: string;
+}
+const { noun = "places", class: klass = "" } = Astro.props;
+---
+
+<div class={`near-me ${klass}`} data-near-me data-noun={noun} hidden>
+  <div class="sheet-quiet px-3 sm:px-4 py-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+    <p class="label m-0 shrink-0">Sort by distance</p>
+
+    <button
+      type="button"
+      data-near-locate
+      class="tap sheet-quiet px-3 gap-2 font-mono text-[0.72rem] font-medium uppercase tracking-[0.09em] text-slate hover:bg-sheet-sunk cursor-pointer"
+    >
+      <svg viewBox="0 0 24 24" class="w-[1.05em] h-[1.05em]" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+        <circle cx="12" cy="12" r="7"></circle>
+        <path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path>
+        <circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none"></circle>
+      </svg>
+      Use my location
+    </button>
+
+    <form data-near-zip-form class="flex items-center gap-2 m-0">
+      <label class="stamp text-ink-soft" for="near-zip">or ZIP</label>
+      <input
+        id="near-zip"
+        name="zip"
+        type="text"
+        inputmode="numeric"
+        autocomplete="postal-code"
+        pattern="[0-9]{5}"
+        maxlength="5"
+        placeholder="19810"
+        data-near-zip
+        class="w-[5.5rem] px-2 py-1.5 border-2 border-slate bg-sheet font-mono text-[0.8rem] rounded-[var(--radius-sheet)]"
+      />
+      <button
+        type="submit"
+        class="tap sheet-quiet px-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.09em] text-slate hover:bg-sheet-sunk cursor-pointer"
+      >Go</button>
+    </form>
+
+    <button
+      type="button"
+      data-near-reset
+      hidden
+      class="tap sheet-quiet px-3 font-mono text-[0.72rem] font-medium uppercase tracking-[0.09em] text-slate hover:bg-sheet-sunk cursor-pointer"
+    data-near-reset-label></button>
+
+    <p class="stamp text-ink-soft m-0 basis-full" data-near-status>
+      Your location stays in this browser. Nothing is sent anywhere.
+    </p>
+  </div>
+</div>
+
+<script>
+  (() => {
+    const root = document.querySelector("[data-near-me]");
+    if (!root) return;
+
+    /* Every card that knows where it is. A card without coordinates can't be
+       sorted and shouldn't silently vanish, so it keeps its place at the end. */
+    const cards = [...document.querySelectorAll("article[data-lat]")];
+    /* Two, not one. A page with a single locatable card can't be sorted, and a
+       "sort by distance" control that reorders nothing is worse than absent. */
+    if (cards.length < 2) return;
+
+    root.hidden = false;
+
+    const status = root.querySelector("[data-near-status]");
+    const reset = root.querySelector("[data-near-reset]");
+    const zipInput = root.querySelector("[data-near-zip]");
+    const noun = root.dataset.noun || "places";
+    const REST = "Your location stays in this browser. Nothing is sent anywhere.";
+
+    /* Where each card started, so "back to county order" is exact rather than
+       approximately right.
+       A comment node holds the slot. Storing the next sibling instead was the
+       first attempt and it silently broke undo: sorting moves those siblings
+       too, so insertBefore was handed a node that had left the parent and threw
+       — halfway through the loop, leaving the page sorted, the button still
+       showing, and no error anyone would see. A marker can't move because
+       nothing ever moves it. */
+    const home = new Map(
+      cards.map((c) => {
+        const mark = document.createComment("near-me slot");
+        c.parentNode.insertBefore(mark, c);
+        return [c, mark];
+      }),
+    );
+    const groups = [...document.querySelectorAll("[data-filter-group]")];
+    const target = cards[0].parentElement;
+
+    /* One county, no headings to put back — so don't promise to. */
+    reset.textContent = groups.length > 1 ? "Back to county order" : "Back to the original order";
+
+    const rad = (d) => (d * Math.PI) / 180;
+    const miles = (aLat, aLon, bLat, bLon) => {
+      const R = 3958.8;
+      const dLat = rad(bLat - aLat);
+      const dLon = rad(bLon - aLon);
+      const h =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(rad(aLat)) * Math.cos(rad(bLat)) * Math.sin(dLon / 2) ** 2;
+      return 2 * R * Math.asin(Math.sqrt(h));
+    };
+
+    /* One decimal under ten miles, whole numbers above — a tenth of a mile is
+       meaningful when you're choosing between two playgrounds and noise when
+       you're deciding whether to drive to Sussex. */
+    const say = (m) => (m < 10 ? `${m.toFixed(1)} mi` : `${Math.round(m)} mi`);
+
+    const badge = (card, text) => {
+      let el = card.querySelector("[data-near-badge]");
+      if (!el) {
+        const h = card.querySelector("h2, h3, h4");
+        if (!h) return;
+        el = document.createElement("span");
+        el.setAttribute("data-near-badge", "");
+        el.className =
+          "stamp text-slate border-2 border-slate rounded-[var(--radius-sheet)] px-1.5 py-0.5 inline-block mt-1.5";
+        h.insertAdjacentElement("afterend", el);
+      }
+      el.textContent = text;
+      el.hidden = false;
+    };
+
+    const apply = (lat, lon, label) => {
+      for (const c of cards) {
+        const d = miles(lat, lon, Number(c.dataset.lat), Number(c.dataset.lon));
+        c.dataset.nearDist = String(d);
+        badge(c, say(d));
+      }
+      const sorted = [...cards].sort(
+        (a, b) => Number(a.dataset.nearDist) - Number(b.dataset.nearDist),
+      );
+      /* Flatten: one grid, no county headings — see the header note. */
+      for (const g of groups) if (g !== target.closest("[data-filter-group]")) g.hidden = true;
+      const heading = target.closest("[data-filter-group]")?.querySelector("h2");
+      if (heading) heading.hidden = true;
+      for (const c of sorted) target.appendChild(c);
+
+      reset.hidden = false;
+      document.dispatchEvent(new CustomEvent("cards:moved"));
+      const nearest = say(Number(sorted[0].dataset.nearDist));
+      status.textContent = `Nearest first from ${label}. The closest is ${nearest} away. Your location stayed in this browser.`;
+      try {
+        sessionStorage.setItem("near", JSON.stringify({ lat, lon, label }));
+      } catch {}
+    };
+
+    const undo = () => {
+      for (const c of cards) {
+        const mark = home.get(c);
+        mark.parentNode.insertBefore(c, mark);
+        const b = c.querySelector("[data-near-badge]");
+        if (b) b.hidden = true;
+      }
+      for (const g of groups) g.hidden = false;
+      const heading = target.closest("[data-filter-group]")?.querySelector("h2");
+      if (heading) heading.hidden = false;
+      reset.hidden = true;
+      status.textContent = REST;
+      document.dispatchEvent(new CustomEvent("cards:moved"));
+      try {
+        sessionStorage.removeItem("near");
+      } catch {}
+    };
+
+    reset.addEventListener("click", undo);
+
+    root.querySelector("[data-near-locate]").addEventListener("click", () => {
+      if (!navigator.geolocation) {
+        status.textContent = "This browser won't share a location. Type a ZIP instead.";
+        return;
+      }
+      status.textContent = "Asking your browser where you are…";
+      navigator.geolocation.getCurrentPosition(
+        (pos) => apply(pos.coords.latitude, pos.coords.longitude, "where you are"),
+        () => {
+          status.textContent = "No location — your browser said no, or couldn't tell. A ZIP works just as well.";
+        },
+        { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 },
+      );
+    });
+
+    /* The ZIP table is 130KB and most visitors never type a ZIP, so it is not
+       loaded until one of them does. Fixed-width records sorted by ZIP, so a
+       binary search reads thirteen characters instead of parsing the lot. */
+    let table = null;
+    const lookup = async (zip) => {
+      if (!table) table = await fetch("/zip-centroids.txt").then((r) => r.text());
+      const n = table.length / 13;
+      let lo = 0;
+      let hi = n - 1;
+      while (lo <= hi) {
+        const m = (lo + hi) >> 1;
+        const rec = table.slice(m * 13, m * 13 + 13);
+        const key = rec.slice(0, 5);
+        if (key === zip) {
+          return [
+            parseInt(rec.slice(5, 9), 36) / 10000 + 35,
+            parseInt(rec.slice(9, 13), 36) / 10000 - 84,
+          ];
+        }
+        if (key < zip) lo = m + 1;
+        else hi = m - 1;
+      }
+      return null;
+    };
+
+    root.querySelector("[data-near-zip-form]").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const zip = (zipInput.value || "").trim();
+      if (!/^\d{5}$/.test(zip)) {
+        status.textContent = "That needs to be five digits.";
+        return;
+      }
+      status.textContent = "Looking that ZIP up…";
+      try {
+        const hit = await lookup(zip);
+        if (!hit) {
+          status.textContent = `I don't have ${zip}. The table covers the mid-Atlantic — if you're further out, everything here is a long drive anyway.`;
+          return;
+        }
+        apply(hit[0], hit[1], zip);
+      } catch {
+        status.textContent = "Couldn't load the ZIP table. Try the location button.";
+      }
+    });
+
+    /* Carried from an earlier page in the same visit. */
+    try {
+      const saved = JSON.parse(sessionStorage.getItem("near") || "null");
+      if (saved) apply(saved.lat, saved.lon, saved.label);
+    } catch {}
+  })();
+</script>

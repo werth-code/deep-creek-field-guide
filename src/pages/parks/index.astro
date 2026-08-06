@@ -6,6 +6,7 @@
  * ruins a trip if you don't have it and almost nothing published has caught up.
  */
 import Layout from "../../layouts/Layout.astro";
+import NearMe from "../../components/NearMe.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
 import Tag from "../../components/Tag.astro";
@@ -82,6 +83,7 @@ const schema = live.length
 
   <div class="wrap pb-4">
     <Filters tags={filterTags} noun="parks" class="breakout" />
+    <NearMe noun="parks" class="breakout mt-3" />
   </div>
 
   <div class="wrap py-8">
@@ -92,7 +94,7 @@ const schema = live.length
           const has = presentState(park);
           const flag = reservationFlag(park.reservation);
           return (
-            <article data-reveal data-tags={has.map((t) => t.key).join(" ")} class="sheet sheet-action relative group">
+            <article data-reveal data-lat={park.coords?.lat} data-lon={park.coords?.lon} data-tags={has.map((t) => t.key).join(" ")} class="sheet sheet-action relative group">
               <a href={`/parks/${park.slug}/`} class="absolute inset-0 z-10 no-underline">
                 <span class="sr-only">{park.name}</span>
               </a>

@@ -6,6 +6,7 @@
  * understand within one line that these are NOT in Garrett County.
  */
 import Layout from "../../layouts/Layout.astro";
+import NearMe from "../../components/NearMe.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
 import CardShare from "../../components/CardShare.astro";
@@ -43,10 +44,12 @@ const gate = {
   </div>
 
   <div class="wrap pb-8">
+    <NearMe noun="places" class="breakout mb-4" />
+
     <div class="grid gap-4 breakout">
       {
         places.map((p) => (
-          <article data-reveal class="sheet sheet-action relative group overflow-hidden">
+          <article data-reveal data-lat={p.coords?.lat} data-lon={p.coords?.lon} class="sheet sheet-action relative group overflow-hidden">
             <a href={`/nearby/${p.slug}/`} class="absolute inset-0 z-10 no-underline">
               <span class="sr-only">{p.name}</span>
             </a>
