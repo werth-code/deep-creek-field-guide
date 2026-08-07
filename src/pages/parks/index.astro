@@ -6,6 +6,7 @@
  * ruins a trip if you don't have it and almost nothing published has caught up.
  */
 import Layout from "../../layouts/Layout.astro";
+import PhotoStrip, { type StripItem } from "../../components/PhotoStrip.astro";
 import NearMe from "../../components/NearMe.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
@@ -37,6 +38,17 @@ for (const r of parks) {
     tagCounts.set(t.key, e);
   }
 }
+/* Every photograph in the section, flattened, each one pointing back at the
+   record it came from. Derived, so a photo added to a park appears here in the
+   same commit. */
+const stripItems: StripItem[] = parks.flatMap((p: any) =>
+  (p.photos ?? []).map((photo: any) => ({
+    photo,
+    href: `/parks/${p.slug}/`,
+    name: p.name,
+  })),
+);
+
 const filterTags = [...tagCounts.values()].sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
 const ranked = byPhotoThen(parks);
@@ -79,6 +91,10 @@ const schema = live.length
       including Maryland's tallest waterfall, its largest lake and its biggest
       state forest. One of them now needs a reservation to walk into.
     </p>
+  </div>
+
+  <div class="wrap pb-7">
+    <PhotoStrip items={stripItems} accent="trails" class="breakout" />
   </div>
 
   <div class="wrap pb-4">
