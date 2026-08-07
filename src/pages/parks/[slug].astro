@@ -113,6 +113,18 @@ const stripItems: StripItem[] = ((park as any).photos ?? []).map((photo: any) =>
       </p>
     </div>
 
+    {/* The photographs come before the warnings and before the prose.
+        You decide whether a place is worth reading about by looking at
+        it, and a wall of red boxes between the name and the pictures
+        answers a question nobody has asked yet. */}
+    <div class="wrap pb-2">
+      {stripItems.length > 0 ? (
+        <PhotoStrip items={stripItems} accent="trails" captions heading="Photographs" class="breakout" />
+      ) : (
+        <PhotoGap subject={park.name} accent="trails" class="breakout" />
+      )}
+    </div>
+
     {/* Reservation status — the thing that decides the trip. */}
     <div class="wrap">
       <section class="sheet breakout overflow-hidden my-2" aria-label="Reservation status">
@@ -175,16 +187,6 @@ const stripItems: StripItem[] = ((park as any).photos ?? []).map((photo: any) =>
       <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{park.blurb}</p>
 
       {park.verdict && <Verdict verdict={park.verdict} />}
-
-      {stripItems.length > 0 ? (
-
-        <PhotoStrip items={stripItems} accent="trails" captions heading="Photographs" class="breakout my-6" />
-
-      ) : (
-
-        <PhotoGap subject={park.name} accent="trails" class="breakout my-6" />
-
-      )}
 
       <h2>What's there</h2>
       <div class="sheet breakout my-6 p-4 sm:p-5">

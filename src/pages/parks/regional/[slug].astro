@@ -98,6 +98,18 @@ const stripItems: StripItem[] = ((park as any).photos ?? []).map((photo: any) =>
       </p>
     </div>
 
+    {/* The photographs come before the warnings and before the prose.
+        You decide whether a place is worth reading about by looking at
+        it, and a wall of red boxes between the name and the pictures
+        answers a question nobody has asked yet. */}
+    <div class="wrap pb-2">
+      {stripItems.length > 0 ? (
+        <PhotoStrip items={stripItems} accent="playground" captions heading="Photographs" class="breakout" />
+      ) : (
+        <PhotoGap subject={park.name} accent="playground" class="breakout" />
+      )}
+    </div>
+
     {/* Where a place isn't simply public, that has to land before the
         facilities table — a reader who reaches "Beach: No" without knowing
         why has been told something true and misleading at once. */}
@@ -157,16 +169,6 @@ const stripItems: StripItem[] = ((park as any).photos ?? []).map((photo: any) =>
       <p class="text-[1.15rem] leading-[1.5] max-w-[56ch]">{park.blurb}</p>
 
       {park.verdict && <Verdict verdict={park.verdict} />}
-
-      {stripItems.length > 0 ? (
-
-        <PhotoStrip items={stripItems} accent="playground" captions heading="Photographs" class="breakout my-6" />
-
-      ) : (
-
-        <PhotoGap subject={park.name} accent="playground" class="breakout my-6" />
-
-      )}
 
       <h2>What's there</h2>
       <div class="sheet breakout my-6 p-4 sm:p-5">
