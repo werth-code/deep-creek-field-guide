@@ -29,25 +29,38 @@ import type { Photo } from "../lib/parks";
 
 export interface StripItem {
   photo: Photo;
-  href: string;
-  /** The record it belongs to, printed on the frame. */
-  name: string;
+  /** Omitted on a record page — a frame that links to the page you are already
+      on is a dead control that looks like a live one. */
+  href?: string;
+  /** The record it belongs to. Printed on the frame only when it links out. */
+  name?: string;
 }
 
 interface Props {
   items: StripItem[];
   /** Section colour for the rule and the counter. */
   accent?: string;
+  /** Show each photo's caption under it. On for a record page, off for a
+      listing, where twenty captions would bury the parks. */
+  captions?: boolean;
+  /** Heading over the row. */
+  heading?: string;
   class?: string;
 }
-const { items, accent = "trails", class: klass = "" } = Astro.props;
+const {
+  items,
+  accent = "trails",
+  captions = false,
+  heading = "From these pages",
+  class: klass = "",
+} = Astro.props;
 ---
 
 {
-  items.length > 1 && (
+  items.length > 0 && (
     <figure class={`m-0 ${klass}`} data-strip>
       <div class="flex items-baseline justify-between gap-4 mb-2">
-        <p class="label m-0">From these pages</p>
+        <p class="label m-0">{heading}</p>
         <p class="stamp text-ink-soft m-0" data-strip-count hidden />
       </div>
 
@@ -55,10 +68,12 @@ const { items, accent = "trails", class: klass = "" } = Astro.props;
         class="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         data-strip-track
       >
-        {items.map((it, i) => (
-          <a
+        {items.map((it, i) => {
+          const Frame = it.href ? "a" : "div";
+          return (
+          <Frame
             href={it.href}
-            class="group relative shrink-0 snap-start no-underline block w-[15rem] sm:w-[19rem]"
+            class={`group relative shrink-0 snap-start no-underline block ${captions ? "w-[17rem] sm:w-[22rem]" : "w-[15rem] sm:w-[19rem]"}`}
             data-strip-item
           >
             <img
@@ -73,18 +88,31 @@ const { items, accent = "trails", class: klass = "" } = Astro.props;
             />
             {/* The name sits ON the frame rather than under it, so the row
                 stays one height whatever the names do. */}
-            <span
-              class="absolute left-0 right-0 bottom-0 px-2.5 py-1.5 stamp text-snow bg-slate/85 backdrop-blur-[2px] block truncate"
-              style={`border-bottom:3px solid ${colorFor(accent)}`}
-            >
-              {it.name}
-            </span>
-          </a>
-        ))}
+            {it.name && (
+              <span
+                class="absolute left-0 right-0 bottom-0 px-2.5 py-1.5 stamp text-snow bg-slate/85 backdrop-blur-[2px] block truncate"
+                style={`border-bottom:3px solid ${colorFor(accent)}`}
+              >
+                {it.name}
+              </span>
+            )}
+            {captions && it.photo.caption && (
+              <span class="block mt-2 text-[0.88rem] leading-snug text-ink">{it.photo.caption}</span>
+            )}
+            {captions && (it.photo.credit || it.photo.takenOn) && (
+              <span class="stamp text-ink-soft block mt-1.5">
+                {[it.photo.credit, it.photo.takenOn].filter(Boolean).join(" · ")}
+              </span>
+            )}
+          </Frame>
+          );
+        })}
       </div>
 
       <figcaption class="stamp text-ink-soft mt-2">
-        Swipe. Every picture opens the page it was taken for.
+        {items[0].href
+          ? "Swipe. Every picture opens the page it was taken for."
+          : "Swipe for the rest."}
       </figcaption>
     </figure>
   )

@@ -1,0 +1,36 @@
+---
+/**
+ * What stands where a photograph isn't yet.
+ *
+ * A record with no pictures used to show nothing at all, which reads as a
+ * finished page that simply has none — and this site's whole argument is that
+ * a gap should announce itself. So it says so, and turns the gap into the ask:
+ * the fastest way to fill it is somebody who was standing there.
+ *
+ * NOT AN ILLUSTRATION. An earlier version of this idea drew a scene and
+ * captioned it "not yet photographed", which was furniture pretending to be
+ * content and got pulled. This is a rule, a sentence and a link.
+ */
+import { colorFor } from "../lib/feature-colors";
+
+interface Props {
+  /** What has no photograph yet, for the sentence. */
+  subject: string;
+  accent?: string;
+  class?: string;
+}
+const { subject, accent = "trails", class: klass = "" } = Astro.props;
+---
+
+<div
+  class={`sheet px-4 sm:px-5 py-5 ${klass}`}
+  style={`border-left:6px solid ${colorFor(accent)}`}
+>
+  <p class="label m-0">No photograph yet</p>
+  <p class="mt-2 mb-0 text-[0.95rem] leading-[1.55] max-w-[54ch]">
+    Nobody has sent me a picture of {subject}. If you have been, that is the
+    one thing I cannot get by ringing anyone up —
+    <a href="/report/">send one and it goes on this page</a> with your name on
+    it if you want it.
+  </p>
+</div>

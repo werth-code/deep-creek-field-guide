@@ -6,10 +6,11 @@
 import type { GetStaticPaths } from "astro";
 
 import Layout from "../../../layouts/Layout.astro";
+import PhotoStrip, { type StripItem } from "../../../components/PhotoStrip.astro";
+import PhotoGap from "../../../components/PhotoGap.astro";
 import FlagIcon from "../../../components/FlagIcon.astro";
 import MapLink from "../../../components/MapLink.astro";
 import Verdict from "../../../components/Verdict.astro";
-import Photo from "../../../components/Photo.astro";
 import MapEmbed from "../../../components/MapEmbed.astro";
 import FieldNotes from "../../../components/FieldNotes.astro";
 import ReportBox from "../../../components/ReportBox.astro";
@@ -67,6 +68,10 @@ const base =
   `${shortName}, Garrett County MD. Restrooms ${wc.text.toLowerCase()}. ` +
   `Playground, pavilions and access, checked and dated.`;
 const description = base.length < 118 ? `${base} Run by ${park.operator}.` : base;
+/* This record's own photographs, as a strip. No href: a frame linking to the
+   page you are already on is a dead control that looks live. */
+const stripItems: StripItem[] = ((park as any).photos ?? []).map((photo: any) => ({ photo }));
+
 ---
 
 <Layout
@@ -153,7 +158,15 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
 
       {park.verdict && <Verdict verdict={park.verdict} />}
 
-      {park.photos && park.photos.length > 0 && <Photo {...park.photos[0]} hero />}
+      {stripItems.length > 0 ? (
+
+        <PhotoStrip items={stripItems} accent="playground" captions heading="Photographs" class="breakout my-6" />
+
+      ) : (
+
+        <PhotoGap subject={park.name} accent="playground" class="breakout my-6" />
+
+      )}
 
       <h2>What's there</h2>
       <div class="sheet breakout my-6 p-4 sm:p-5">
@@ -191,15 +204,6 @@ const description = base.length < 118 ? `${base} Run by ${park.operator}.` : bas
           <>
             <h2>Getting around</h2>
             <p class="max-w-[58ch]">{park.accessibility}</p>
-          </>
-        )
-      }
-
-      {
-        park.photos && park.photos.length > 1 && (
-          <>
-            <h2>More photographs</h2>
-            {park.photos.slice(1).map((ph) => <Photo {...ph} />)}
           </>
         )
       }
