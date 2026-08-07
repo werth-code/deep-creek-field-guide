@@ -43,6 +43,15 @@ interface Props {
   /** Show each photo's caption under it. On for a record page, off for a
       listing, where twenty captions would bury the parks. */
   captions?: boolean;
+  /**
+   * One photograph at a time, filling the width.
+   *
+   * A filmstrip that shows the edge of the next frame is right for a listing —
+   * the peek is what tells you to swipe. On a record page it just makes the
+   * photograph smaller for no gain, because you are already committed to this
+   * park and want to look at it.
+   */
+  fill?: boolean;
   /** Heading over the row. */
   heading?: string;
   class?: string;
@@ -51,6 +60,7 @@ const {
   items,
   accent = "trails",
   captions = false,
+  fill = false,
   heading = "From these pages",
   class: klass = "",
 } = Astro.props;
@@ -58,14 +68,14 @@ const {
 
 {
   items.length > 0 && (
-    <figure class={`m-0 ${klass}`} data-strip>
+    <figure class={`m-0 ${klass}`} data-strip data-strip-fill={fill ? "1" : "0"}>
       <div class="flex items-baseline justify-between gap-4 mb-2">
         <p class="label m-0">{heading}</p>
         <p class="stamp text-ink-soft m-0" data-strip-count hidden />
       </div>
 
       <div
-        class="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        class={`flex ${fill ? "" : "gap-3"} overflow-x-auto snap-x snap-mandatory scroll-smooth pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
         data-strip-track
       >
         {items.map((it, i) => {
@@ -73,7 +83,11 @@ const {
           return (
           <Frame
             href={it.href}
-            class={`group relative shrink-0 snap-start no-underline block ${captions ? "w-[17rem] sm:w-[22rem]" : "w-[15rem] sm:w-[19rem]"}`}
+            class={`group relative shrink-0 no-underline block ${
+              fill
+                ? "w-full snap-center"
+                : `snap-start ${captions ? "w-[17rem] sm:w-[22rem]" : "w-[15rem] sm:w-[19rem]"}`
+            }`}
             data-strip-item
           >
             <img
@@ -133,7 +147,8 @@ const {
       const paint = () => {
         /* Which frame is under the left edge. Good enough for "3 of 21", and
            it needs no observer. */
-        const w = items[0].getBoundingClientRect().width + 12;
+        const gap = root.dataset.stripFill === "1" ? 0 : 12;
+        const w = items[0].getBoundingClientRect().width + gap;
         const i = Math.min(items.length - 1, Math.max(0, Math.round(track.scrollLeft / w)));
         count.textContent = `${i + 1} of ${items.length}`;
       };

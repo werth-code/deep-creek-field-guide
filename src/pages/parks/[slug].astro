@@ -119,7 +119,7 @@ const stripItems: StripItem[] = ((park as any).photos ?? []).map((photo: any) =>
         answers a question nobody has asked yet. */}
     <div class="wrap pb-2">
       {stripItems.length > 0 ? (
-        <PhotoStrip items={stripItems} accent="trails" captions heading="Photographs" class="breakout" />
+        <PhotoStrip items={stripItems} accent="trails" captions fill heading="Photographs" class="breakout" />
       ) : (
         <PhotoGap subject={park.name} accent="trails" class="breakout" />
       )}
