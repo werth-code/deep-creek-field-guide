@@ -12,6 +12,7 @@
  * and almost nobody publishes it.
  */
 import Layout from "../../../layouts/Layout.astro";
+import PhotoStrip, { type StripItem } from "../../../components/PhotoStrip.astro";
 import NearMe from "../../../components/NearMe.astro";
 import FlagIcon from "../../../components/FlagIcon.astro";
 import CardPhoto from "../../../components/CardPhoto.astro";
@@ -29,6 +30,7 @@ import {
 } from "../../../lib/parks";
 import { isPublishable, robotsFor } from "../../../lib/verification";
 import { byPhotoThen } from "../../../lib/order";
+
 
 const parks = parksData as RegionalPark[];
 const live = parks.filter(isPublishable);
@@ -59,6 +61,13 @@ const ranked = byPhotoThen(
   parks,
   (a, b) => completenessRegional(b).known - completenessRegional(a).known,
 );
+/* ONE frame per record, not one per photograph.
+   Flattening every photo made Swallow Falls twelve of the twenty-one
+   frames, which is a slideshow of one park pretending to be an index of
+   the section. The lead photo is the one the record chose to lead with. */
+const stripItems: StripItem[] = (parks as any[])
+  .filter((p) => p.photos?.length)
+  .map((p) => ({ photo: p.photos[0], href: `/parks/regional/${p.slug}/`, name: p.name }));
 ---
 
 <Layout
@@ -78,6 +87,13 @@ const ranked = byPhotoThen(
       Town parks. <a href="/parks/">The state parks are over here</a>.
     </p>
   </div>
+
+  <div class="wrap pb-6">
+
+    <PhotoStrip items={stripItems} accent="playground" class="breakout" />
+
+  </div>
+
 
   <div class="wrap pb-4">
     <Filters tags={filterTags} noun="parks" class="breakout">

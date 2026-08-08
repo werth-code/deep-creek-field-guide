@@ -13,6 +13,7 @@
  * forty-minute drive.
  */
 import Layout from "../../layouts/Layout.astro";
+import PhotoStrip, { type StripItem } from "../../components/PhotoStrip.astro";
 import NearMe from "../../components/NearMe.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
@@ -25,6 +26,7 @@ import indoorData from "../../data/indoor.json";
 import { completeness, hoursAnswer, present, type IndoorPlace } from "../../lib/indoor";
 import { isPublishable, robotsFor } from "../../lib/verification";
 import { byPhotoThen } from "../../lib/order";
+
 
 const places = indoorData as unknown as IndoorPlace[];
 const live = places.filter(isPublishable);
@@ -51,6 +53,13 @@ for (const r of places) {
 const filterTags = [...tagCounts.values()].sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
 
 const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completeness(a).known);
+/* ONE frame per record, not one per photograph.
+   Flattening every photo made Swallow Falls twelve of the twenty-one
+   frames, which is a slideshow of one park pretending to be an index of
+   the section. The lead photo is the one the record chose to lead with. */
+const stripItems: StripItem[] = (places as any[])
+  .filter((p) => p.photos?.length)
+  .map((p) => ({ photo: p.photos[0], href: `/indoors/${p.slug}/`, name: p.name }));
 ---
 
 <Layout
@@ -69,6 +78,13 @@ const ranked = byPhotoThen(places, (a, b) => completeness(b).known - completenes
       <a href="/parks/">the days you can get outside</a>.
     </p>
   </div>
+
+  <div class="wrap pb-6">
+
+    <PhotoStrip items={stripItems} accent="free" class="breakout" />
+
+  </div>
+
 
   <div class="wrap pb-4">
     <Filters tags={filterTags} noun="places" class="breakout">

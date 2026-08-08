@@ -6,6 +6,7 @@
  * understand within one line that these are NOT in Garrett County.
  */
 import Layout from "../../layouts/Layout.astro";
+import PhotoStrip, { type StripItem } from "../../components/PhotoStrip.astro";
 import NearMe from "../../components/NearMe.astro";
 import FlagIcon from "../../components/FlagIcon.astro";
 import CardPhoto from "../../components/CardPhoto.astro";
@@ -24,6 +25,10 @@ const gate = {
   sources: places.length ? [{ label: "x", url: "x" }] : null,
   sourcedOn: places.length ? "2026-08-03" : null,
 };
+/* ONE frame per record, not one per photograph — see the parks listing. */
+const stripItems: StripItem[] = (places as any[])
+  .filter((p) => p.photos?.length)
+  .map((p) => ({ photo: p.photos[0], href: `/nearby/${p.slug}/`, name: p.name }));
 ---
 
 <Layout
@@ -44,6 +49,8 @@ const gate = {
   </div>
 
   <div class="wrap pb-8">
+    <PhotoStrip items={stripItems} accent="petsAllowed" class="breakout mb-5" />
+
     <NearMe noun="places" class="breakout mb-4" />
 
     <div class="grid gap-4 breakout">
