@@ -27,7 +27,8 @@ export interface PhotoData {
   /** Shown under the image. What it shows, not what it looks like. */
   caption?: string | null;
   /** Who took it. */
-  credit: string;
+  /** Null for the site's own photographs — see the note on Photo. */
+  credit: string | null;
   /** ISO date it was taken. The whole point. */
   takenOn: string | null;
   /** Portrait shots need a different aspect box from landscape. */
@@ -88,7 +89,7 @@ const h = portrait ? 1866 : 1050;
   <figcaption class="px-4 py-3 border-t-2 border-contour">
     {caption && <p class="m-0 text-[0.92rem] leading-snug max-w-[62ch]">{caption}</p>}
     <p class={`stamp text-ink-soft mb-0 ${caption ? "mt-2" : "m-0"}`}>
-      {credit} · {when}
+      {[credit, when].filter(Boolean).join(" · ")}
     </p>
   </figcaption>
 </figure>

@@ -71,7 +71,7 @@
         "file": "discovery-center-hall",
         "alt": "The main hall of a timber-framed nature center, with exposed beams, a pale wood floor, teal exhibit panels on hemlocks and forests, mounted fish and a turkey on the stone piers, and windows onto the trees.",
         "caption": "The main hall. Bigger inside than it looks from the parking lot, and quiet on a Thursday morning.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -79,7 +79,7 @@
         "file": "discovery-center-box-turtle",
         "alt": "An eastern box turtle with a yellow-patterned shell and orange head, on wood chips beside a shallow purple water dish.",
         "caption": "One of the box turtles, out by its water dish. The reptiles are the easiest thing here to actually see.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false,
         "focus": "50% 45%"
@@ -317,7 +317,7 @@
         "file": "bo-476",
         "alt": "A black steam locomotive numbered 476 with white-rimmed driving wheels, standing on brick paving beside the museum with a red caboose behind it and storm cloud overhead.",
         "caption": "Engine 476 outside the 1884 depot. It's on brick in the open, so you can walk round it whether the museum is open or not.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -325,7 +325,7 @@
         "file": "bo-b",
         "alt": "The same locomotive side-on, showing the cab, boiler and running gear, with a viewing platform and steps alongside.",
         "caption": "Side on. There are steps up to a platform so you can look into the cab.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -333,7 +333,7 @@
         "file": "bo-c",
         "alt": "A bright red Baltimore and Ohio caboose lettered B&O C-2884, with white window frames and a yellow handrail, on brick paving.",
         "caption": "Caboose C-2884, coupled up behind the engine.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -341,7 +341,7 @@
         "file": "bo-plaque",
         "alt": "An interpretive plaque headed 1920 Baldwin Steam Locomotive, with several paragraphs of text and a black and white photograph of the engine in service on the Mississippian Railway.",
         "caption": "The plaque tells you the engine never actually ran for the B&O — the museum adopted it and renumbered it.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -349,7 +349,7 @@
         "file": "bo-d",
         "alt": "A wider view of the museum plaza with the locomotive, the caboose and the depot buildings under heavy cloud.",
         "caption": "The whole display from the far end of the plaza.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -357,7 +357,7 @@
         "file": "bo-gazebo",
         "alt": "A white and yellow Victorian gazebo with a shingled roof and turned balusters, on a brick apron beside a yellow clapboard building with a tall MUSEUM sign and a cupola.",
         "caption": "The gazebo on the lawn beside the museum. The vertical MUSEUM sign is how you find the place from the street.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       }
@@ -661,7 +661,7 @@
         "file": "mhf-indoor-arena",
         "alt": "A large indoor riding arena with a sand floor, steel walls, clerestory windows and ceiling fans, with a child in a helmet sitting on a black horse beside a mounting block.",
         "caption": "The indoor arena. Sand floor, fans, daylight down both long walls — this is where the pony rides happen, which is why the weather doesn't decide the day.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-06",
         "portrait": false
       },
@@ -669,7 +669,7 @@
         "file": "mhf-grooming",
         "alt": "A black horse in a red halter standing on rubber matting in a pine-lined barn aisle, being brushed, with stalls receding behind.",
         "caption": "The barn aisle. Grooming and tacking up are part of the longer lessons, and they happen in here rather than out in the weather.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-06",
         "portrait": true
       },
@@ -677,7 +677,7 @@
         "file": "mhf-barn",
         "alt": "The outside of a long stable block with a brown metal roof, timber dutch doors, a gravel yard and white paddock fencing running up a green hillside.",
         "caption": "Outside. Gravel yard, level from the parking area to the barn.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-06",
         "portrait": false
       }

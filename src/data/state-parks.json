@@ -176,7 +176,7 @@
         "file": "swallow-falls-muddy-creek",
         "alt": "A wide waterfall dropping over a layered rock ledge into a brown pool, framed by summer trees on both sides and a bare rock shelf at the top left.",
         "caption": "Muddy Creek Falls from the overlook, in summer. The water is tea-colored — that's tannin off the hemlocks, not silt.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": null,
         "portrait": true,
         "focus": "50% 45%"
@@ -185,7 +185,7 @@
         "file": "swallow-falls-swallow",
         "alt": "A smaller falls seen from downstream across a broad shelf of flat wet rock, with rhododendron leaning in from both banks and a green canopy above.",
         "caption": "Looking back upstream from the flat rock shelf below. Rhododendron on both banks, and the rock is slick where it looks dry.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": null,
         "portrait": false
       },
@@ -193,7 +193,7 @@
         "file": "sf-crushed-path",
         "alt": "A wide, level crushed-stone path running straight through tall hemlock woods, with needle-covered ground on both sides.",
         "caption": "The main path in from the parking area — crushed stone, level, and wide. This is the stretch a sturdy stroller will manage.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -201,7 +201,7 @@
         "file": "sf-tolliver-falls",
         "alt": "A wide, low waterfall stepping over dark stacked ledges into a shallow pool, with moss and rhododendron on the bank above.",
         "caption": "Tolliver Falls. Low and wide rather than tall — the opposite of Muddy Creek, and usually much quieter.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -209,7 +209,7 @@
         "file": "sf-tolliver-a",
         "alt": "The same falls from downstream across a broad tea-colored pool, framed by tall hemlock and rhododendron with layered rock shelves on the right bank.",
         "caption": "Tolliver from the far side of the pool. The water is that color from hemlock tannin.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -217,7 +217,7 @@
         "file": "sf-path-e",
         "alt": "A wooden trail sign with three arms reading Canyon Loop with arrows both ways, Muddy Creek Falls to the left and Tolliver Falls to the right, in open hemlock woods.",
         "caption": "The junction that decides your walk. Muddy Creek left, Tolliver right — and note the park spells it Tolliver.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": true
       },
@@ -225,7 +225,7 @@
         "file": "sf-path-b",
         "alt": "A narrow dirt trail with rock steps running beside a layered rock ledge hung with rhododendron, under a canopy of hemlock and birch.",
         "caption": "The path along the ledge on the way to Tolliver. Rock steps, roots, and rhododendron the whole way.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": true
       },
@@ -233,7 +233,7 @@
         "file": "sf-path-ledge",
         "alt": "A close view of a mossy layered rock overhang with rhododendron growing out of the cracks and a leaf-covered path at its base.",
         "caption": "The ledges the trail runs under. Wet most of the year, and slick where it looks dry.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": true
       },
@@ -241,7 +241,7 @@
         "file": "sf-path-c",
         "alt": "A small stream running through a jumble of moss-covered boulders below a steep wooded bank of hemlock and rhododendron.",
         "caption": "One of the side runs coming down into the gorge.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": true
       },
@@ -249,7 +249,7 @@
         "file": "sf-tolliver-c",
         "alt": "A tall layered rock face with rhododendron on its ledges, and a scree of fallen slabs at its foot beside a sandy path.",
         "caption": "The rock wall above the path near Tolliver. Those slabs came off the face.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -257,7 +257,7 @@
         "file": "sf-pool",
         "alt": "A wide rocky river running between hemlock banks under a cloudy sky, with flat stone shelves and boulders across the near bank.",
         "caption": "The Youghiogheny at the bottom of the park. This is the river the Canyon Loop follows.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -265,7 +265,7 @@
         "file": "sf-tolliver-sand",
         "alt": "A tea-colored pool below a low wide waterfall, with a crescent of pale sand along the near bank and mossy rock and ferns in the foreground.",
         "caption": "The sand below Tolliver Falls. This is the whole of it — a few strides along one bank, and the water is shallow at that edge.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-06",
         "portrait": false
       }
@@ -416,7 +416,7 @@
         "file": "deep-creek-lake-beach",
         "alt": "A wide sand beach curving to a lake, with stone breakwaters enclosing a swim area, people swimming and sitting on the sand, and forested hills along the far shore.",
         "caption": "The swim area, enclosed by stone breakwaters. DNR lists two sandy beaches here; this is the one people mean.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-03",
         "portrait": false
       },
@@ -424,7 +424,7 @@
         "file": "deep-creek-lake-breakwater",
         "alt": "A child in a sun hat crouched at the water's edge with a bucket, on a sand beach inside a long stone breakwater, with wooded hills across the lake and the sun flaring through a big tree.",
         "caption": "Late afternoon at the beach, inside the breakwater. The shade at the back of the sand is already gone by this point in the day.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -432,7 +432,7 @@
         "file": "dcl-d",
         "alt": "The swimming beach seen along the shore, with a long stone breakwater running out to the left, wooded hills across the lake and pines along the sand.",
         "caption": "The whole swim area in one frame. The breakwater is the low stone wall running out on the left — that's what keeps this water flat.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -440,7 +440,7 @@
         "file": "dcl-c",
         "alt": "The beach and lake from further along the sand, low sun breaking through heavy cloud over the far hills.",
         "caption": "Same beach from the other end, late afternoon.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false
       },
@@ -448,7 +448,7 @@
         "file": "dcl-breakwater-wide",
         "alt": "A wide view across the lake from inside the breakwater, with stone piled along both sides of the swim area and a long wooded ridge on the far shore.",
         "caption": "From in the water, looking out. Stone on both sides — the gap in the middle is the only way the chop gets in.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-05",
         "portrait": false,
         "focus": "50% 60%"
@@ -1484,7 +1484,7 @@
         "file": "rock-maze-passage",
         "alt": "Two children walking away from the camera down a narrow passage between two towering moss-covered sandstone walls, with daylight above.",
         "caption": "The passage itself. The walls are what the name is about, and the figures are there for scale — several of the gaps are barely shoulder-width.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-03",
         "portrait": true
       },
@@ -1492,7 +1492,7 @@
         "file": "rock-maze-trail",
         "alt": "A narrow earth footpath running through open hardwood forest, banked on both sides by dense waist-high ferns, with sunlight coming through the canopy.",
         "caption": "The approach: open hardwood and heavy fern cover before the ground turns to boulders.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-03",
         "portrait": false
       },
@@ -1500,7 +1500,7 @@
         "file": "rock-maze-roots",
         "alt": "A tree growing directly out of a large moss-covered sandstone boulder, its roots running down the rock face, with rhododendron around it.",
         "caption": "Sandstone under moss, with trees rooted straight over the rock. This is the surface the whole maze is made of — and why it stays slick.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-03",
         "portrait": true
       },
@@ -1508,7 +1508,7 @@
         "file": "rock-maze-russula-group",
         "alt": "Several pink-capped Russula mushrooms growing on dark leaf litter on the forest floor.",
         "caption": "Russula on the forest floor in early August. Look, photograph, do not eat.",
-        "credit": "Site maintainer",
+        "credit": null,
         "takenOn": "2026-08-03",
         "portrait": true
       }
