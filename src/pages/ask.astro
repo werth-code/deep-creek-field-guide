@@ -563,6 +563,13 @@ const schema = [
     ask(q);
   });
 
+  /* A question can arrive in the URL: /ask/?q=somewhere+dry+when+it+rains.
+     That is what lets a home page demonstrate this rather than describe it,
+     and it makes an answer shareable — before, the whole conversation lived in
+     memory and a URL got you a blank box. */
+  const asked = new URLSearchParams(location.search).get("q");
+  if (asked && asked.trim()) ask(asked.trim().slice(0, 200));
+
   document.addEventListener("click", e => {
     const drop = e.target.closest("[data-drop]");
     if (drop) {
