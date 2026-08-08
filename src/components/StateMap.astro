@@ -23,6 +23,7 @@
  * of the dot. Each record carries which it is, and the key says so.
  */
 import { colorFor } from "../lib/feature-colors";
+import { ROADS, LAKE } from "../lib/map-geometry";
 import FeatureIcon from "./FeatureIcon.astro";
 
 export interface MapPoint {
@@ -78,6 +79,8 @@ const SCALE = 1000 / H;
 
 const x = (lon: number) => (lon - minLon) * K * SCALE;
 const y = (lat: number) => (maxLat - lat) * SCALE;
+
+const clipId = `outline-${Math.abs([...OUTLINE.flat()].reduce((a, n) => (a * 31 + n * 1000) | 0, 7)).toString(36)}`;
 
 const path = OUTLINE.map((p, i) => `${i ? "L" : "M"}${x(p[0]).toFixed(1)} ${y(p[1]).toFixed(1)}`).join(" ") + " Z";
 const vw = Math.ceil(W * SCALE);
@@ -140,7 +143,42 @@ const vw = Math.ceil(W * SCALE);
       role="img"
       aria-label={`Map of Garrett County showing ${points.length} places`}
     >
+      <defs>
+        <clipPath id={clipId}>
+          <path d={path} />
+        </clipPath>
+      </defs>
+
       <path d={path} fill="var(--color-sheet)" stroke="var(--color-slate)" stroke-width="4" stroke-linejoin="round" />
+
+      {/* Deep Creek Lake. The county is named for it and the map did not
+          have it, which made the shape harder to read than it needed to be. */}
+      <path
+        d={LAKE.map((c, i) => `${i ? "L" : "M"}${x(c[0]).toFixed(1)} ${y(c[1]).toFixed(1)}`).join(" ") + " Z"}
+        fill="var(--color-lake)"
+        stroke="var(--color-lake)"
+        stroke-width="1"
+      />
+
+      {/*
+        Major roads, clipped to the outline by the SVG rather than by
+        trimming the geometry — the traced outline is coarse in places and
+        a point-in-polygon test threw away most of a real motorway.
+        Two passes: a wide casing in the paper colour, then the line, so
+        roads read as roads where they cross each other.
+      */}
+      <g clip-path={`url(#${clipId})`} fill="none" stroke-linecap="round" stroke-linejoin="round">
+        {ROADS.map((r) => {
+          const d = r.pts.map((c, i) => `${i ? "L" : "M"}${x(c[0]).toFixed(1)} ${y(c[1]).toFixed(1)}`).join(" ");
+          const major = r.ref.startsWith("I ");
+          return (
+            <>
+              <path d={d} stroke="var(--color-sheet)" stroke-width={major ? 7 : 5} opacity="0.9" />
+              <path d={d} stroke="var(--color-slate)" stroke-width={major ? 3 : 1.6} opacity={major ? 0.55 : 0.32} />
+            </>
+          );
+        })}
+      </g>
 
 
       {/* Each marker is the section's own glyph knocked out of a disc in the
@@ -241,7 +279,7 @@ const vw = Math.ceil(W * SCALE);
   </div>
 
   <figcaption class="px-4 sm:px-5 pb-4 stamp text-ink-soft">
-    Tap a marker to see what it is, and again to open it. Solid markers are the
+    Roads and water from OpenStreetMap. Tap a marker to see what it is, and again to open it. Solid markers are the
     place itself; paler ones are the town center, where I couldn't pin the
     building — about the width of the marker, at this scale.
   </figcaption>
